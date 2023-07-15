@@ -1,0 +1,62 @@
+---
+import Logo from "../components/Logo.astro";
+
+import "@fontsource-variable/karla";
+import "@fontsource-variable/karla/wght-italic.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>
+      TypeIt | Image optimization for the images you're already using.
+    </title>
+    <script defer data-domain="TypeIt.dev" src="/js/numbers.js"></script>
+  </head>
+
+  <body class="h-screen w-screen grid content-center">
+    <div class="text-center">
+      <Logo classes="text-6xl" />
+
+      <p class="text-3xl mt-3 max-w-2xl mx-auto">
+        A picture should be worth a thousand words.
+
+        <br />
+
+        <em class="font-black">Not kilobytes.</em>
+      </p>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  @import "../global.css";
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    background: linear-gradient(
+      to bottom right,
+      theme("colors.gray.600"),
+      theme("colors.gray.800")
+    );
+    line-height: 1;
+    letter-spacing: -0.04em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @apply py-3;
+  }
+
+  p a {
+    @apply text-sky-600;
+  }
+
+  .button {
+    @apply border-2 rounded-md border-black px-3 py-2;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import Logo from "./Logo.astro";
+
+const links = [
+  {
+    label: "Pricing",
+    link: "https://typeitjs.com#pricing",
+  },
+  {
+    label: "Documentation",
+    link: "/docs",
+  },
+];
+---
+
+<nav
+  class="py-3 md:px-6 flex flex-col md:flex-row justify-between items-center"
+>
+  <a href="/" class="block" title="Home">
+    <Logo />
+  </a>
+
+  <ul class="flex gap-4 md:gap-8 flex-wrap justify-center">
+    {
+      links.map(({ label, link }) => {
+        return (
+          <li>
+            <a href={link} class="text-lg md:text-xl">
+              {label}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

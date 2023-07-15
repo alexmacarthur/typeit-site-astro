@@ -1,0 +1,50 @@
+:root {
+  --ti-cursor-transform: translateX(0em);
+}
+
+body {
+  font-family: 'Space Grotesk Variable', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="light"] .main-frame h1,
+[data-theme="light"] .main-frame h2,
+[data-theme="light"] .main-frame h3,
+[data-theme="light"] .main-frame h4,
+[data-theme="light"] .main-frame h5,
+[data-theme="light"] .main-frame h6 {
+  @apply text-gray-800 !important;
+}
+
+.site-title {
+  @apply font-bold italic;
+}
+
+.gradient-text,
+.site-title {
+  background: linear-gradient(
+    to bottom right,
+    theme("colors.slate.700"),
+    theme("colors.slate.500")
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rotateGradient 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+  background-size: 100% 150%;
+  padding-right: 0.1em;
+}
+
+input {
+  @apply text-lg py-[6px] w-full max-w-full box-border;
+}
+
+label {
+  @apply mb-2 inline-block;
+}
+
+.button-as-link {
+  @apply text-slate-600 hover:text-slate-700 hover:border-none hover:shadow-none border-none cursor-pointer text-base;
+  background-image: none;
+  background: none;
+}

@@ -1,0 +1,4 @@
+:root {
+  --sl-text-h2: theme("fontSize.3xl");
+  --sl-text-h3: theme("fontSize.2xl");
+}

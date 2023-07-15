@@ -1,0 +1,40 @@
+---
+import Sparkles from 'astro-heroicons/outline/Sparkles.astro';
+import Sun from 'astro-heroicons/outline/Sun.astro';
+import Bolt from 'astro-heroicons/outline/Bolt.astro';
+import DocumentCheck from 'astro-heroicons/outline/DocumentCheck.astro';
+
+const perks = [
+      {
+        text: "~4kb gzipped",
+        icon: Sparkles
+      },
+      {
+        text: "no dependencies",
+        icon: Sun
+      },
+      {
+        text: "super flexible API",
+        icon: Bolt
+      },
+      {
+        text: "SEO-friendly",
+        icon: DocumentCheck
+      },
+    ];
+---
+<ul class="grid gap-6 grid-cols-2 md:grid-cols-4">
+    { perks.map(perk => {
+        const Component = perk.icon;
+
+        return (
+            <li class="flex flex-col gap-3 items-center">
+                <span class="block w-10 h-10 md:w-12 md:h-12 text-slate-700">
+                    <Component />
+                </span>
+
+                <span class="text-lg">{perk.text}</span>
+            </li>
+        )
+    })}
+</ul>

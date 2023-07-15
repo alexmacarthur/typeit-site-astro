@@ -1,0 +1,54 @@
+---
+const plans = [
+  {
+    name: "Mach 1",
+    price: "$7/month",
+    features: ["one website", "up to 50k page views/month"],
+  },
+  {
+    name: "Mach 2",
+    price: "$45/month",
+    features: ["up to 10 websites", "up to 500k page views/month"],
+  },
+];
+---
+
+<ul class="grid sm:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto">
+  {
+    plans.map((plan) => {
+      return (
+        <li class="shadow-md rounded-md p-6 text-center gradient-box">
+          <h3 class="text-2xl my-0">{plan.name}</h3>
+          <span class="italic font-bold gradient-text -mt-2 mb-6 block">
+            {plan.price}
+          </span>
+          <ul class="flex flex-col gap-3">
+            {plan.features.map((feature) => {
+              return <li class="feature">{feature}</li>;
+            })}
+          </ul>
+        </li>
+      );
+    })
+  }
+
+  <li class="shadow-md rounded-md p-6 text-center gradient-filled-box">
+    <h3 class="text-2xl text-white leading-snug immune my-0">
+      Need something special?
+    </h3>
+    <p class="text-white leading-snug text-base">
+      No problem. Reach out and we'll make something just for you.
+    </p>
+    <a href="https://macarthur.me/contact" target="_blank" class="button dark">
+      Reach Out
+    </a>
+  </li>
+</ul>
+
+<style>
+  .feature:before {
+    content: "-";
+    margin-right: 0.3rem;
+    color: theme("colors.sky.500");
+  }
+</style>

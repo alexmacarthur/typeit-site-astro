@@ -1,0 +1,259 @@
+---
+import LogoIcon from "./components/LogoIcon.astro";
+import Footer from "./components/Footer.astro";
+import Nav from "./components/Nav.astro";
+import type { SoftwareApplication, WithContext } from "schema-dts";
+
+import "./tailwind.css";
+import "prismjs/themes/prism-okaidia.css";
+import '@fontsource-variable/space-grotesk';
+
+const props = Astro.props;
+
+const title =
+  props.title ||
+  "TypeIt | The most versatile JavaScript typewriter effect library on the planet.";
+  const description = props.description;
+  ("TypeIt allows you to create beautiful, dynamic typewriter effects with minimal effort.");
+
+const schema: WithContext<SoftwareApplication> = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  url: import.meta.env.SITE_URL,
+  name: title,
+  offers: [
+    {
+      "@type": "Offer",
+      price: 9,
+      priceCurrency: "USD"
+    },
+    {
+      "@type": "Offer",
+      price: 29,
+      priceCurrency: "USD"
+    },
+  ],
+  description: description,
+  operatingSystem: "All",
+  author: {
+    "@type": "Person",
+    name: "Alex MacArthur",
+    url: import.meta.env.SITE_URL,
+  },
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>
+      {title}
+    </title>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta property="og:image" content="https://TypeIt.dev/TypeIt-og.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="description" content={description} />
+    <script defer data-domain="TypeIt.dev" src="/js/numbers.js"></script>
+
+    <script
+      type="application/ld+json"
+      key="ld+json"
+      set:html={JSON.stringify(schema)}
+    />
+  </head>
+
+  <body class="m-0">
+    <div class="box-border flex flex-col overflow-hidden min-h-screen p-2">
+      <LogoIcon
+        classes="w-screen max-h-screen md:w-[90vw] absolute z-[-1] opacity-5 top-[-15vw] md:top-[-20vw] left-[-15vw] md:left-[-20vw]"
+      />
+
+      <Nav />
+
+      <div class="flex-1">
+        <slot />
+      </div>
+
+      <Footer />
+    </div>
+  </body>
+
+  <style is:global>
+    @import "./global.css";
+
+    :root {
+      --pp-shadow: inset 0px 0px 0px 2px rgba(0, 0, 0, 0);
+    }
+
+    body {
+      color: theme("colors.gray.800");
+    }
+
+    ul {
+      @apply list-none p-0;
+    }
+
+    a {
+      @apply no-underline text-inherit;
+    }
+
+    h1:not(.immune),
+    h2:not(.immune),
+    h3:not(.immune),
+    h4:not(.immune),
+    h5:not(.immune),
+    h6:not(.immune) {
+      color: theme("colors.slate.700");
+      line-height: 1;
+      letter-spacing: -0.04em;
+      @apply py-3;
+    }
+
+    p {
+      @apply text-lg;
+    }
+
+    p a {
+      @apply text-slate-600;
+    }
+
+    .button {
+      @apply px-4 py-2 rounded-md text-white text-lg bg-white border-0 inline-flex justify-center gap-2 items-center cursor-pointer;
+      @apply disabled:opacity-50 disabled:cursor-not-allowed;
+      transition: background 0.2s ease-in-out;
+      box-shadow: var(--pp-shadow);
+      background: linear-gradient(
+        to bottom right,
+        theme("colors.slate.600"),
+        theme("colors.slate.500")
+      );
+    }
+
+    a.button:hover,
+    button:hover {
+      @apply border-slate-600;
+      background: none;
+      -webkit-text-fill-color: inherit;
+      box-shadow: inset 0px 0px 0px 2px theme("colors.slate.600");
+      @apply text-slate-700;
+    }
+
+    .dark {
+      box-shadow: inset 0px 0px 0px 2px white;
+    }
+
+    a.button.dark:hover {
+      @apply bg-white text-slate-600;
+    }
+
+    .button.light {
+      @apply text-slate-700 hover:text-white;
+      box-shadow: inset 0px 0px 0px 2px theme("colors.slate.700");
+      background: none;
+    }
+
+    .button.light:hover {
+      background: linear-gradient(
+        to bottom right,
+        theme("colors.slate.600"),
+        theme("colors.slate.500")
+      );
+      box-shadow: none;
+    }
+
+    .button.light.borderless {
+      @apply px-1;
+      box-shadow: none;
+    }
+
+    .button.light.borderless:hover {
+      @apply text-slate-700;
+      box-shadow: none;
+      background: none;
+    }
+
+    .gradient-box {
+      @apply relative bg-white;
+      background-clip: padding-box;
+      border: solid 5px transparent;
+    }
+
+    a:hover {
+      background: linear-gradient(
+        to bottom right,
+        theme("colors.slate.700"),
+        theme("colors.slate.500")
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .link {
+      @apply font-semibold text-lg;
+    }
+
+    .link:hover {
+      background: none;
+      -webkit-text-fill-color: unset;
+    }
+
+    .gradient-box:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      margin: -5px;
+      border-radius: inherit;
+      background: linear-gradient(
+        to bottom right,
+        theme("colors.slate.700"),
+        theme("colors.slate.500")
+      );
+    }
+
+    .gradient-filled-box {
+      background: linear-gradient(
+        to bottom right,
+        theme("colors.slate.700"),
+        theme("colors.slate.500")
+      );
+    }
+
+    input {
+      @apply border-2 border-solid border-gray-300 rounded-md px-2;
+    }
+  </style>
+</html>
