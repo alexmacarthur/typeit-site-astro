@@ -1,0 +1,31 @@
+---
+import { Prism } from '@astrojs/prism';
+import Example from './Example.astro';
+---
+
+<Example
+    heading="Type a simple string."
+    description="At it's most basic level, just target an element, define a string, and voilà."
+    exampleId="simpleUsage"
+>
+    <Prism lang="html" code={`<p id="simpleUsage"></p>`} />
+
+    <Prism lang="js" code={`new TypeIt("#simpleUsage", {
+    strings: "This is a simple string.",
+    speed: 50,
+    waitUntilVisible: true,
+}).go();`} />
+
+</Example>
+
+<script>
+    import TypeIt from 'typeit';
+
+    const instance = new TypeIt("#simpleUsage", {
+        strings: "This is a simple string.",
+        speed: 50,
+        waitUntilVisible: true,
+    }).go();
+
+    window.tiInstances.set('simpleUsage', instance);
+</script>

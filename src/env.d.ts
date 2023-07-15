@@ -3,4 +3,5 @@
 
 interface Window {
   plausible: (eventName: string, eventProps: { props: EventProps }) => void;
+  tiInstances: any;
 }

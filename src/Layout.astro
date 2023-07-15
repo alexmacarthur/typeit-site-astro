@@ -83,7 +83,9 @@ const schema: WithContext<SoftwareApplication> = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta name="description" content={description} />
-    <script defer data-domain="TypeIt.dev" src="/js/numbers.js"></script>
+    <script defer data-domain="typeitjs.com" src="/js/numbers.js"></script>
+  
+    <script is:inline>window.tiInstances = window.tiInstances || new Map();</script>
 
     <script
       type="application/ld+json"

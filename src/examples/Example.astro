@@ -1,0 +1,32 @@
+---
+const { heading, description, exampleId } = Astro.props;
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">   
+    <div>
+        <h3 class="text-3xl mb-0">{ heading }</h3>
+        <p class="mt-0">{ description }</p>
+
+        <div class="text-xl bg-slate-100 border-2 border-slate-200 border-solid p-6 rounded-md mb-6">
+            <span id={exampleId}></span>
+        </div>
+        <button class="button" data-reset-button={exampleId}>Reset</button>
+    </div>
+
+    <div class="pt-10">
+        <slot />
+    </div>
+</div>
+
+<script>
+    document.querySelector('[data-reset-button]')!.addEventListener('click', (e) => {
+        const button = e.currentTarget as HTMLButtonElement;
+        const instance = window.tiInstances.get(button.dataset.resetButton);
+
+        if(!instance) {
+            return;
+        }
+
+        instance.reset().go();
+    });
+</script>
