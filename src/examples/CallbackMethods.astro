@@ -1,0 +1,38 @@
+---
+import { Prism } from '@astrojs/prism';
+import Example from './Example.astro';
+---
+
+<Example
+    heading="Execute code at key points of any animation."
+    description="Callback methods are available for before and after each string or character is typed, as well as after the entire instance is finished."
+    exampleId="callback"
+>
+    <Prism lang="html" code={`<p id="callback"></p>`} />
+
+    <Prism lang="js" code={`new TypeIt("#callback", {
+  strings: ["Look, it's rainbow text!"],
+  afterStep: function (instance) {
+    instance.getElement().style.color = getRandomColor();
+  },
+}).go();`} />
+</Example>
+
+<script>
+    import TypeIt from 'typeit';
+
+    // @ts-ignore
+    const instance = new TypeIt("#callback", {
+        strings: ["Look, it's rainbow text!"],
+        afterStep: function (instance) {
+          let letters = "0123456789ABCDEF";
+          let color = "#";
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          instance.getElement().style.color = color;
+        },
+    }).go();
+
+    window.tiInstances.set('callback', instance);
+</script>

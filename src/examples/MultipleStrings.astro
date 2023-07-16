@@ -1,0 +1,32 @@
+---
+import { Prism } from '@astrojs/prism';
+import Example from './Example.astro';
+---
+
+<Example
+    heading="Type multiple strings."
+    description="To type multiple strings that stack on top of each other, pass an array of them."
+    exampleId="multipleStrings"
+>
+    <Prism lang="html" code={`<p id="multipleStrings"></p>`} />
+
+    <Prism lang="js" code={`new TypeIt("#multipleStrings", {
+  strings: ["This is a great string.", "But here is a better one."],
+  speed: 50,
+  waitUntilVisible: true,
+}).go();`} />
+
+</Example>
+
+<script>
+    import TypeIt from 'typeit';
+
+    // @ts-ignore
+    const instance = new TypeIt("#multipleStrings", {
+        strings: ["This is a great string.", "But here is a better one."],
+        speed: 50,
+        waitUntilVisible: true,
+    }).go();
+
+    window.tiInstances.set('multipleStrings', instance);
+</script>

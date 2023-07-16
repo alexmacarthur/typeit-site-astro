@@ -1,0 +1,33 @@
+---
+import { Prism } from '@astrojs/prism';
+import Example from './Example.astro';
+---
+
+<Example
+    heading="Type into form elements."
+    description="Create a typewriter effect on input or textarea elements."
+    exampleId="formElement"
+    element="input"
+>
+    <Prism lang="html" code={`<fieldset>
+  <label for="formElement">Full Name</label>
+  <input type="text" id="formElement" />
+</fieldset>`} />
+
+    <Prism lang="js" code={`new TypeIt("#formElement", {
+  strings: "Alex MacArthur",
+  waitUntilVisible: true,
+}).go();`} />
+</Example>
+
+<script>
+    import TypeIt from 'typeit';
+
+    // @ts-ignore
+    const instance = new TypeIt("#formElement", {
+        strings: "Alex MacArthur",
+        waitUntilVisible: true,
+    }).go();
+
+    window.tiInstances.set('formElement', instance);
+</script>

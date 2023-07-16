@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: 'Space Grotesk Variable', sans-serif;
+  font-family: "Space Grotesk Variable", sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.02em;
 }
@@ -35,8 +35,9 @@ body {
   padding-right: 0.1em;
 }
 
-input {
-  @apply text-lg py-[6px] w-full max-w-full box-border;
+input,
+textarea {
+  @apply text-lg p-4 w-full max-w-full box-border border-2 border-solid border-slate-200 rounded-md outline-slate-400;
 }
 
 label {

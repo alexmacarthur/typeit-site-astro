@@ -1,9 +1,17 @@
 ---
 import Simple from "../examples/Simple.astro";
+import MultipleStrings from "../examples/MultipleStrings.astro";
+import DynamicAnimations from "../examples/DynamicAnimations.astro";
+import PauseResume from "../examples/PauseResume.astro";
+import AsyncReady from "../examples/AsyncReady.astro";
+import CallbackMethods from "../examples/CallbackMethods.astro";
+import FormElements from "../examples/FormElements.astro";
 import Perks from "../components/Perks.astro";
 import Layout from "../Layout.astro";
 import HeroSnippet from '../snippets/hero.md';
 import Hero from "../examples/Hero.astro";
+import BuildYourOwnTool from "../build-your-own/index"
+import { Prism } from '@astrojs/prism';
 ---
 
 <Layout>
@@ -19,10 +27,78 @@ import Hero from "../examples/Hero.astro";
 
       <Perks />
     </div>
+  </div>
 
-    <div id="examples" class="mt-12">
-      <Simple />
+  <div id="examples" class="max-w-6xl mx-auto mt-12 mb-32">
+    <Simple />
+    <MultipleStrings />
+    <FormElements />
+    <CallbackMethods />
+    <DynamicAnimations />
+    <AsyncReady />
+    <PauseResume />
+  </div>
+
+  <div id="#buildYourOwn" class="max-w-6xl mx-auto mt-12">
+    <div class="subheading-container">
+      <h2 class="subheading">Build a Typewriter Animation Now</h2>
+      <p class="subheading-description">Record an animation and tweak it to your liking. (Be gracious -- this playground is a work-in-progress!)</p>
     </div>
 
+    <BuildYourOwnTool pagePath={Astro.url.pathname} client:visible />
   </div>
+
+  <div id="#installation" class="max-w-6xl mx-auto mt-12">
+    <div class="subheading-container">
+      <h2 class="subheading">Easy to Set Up and Integrate</h2>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 mt-16">
+        <li>
+          <span class="text-5xl font-bold">1.</span>
+          <h3 class="m-0 text-2xl">
+            Load the script on the page.
+          </h3>
+
+          <div class="text-left">
+            <p>Load the script with a script tag (a CDN link is available).</p>
+            <Prism lang="html" code={`<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>`} />
+            <p>Or, run 'npm install typeit' and import the module.</p>
+            <Prism lang="js" code={`import TypeIt from "typeit";`} />
+          </div>
+        </li>
+
+        <li>
+          <span class="text-5xl font-bold">2.</span>
+          <h3 class="m-0 text-2xl">
+            Configure your animation.
+          </h3>
+          <div class="text-left">
+            <p>Choose an element to target, define what to type, pick your other options, and kick it off.</p>
+
+            <Prism lang="js" code={`new TypeIt("#element", {
+  strings: "This is my string!",
+  speed: 75,
+  loop: true,
+}).go();`} />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
 </Layout>
+
+<style>
+  .subheading-container {
+    @apply text-center mb-20;
+  }
+  .subheading {
+    @apply text-4xl mb-0
+  }
+
+  .subheading-description {
+    @apply md:text-2xl;
+  }
+
+</style>

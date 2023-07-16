@@ -1,0 +1,40 @@
+---
+import { Prism } from '@astrojs/prism';
+import Example from './Example.astro';
+---
+
+<Example
+    heading="Pause & resume animations on demand."
+    description="Included `freeze()` and `unfreeze()` methods make it easy."
+    exampleId="pauseResume"
+>
+    <Prism lang="html" code={`<p id="pauseResume"></p>`} />
+
+    <Prism lang="js" code={`const instance = new TypeIt("#pauseResume", {
+  strings:
+    "Click the 'freeze' button to freeze and unfreeze this instance as much as you want.",
+  waitUntilVisible: true,
+}).go();
+
+document.querySelector("#freezeButton").addEventListener("click", function (e) {
+  if (instance.is("frozen")) {
+    instance.unfreeze();
+    return;
+  }
+
+  instance.freeze();
+});`} />
+
+</Example>
+
+<script>
+    import TypeIt from 'typeit';
+
+    const instance = new TypeIt("#pauseResume", {
+    strings:
+        "Click the 'freeze' button to freeze and unfreeze this instance as much as you want.",
+    waitUntilVisible: true,
+    }).go();
+    
+    window.tiInstances.set('pauseResume', instance);
+</script>

@@ -9,7 +9,7 @@ import preact from "@astrojs/preact";
 export default defineConfig({
   site: "https://TypeIt.dev",
   markdown: {
-    syntaxHighlight: 'prism',
+    syntaxHighlight: "prism",
     gfm: true,
   },
   trailingSlash: "never",
@@ -93,6 +93,6 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    preact(),
+    preact({ compat: true }),
   ],
 });

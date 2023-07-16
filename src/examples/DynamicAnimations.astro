@@ -1,0 +1,66 @@
+---
+import { Prism } from '@astrojs/prism';
+import Example from './Example.astro';
+---
+
+<Example
+    heading="Type fine-grained, life-like effects."
+    description="Use the included instance methods to control the smallest details, including speed, deletions, pausing, and even cursor movement."
+    exampleId="companionMethods"
+>
+    <Prism lang="html" code={`<p id="companionMethods"></p>`} />
+
+    <Prism lang="js" code={`new TypeIt("#companionMethods", {
+  speed: 50,
+  waitUntilVisible: true,
+})
+  .type("Nvver", { delay: 300 })
+  .move(-3)
+  .delete(1)
+  .type("e")
+  .move(null, { to: "END" })
+  .type(" let yees")
+  .pause(300)
+  .delete(2)
+  .type("sterday use up to muc")
+  .move(-4)
+  .type("o")
+  .move(null, { to: "END" })
+  .type("h of today.")
+  .pause(500)
+  .break({ delay: 500 })
+  .break({ delay: 500 })
+  .type("<em>- Will Rogers</em>")
+  .go();`} />
+
+</Example>
+
+<script>
+    import TypeIt from 'typeit';
+
+    // @ts-ignore
+    const instance = new TypeIt("#companionMethods", {
+        speed: 50,
+        waitUntilVisible: true,
+        })
+        .type("Nvver", { delay: 300 })
+        .move(-3)
+        .delete(1)
+        .type("e")
+        .move(null, { to: "END" })
+        .type(" let yees")
+        .pause(300)
+        .delete(2)
+        .type("sterday use up to muc")
+        .move(-4)
+        .type("o")
+        .move(null, { to: "END" })
+        .type("h of today.")
+        .pause(500)
+        .break({ delay: 500 })
+        .break({ delay: 500 })
+        .type("<em>- Will Rogers</em>")
+        .go();
+
+    window.tiInstances.set('companionMethods', instance);
+</script>
