@@ -1,0 +1,39 @@
+---
+import ReactIcon from "./ReactIcon.astro"
+import WordPressIcon from "./WordPressIcon.astro"
+import JavaScriptIcon from "./JavaScriptIcon.astro"
+
+const flavors = [
+    {
+        name: "Vanilla JS",
+        path: "vanilla",
+        logo: JavaScriptIcon,
+    },
+    {
+        name: "WordPress",
+        path: "wordpress",
+        logo: WordPressIcon,
+    },
+    {
+        name: "React",
+        path: "react",
+        logo: ReactIcon,
+    },
+];
+---
+
+<ul class="flex gap-12 flex-wrap justify-center mx-auto max-w-3xl m-0">
+    { flavors.map(flavor => {
+        return (
+            <li class="flex flex-col items-center">
+                <h4 class="text-3xl m-0 mb-3 font-normal">{flavor.name}</h4>
+
+                <div class="w-24 h-24 inline-block">
+                    <flavor.logo />
+                </div>
+
+                <a href={flavor.path} class="mt-6">View the Docs</a>
+            </li>
+        )
+    })}
+</ul>

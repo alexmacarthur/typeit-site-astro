@@ -1,0 +1,35 @@
+---
+import licenseOptions from "../../licenseOptions";
+
+function centsToDollars(numberInCents: number) {
+  return numberInCents / 100;
+};
+---
+
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+    { licenseOptions.map(option => {
+        return (
+            <li class="border-2 border-solid border-slate-200 rounded-lg p-8 text-center">
+                <h3 class="font-normal text-3xl" set:html={option.htmlTitle}></h3>
+
+                <span class="text-6xl font-black block mb-10">
+                    ${centsToDollars(option.price)}
+                </span>
+
+                <p>
+                    {option.description}
+                </p>
+
+                <div class="mt-auto">
+                    <form action={import.meta.env.STRIPE_CHECKOUT_URL} method="POST">
+                        <input type="hidden" name="slug" value={option.slug} />
+                        <button type="submit" class="button">
+                        Purchase License
+                        </button>
+                    </form>
+                </div>
+
+            </li>
+        )
+    })}
+</ul>

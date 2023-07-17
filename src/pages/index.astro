@@ -7,6 +7,8 @@ import AsyncReady from "../examples/AsyncReady.astro";
 import CallbackMethods from "../examples/CallbackMethods.astro";
 import FormElements from "../examples/FormElements.astro";
 import Perks from "../components/Perks.astro";
+import Flavors from "../components/Flavors.astro";
+import PricingOptions from "../components/PricingOptions.astro";
 import Layout from "../Layout.astro";
 import HeroSnippet from '../snippets/hero.md';
 import Hero from "../examples/Hero.astro";
@@ -86,6 +88,23 @@ import { Prism } from '@astrojs/prism';
     </div>
   </div>
 
+  <div id="#flavors" class="max-w-6xl mx-auto mt-12">
+    <div class="subheading-container">
+      <h2 class="subheading">Available in Multiple Flavors</h2>
+      <p class="subheading-description">For easy usage in a wide variety of projects, TypeIt's ready to go in multiple different packages. Purchase a license, and you get to choose which implementation is best for your needs.</p>
+    </div>
+
+    <Flavors />
+  </div>
+  
+  <div id="#pricing" class="max-w-6xl mx-auto mt-12">
+    <div class="subheading-container">
+      <h2 class="subheading">Pricing</h2>
+      <p class="subheading-description">It's free for use in any personal or open source project (check out the code <a href="https://github.com/alexmacarthur/typeit" target="_blank">on GitHub!</a>). For a less restrictive commercial license, choose one of the following:</p>
+    </div>
+
+    <PricingOptions />
+  </div>
 
 </Layout>
 
