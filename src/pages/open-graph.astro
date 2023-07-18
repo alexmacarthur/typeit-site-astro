@@ -1,5 +1,6 @@
 ---
 import Logo from "../components/Logo.astro";
+import LogoIcon from "../components/LogoIcon.astro";
 
 import "../tailwind.css";
 import "../global.css";
@@ -10,19 +11,18 @@ import "../global.css";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <script defer data-domain="TypeIt.dev" src="/js/numbers.js"></script>
+    <script defer data-domain="typeitjs.com" src="/js/numbers.js"></script>
   </head>
 
   <body class="h-screen w-screen grid content-center">
+    <LogoIcon
+        classes="w-screen h-[150vh] md:w-[100vw] absolute z-[-1] opacity-5 top-[-15vw] md:top-[-20vw] left-[-15vw] md:left-[-20vw] transform rotate-[-10deg]"
+      />
     <div class="text-center">
-      <Logo classes="text-6xl" />
+      <Logo classes="text-7xl mb-4" />
 
-      <p class="text-3xl mt-3 max-w-2xl mx-auto">
-        A picture should be worth a thousand words.
-
-        <br />
-
-        <em class="font-black">Not kilobytes.</em>
+      <p class="text-3xl mt-3 max-w-2xl mx-auto text-slate-700">
+        The most versatile JavaScript typewriter library on the planet.
       </p>
     </div>
   </body>
