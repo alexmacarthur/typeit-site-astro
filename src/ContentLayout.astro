@@ -1,19 +1,53 @@
 ---
 import BaseLayout from "./Layout.astro";
 
-const { frontmatter } = Astro.props;
+interface Breadcrumb {
+    label: string;
+    url: string;
+}
+
+interface Props {
+    title: string;
+    description: string;
+    frontmatter?: {
+        title: string;
+        description: string;
+    };
+    showPreview: boolean;
+    breadcrumb?: Breadcrumb;
+}
+
+const { frontmatter, showPreview = true, breadcrumb = undefined } = Astro.props;
+const title = frontmatter?.title || Astro.props.title;
+const description = frontmatter?.description || Astro.props.description;
 ---
 
 <BaseLayout
-    title={frontmatter.title}
-    description={frontmatter.description}
+    title={title}
+    description={description}
+    breadcrumb={breadcrumb}
 >
     <div class="max-w-3xl mx-auto px-2">
-        <h1 class="md:text-6xl mb-8">{frontmatter.title}</h1>
 
-        <span class="italic text-lg text-gray-600 block -mt-8 mb-6">
-            {frontmatter.description}
-        </span>
+        { breadcrumb && 
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li>
+                        <a href={breadcrumb.url}>
+                            ← {breadcrumb.label}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
+        
+        <h1 class="md:text-6xl mb-8">{title}</h1>
+
+        { showPreview && 
+            <span class="italic text-lg text-gray-600 block -mt-8 mb-6">
+                {description}
+            </span>
+        }
 
         <slot />
     </div>

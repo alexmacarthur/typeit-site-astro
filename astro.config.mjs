@@ -12,7 +12,7 @@ export default defineConfig({
     syntaxHighlight: "prism",
     gfm: true,
   },
-  trailingSlash: "never",
+  trailingSlash: 'ignore',
   integrations: [
     starlight({
       head: [
@@ -28,57 +28,23 @@ export default defineConfig({
       customCss: ["/src/global.css", "/src/docs.css"],
       title: "TypeIt",
       sidebar: [
-        {
-          label: "General",
-          items: [
             {
-              label: "Getting Started",
-              link: "/docs/",
+              label: "Vanilla JS Documentation",
+              autogenerate: { directory: 'docs/vanilla' },
             },
-            {
-              label: "How to Use TypeIt",
-              link: "/docs/usage",
-            },
-            {
-              label: "What to Expect",
-              link: "/docs/expectations",
-            },
-            {
-              label: "Frequently Asked Questions",
-              link: "/docs/faq",
-            },
-            {
-              label: "Supported Image Formats",
-              link: "/docs/formats",
-            },
-          ],
-        },
         {
           label: "Integrations",
           items: [
             {
+              label: "React",
+              autogenerate: { directory: 'docs/react' },
+            },
+            {
               label: "WordPress",
-              link: "/docs/wordpress",
+              autogenerate: { directory: 'docs/wordpress' },
             },
           ],
-        },
-        {
-          label: "Other",
-          items: [
-            {
-              label: "Privacy Policy",
-              link: "/policies/privacy",
-            },
-            {
-              label: "Terms of Use",
-              link: "/policies/terms",
-            },
-            {
-              label: "Service-Level Agreement",
-              link: "/policies/sla",
-            },
-          ],
-        },
+        }
       ],
     }),
     sitemap(),

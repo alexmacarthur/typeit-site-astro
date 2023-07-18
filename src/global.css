@@ -1,3 +1,6 @@
+@import "prismjs/themes/prism-okaidia.css";
+@import '@fontsource-variable/space-grotesk';
+
 :root {
   --ti-cursor-transform: translateX(0em);
 }
@@ -35,6 +38,12 @@ body {
   padding-right: 0.1em;
 }
 
+[data-theme="dark"] .site-title {
+  @apply text-white;
+  -webkit-text-fill-color: unset;
+  background: none;
+}
+
 input,
 textarea {
   @apply text-lg p-4 w-full max-w-full box-border border-2 border-solid border-slate-200 rounded-md outline-slate-400;
@@ -44,8 +53,6 @@ label {
   @apply mb-2 inline-block;
 }
 
-.button-as-link {
-  @apply text-slate-600 hover:text-slate-700 hover:border-none hover:shadow-none border-none cursor-pointer text-base;
-  background-image: none;
-  background: none;
+p > code {
+  @apply bg-slate-100 text-slate-800 rounded-md p-1;
 }

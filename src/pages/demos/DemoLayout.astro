@@ -1,0 +1,58 @@
+---
+import ContentLayout from "../../ContentLayout.astro";
+
+const { frontmatter } = Astro.props;
+const title = frontmatter.title;
+const description = Astro.props.rawContent().trim().replace(/(\r\n|\n|\r)/gm, "").split(" ").slice(0, 50).join(" ")
+const slug = frontmatter?.codepen_slug;
+
+const height = 450;
+---
+
+<ContentLayout
+    title={title}
+    description={description}
+    showPreview={false}
+    breadcrumb={{
+        label: "Back to All Demos", 
+        url: "/demos"
+    }}
+>
+    <div class="max-w-3xl mx-auto">
+        <div class="mb-10">
+            <p
+                class="codepen"
+                data-height={height}
+                data-theme-id="dark"
+                data-default-tab="js,result"
+                data-slug-hash={slug}
+                data-user="alexmacarthur"
+                style={{
+                    height: `${height}px`,
+                    boxSizing: "border-box",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    border: "2px solid",
+                    margin: "1em 0",
+                    padding: "1em",
+                }}
+            >
+                <span>
+                    <a href={`https://codepen.io/alexmacarthur/pen/${slug}`}>This pen</a> is by
+                    Alex MacArthur (
+                    <a href="https://codepen.io/alexmacarthur">@alexmacarthur</a>) on{" "}
+                    <a href="https://codepen.io">CodePen</a>.
+                </span>
+            </p>
+        </div>
+
+        <slot />
+    </div>
+</ContentLayout>
+
+<script
+    script:inline
+    async
+    src="https://cpwebassets.codepen.io/assets/embed/ei.js"
+></script>
