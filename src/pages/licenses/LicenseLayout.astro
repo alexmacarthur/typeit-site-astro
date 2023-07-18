@@ -1,0 +1,20 @@
+---
+import ContentLayout from "../../ContentLayout.astro";
+import { parseExcerpt } from "../../utils";
+
+const { frontmatter } = Astro.props;
+const title = frontmatter.title;
+const description = parseExcerpt(Astro.props.compiledContent())
+---
+
+<ContentLayout
+    title={title}
+    description={description}
+    showPreview={false}
+    breadcrumb={{
+        label: "Back to All Licenses", 
+        url: "/licenses"
+    }}
+>
+    <slot />
+</ContentLayout>

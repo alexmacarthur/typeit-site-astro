@@ -29,8 +29,18 @@ const handler: Handler = async (event, _context) => {
     };
   }
 
-  const slug = new URLSearchParams(event.body).get("slug");
+  const slug = new URLSearchParams(event.body as string).get("slug");
   const licenseData = getLicenseData(slug);
+
+  if (!licenseData) {
+    return {
+      statusCode: 400,
+      headers,
+      body: JSON.stringify({
+        message: "Not a valid license!",
+      }),
+    };
+  }
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],

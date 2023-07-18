@@ -70,7 +70,17 @@ const handler: Handler = async (event, _context) => {
     const productId = item.price.product as string;
     const product = await stripe.products.retrieve(productId);
     const slug = product.metadata.slug;
-    const licenseData: License = getLicenseData(slug);
+    const licenseData = getLicenseData(slug);
+
+    if (!licenseData) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          message: "Not a valid license!",
+        }),
+      };
+    }
 
     try {
       await sendEmails({
@@ -80,13 +90,13 @@ const handler: Handler = async (event, _context) => {
       });
     } catch (err) {
       Sentry.captureException(err);
-      console.error(err.message);
+      console.error((err as any).message);
 
       return {
         statusCode: 500,
         headers,
         body: JSON.stringify({
-          message: err.message,
+          message: (err as any).message,
         }),
       };
     }

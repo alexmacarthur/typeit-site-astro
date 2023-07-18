@@ -1,3 +1,5 @@
+import { License } from "./functions/types";
+
 export default [
   {
     slug: "typeit_limited",
@@ -30,4 +32,4 @@ export default [
     licenseLink: "https://typeitjs.com/licenses/download/unlimited-commercial",
     priceId: process.env.STRIPE_UNLIMITED_LICENSE_PRICE_ID,
   },
-];
+] as License[];

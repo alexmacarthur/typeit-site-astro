@@ -1,5 +1,6 @@
 export type License = {
   slug: string;
+  friendlySlug: string;
   name: string;
   htmlTitle: string;
   simpleTitle: string;

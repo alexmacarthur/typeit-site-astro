@@ -48,7 +48,9 @@ const description = frontmatter?.description || Astro.props.description;
                 {description}
             </span>
         }
-
-        <slot />
+        
+        <div class="prose">
+            <slot />
+        </div>
     </div>
 </BaseLayout>
