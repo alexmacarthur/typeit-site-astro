@@ -1,9 +1,10 @@
 ---
 import ContentLayout from "../../ContentLayout.astro";
+import { parseExcerpt } from "../../utils";
 
 const { frontmatter } = Astro.props;
 const title = frontmatter.title;
-const description = Astro.props.rawContent().trim().replace(/(\r\n|\n|\r)/gm, "").split(" ").slice(0, 50).join(" ")
+const description = parseExcerpt(Astro.props.compiledContent())
 const slug = frontmatter?.codepen_slug;
 
 const height = 450;

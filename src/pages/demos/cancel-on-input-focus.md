@@ -1,4 +1,5 @@
 ---
+layout: ./DemoLayout.astro
 title: Cancel Animation on Input Focus
 codepen_slug: QWyEWLq
 ---

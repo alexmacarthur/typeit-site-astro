@@ -1,4 +1,5 @@
 ---
+layout: ./DemoLayout.astro
 title: Moving Cursor
 codepen_slug: rNVMXaV
 ---

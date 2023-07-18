@@ -1,4 +1,5 @@
 ---
+layout: ./DemoLayout.astro
 title: Reset on Click
 codepen_slug: KKdrWbG
 ---

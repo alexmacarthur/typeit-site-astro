@@ -21,7 +21,7 @@ body {
 }
 
 .site-title {
-  @apply font-bold italic;
+  @apply font-bold;
 }
 
 .gradient-text,

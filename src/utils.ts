@@ -2,6 +2,13 @@ interface EventProps {
   [key: string]: string | number | boolean;
 }
 
+export function parseExcerpt(excerpt: string) {
+  return excerpt.trim()
+    .replace( /(<([^>]+)>)/ig, '')
+    .replace(/(\r\n|\n|\r)/gm, "")
+    .split(" ").slice(0, 50).join(" ");
+}
+
 export function sendEvent(eventName: string, eventProps: EventProps = {}) {
   eventProps.path = window.location.pathname;
 
