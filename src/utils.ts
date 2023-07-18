@@ -3,10 +3,13 @@ interface EventProps {
 }
 
 export function parseExcerpt(excerpt: string) {
-  return excerpt.trim()
-    .replace( /(<([^>]+)>)/ig, '')
+  return excerpt
+    .trim()
+    .replace(/(<([^>]+)>)/gi, "")
     .replace(/(\r\n|\n|\r)/gm, "")
-    .split(" ").slice(0, 50).join(" ");
+    .split(" ")
+    .slice(0, 50)
+    .join(" ");
 }
 
 export function sendEvent(eventName: string, eventProps: EventProps = {}) {

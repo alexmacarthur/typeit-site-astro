@@ -12,7 +12,7 @@ export default defineConfig({
     syntaxHighlight: "prism",
     gfm: true,
   },
-  trailingSlash: 'ignore',
+  trailingSlash: "ignore",
   integrations: [
     starlight({
       head: [
@@ -28,23 +28,23 @@ export default defineConfig({
       customCss: ["/src/global.css", "/src/docs.css"],
       title: "TypeIt",
       sidebar: [
-            {
-              label: "Vanilla JS Documentation",
-              autogenerate: { directory: 'docs/vanilla' },
-            },
+        {
+          label: "Vanilla JS Documentation",
+          autogenerate: { directory: "docs/vanilla" },
+        },
         {
           label: "Integrations",
           items: [
             {
               label: "React",
-              autogenerate: { directory: 'docs/react' },
+              autogenerate: { directory: "docs/react" },
             },
             {
               label: "WordPress",
-              autogenerate: { directory: 'docs/wordpress' },
+              autogenerate: { directory: "docs/wordpress" },
             },
           ],
-        }
+        },
       ],
     }),
     sitemap(),

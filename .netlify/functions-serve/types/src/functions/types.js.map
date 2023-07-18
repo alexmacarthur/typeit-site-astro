@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../Users/ahmacarthur/apps/typeit-site-astro/functions/types.ts"],
+  "sourceRoot": "/var/folders/sf/s3sysww51_vdxvn7v5t2v92h0000gn/T/tmp-77561-9tSdPmRN0n9e",
+  "sourcesContent": ["export type License = {\n  slug: string;\n  name: string;\n  htmlTitle: string;\n  simpleTitle: string;\n  price: number;\n  description: string;\n  permissionDescription: string;\n  licenseLink: string;\n  usageScope: string;\n  priceId: string;\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;AAAA;AAAA;",
+  "names": []
+}

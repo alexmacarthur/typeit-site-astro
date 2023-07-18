@@ -1,0 +1,19 @@
+{
+  "geolocation": {
+    "data": {
+      "city": "Spring Hill",
+      "country": {
+        "code": "US",
+        "name": "United States"
+      },
+      "subdivision": {
+        "code": "TN",
+        "name": "Tennessee"
+      },
+      "timezone": "America/Chicago",
+      "latitude": 35.7163,
+      "longitude": -86.9093
+    },
+    "timestamp": 1689653476444
+  }
+}

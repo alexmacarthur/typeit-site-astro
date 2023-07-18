@@ -18,7 +18,8 @@ export default [
     slug: "typeit_unlimited",
     friendlySlug: "unlimited",
     name: "TypeIt - Unlimited License",
-    htmlTitle: "<strong class='font-bold'>Unlimited</strong> Commercial License",
+    htmlTitle:
+      "<strong class='font-bold'>Unlimited</strong> Commercial License",
     simpleTitle: "Unlimited License",
     price: 2900, // must be in cents!
     description:

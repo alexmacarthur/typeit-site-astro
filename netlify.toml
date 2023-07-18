@@ -1,0 +1,51 @@
+[build]
+  publish = "public"
+  command = "npm run build"
+  functions = "functions"
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/confirmation/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[build.environment]
+  NODE_VERSION = "v20.3.0"
+
+[[redirects]]
+  from = "/download/javascript"
+  to = "https://github.com/alexmacarthur/typeit/archive/master.zip"
+  status = 301
+
+[[redirects]]
+  from = "/download/react"
+  to = "https://github.com/alexmacarthur/typeit-react/archive/master.zip"
+  status = 301
+
+[[redirects]]
+  from = "/download/wordpress"
+  to = "https://wp-plugin-update.vercel.app/api/wp-typeit/download"
+  status = 301
+
+[[redirects]]
+  from = "/licenses/download/limited-commercial"
+  to = "/licenses/download/licenses/limited.pdf"
+
+[[redirects]]
+  from = "/licenses/download/unlimited-commercial"
+  to = "/licenses/download/licenses/unlimited.pdf"
+
+[[redirects]]
+  from = "/js/numbers.js"
+  to = "https://analytics.macarthur.me/js/plausible.js"
+  status = 200
+
+[[redirects]]
+  from = "/api/event"
+  to = "https://analytics.macarthur.me/api/event"
+  status = 202
+  
+[[redirects]]
+  from = "/checkout/*"
+  to = "/licenses/purchase"
+  status = 301
