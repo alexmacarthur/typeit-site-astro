@@ -4,6 +4,9 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
 import preact from "@astrojs/preact";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +15,7 @@ export default defineConfig({
     syntaxHighlight: "prism",
     gfm: true,
   },
-  trailingSlash: "never",
+  trailingSlash: process.env.NODE_ENV === "development" ? "ignore" : "never",
   integrations: [
     starlight({
       head: [
