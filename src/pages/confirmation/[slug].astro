@@ -1,0 +1,126 @@
+---
+import getLicenseData from "../../../functions/src/util/getLicenseData";
+import { License } from "../../../functions/types";
+import ContentLayout from "../../ContentLayout.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'limited' } },
+    { params: { slug: 'unlimited' } },
+  ];
+}
+
+const { slug } = Astro.params;
+const productData = getLicenseData(slug) as License;
+const word = productData.friendlySlug === "limited" ? "a" : "an";
+---
+
+<div 
+    data-product-data={JSON.stringify(productData)}
+    data-session-url={import.meta.env.STRIPE_GET_SESSION_URL}
+></div>
+
+<ContentLayout title="Purchase Complete!" description="" showPreview={false}>
+
+<div class="flex flex-col md:flex-row md:gap-4 items-baseline -mt-4 mb-8" id="confirmationNumberWrapper" style="display: none;">
+    <span class="text-slate-600 block font-bold text-xl">
+        Confirmation Number:
+    </span>
+    <span class="break-all text-xl" id="confirmationNumber"></span>
+</div>
+
+<p>
+    Thank you for purchasing {word} {productData.simpleTitle}, which
+    enables you to use TypeIt on {productData.usageScope}.
+</p>
+
+<p>
+    In a few moments, you'll receive an email with more detailed license
+    information, as well as instructions on how to get started.
+</p>
+
+<p>
+    If you have any questions, reach out at{" "}
+    <a href="mailto:alex@macarthur.me">alex@macarthur.me</a>. To make
+    things more efficient, please include your confirmation ID noted
+    above.
+</p>
+
+<h4 class="text-3xl">One More Thing...</h4>
+    <p>
+        This is a fun side project that relies on kind word-of-mouth from
+        people like you. If you're able, I'd <strong>greatly</strong>{" "}
+        appreciate you{" "}
+        <a href="https://github.com/alexmacarthur/typeit/" target="_blank">
+        giving TypeIt a ⭐ on GitHub
+        </a>
+        , or{" "}
+        <a
+        target="_blank"
+        href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftypeitjs.com&text=Check%20out%20TypeIt%2C%20the%20most%20versatile%20JavaScript%20typewriter%20effect%20library%20on%20the%20planet.&hashtags=javascript%2Cwebanimation%2Cwebdev"
+        >
+        tweeting about it
+        </a>
+        .
+    </p>
+
+</ContentLayout>
+
+<script>
+    import { sendEvent } from "../../utils";
+    
+    const confirmationNumberEl = document.querySelector("#confirmationNumber") as HTMLSpanElement;
+    const confirmationNumberWrapperEl = document.querySelector("#confirmationNumberWrapper") as HTMLDivElement;
+    const dataEl = document.querySelector("[data-product-data]") as HTMLDivElement;
+    const productData = JSON.parse(
+        // @ts-ignore
+        dataEl.dataset.productData,
+    );
+
+    function updateDom(paymentId: string) {
+        confirmationNumberEl.innerText = paymentId;
+        confirmationNumberWrapperEl.style.display = "";
+    }
+
+    (async () => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if(!id) return;
+
+        let paymentId = JSON.parse(
+            window.localStorage.getItem("typeItPurchases") || "{}"
+        )[id];
+
+        if(paymentId) {
+            updateDom(paymentId);
+        }
+
+      try {
+        const response = await fetch(
+          `${dataEl.dataset.sessionUrl as string}?id=${id}`,
+        );
+        const data = await response.json();
+        paymentId = data.paymentId;
+        updateDom(paymentId);
+      } catch (e) {
+        console.error(e);
+        return;
+      }
+
+      const priceInDollars = productData.price / 100;
+
+      sendEvent("Purchase", {
+        transaction_id: paymentId,
+        total: priceInDollars,
+        product_slug: productData.slug,
+      });
+
+      window.localStorage.setItem(
+        "typeItPurchases",
+        JSON.stringify({
+          [id]: paymentId,
+        }),
+      );
+    })();
+</script>

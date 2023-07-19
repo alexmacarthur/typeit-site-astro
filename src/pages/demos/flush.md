@@ -1,5 +1,5 @@
 ---
-layout: ./DemoLayout.astro
+layout: ../../DemoLayout.astro
 title: Using the .flush() Method
 codepen_slug: bGaXbLy
 ---

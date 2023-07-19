@@ -1,1 +1,1 @@
-module.exports = require("./src/functions/complete.js");
+module.exports = require('./src/functions/complete.js')

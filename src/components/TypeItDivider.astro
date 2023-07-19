@@ -1,0 +1,17 @@
+---
+import LogoIcon from "./LogoIcon.astro";
+
+interface Props {
+  rotation?: "left" | "right";
+}
+
+const { rotation = "right" } = Astro.props;
+const rotationClass = rotation === "left" ? "-rotate-12" : "rotate-12";
+const translationClass = rotation === "left" ? "-translate-x-12" : "translate-x-12";
+---
+
+<div class="text-center my-24">
+  <div class={`transform ${rotationClass} ${translationClass}`}>
+    <LogoIcon classes="text-slate-200 w-32"/>
+  </div>
+</div>

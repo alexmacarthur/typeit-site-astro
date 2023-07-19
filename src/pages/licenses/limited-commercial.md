@@ -1,5 +1,5 @@
 ---
-layout: ./LicenseLayout.astro
+layout: ../../LicenseLayout.astro
 title: Limited Commercial License
 description: The full copy within a Limited Commercial License.
 ---

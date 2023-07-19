@@ -1,5 +1,5 @@
 ---
-layout: ./DemoLayout.astro
+layout: ../../DemoLayout.astro
 title: Chained Instance Methods
 codepen_slug: MWVpmVK
 ---

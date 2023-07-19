@@ -1,5 +1,5 @@
 ---
-layout: ./DemoLayout.astro
+layout: ../../DemoLayout.astro
 title: Custom Cursor Animation
 codepen_slug: LYdWyde
 ---

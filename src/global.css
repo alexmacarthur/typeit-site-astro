@@ -24,7 +24,6 @@ body {
   @apply font-bold;
 }
 
-.gradient-text,
 .site-title {
   background: linear-gradient(
     to bottom right,

@@ -3,6 +3,6 @@ import { License } from "../../types";
 
 export default (slug): License | undefined => {
   return licenseOptions.find((option) => {
-    return option.slug === slug;
+    return [option.slug, option.friendlySlug].includes(slug);
   });
 };

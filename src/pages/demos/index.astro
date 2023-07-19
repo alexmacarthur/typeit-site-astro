@@ -10,11 +10,11 @@ const demos = await Astro.glob('./*.md');
     description="Whether it's to spark some inspiration or to get a better feel what TypeIt's capable of, here's a growing collection of low-fidelity CodePen demos."
     >
 
-    <ul class="grid grid-cols-2 gap-6">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-0">
 
     { demos.map(demo => {
         return (
-            <li class="shadow-md rounded-md p-6 flex flex-col">
+            <li class="border-2 border-solid border-slate-200 rounded-md p-6 flex flex-col">
                 <h2 class="text-2xl mt-0 mb-3">
                     <a href={demo.url}>
                         { demo.frontmatter.title }    

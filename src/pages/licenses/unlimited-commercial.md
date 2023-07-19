@@ -1,5 +1,5 @@
 ---
-layout: ./LicenseLayout.astro
+layout: ../../LicenseLayout.astro
 title: Unlimited Commercial License
 description: The full copy within an Unlimited Commercial License.
 ---

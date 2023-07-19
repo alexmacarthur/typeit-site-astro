@@ -47,11 +47,20 @@ export default defineConfig({
         },
       ],
     }),
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        // Do not save the confirmation pages to the sitemap.
+        return !page.includes("/confirmation/");
+      },
+    }),
     robotsTxt({
       policy: [
         {
           allow: "/",
+          userAgent: "*",
+        },
+        {
+          disallow: "/confirmation/*",
           userAgent: "*",
         },
       ],

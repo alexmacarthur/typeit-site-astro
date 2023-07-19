@@ -1,10 +1,10 @@
 ---
 title: Installation & Usage
 description: >-
-  The official React component for TypeIt, the most versatile JavaScript typewriter effect library on the planet.
+  A JS package that makes it easy to build animated typing effects in React.
 ---
 
-The official React component for the most versatile JavaScript typewriter effect library on the planet. You can use it to bring dynamic typewriter effects to your React applications.
+The official React component for the most versatile JavaScript typewriter effect library on the planet. You can use it to bring dynamic react typing effects to your React applications.
 
 ## Installation
 

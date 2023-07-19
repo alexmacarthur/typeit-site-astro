@@ -10,8 +10,8 @@ const description = "In order to get a feel for what TypeIt can do, try your han
     title={title}
     description={description}
 >
-    <div class="max-w-5xl mx-auto px-3">
-        <h1>{title}</h1>
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-4xl md:text-5xl">{title}</h1>
         <p class="mb-10">{description}</p>
 
         <BuildYourOwnTool pagePath={Astro.url.pathname} client:load />

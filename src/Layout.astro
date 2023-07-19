@@ -74,7 +74,7 @@ const schema: WithContext<SoftwareApplication> = {
   </head>
 
   <body class="m-0">
-    <div class="box-border flex flex-col overflow-hidden min-h-screen p-2">
+    <div class="box-border flex flex-col overflow-hidden min-h-screen py-2 px-6">
       <LogoIcon
         classes="w-screen max-h-screen md:w-[90vw] absolute z-[-1] opacity-5 top-[-15vw] md:top-[-20vw] left-[-15vw] md:left-[-20vw] transform rotate-[-10deg]"
       />
@@ -115,122 +115,40 @@ const schema: WithContext<SoftwareApplication> = {
     h5:not(.immune),
     h6:not(.immune) {
       color: theme("colors.slate.700");
-      line-height: 1;
       letter-spacing: -0.04em;
-      @apply py-3;
+      @apply py-3 leading-tight;
     }
 
     p {
       @apply text-lg;
     }
 
-    p a {
-      @apply text-slate-600;
+    a {
+      @apply text-slate-600 hover:text-purple-600;
     }
 
     .button {
-      @apply px-4 py-2 rounded-md text-white text-lg bg-white border-0 inline-flex justify-center gap-2 items-center cursor-pointer;
+      @apply px-4 py-2 rounded-md text-white text-base bg-white border-0 inline-flex justify-center gap-2 items-center cursor-pointer;
       @apply disabled:opacity-50 disabled:cursor-not-allowed;
       transition: background 0.2s ease-in-out;
       box-shadow: var(--pp-shadow);
       background: linear-gradient(
         to bottom right,
-        theme("colors.slate.600"),
-        theme("colors.slate.500")
+        theme("colors.purple.600"),
+        theme("colors.purple.500")
       );
+    }
+
+    .button.inherit-size {
+      font-size: inherit;
     }
 
     a.button:hover,
     button:hover {
-      @apply border-slate-600;
+      @apply border-purple-600 text-purple-700;
       background: none;
       -webkit-text-fill-color: inherit;
-      box-shadow: inset 0px 0px 0px 2px theme("colors.slate.600");
-      @apply text-slate-700;
-    }
-
-    .dark {
-      box-shadow: inset 0px 0px 0px 2px white;
-    }
-
-    a.button.dark:hover {
-      @apply bg-white text-slate-600;
-    }
-
-    .button.light {
-      @apply text-slate-700 hover:text-white;
-      box-shadow: inset 0px 0px 0px 2px theme("colors.slate.700");
-      background: none;
-    }
-
-    .button.light:hover {
-      background: linear-gradient(
-        to bottom right,
-        theme("colors.slate.600"),
-        theme("colors.slate.500")
-      );
-      box-shadow: none;
-    }
-
-    .button.light.borderless {
-      @apply px-1;
-      box-shadow: none;
-    }
-
-    .button.light.borderless:hover {
-      @apply text-slate-700;
-      box-shadow: none;
-      background: none;
-    }
-
-    .gradient-box {
-      @apply relative bg-white;
-      background-clip: padding-box;
-      border: solid 5px transparent;
-    }
-
-    a:hover {
-      background: linear-gradient(
-        to bottom right,
-        theme("colors.slate.700"),
-        theme("colors.slate.500")
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .link {
-      @apply font-semibold text-lg;
-    }
-
-    .link:hover {
-      background: none;
-      -webkit-text-fill-color: unset;
-    }
-
-    .gradient-box:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-      margin: -5px;
-      border-radius: inherit;
-      background: linear-gradient(
-        to bottom right,
-        theme("colors.slate.700"),
-        theme("colors.slate.500")
-      );
-    }
-
-    .gradient-filled-box {
-      background: linear-gradient(
-        to bottom right,
-        theme("colors.slate.700"),
-        theme("colors.slate.500")
-      );
+      box-shadow: inset 0px 0px 0px 2px theme("colors.purple.600");
     }
 
     input {

@@ -16,7 +16,7 @@ Sentry.init({
 
 const domain = isProduction()
   ? "https://typeitjs.com"
-  : "http://localhost:8000";
+  : "http://localhost:3000";
 
 const handler: Handler = async (event, _context) => {
   if (event.httpMethod !== "POST") {

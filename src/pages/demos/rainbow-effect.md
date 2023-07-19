@@ -1,5 +1,5 @@
 ---
-layout: ./DemoLayout.astro
+layout: ../../DemoLayout.astro
 title: Rainbow Effect
 codepen_slug: jzybpB
 ---

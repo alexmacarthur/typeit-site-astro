@@ -1,1 +1,1 @@
-module.exports = require("./src/functions/create-checkout-session.js");
+module.exports = require('./src/functions/create-checkout-session.js')

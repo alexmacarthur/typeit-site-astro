@@ -1,10 +1,21 @@
 ---
+import CloseIcon from "./CloseIcon.astro";
 import Logo from "./Logo.astro";
+import LogoIcon from "./LogoIcon.astro";
+import MenuIcon from "./MenuIcon.astro";
 
 const links = [
   {
     label: "Pricing",
-    link: "https://typeitjs.com#pricing",
+    link: "/licenses/purchase",
+  },
+  {
+    label: "Build an Animation",
+    link: "/build-your-own",
+  },
+  {
+    label: "Demos",
+    link: "/demos",
   },
   {
     label: "Documentation",
@@ -14,23 +25,111 @@ const links = [
 ---
 
 <nav
-  class="py-3 md:px-6 flex flex-col md:flex-row justify-between items-center"
+  class="py-3 flex flex-col md:flex-row justify-between sm:items-center"
 >
-  <a href="/" class="block" title="Home">
-    <Logo />
-  </a>
+  <div class="flex justify-between items-center">
+    <a href="/" class="block" title="Home">
+      <Logo />
+    </a>
 
-  <ul class="flex gap-4 md:gap-8 flex-wrap justify-center">
+    <button id="menuOpen" class="sm:hidden menu-button">
+      <MenuIcon />
+    </button>
+  </div>
+
+  <ul class="gap-4 lg:gap-8 flex-wrap justify-center items-center hidden sm:flex">
     {
       links.map(({ label, link }) => {
         return (
           <li>
-            <a href={link} class="text-lg md:text-xl">
+            <a href={link} class="text-base lg:text-xl">
               {label}
             </a>
           </li>
         );
       })
     }
+
+    <li>
+      <a href="/licenses/purchase" class="button inherit-size text-base lg:text-lg">Purchase a License</a>
+    </li>
   </ul>
+
+  <div class="
+    transform
+    translate-x-full
+    sm:hidden
+    transition-transform
+    box-border
+    fixed
+    z-50
+    m-0
+  bg-white
+    w-screen
+    h-screen
+    top-0
+    left-0
+    overflow-hidden
+  " id="mobileMenu">
+
+    <LogoIcon
+      id="mobileMenuLogo"
+      classes="transition-all w-[200vw] absolute z-[-1] opacity-[.03] top-[-15vw] md:top-[-20vw] left- [-15vw] md:left-[-20vw] transform rotate-[-10deg]"
+      />
+
+    <ul class="
+      flex
+      flex-col
+      p-6
+      gap-4
+      relative
+      z-50
+    "
+    >
+      <li class="flex justify-end">
+        <button id="menuClose" class="menu-button">
+          <CloseIcon />
+        </button>
+      </li>
+
+      {
+        links.map(({ label, link }) => {
+          return (
+            <li>
+              <a href={link} class="text-2xl">
+                {label}
+              </a>
+            </li>
+          );
+        })
+      }
+
+      <li class="mt-8">
+        <a href="/licenses/purchase" class="button">Purchase a License</a>
+      </li>
+    </ul>
+  </div>
+  
 </nav>
+
+<script>
+  const menuCloseButton = document.querySelector("#menuClose") as HTMLButtonElement;
+  const menuOpenButton = document.querySelector("#menuOpen") as HTMLButtonElement;
+  const mobileMenu = document.querySelector("#mobileMenu") as HTMLUListElement;
+  const mobileMenuLogo = document.querySelector("#mobileMenuLogo") as HTMLDivElement;
+
+  menuOpenButton.addEventListener("click", () => {
+    mobileMenu.classList.remove("translate-x-full");
+  });
+
+  menuCloseButton.addEventListener("click", () => {
+    mobileMenu.classList.add("translate-x-full");
+  });
+</script>
+
+<style>
+  .menu-button {
+    @apply border-none w-16 cursor-pointer hover:shadow-none;
+    background: none;
+  }
+</style>

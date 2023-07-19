@@ -1,5 +1,5 @@
 ---
-layout: ./DemoLayout.astro
+layout: ../../DemoLayout.astro
 title: Fill in the Blank
 codepen_slug: pdXLRG
 ---

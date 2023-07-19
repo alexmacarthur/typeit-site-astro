@@ -1,5 +1,5 @@
 ---
-layout: ./DemoLayout.astro
+layout: ../../DemoLayout.astro
 title: Remove Cursor After Completion
 codepen_slug: WzVqeM
 ---

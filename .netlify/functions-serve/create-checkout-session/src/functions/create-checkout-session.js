@@ -8,21 +8,15 @@ var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) =>
-  key in obj
-    ? __defProp(obj, key, {
-        enumerable: true,
-        configurable: true,
-        writable: true,
-        value,
-      })
-    : (obj[key] = value);
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
   if (__getOwnPropSymbols)
     for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop)) __defNormalProp(a, prop, b[prop]);
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
     }
   return a;
 };
@@ -39,40 +33,23 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-var __commonJS = (cb, mod) =>
-  function __require() {
-    return (
-      mod ||
-        (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod),
-      mod.exports
-    );
-  };
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
-  if ((from && typeof from === "object") || typeof from === "function") {
+  if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, {
-          get: () => from[key],
-          enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable,
-        });
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (
-  (target = mod != null ? __create(__getProtoOf(mod)) : {}),
-  __copyProps(
-    isNodeMode || !mod || !mod.__esModule
-      ? __defProp(target, "default", { value: mod, enumerable: true })
-      : target,
-    mod,
-  )
-);
-var __toCommonJS = (mod) =>
-  __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // node_modules/is-promise/index.js
 var require_is_promise = __commonJS({
@@ -80,13 +57,9 @@ var require_is_promise = __commonJS({
     module2.exports = isPromise;
     module2.exports.default = isPromise;
     function isPromise(obj) {
-      return (
-        !!obj &&
-        (typeof obj === "object" || typeof obj === "function") &&
-        typeof obj.then === "function"
-      );
+      return !!obj && (typeof obj === "object" || typeof obj === "function") && typeof obj.then === "function";
     }
-  },
+  }
 });
 
 // node_modules/@netlify/functions/dist/lib/consts.js
@@ -94,11 +67,7 @@ var require_consts = __commonJS({
   "node_modules/@netlify/functions/dist/lib/consts.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.METADATA_VERSION =
-      exports.HTTP_STATUS_OK =
-      exports.HTTP_STATUS_METHOD_NOT_ALLOWED =
-      exports.BUILDER_FUNCTIONS_FLAG =
-        void 0;
+    exports.METADATA_VERSION = exports.HTTP_STATUS_OK = exports.HTTP_STATUS_METHOD_NOT_ALLOWED = exports.BUILDER_FUNCTIONS_FLAG = void 0;
     var BUILDER_FUNCTIONS_FLAG = true;
     exports.BUILDER_FUNCTIONS_FLAG = BUILDER_FUNCTIONS_FLAG;
     var HTTP_STATUS_METHOD_NOT_ALLOWED = 405;
@@ -107,18 +76,16 @@ var require_consts = __commonJS({
     exports.HTTP_STATUS_OK = HTTP_STATUS_OK;
     var METADATA_VERSION = 1;
     exports.METADATA_VERSION = METADATA_VERSION;
-  },
+  }
 });
 
 // node_modules/@netlify/functions/dist/lib/builder.js
 var require_builder = __commonJS({
   "node_modules/@netlify/functions/dist/lib/builder.js"(exports) {
     "use strict";
-    var __importDefault =
-      (exports && exports.__importDefault) ||
-      function (mod) {
-        return mod && mod.__esModule ? mod : { default: mod };
-      };
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.builder = void 0;
     var is_promise_1 = __importDefault(require_is_promise());
@@ -127,28 +94,23 @@ var require_builder = __commonJS({
       if (!response) {
         return response;
       }
-      const metadata = {
-        version: consts_js_1.METADATA_VERSION,
-        builder_function: consts_js_1.BUILDER_FUNCTIONS_FLAG,
-        ttl: response.ttl || 0,
-      };
+      const metadata = { version: consts_js_1.METADATA_VERSION, builder_function: consts_js_1.BUILDER_FUNCTIONS_FLAG, ttl: response.ttl || 0 };
       return __spreadProps(__spreadValues({}, response), {
-        metadata,
+        metadata
       });
     };
     var wrapHandler = (handler2) => (event, context, callback) => {
       if (event.httpMethod !== "GET" && event.httpMethod !== "HEAD") {
         return Promise.resolve({
           body: "Method Not Allowed",
-          statusCode: consts_js_1.HTTP_STATUS_METHOD_NOT_ALLOWED,
+          statusCode: consts_js_1.HTTP_STATUS_METHOD_NOT_ALLOWED
         });
       }
       const modifiedEvent = __spreadProps(__spreadValues({}, event), {
         multiValueQueryStringParameters: {},
-        queryStringParameters: {},
+        queryStringParameters: {}
       });
-      const wrappedCallback = (error, response) =>
-        callback ? callback(error, augmentResponse(response)) : null;
+      const wrappedCallback = (error, response) => callback ? callback(error, augmentResponse(response)) : null;
       const execution = handler2(modifiedEvent, context, wrappedCallback);
       if ((0, is_promise_1.default)(execution)) {
         return execution.then(augmentResponse);
@@ -156,7 +118,7 @@ var require_builder = __commonJS({
       return execution;
     };
     exports.builder = wrapHandler;
-  },
+  }
 });
 
 // node_modules/@netlify/functions/dist/lib/schedule.js
@@ -167,7 +129,7 @@ var require_schedule = __commonJS({
     exports.schedule = void 0;
     var schedule = (cron, handler2) => handler2;
     exports.schedule = schedule;
-  },
+  }
 });
 
 // node_modules/@netlify/functions/dist/lib/stream.js
@@ -179,26 +141,20 @@ var require_stream = __commonJS({
     var node_stream_1 = require("stream");
     var node_util_1 = require("util");
     var pipeline = (0, node_util_1.promisify)(node_stream_1.pipeline);
-    var stream = (handler2) =>
-      awslambda.streamifyResponse(async (event, responseStream, context) => {
-        const _a = await handler2(event, context),
-          { body } = _a,
-          httpResponseMetadata = __objRest(_a, ["body"]);
-        const responseBody = awslambda.HttpResponseStream.from(
-          responseStream,
-          httpResponseMetadata,
-        );
-        if (typeof body === "undefined") {
-          responseBody.end();
-        } else if (typeof body === "string") {
-          responseBody.write(body);
-          responseBody.end();
-        } else {
-          await pipeline(body, responseBody);
-        }
-      });
+    var stream = (handler2) => awslambda.streamifyResponse(async (event, responseStream, context) => {
+      const _a = await handler2(event, context), { body } = _a, httpResponseMetadata = __objRest(_a, ["body"]);
+      const responseBody = awslambda.HttpResponseStream.from(responseStream, httpResponseMetadata);
+      if (typeof body === "undefined") {
+        responseBody.end();
+      } else if (typeof body === "string") {
+        responseBody.write(body);
+        responseBody.end();
+      } else {
+        await pipeline(body, responseBody);
+      }
+    });
     exports.stream = stream;
-  },
+  }
 });
 
 // node_modules/@netlify/functions/dist/function/index.js
@@ -206,73 +162,49 @@ var require_function = __commonJS({
   "node_modules/@netlify/functions/dist/function/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-  },
+  }
 });
 
 // node_modules/@netlify/functions/dist/main.js
 var require_main = __commonJS({
   "node_modules/@netlify/functions/dist/main.js"(exports) {
     "use strict";
-    var __createBinding =
-      (exports && exports.__createBinding) ||
-      (Object.create
-        ? function (o, m, k, k2) {
-            if (k2 === void 0) k2 = k;
-            var desc = Object.getOwnPropertyDescriptor(m, k);
-            if (
-              !desc ||
-              ("get" in desc
-                ? !m.__esModule
-                : desc.writable || desc.configurable)
-            ) {
-              desc = {
-                enumerable: true,
-                get: function () {
-                  return m[k];
-                },
-              };
-            }
-            Object.defineProperty(o, k2, desc);
-          }
-        : function (o, m, k, k2) {
-            if (k2 === void 0) k2 = k;
-            o[k2] = m[k];
-          });
-    var __exportStar =
-      (exports && exports.__exportStar) ||
-      function (m, exports2) {
-        for (var p in m)
-          if (
-            p !== "default" &&
-            !Object.prototype.hasOwnProperty.call(exports2, p)
-          )
-            __createBinding(exports2, m, p);
-      };
+    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
+      }
+      Object.defineProperty(o, k2, desc);
+    } : function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      o[k2] = m[k];
+    });
+    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
+      for (var p in m)
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
+          __createBinding(exports2, m, p);
+    };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.stream = exports.schedule = exports.builder = void 0;
     var builder_js_1 = require_builder();
-    Object.defineProperty(exports, "builder", {
-      enumerable: true,
-      get: function () {
-        return builder_js_1.builder;
-      },
-    });
+    Object.defineProperty(exports, "builder", { enumerable: true, get: function() {
+      return builder_js_1.builder;
+    } });
     var schedule_js_1 = require_schedule();
-    Object.defineProperty(exports, "schedule", {
-      enumerable: true,
-      get: function () {
-        return schedule_js_1.schedule;
-      },
-    });
+    Object.defineProperty(exports, "schedule", { enumerable: true, get: function() {
+      return schedule_js_1.schedule;
+    } });
     var stream_js_1 = require_stream();
-    Object.defineProperty(exports, "stream", {
-      enumerable: true,
-      get: function () {
-        return stream_js_1.stream;
-      },
-    });
+    Object.defineProperty(exports, "stream", { enumerable: true, get: function() {
+      return stream_js_1.stream;
+    } });
     __exportStar(require_function(), exports);
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/is.js
@@ -306,9 +238,7 @@ var require_is = __commonJS({
       return isBuiltin(wat, "String");
     }
     function isPrimitive(wat) {
-      return (
-        wat === null || (typeof wat !== "object" && typeof wat !== "function")
-      );
+      return wat === null || typeof wat !== "object" && typeof wat !== "function";
     }
     function isPlainObject(wat) {
       return isBuiltin(wat, "Object");
@@ -326,12 +256,7 @@ var require_is = __commonJS({
       return Boolean(wat && wat.then && typeof wat.then === "function");
     }
     function isSyntheticEvent(wat) {
-      return (
-        isPlainObject(wat) &&
-        "nativeEvent" in wat &&
-        "preventDefault" in wat &&
-        "stopPropagation" in wat
-      );
+      return isPlainObject(wat) && "nativeEvent" in wat && "preventDefault" in wat && "stopPropagation" in wat;
     }
     function isNaN2(wat) {
       return typeof wat === "number" && wat !== wat;
@@ -357,7 +282,7 @@ var require_is = __commonJS({
     exports.isString = isString;
     exports.isSyntheticEvent = isSyntheticEvent;
     exports.isThenable = isThenable;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/aggregate-errors.js
@@ -365,145 +290,58 @@ var require_aggregate_errors = __commonJS({
   "node_modules/@sentry/utils/cjs/aggregate-errors.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var is = require_is();
-    function applyAggregateErrorsToEvent(
-      exceptionFromErrorImplementation,
-      parser,
-      key,
-      limit,
-      event,
-      hint,
-    ) {
-      if (
-        !event.exception ||
-        !event.exception.values ||
-        !hint ||
-        !is.isInstanceOf(hint.originalException, Error)
-      ) {
+    function applyAggregateErrorsToEvent(exceptionFromErrorImplementation, parser, key, limit, event, hint) {
+      if (!event.exception || !event.exception.values || !hint || !is.isInstanceOf(hint.originalException, Error)) {
         return;
       }
-      const originalException =
-        event.exception.values.length > 0
-          ? event.exception.values[event.exception.values.length - 1]
-          : void 0;
+      const originalException = event.exception.values.length > 0 ? event.exception.values[event.exception.values.length - 1] : void 0;
       if (originalException) {
-        event.exception.values = aggregateExceptionsFromError(
-          exceptionFromErrorImplementation,
-          parser,
-          limit,
-          hint.originalException,
-          key,
-          event.exception.values,
-          originalException,
-          0,
-        );
+        event.exception.values = aggregateExceptionsFromError(exceptionFromErrorImplementation, parser, limit, hint.originalException, key, event.exception.values, originalException, 0);
       }
     }
-    function aggregateExceptionsFromError(
-      exceptionFromErrorImplementation,
-      parser,
-      limit,
-      error,
-      key,
-      prevExceptions,
-      exception,
-      exceptionId,
-    ) {
+    function aggregateExceptionsFromError(exceptionFromErrorImplementation, parser, limit, error, key, prevExceptions, exception, exceptionId) {
       if (prevExceptions.length >= limit + 1) {
         return prevExceptions;
       }
       let newExceptions = [...prevExceptions];
       if (is.isInstanceOf(error[key], Error)) {
         applyExceptionGroupFieldsForParentException(exception, exceptionId);
-        const newException = exceptionFromErrorImplementation(
-          parser,
-          error[key],
-        );
+        const newException = exceptionFromErrorImplementation(parser, error[key]);
         const newExceptionId = newExceptions.length;
-        applyExceptionGroupFieldsForChildException(
-          newException,
-          key,
-          newExceptionId,
-          exceptionId,
-        );
-        newExceptions = aggregateExceptionsFromError(
-          exceptionFromErrorImplementation,
-          parser,
-          limit,
-          error[key],
-          key,
-          [newException, ...newExceptions],
-          newException,
-          newExceptionId,
-        );
+        applyExceptionGroupFieldsForChildException(newException, key, newExceptionId, exceptionId);
+        newExceptions = aggregateExceptionsFromError(exceptionFromErrorImplementation, parser, limit, error[key], key, [newException, ...newExceptions], newException, newExceptionId);
       }
       if (Array.isArray(error.errors)) {
         error.errors.forEach((childError, i) => {
           if (is.isInstanceOf(childError, Error)) {
             applyExceptionGroupFieldsForParentException(exception, exceptionId);
-            const newException = exceptionFromErrorImplementation(
-              parser,
-              childError,
-            );
+            const newException = exceptionFromErrorImplementation(parser, childError);
             const newExceptionId = newExceptions.length;
-            applyExceptionGroupFieldsForChildException(
-              newException,
-              `errors[${i}]`,
-              newExceptionId,
-              exceptionId,
-            );
-            newExceptions = aggregateExceptionsFromError(
-              exceptionFromErrorImplementation,
-              parser,
-              limit,
-              childError,
-              key,
-              [newException, ...newExceptions],
-              newException,
-              newExceptionId,
-            );
+            applyExceptionGroupFieldsForChildException(newException, `errors[${i}]`, newExceptionId, exceptionId);
+            newExceptions = aggregateExceptionsFromError(exceptionFromErrorImplementation, parser, limit, childError, key, [newException, ...newExceptions], newException, newExceptionId);
           }
         });
       }
       return newExceptions;
     }
-    function applyExceptionGroupFieldsForParentException(
-      exception,
-      exceptionId,
-    ) {
-      exception.mechanism = exception.mechanism || {
-        type: "generic",
-        handled: true,
-      };
-      exception.mechanism = __spreadProps(
-        __spreadValues({}, exception.mechanism),
-        {
-          is_exception_group: true,
-          exception_id: exceptionId,
-        },
-      );
+    function applyExceptionGroupFieldsForParentException(exception, exceptionId) {
+      exception.mechanism = exception.mechanism || { type: "generic", handled: true };
+      exception.mechanism = __spreadProps(__spreadValues({}, exception.mechanism), {
+        is_exception_group: true,
+        exception_id: exceptionId
+      });
     }
-    function applyExceptionGroupFieldsForChildException(
-      exception,
-      source,
-      exceptionId,
-      parentId,
-    ) {
-      exception.mechanism = exception.mechanism || {
-        type: "generic",
-        handled: true,
-      };
-      exception.mechanism = __spreadProps(
-        __spreadValues({}, exception.mechanism),
-        {
-          type: "chained",
-          source,
-          exception_id: exceptionId,
-          parent_id: parentId,
-        },
-      );
+    function applyExceptionGroupFieldsForChildException(exception, source, exceptionId, parentId) {
+      exception.mechanism = exception.mechanism || { type: "generic", handled: true };
+      exception.mechanism = __spreadProps(__spreadValues({}, exception.mechanism), {
+        type: "chained",
+        source,
+        exception_id: exceptionId,
+        parent_id: parentId
+      });
     }
     exports.applyAggregateErrorsToEvent = applyAggregateErrorsToEvent;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/worldwide.js
@@ -513,28 +351,22 @@ var require_worldwide = __commonJS({
     function isGlobalObj(obj) {
       return obj && obj.Math == Math ? obj : void 0;
     }
-    var GLOBAL_OBJ =
-      (typeof globalThis == "object" && isGlobalObj(globalThis)) ||
-      (typeof window == "object" && isGlobalObj(window)) ||
-      (typeof self == "object" && isGlobalObj(self)) ||
-      (typeof global == "object" && isGlobalObj(global)) ||
-      (function () {
-        return this;
-      })() ||
-      {};
+    var GLOBAL_OBJ = typeof globalThis == "object" && isGlobalObj(globalThis) || typeof window == "object" && isGlobalObj(window) || typeof self == "object" && isGlobalObj(self) || typeof global == "object" && isGlobalObj(global) || function() {
+      return this;
+    }() || {};
     function getGlobalObject() {
       return GLOBAL_OBJ;
     }
     function getGlobalSingleton(name, creator, obj) {
       const gbl = obj || GLOBAL_OBJ;
-      const __SENTRY__ = (gbl.__SENTRY__ = gbl.__SENTRY__ || {});
+      const __SENTRY__ = gbl.__SENTRY__ = gbl.__SENTRY__ || {};
       const singleton = __SENTRY__[name] || (__SENTRY__[name] = creator());
       return singleton;
     }
     exports.GLOBAL_OBJ = GLOBAL_OBJ;
     exports.getGlobalObject = getGlobalObject;
     exports.getGlobalSingleton = getGlobalSingleton;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/browser.js
@@ -556,16 +388,10 @@ var require_browser = __commonJS({
         const sepLength = separator.length;
         let nextStr;
         const keyAttrs = Array.isArray(options) ? options : options.keyAttrs;
-        const maxStringLength =
-          (!Array.isArray(options) && options.maxStringLength) ||
-          DEFAULT_MAX_STRING_LENGTH;
+        const maxStringLength = !Array.isArray(options) && options.maxStringLength || DEFAULT_MAX_STRING_LENGTH;
         while (currentElem && height++ < MAX_TRAVERSE_HEIGHT) {
           nextStr = _htmlElementAsString(currentElem, keyAttrs);
-          if (
-            nextStr === "html" ||
-            (height > 1 &&
-              len + out.length * sepLength + nextStr.length >= maxStringLength)
-          ) {
+          if (nextStr === "html" || height > 1 && len + out.length * sepLength + nextStr.length >= maxStringLength) {
             break;
           }
           out.push(nextStr);
@@ -589,12 +415,7 @@ var require_browser = __commonJS({
         return "";
       }
       out.push(elem.tagName.toLowerCase());
-      const keyAttrPairs =
-        keyAttrs && keyAttrs.length
-          ? keyAttrs
-              .filter((keyAttr) => elem.getAttribute(keyAttr))
-              .map((keyAttr) => [keyAttr, elem.getAttribute(keyAttr)])
-          : null;
+      const keyAttrPairs = keyAttrs && keyAttrs.length ? keyAttrs.filter((keyAttr) => elem.getAttribute(keyAttr)).map((keyAttr) => [keyAttr, elem.getAttribute(keyAttr)]) : null;
       if (keyAttrPairs && keyAttrPairs.length) {
         keyAttrPairs.forEach((keyAttrPair) => {
           out.push(`[${keyAttrPair[0]}="${keyAttrPair[1]}"]`);
@@ -637,7 +458,7 @@ var require_browser = __commonJS({
     exports.getDomElement = getDomElement;
     exports.getLocationHref = getLocationHref;
     exports.htmlTreeAsString = htmlTreeAsString;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/logger.js
@@ -646,15 +467,7 @@ var require_logger = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var worldwide = require_worldwide();
     var PREFIX = "Sentry Logger ";
-    var CONSOLE_LEVELS = [
-      "debug",
-      "info",
-      "warn",
-      "error",
-      "log",
-      "assert",
-      "trace",
-    ];
+    var CONSOLE_LEVELS = ["debug", "info", "warn", "error", "log", "assert", "trace"];
     function consoleSandbox(callback) {
       if (!("console" in worldwide.GLOBAL_OBJ)) {
         return callback();
@@ -662,8 +475,7 @@ var require_logger = __commonJS({
       const originalConsole = worldwide.GLOBAL_OBJ.console;
       const wrappedLevels = {};
       CONSOLE_LEVELS.forEach((level) => {
-        const originalWrappedFunc =
-          originalConsole[level] && originalConsole[level].__sentry_original__;
+        const originalWrappedFunc = originalConsole[level] && originalConsole[level].__sentry_original__;
         if (level in originalConsole && originalWrappedFunc) {
           wrappedLevels[level] = originalConsole[level];
           originalConsole[level] = originalWrappedFunc;
@@ -685,17 +497,14 @@ var require_logger = __commonJS({
         },
         disable: () => {
           enabled = false;
-        },
+        }
       };
       if (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) {
         CONSOLE_LEVELS.forEach((name) => {
           logger[name] = (...args) => {
             if (enabled) {
               consoleSandbox(() => {
-                worldwide.GLOBAL_OBJ.console[name](
-                  `${PREFIX}[${name}]:`,
-                  ...args,
-                );
+                worldwide.GLOBAL_OBJ.console[name](`${PREFIX}[${name}]:`, ...args);
               });
             }
           };
@@ -715,7 +524,7 @@ var require_logger = __commonJS({
     }
     exports.CONSOLE_LEVELS = CONSOLE_LEVELS;
     exports.consoleSandbox = consoleSandbox;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/dsn.js
@@ -723,18 +532,13 @@ var require_dsn = __commonJS({
   "node_modules/@sentry/utils/cjs/dsn.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var logger = require_logger();
-    var DSN_REGEX =
-      /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+)?)?@)([\w.-]+)(?::(\d+))?\/(.+)/;
+    var DSN_REGEX = /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+)?)?@)([\w.-]+)(?::(\d+))?\/(.+)/;
     function isValidProtocol(protocol) {
       return protocol === "http" || protocol === "https";
     }
     function dsnToString(dsn, withPassword = false) {
       const { host, path, pass, port, projectId, protocol, publicKey } = dsn;
-      return `${protocol}://${publicKey}${
-        withPassword && pass ? `:${pass}` : ""
-      }@${host}${port ? `:${port}` : ""}/${
-        path ? `${path}/` : path
-      }${projectId}`;
+      return `${protocol}://${publicKey}${withPassword && pass ? `:${pass}` : ""}@${host}${port ? `:${port}` : ""}/${path ? `${path}/` : path}${projectId}`;
     }
     function dsnFromString(str) {
       const match = DSN_REGEX.exec(str);
@@ -742,8 +546,7 @@ var require_dsn = __commonJS({
         console.error(`Invalid Sentry Dsn: ${str}`);
         return void 0;
       }
-      const [protocol, publicKey, pass = "", host, port = "", lastPath] =
-        match.slice(1);
+      const [protocol, publicKey, pass = "", host, port = "", lastPath] = match.slice(1);
       let path = "";
       let projectId = lastPath;
       const split = projectId.split("/");
@@ -757,15 +560,7 @@ var require_dsn = __commonJS({
           projectId = projectMatch[0];
         }
       }
-      return dsnFromComponents({
-        host,
-        pass,
-        path,
-        projectId,
-        port,
-        protocol,
-        publicKey,
-      });
+      return dsnFromComponents({ host, pass, path, projectId, port, protocol, publicKey });
     }
     function dsnFromComponents(components) {
       return {
@@ -775,7 +570,7 @@ var require_dsn = __commonJS({
         host: components.host,
         port: components.port || "",
         path: components.path || "",
-        projectId: components.projectId,
+        projectId: components.projectId
       };
     }
     function validateDsn(dsn) {
@@ -784,22 +579,18 @@ var require_dsn = __commonJS({
       }
       const { port, projectId, protocol } = dsn;
       const requiredComponents = ["protocol", "publicKey", "host", "projectId"];
-      const hasMissingRequiredComponent = requiredComponents.find(
-        (component) => {
-          if (!dsn[component]) {
-            logger.logger.error(`Invalid Sentry Dsn: ${component} missing`);
-            return true;
-          }
-          return false;
-        },
-      );
+      const hasMissingRequiredComponent = requiredComponents.find((component) => {
+        if (!dsn[component]) {
+          logger.logger.error(`Invalid Sentry Dsn: ${component} missing`);
+          return true;
+        }
+        return false;
+      });
       if (hasMissingRequiredComponent) {
         return false;
       }
       if (!projectId.match(/^\d+$/)) {
-        logger.logger.error(
-          `Invalid Sentry Dsn: Invalid projectId ${projectId}`,
-        );
+        logger.logger.error(`Invalid Sentry Dsn: Invalid projectId ${projectId}`);
         return false;
       }
       if (!isValidProtocol(protocol)) {
@@ -813,10 +604,7 @@ var require_dsn = __commonJS({
       return true;
     }
     function makeDsn(from) {
-      const components =
-        typeof from === "string"
-          ? dsnFromString(from)
-          : dsnFromComponents(from);
+      const components = typeof from === "string" ? dsnFromString(from) : dsnFromComponents(from);
       if (!components || !validateDsn(components)) {
         return void 0;
       }
@@ -825,7 +613,7 @@ var require_dsn = __commonJS({
     exports.dsnFromString = dsnFromString;
     exports.dsnToString = dsnToString;
     exports.makeDsn = makeDsn;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/error.js
@@ -842,7 +630,7 @@ var require_error = __commonJS({
       }
     };
     exports.SentryError = SentryError;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/string.js
@@ -900,11 +688,7 @@ var require_string = __commonJS({
       }
       return output.join(delimiter);
     }
-    function isMatchingPattern(
-      value,
-      pattern,
-      requireExactStringMatch = false,
-    ) {
+    function isMatchingPattern(value, pattern, requireExactStringMatch = false) {
       if (!is.isString(value)) {
         return false;
       }
@@ -912,27 +696,19 @@ var require_string = __commonJS({
         return pattern.test(value);
       }
       if (is.isString(pattern)) {
-        return requireExactStringMatch
-          ? value === pattern
-          : value.includes(pattern);
+        return requireExactStringMatch ? value === pattern : value.includes(pattern);
       }
       return false;
     }
-    function stringMatchesSomePattern(
-      testString,
-      patterns = [],
-      requireExactStringMatch = false,
-    ) {
-      return patterns.some((pattern) =>
-        isMatchingPattern(testString, pattern, requireExactStringMatch),
-      );
+    function stringMatchesSomePattern(testString, patterns = [], requireExactStringMatch = false) {
+      return patterns.some((pattern) => isMatchingPattern(testString, pattern, requireExactStringMatch));
     }
     exports.isMatchingPattern = isMatchingPattern;
     exports.safeJoin = safeJoin;
     exports.snipLine = snipLine;
     exports.stringMatchesSomePattern = stringMatchesSomePattern;
     exports.truncate = truncate;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/object.js
@@ -951,7 +727,8 @@ var require_object = __commonJS({
       if (typeof wrapped === "function") {
         try {
           markFunctionWrapped(wrapped, original);
-        } catch (_Oo) {}
+        } catch (_Oo) {
+        }
       }
       source[name] = wrapped;
     }
@@ -959,7 +736,7 @@ var require_object = __commonJS({
       Object.defineProperty(obj, name, {
         value,
         writable: true,
-        configurable: true,
+        configurable: true
       });
     }
     function markFunctionWrapped(wrapped, original) {
@@ -971,36 +748,22 @@ var require_object = __commonJS({
       return func.__sentry_original__;
     }
     function urlEncode(object) {
-      return Object.keys(object)
-        .map(
-          (key) =>
-            `${encodeURIComponent(key)}=${encodeURIComponent(object[key])}`,
-        )
-        .join("&");
+      return Object.keys(object).map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(object[key])}`).join("&");
     }
     function convertToPlainObject(value) {
       if (is.isError(value)) {
-        return __spreadValues(
-          {
-            message: value.message,
-            name: value.name,
-            stack: value.stack,
-          },
-          getOwnProperties(value),
-        );
+        return __spreadValues({
+          message: value.message,
+          name: value.name,
+          stack: value.stack
+        }, getOwnProperties(value));
       } else if (is.isEvent(value)) {
-        const newObj = __spreadValues(
-          {
-            type: value.type,
-            target: serializeEventTarget(value.target),
-            currentTarget: serializeEventTarget(value.currentTarget),
-          },
-          getOwnProperties(value),
-        );
-        if (
-          typeof CustomEvent !== "undefined" &&
-          is.isInstanceOf(value, CustomEvent)
-        ) {
+        const newObj = __spreadValues({
+          type: value.type,
+          target: serializeEventTarget(value.target),
+          currentTarget: serializeEventTarget(value.currentTarget)
+        }, getOwnProperties(value));
+        if (typeof CustomEvent !== "undefined" && is.isInstanceOf(value, CustomEvent)) {
           newObj.detail = value.detail;
         }
         return newObj;
@@ -1010,9 +773,7 @@ var require_object = __commonJS({
     }
     function serializeEventTarget(target) {
       try {
-        return is.isElement(target)
-          ? browser.htmlTreeAsString(target)
-          : Object.prototype.toString.call(target);
+        return is.isElement(target) ? browser.htmlTreeAsString(target) : Object.prototype.toString.call(target);
       } catch (_oO) {
         return "<unknown>";
       }
@@ -1065,10 +826,7 @@ var require_object = __commonJS({
         memoizationMap.set(inputValue, returnValue);
         for (const key of Object.keys(inputValue)) {
           if (typeof inputValue[key] !== "undefined") {
-            returnValue[key] = _dropUndefinedKeys(
-              inputValue[key],
-              memoizationMap,
-            );
+            returnValue[key] = _dropUndefinedKeys(inputValue[key], memoizationMap);
           }
         }
         return returnValue;
@@ -1090,10 +848,10 @@ var require_object = __commonJS({
     function objectify(wat) {
       let objectified;
       switch (true) {
-        case wat === void 0 || wat === null:
+        case (wat === void 0 || wat === null):
           objectified = new String(wat);
           break;
-        case typeof wat === "symbol" || typeof wat === "bigint":
+        case (typeof wat === "symbol" || typeof wat === "bigint"):
           objectified = Object(wat);
           break;
         case is.isPrimitive(wat):
@@ -1114,7 +872,7 @@ var require_object = __commonJS({
     exports.markFunctionWrapped = markFunctionWrapped;
     exports.objectify = objectify;
     exports.urlEncode = urlEncode;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/node-stack-trace.js
@@ -1123,8 +881,7 @@ var require_node_stack_trace = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     function node(getModule) {
       const FILENAME_MATCH = /^\s*[-]{4,}$/;
-      const FULL_MATCH =
-        /at (?:async )?(?:(.+?)\s+\()?(?:(.+):(\d+):(\d+)?|([^)]+))\)?/;
+      const FULL_MATCH = /at (?:async )?(?:(.+?)\s+\()?(?:(.+):(\d+):(\d+)?|([^)]+))\)?/;
       return (line) => {
         const lineMatch = line.match(FULL_MATCH);
         if (lineMatch) {
@@ -1162,44 +919,32 @@ var require_node_stack_trace = __commonJS({
             methodName = methodName || "<anonymous>";
             functionName = typeName ? `${typeName}.${methodName}` : methodName;
           }
-          let filename =
-            lineMatch[2] && lineMatch[2].startsWith("file://")
-              ? lineMatch[2].slice(7)
-              : lineMatch[2];
+          let filename = lineMatch[2] && lineMatch[2].startsWith("file://") ? lineMatch[2].slice(7) : lineMatch[2];
           const isNative = lineMatch[5] === "native";
           if (!filename && lineMatch[5] && !isNative) {
             filename = lineMatch[5];
           }
-          const isInternal =
-            isNative ||
-            (filename &&
-              !filename.startsWith("/") &&
-              !filename.includes(":\\") &&
-              !filename.startsWith(".") &&
-              !filename.match(/^[a-zA-Z]([a-zA-Z0-9.\-+])*:\/\//));
-          const in_app =
-            !isInternal &&
-            filename !== void 0 &&
-            !filename.includes("node_modules/");
+          const isInternal = isNative || filename && !filename.startsWith("/") && !filename.includes(":\\") && !filename.startsWith(".") && !filename.match(/^[a-zA-Z]([a-zA-Z0-9.\-+])*:\/\//);
+          const in_app = !isInternal && filename !== void 0 && !filename.includes("node_modules/");
           return {
             filename,
             module: getModule ? getModule(filename) : void 0,
             function: functionName,
             lineno: parseInt(lineMatch[3], 10) || void 0,
             colno: parseInt(lineMatch[4], 10) || void 0,
-            in_app,
+            in_app
           };
         }
         if (line.match(FILENAME_MATCH)) {
           return {
-            filename: line,
+            filename: line
           };
         }
         return void 0;
       };
     }
     exports.node = node;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/stacktrace.js
@@ -1210,9 +955,7 @@ var require_stacktrace = __commonJS({
     var STACKTRACE_FRAME_LIMIT = 50;
     var WEBPACK_ERROR_REGEXP = /\(error: (.*)\)/;
     function createStackParser(...parsers) {
-      const sortedParsers = parsers
-        .sort((a, b) => a[0] - b[0])
-        .map((p) => p[1]);
+      const sortedParsers = parsers.sort((a, b) => a[0] - b[0]).map((p) => p[1]);
       return (stack, skipFirst = 0) => {
         const frames = [];
         const lines = stack.split("\n");
@@ -1221,9 +964,7 @@ var require_stacktrace = __commonJS({
           if (line.length > 1024) {
             continue;
           }
-          const cleanedLine = WEBPACK_ERROR_REGEXP.test(line)
-            ? line.replace(WEBPACK_ERROR_REGEXP, "$1")
-            : line;
+          const cleanedLine = WEBPACK_ERROR_REGEXP.test(line) ? line.replace(WEBPACK_ERROR_REGEXP, "$1") : line;
           if (cleanedLine.match(/\S*Error: /)) {
             continue;
           }
@@ -1258,19 +999,13 @@ var require_stacktrace = __commonJS({
       }
       localStack.reverse();
       const firstFrameFunction = localStack[localStack.length - 1].function;
-      if (
-        firstFrameFunction &&
-        /captureMessage|captureException/.test(firstFrameFunction)
-      ) {
+      if (firstFrameFunction && /captureMessage|captureException/.test(firstFrameFunction)) {
         localStack.pop();
       }
-      return localStack.map((frame) =>
-        __spreadProps(__spreadValues({}, frame), {
-          filename:
-            frame.filename || localStack[localStack.length - 1].filename,
-          function: frame.function || "?",
-        }),
-      );
+      return localStack.map((frame) => __spreadProps(__spreadValues({}, frame), {
+        filename: frame.filename || localStack[localStack.length - 1].filename,
+        function: frame.function || "?"
+      }));
     }
     var defaultFunctionName = "<anonymous>";
     function getFunctionName(fn) {
@@ -1289,10 +1024,9 @@ var require_stacktrace = __commonJS({
     exports.createStackParser = createStackParser;
     exports.getFunctionName = getFunctionName;
     exports.nodeStackLineParser = nodeStackLineParser;
-    exports.stackParserFromStackParserOptions =
-      stackParserFromStackParserOptions;
+    exports.stackParserFromStackParserOptions = stackParserFromStackParserOptions;
     exports.stripSentryFramesAndReverse = stripSentryFramesAndReverse;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/supports.js
@@ -1340,10 +1074,7 @@ var require_supports = __commonJS({
       }
     }
     function isNativeFetch(func) {
-      return (
-        func &&
-        /^function fetch\(\)\s+\{\s+\[native code\]\s+\}$/.test(func.toString())
-      );
+      return func && /^function fetch\(\)\s+\{\s+\[native code\]\s+\}$/.test(func.toString());
     }
     function supportsNativeFetch() {
       if (!supportsFetch()) {
@@ -1364,11 +1095,7 @@ var require_supports = __commonJS({
           }
           doc.head.removeChild(sandbox);
         } catch (err) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            logger.logger.warn(
-              "Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ",
-              err,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && logger.logger.warn("Could not create sandbox iframe for pure fetch check, bailing to window.fetch: ", err);
         }
       }
       return result;
@@ -1382,7 +1109,7 @@ var require_supports = __commonJS({
       }
       try {
         new Request("_", {
-          referrerPolicy: "origin",
+          referrerPolicy: "origin"
         });
         return true;
       } catch (e) {
@@ -1397,7 +1124,7 @@ var require_supports = __commonJS({
     exports.supportsNativeFetch = supportsNativeFetch;
     exports.supportsReferrerPolicy = supportsReferrerPolicy;
     exports.supportsReportingObserver = supportsReportingObserver;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/vendor/supportsHistory.js
@@ -1409,14 +1136,11 @@ var require_supportsHistory = __commonJS({
     function supportsHistory() {
       const chrome = WINDOW.chrome;
       const isChromePackagedApp = chrome && chrome.app && chrome.app.runtime;
-      const hasHistoryApi =
-        "history" in WINDOW &&
-        !!WINDOW.history.pushState &&
-        !!WINDOW.history.replaceState;
+      const hasHistoryApi = "history" in WINDOW && !!WINDOW.history.pushState && !!WINDOW.history.replaceState;
       return !isChromePackagedApp && hasHistoryApi;
     }
     exports.supportsHistory = supportsHistory;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/instrument.js
@@ -1462,8 +1186,7 @@ var require_instrument = __commonJS({
           instrumentUnhandledRejection();
           break;
         default:
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            logger.logger.warn("unknown instrumentation type:", type);
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && logger.logger.warn("unknown instrumentation type:", type);
           return;
       }
     }
@@ -1480,14 +1203,10 @@ var require_instrument = __commonJS({
         try {
           handler2(data);
         } catch (e) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            logger.logger.error(
-              `Error while triggering instrumentation handler.
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && logger.logger.error(`Error while triggering instrumentation handler.
 Type: ${type}
 Name: ${stacktrace.getFunctionName(handler2)}
-Error:`,
-              e,
-            );
+Error:`, e);
         }
       }
     }
@@ -1495,12 +1214,12 @@ Error:`,
       if (!("console" in WINDOW)) {
         return;
       }
-      logger.CONSOLE_LEVELS.forEach(function (level) {
+      logger.CONSOLE_LEVELS.forEach(function(level) {
         if (!(level in WINDOW.console)) {
           return;
         }
-        object.fill(WINDOW.console, level, function (originalConsoleMethod) {
-          return function (...args) {
+        object.fill(WINDOW.console, level, function(originalConsoleMethod) {
+          return function(...args) {
             triggerHandlers("console", { args, level });
             if (originalConsoleMethod) {
               originalConsoleMethod.apply(WINDOW.console, args);
@@ -1513,40 +1232,31 @@ Error:`,
       if (!supports.supportsNativeFetch()) {
         return;
       }
-      object.fill(WINDOW, "fetch", function (originalFetch) {
-        return function (...args) {
+      object.fill(WINDOW, "fetch", function(originalFetch) {
+        return function(...args) {
           const { method, url } = parseFetchArgs(args);
           const handlerData = {
             args,
             fetchData: {
               method,
-              url,
+              url
             },
-            startTimestamp: Date.now(),
+            startTimestamp: Date.now()
           };
           triggerHandlers("fetch", __spreadValues({}, handlerData));
-          return originalFetch.apply(WINDOW, args).then(
-            (response) => {
-              triggerHandlers(
-                "fetch",
-                __spreadProps(__spreadValues({}, handlerData), {
-                  endTimestamp: Date.now(),
-                  response,
-                }),
-              );
-              return response;
-            },
-            (error) => {
-              triggerHandlers(
-                "fetch",
-                __spreadProps(__spreadValues({}, handlerData), {
-                  endTimestamp: Date.now(),
-                  error,
-                }),
-              );
-              throw error;
-            },
-          );
+          return originalFetch.apply(WINDOW, args).then((response) => {
+            triggerHandlers("fetch", __spreadProps(__spreadValues({}, handlerData), {
+              endTimestamp: Date.now(),
+              response
+            }));
+            return response;
+          }, (error) => {
+            triggerHandlers("fetch", __spreadProps(__spreadValues({}, handlerData), {
+              endTimestamp: Date.now(),
+              error
+            }));
+            throw error;
+          });
         };
       });
     }
@@ -1576,17 +1286,13 @@ Error:`,
         const [url, options] = fetchArgs;
         return {
           url: getUrlFromResource(url),
-          method: hasProp(options, "method")
-            ? String(options.method).toUpperCase()
-            : "GET",
+          method: hasProp(options, "method") ? String(options.method).toUpperCase() : "GET"
         };
       }
       const arg = fetchArgs[0];
       return {
         url: getUrlFromResource(arg),
-        method: hasProp(arg, "method")
-          ? String(arg.method).toUpperCase()
-          : "GET",
+        method: hasProp(arg, "method") ? String(arg.method).toUpperCase() : "GET"
       };
     }
     function instrumentXHR() {
@@ -1594,19 +1300,15 @@ Error:`,
         return;
       }
       const xhrproto = XMLHttpRequest.prototype;
-      object.fill(xhrproto, "open", function (originalOpen) {
-        return function (...args) {
+      object.fill(xhrproto, "open", function(originalOpen) {
+        return function(...args) {
           const url = args[1];
-          const xhrInfo = (this[SENTRY_XHR_DATA_KEY] = {
+          const xhrInfo = this[SENTRY_XHR_DATA_KEY] = {
             method: is.isString(args[0]) ? args[0].toUpperCase() : args[0],
             url: args[1],
-            request_headers: {},
-          });
-          if (
-            is.isString(url) &&
-            xhrInfo.method === "POST" &&
-            url.match(/sentry_key/)
-          ) {
+            request_headers: {}
+          };
+          if (is.isString(url) && xhrInfo.method === "POST" && url.match(/sentry_key/)) {
             this.__sentry_own_request__ = true;
           }
           const onreadystatechangeHandler = () => {
@@ -1617,33 +1319,28 @@ Error:`,
             if (this.readyState === 4) {
               try {
                 xhrInfo2.status_code = this.status;
-              } catch (e) {}
+              } catch (e) {
+              }
               triggerHandlers("xhr", {
                 args,
                 endTimestamp: Date.now(),
                 startTimestamp: Date.now(),
-                xhr: this,
+                xhr: this
               });
             }
           };
-          if (
-            "onreadystatechange" in this &&
-            typeof this.onreadystatechange === "function"
-          ) {
-            object.fill(this, "onreadystatechange", function (original) {
-              return function (...readyStateArgs) {
+          if ("onreadystatechange" in this && typeof this.onreadystatechange === "function") {
+            object.fill(this, "onreadystatechange", function(original) {
+              return function(...readyStateArgs) {
                 onreadystatechangeHandler();
                 return original.apply(this, readyStateArgs);
               };
             });
           } else {
-            this.addEventListener(
-              "readystatechange",
-              onreadystatechangeHandler,
-            );
+            this.addEventListener("readystatechange", onreadystatechangeHandler);
           }
-          object.fill(this, "setRequestHeader", function (original) {
-            return function (...setRequestHeaderArgs) {
+          object.fill(this, "setRequestHeader", function(original) {
+            return function(...setRequestHeaderArgs) {
               const [header, value] = setRequestHeaderArgs;
               const xhrInfo2 = this[SENTRY_XHR_DATA_KEY];
               if (xhrInfo2) {
@@ -1655,8 +1352,8 @@ Error:`,
           return originalOpen.apply(this, args);
         };
       });
-      object.fill(xhrproto, "send", function (originalSend) {
-        return function (...args) {
+      object.fill(xhrproto, "send", function(originalSend) {
+        return function(...args) {
           const sentryXhrData = this[SENTRY_XHR_DATA_KEY];
           if (sentryXhrData && args[0] !== void 0) {
             sentryXhrData.body = args[0];
@@ -1664,7 +1361,7 @@ Error:`,
           triggerHandlers("xhr", {
             args,
             startTimestamp: Date.now(),
-            xhr: this,
+            xhr: this
           });
           return originalSend.apply(this, args);
         };
@@ -1676,22 +1373,23 @@ Error:`,
         return;
       }
       const oldOnPopState = WINDOW.onpopstate;
-      WINDOW.onpopstate = function (...args) {
+      WINDOW.onpopstate = function(...args) {
         const to = WINDOW.location.href;
         const from = lastHref;
         lastHref = to;
         triggerHandlers("history", {
           from,
-          to,
+          to
         });
         if (oldOnPopState) {
           try {
             return oldOnPopState.apply(this, args);
-          } catch (_oO) {}
+          } catch (_oO) {
+          }
         }
       };
       function historyReplacementFunction(originalHistoryFunction) {
-        return function (...args) {
+        return function(...args) {
           const url = args.length > 2 ? args[2] : void 0;
           if (url) {
             const from = lastHref;
@@ -1699,7 +1397,7 @@ Error:`,
             lastHref = to;
             triggerHandlers("history", {
               from,
-              to,
+              to
             });
           }
           return originalHistoryFunction.apply(this, args);
@@ -1722,7 +1420,8 @@ Error:`,
         if (previous.target !== current.target) {
           return true;
         }
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function shouldSkipDOMEvent(event) {
@@ -1734,14 +1433,11 @@ Error:`,
         if (!target || !target.tagName) {
           return true;
         }
-        if (
-          target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable
-        ) {
+        if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable) {
           return false;
         }
-      } catch (e) {}
+      } catch (e) {
+      }
       return true;
     }
     function makeDOMEventHandler(handler2, globalListener = false) {
@@ -1757,16 +1453,14 @@ Error:`,
           handler2({
             event,
             name,
-            global: globalListener,
+            global: globalListener
           });
           lastCapturedEvent = event;
-        } else if (
-          shouldShortcircuitPreviousDebounce(lastCapturedEvent, event)
-        ) {
+        } else if (shouldShortcircuitPreviousDebounce(lastCapturedEvent, event)) {
           handler2({
             event,
             name,
-            global: globalListener,
+            global: globalListener
           });
           lastCapturedEvent = event;
         }
@@ -1781,110 +1475,69 @@ Error:`,
         return;
       }
       const triggerDOMHandler = triggerHandlers.bind(null, "dom");
-      const globalDOMEventHandler = makeDOMEventHandler(
-        triggerDOMHandler,
-        true,
-      );
+      const globalDOMEventHandler = makeDOMEventHandler(triggerDOMHandler, true);
       WINDOW.document.addEventListener("click", globalDOMEventHandler, false);
-      WINDOW.document.addEventListener(
-        "keypress",
-        globalDOMEventHandler,
-        false,
-      );
+      WINDOW.document.addEventListener("keypress", globalDOMEventHandler, false);
       ["EventTarget", "Node"].forEach((target) => {
         const proto = WINDOW[target] && WINDOW[target].prototype;
-        if (
-          !proto ||
-          !proto.hasOwnProperty ||
-          !proto.hasOwnProperty("addEventListener")
-        ) {
+        if (!proto || !proto.hasOwnProperty || !proto.hasOwnProperty("addEventListener")) {
           return;
         }
-        object.fill(
-          proto,
-          "addEventListener",
-          function (originalAddEventListener) {
-            return function (type, listener, options) {
-              if (type === "click" || type == "keypress") {
-                try {
-                  const el = this;
-                  const handlers2 = (el.__sentry_instrumentation_handlers__ =
-                    el.__sentry_instrumentation_handlers__ || {});
-                  const handlerForType = (handlers2[type] = handlers2[type] || {
-                    refCount: 0,
-                  });
-                  if (!handlerForType.handler) {
-                    const handler2 = makeDOMEventHandler(triggerDOMHandler);
-                    handlerForType.handler = handler2;
-                    originalAddEventListener.call(
-                      this,
-                      type,
-                      handler2,
-                      options,
-                    );
-                  }
-                  handlerForType.refCount++;
-                } catch (e) {}
+        object.fill(proto, "addEventListener", function(originalAddEventListener) {
+          return function(type, listener, options) {
+            if (type === "click" || type == "keypress") {
+              try {
+                const el = this;
+                const handlers2 = el.__sentry_instrumentation_handlers__ = el.__sentry_instrumentation_handlers__ || {};
+                const handlerForType = handlers2[type] = handlers2[type] || { refCount: 0 };
+                if (!handlerForType.handler) {
+                  const handler2 = makeDOMEventHandler(triggerDOMHandler);
+                  handlerForType.handler = handler2;
+                  originalAddEventListener.call(this, type, handler2, options);
+                }
+                handlerForType.refCount++;
+              } catch (e) {
               }
-              return originalAddEventListener.call(
-                this,
-                type,
-                listener,
-                options,
-              );
-            };
-          },
-        );
-        object.fill(
-          proto,
-          "removeEventListener",
-          function (originalRemoveEventListener) {
-            return function (type, listener, options) {
-              if (type === "click" || type == "keypress") {
-                try {
-                  const el = this;
-                  const handlers2 =
-                    el.__sentry_instrumentation_handlers__ || {};
-                  const handlerForType = handlers2[type];
-                  if (handlerForType) {
-                    handlerForType.refCount--;
-                    if (handlerForType.refCount <= 0) {
-                      originalRemoveEventListener.call(
-                        this,
-                        type,
-                        handlerForType.handler,
-                        options,
-                      );
-                      handlerForType.handler = void 0;
-                      delete handlers2[type];
-                    }
-                    if (Object.keys(handlers2).length === 0) {
-                      delete el.__sentry_instrumentation_handlers__;
-                    }
+            }
+            return originalAddEventListener.call(this, type, listener, options);
+          };
+        });
+        object.fill(proto, "removeEventListener", function(originalRemoveEventListener) {
+          return function(type, listener, options) {
+            if (type === "click" || type == "keypress") {
+              try {
+                const el = this;
+                const handlers2 = el.__sentry_instrumentation_handlers__ || {};
+                const handlerForType = handlers2[type];
+                if (handlerForType) {
+                  handlerForType.refCount--;
+                  if (handlerForType.refCount <= 0) {
+                    originalRemoveEventListener.call(this, type, handlerForType.handler, options);
+                    handlerForType.handler = void 0;
+                    delete handlers2[type];
                   }
-                } catch (e) {}
+                  if (Object.keys(handlers2).length === 0) {
+                    delete el.__sentry_instrumentation_handlers__;
+                  }
+                }
+              } catch (e) {
               }
-              return originalRemoveEventListener.call(
-                this,
-                type,
-                listener,
-                options,
-              );
-            };
-          },
-        );
+            }
+            return originalRemoveEventListener.call(this, type, listener, options);
+          };
+        });
       });
     }
     var _oldOnErrorHandler = null;
     function instrumentError() {
       _oldOnErrorHandler = WINDOW.onerror;
-      WINDOW.onerror = function (msg, url, line, column, error) {
+      WINDOW.onerror = function(msg, url, line, column, error) {
         triggerHandlers("error", {
           column,
           error,
           line,
           msg,
-          url,
+          url
         });
         if (_oldOnErrorHandler && !_oldOnErrorHandler.__SENTRY_LOADER__) {
           return _oldOnErrorHandler.apply(this, arguments);
@@ -1896,12 +1549,9 @@ Error:`,
     var _oldOnUnhandledRejectionHandler = null;
     function instrumentUnhandledRejection() {
       _oldOnUnhandledRejectionHandler = WINDOW.onunhandledrejection;
-      WINDOW.onunhandledrejection = function (e) {
+      WINDOW.onunhandledrejection = function(e) {
         triggerHandlers("unhandledrejection", e);
-        if (
-          _oldOnUnhandledRejectionHandler &&
-          !_oldOnUnhandledRejectionHandler.__SENTRY_LOADER__
-        ) {
+        if (_oldOnUnhandledRejectionHandler && !_oldOnUnhandledRejectionHandler.__SENTRY_LOADER__) {
           return _oldOnUnhandledRejectionHandler.apply(this, arguments);
         }
         return true;
@@ -1911,7 +1561,7 @@ Error:`,
     exports.SENTRY_XHR_DATA_KEY = SENTRY_XHR_DATA_KEY;
     exports.addInstrumentationHandler = addInstrumentationHandler;
     exports.parseFetchArgs = parseFetchArgs;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/memo.js
@@ -1953,7 +1603,7 @@ var require_memo = __commonJS({
       return [memoize, unmemoize];
     }
     exports.memoBuilder = memoBuilder;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/misc.js
@@ -1969,18 +1619,11 @@ var require_misc = __commonJS({
       if (crypto4 && crypto4.randomUUID) {
         return crypto4.randomUUID().replace(/-/g, "");
       }
-      const getRandomByte =
-        crypto4 && crypto4.getRandomValues
-          ? () => crypto4.getRandomValues(new Uint8Array(1))[0]
-          : () => Math.random() * 16;
-      return ([1e7] + 1e3 + 4e3 + 8e3 + 1e11).replace(/[018]/g, (c) =>
-        (c ^ ((getRandomByte() & 15) >> (c / 4))).toString(16),
-      );
+      const getRandomByte = crypto4 && crypto4.getRandomValues ? () => crypto4.getRandomValues(new Uint8Array(1))[0] : () => Math.random() * 16;
+      return ([1e7] + 1e3 + 4e3 + 8e3 + 1e11).replace(/[018]/g, (c) => (c ^ (getRandomByte() & 15) >> c / 4).toString(16));
     }
     function getFirstException(event) {
-      return event.exception && event.exception.values
-        ? event.exception.values[0]
-        : void 0;
+      return event.exception && event.exception.values ? event.exception.values[0] : void 0;
     }
     function getEventDescription(event) {
       const { message, event_id: eventId } = event;
@@ -1992,16 +1635,14 @@ var require_misc = __commonJS({
         if (firstException.type && firstException.value) {
           return `${firstException.type}: ${firstException.value}`;
         }
-        return (
-          firstException.type || firstException.value || eventId || "<unknown>"
-        );
+        return firstException.type || firstException.value || eventId || "<unknown>";
       }
       return eventId || "<unknown>";
     }
     function addExceptionTypeValue(event, value, type) {
-      const exception = (event.exception = event.exception || {});
-      const values = (exception.values = exception.values || []);
-      const firstException = (values[0] = values[0] || {});
+      const exception = event.exception = event.exception || {};
+      const values = exception.values = exception.values || [];
+      const firstException = values[0] = values[0] || {};
       if (!firstException.value) {
         firstException.value = value || "";
       }
@@ -2016,20 +1657,13 @@ var require_misc = __commonJS({
       }
       const defaultMechanism = { type: "generic", handled: true };
       const currentMechanism = firstException.mechanism;
-      firstException.mechanism = __spreadValues(
-        __spreadValues(__spreadValues({}, defaultMechanism), currentMechanism),
-        newMechanism,
-      );
+      firstException.mechanism = __spreadValues(__spreadValues(__spreadValues({}, defaultMechanism), currentMechanism), newMechanism);
       if (newMechanism && "data" in newMechanism) {
-        const mergedData = __spreadValues(
-          __spreadValues({}, currentMechanism && currentMechanism.data),
-          newMechanism.data,
-        );
+        const mergedData = __spreadValues(__spreadValues({}, currentMechanism && currentMechanism.data), newMechanism.data);
         firstException.mechanism.data = mergedData;
       }
     }
-    var SEMVER_REGEXP =
-      /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
+    var SEMVER_REGEXP = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
     function parseSemver(input) {
       const match = input.match(SEMVER_REGEXP) || [];
       const major = parseInt(match[1], 10);
@@ -2040,7 +1674,7 @@ var require_misc = __commonJS({
         major: isNaN(major) ? void 0 : major,
         minor: isNaN(minor) ? void 0 : minor,
         patch: isNaN(patch) ? void 0 : patch,
-        prerelease: match[4],
+        prerelease: match[4]
       };
     }
     function addContextToFrame(lines, frame, linesOfContext = 5) {
@@ -2049,19 +1683,9 @@ var require_misc = __commonJS({
       }
       const maxLines = lines.length;
       const sourceLine = Math.max(Math.min(maxLines, frame.lineno - 1), 0);
-      frame.pre_context = lines
-        .slice(Math.max(0, sourceLine - linesOfContext), sourceLine)
-        .map((line) => string.snipLine(line, 0));
-      frame.context_line = string.snipLine(
-        lines[Math.min(maxLines - 1, sourceLine)],
-        frame.colno || 0,
-      );
-      frame.post_context = lines
-        .slice(
-          Math.min(sourceLine + 1, maxLines),
-          sourceLine + 1 + linesOfContext,
-        )
-        .map((line) => string.snipLine(line, 0));
+      frame.pre_context = lines.slice(Math.max(0, sourceLine - linesOfContext), sourceLine).map((line) => string.snipLine(line, 0));
+      frame.context_line = string.snipLine(lines[Math.min(maxLines - 1, sourceLine)], frame.colno || 0);
+      frame.post_context = lines.slice(Math.min(sourceLine + 1, maxLines), sourceLine + 1 + linesOfContext).map((line) => string.snipLine(line, 0));
     }
     function checkOrSetAlreadyCaught(exception) {
       if (exception && exception.__sentry_captured__) {
@@ -2069,7 +1693,8 @@ var require_misc = __commonJS({
       }
       try {
         object.addNonEnumerableProperty(exception, "__sentry_captured__", true);
-      } catch (err) {}
+      } catch (err) {
+      }
       return false;
     }
     function arrayify(maybeArray) {
@@ -2083,7 +1708,7 @@ var require_misc = __commonJS({
     exports.getEventDescription = getEventDescription;
     exports.parseSemver = parseSemver;
     exports.uuid4 = uuid4;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/env.js
@@ -2091,17 +1716,14 @@ var require_env = __commonJS({
   "node_modules/@sentry/utils/cjs/env.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function isBrowserBundle() {
-      return (
-        typeof __SENTRY_BROWSER_BUNDLE__ !== "undefined" &&
-        !!__SENTRY_BROWSER_BUNDLE__
-      );
+      return typeof __SENTRY_BROWSER_BUNDLE__ !== "undefined" && !!__SENTRY_BROWSER_BUNDLE__;
     }
     function getSDKSource() {
       return "npm";
     }
     exports.getSDKSource = getSDKSource;
     exports.isBrowserBundle = isBrowserBundle;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/node.js
@@ -2110,12 +1732,7 @@ var require_node = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var env = require_env();
     function isNodeEnv() {
-      return (
-        !env.isBrowserBundle() &&
-        Object.prototype.toString.call(
-          typeof process !== "undefined" ? process : 0,
-        ) === "[object process]"
-      );
+      return !env.isBrowserBundle() && Object.prototype.toString.call(typeof process !== "undefined" ? process : 0) === "[object process]";
     }
     function dynamicRequire(mod, request) {
       return mod.require(request);
@@ -2124,17 +1741,19 @@ var require_node = __commonJS({
       let mod;
       try {
         mod = dynamicRequire(module2, moduleName);
-      } catch (e) {}
+      } catch (e) {
+      }
       try {
         const { cwd } = dynamicRequire(module2, "process");
         mod = dynamicRequire(module2, `${cwd()}/node_modules/${moduleName}`);
-      } catch (e) {}
+      } catch (e) {
+      }
       return mod;
     }
     exports.dynamicRequire = dynamicRequire;
     exports.isNodeEnv = isNodeEnv;
     exports.loadModule = loadModule;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/normalize.js
@@ -2159,19 +1778,9 @@ var require_normalize = __commonJS({
       }
       return normalized;
     }
-    function visit(
-      key,
-      value,
-      depth = Infinity,
-      maxProperties = Infinity,
-      memo$1 = memo.memoBuilder(),
-    ) {
+    function visit(key, value, depth = Infinity, maxProperties = Infinity, memo$1 = memo.memoBuilder()) {
       const [memoize, unmemoize] = memo$1;
-      if (
-        value == null ||
-        (["number", "boolean", "string"].includes(typeof value) &&
-          !is.isNaN(value))
-      ) {
+      if (value == null || ["number", "boolean", "string"].includes(typeof value) && !is.isNaN(value)) {
         return value;
       }
       const stringified = stringifyValue(key, value);
@@ -2181,10 +1790,7 @@ var require_normalize = __commonJS({
       if (value["__sentry_skip_normalization__"]) {
         return value;
       }
-      const remainingDepth =
-        typeof value["__sentry_override_normalization_depth__"] === "number"
-          ? value["__sentry_override_normalization_depth__"]
-          : depth;
+      const remainingDepth = typeof value["__sentry_override_normalization_depth__"] === "number" ? value["__sentry_override_normalization_depth__"] : depth;
       if (remainingDepth === 0) {
         return stringified.replace("object ", "");
       }
@@ -2195,14 +1801,9 @@ var require_normalize = __commonJS({
       if (valueWithToJSON && typeof valueWithToJSON.toJSON === "function") {
         try {
           const jsonValue = valueWithToJSON.toJSON();
-          return visit(
-            "",
-            jsonValue,
-            remainingDepth - 1,
-            maxProperties,
-            memo$1,
-          );
-        } catch (err) {}
+          return visit("", jsonValue, remainingDepth - 1, maxProperties, memo$1);
+        } catch (err) {
+        }
       }
       const normalized = Array.isArray(value) ? [] : {};
       let numAdded = 0;
@@ -2216,13 +1817,7 @@ var require_normalize = __commonJS({
           break;
         }
         const visitValue = visitable[visitKey];
-        normalized[visitKey] = visit(
-          visitKey,
-          visitValue,
-          remainingDepth - 1,
-          maxProperties,
-          memo$1,
-        );
+        normalized[visitKey] = visit(visitKey, visitValue, remainingDepth - 1, maxProperties, memo$1);
         numAdded++;
       }
       unmemoize(value);
@@ -2230,12 +1825,7 @@ var require_normalize = __commonJS({
     }
     function stringifyValue(key, value) {
       try {
-        if (
-          key === "domain" &&
-          value &&
-          typeof value === "object" &&
-          value._events
-        ) {
+        if (key === "domain" && value && typeof value === "object" && value._events) {
           return "[Domain]";
         }
         if (key === "domainEmitter") {
@@ -2287,7 +1877,7 @@ var require_normalize = __commonJS({
     exports.normalize = normalize;
     exports.normalizeToSize = normalizeToSize;
     exports.walk = visit;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/path.js
@@ -2315,8 +1905,7 @@ var require_path = __commonJS({
       }
       return parts;
     }
-    var splitPathRe =
-      /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^/]+?|)(\.[^./]*|))(?:[/]*)$/;
+    var splitPathRe = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^/]+?|)(\.[^./]*|))(?:[/]*)$/;
     function splitPath(filename) {
       const parts = splitPathRe.exec(filename);
       return parts ? parts.slice(1) : [];
@@ -2332,10 +1921,7 @@ var require_path = __commonJS({
         resolvedPath = `${path}/${resolvedPath}`;
         resolvedAbsolute = path.charAt(0) === "/";
       }
-      resolvedPath = normalizeArray(
-        resolvedPath.split("/").filter((p) => !!p),
-        !resolvedAbsolute,
-      ).join("/");
+      resolvedPath = normalizeArray(resolvedPath.split("/").filter((p) => !!p), !resolvedAbsolute).join("/");
       return (resolvedAbsolute ? "/" : "") + resolvedPath || ".";
     }
     function trim(arr) {
@@ -2379,10 +1965,7 @@ var require_path = __commonJS({
     function normalizePath(path) {
       const isPathAbsolute = isAbsolute(path);
       const trailingSlash = path.slice(-1) === "/";
-      let normalizedPath = normalizeArray(
-        path.split("/").filter((p) => !!p),
-        !isPathAbsolute,
-      ).join("/");
+      let normalizedPath = normalizeArray(path.split("/").filter((p) => !!p), !isPathAbsolute).join("/");
       if (!normalizedPath && !isPathAbsolute) {
         normalizedPath = ".";
       }
@@ -2423,7 +2006,7 @@ var require_path = __commonJS({
     exports.normalizePath = normalizePath;
     exports.relative = relative;
     exports.resolve = resolve;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/syncpromise.js
@@ -2432,13 +2015,13 @@ var require_syncpromise = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var is = require_is();
     var States;
-    (function (States2) {
+    (function(States2) {
       const PENDING = 0;
-      States2[(States2["PENDING"] = PENDING)] = "PENDING";
+      States2[States2["PENDING"] = PENDING] = "PENDING";
       const RESOLVED = 1;
-      States2[(States2["RESOLVED"] = RESOLVED)] = "RESOLVED";
+      States2[States2["RESOLVED"] = RESOLVED] = "RESOLVED";
       const REJECTED = 2;
-      States2[(States2["REJECTED"] = REJECTED)] = "REJECTED";
+      States2[States2["REJECTED"] = REJECTED] = "REJECTED";
     })(States || (States = {}));
     function resolvedSyncPromise(value) {
       return new SyncPromise((resolve) => {
@@ -2495,7 +2078,7 @@ var require_syncpromise = __commonJS({
                   reject(e);
                 }
               }
-            },
+            }
           ]);
           this._executeHandlers();
         });
@@ -2507,22 +2090,19 @@ var require_syncpromise = __commonJS({
         return new SyncPromise((resolve, reject) => {
           let val;
           let isRejected;
-          return this.then(
-            (value) => {
-              isRejected = false;
-              val = value;
-              if (onfinally) {
-                onfinally();
-              }
-            },
-            (reason) => {
-              isRejected = true;
-              val = reason;
-              if (onfinally) {
-                onfinally();
-              }
-            },
-          ).then(() => {
+          return this.then((value) => {
+            isRejected = false;
+            val = value;
+            if (onfinally) {
+              onfinally();
+            }
+          }, (reason) => {
+            isRejected = true;
+            val = reason;
+            if (onfinally) {
+              onfinally();
+            }
+          }).then(() => {
             if (isRejected) {
               reject(val);
               return;
@@ -2580,7 +2160,7 @@ var require_syncpromise = __commonJS({
     exports.SyncPromise = SyncPromise;
     exports.rejectedSyncPromise = rejectedSyncPromise;
     exports.resolvedSyncPromise = resolvedSyncPromise;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/promisebuffer.js
@@ -2599,19 +2179,14 @@ var require_promisebuffer = __commonJS({
       }
       function add(taskProducer) {
         if (!isReady()) {
-          return syncpromise.rejectedSyncPromise(
-            new error.SentryError(
-              "Not adding Promise because buffer limit was reached.",
-            ),
-          );
+          return syncpromise.rejectedSyncPromise(new error.SentryError("Not adding Promise because buffer limit was reached."));
         }
         const task = taskProducer();
         if (buffer.indexOf(task) === -1) {
           buffer.push(task);
         }
-        void task
-          .then(() => remove(task))
-          .then(null, () => remove(task).then(null, () => {}));
+        void task.then(() => remove(task)).then(null, () => remove(task).then(null, () => {
+        }));
         return task;
       }
       function drain(timeout) {
@@ -2638,11 +2213,11 @@ var require_promisebuffer = __commonJS({
       return {
         $: buffer,
         add,
-        drain,
+        drain
       };
     }
     exports.makePromiseBuffer = makePromiseBuffer;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/url.js
@@ -2653,9 +2228,7 @@ var require_url = __commonJS({
       if (!url) {
         return {};
       }
-      const match = url.match(
-        /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/,
-      );
+      const match = url.match(/^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/);
       if (!match) {
         return {};
       }
@@ -2667,7 +2240,7 @@ var require_url = __commonJS({
         protocol: match[2],
         search: query,
         hash: fragment,
-        relative: match[5] + query + fragment,
+        relative: match[5] + query + fragment
       };
     }
     function stripUrlQueryAndFragment(urlPath) {
@@ -2678,20 +2251,14 @@ var require_url = __commonJS({
     }
     function getSanitizedUrlString(url) {
       const { protocol, host, path } = url;
-      const filteredHost =
-        (host &&
-          host
-            .replace(/^.*@/, "[filtered]:[filtered]@")
-            .replace(":80", "")
-            .replace(":443", "")) ||
-        "";
+      const filteredHost = host && host.replace(/^.*@/, "[filtered]:[filtered]@").replace(":80", "").replace(":443", "") || "";
       return `${protocol ? `${protocol}://` : ""}${filteredHost}${path}`;
     }
     exports.getNumberOfUrlSegments = getNumberOfUrlSegments;
     exports.getSanitizedUrlString = getSanitizedUrlString;
     exports.parseUrl = parseUrl;
     exports.stripUrlQueryAndFragment = stripUrlQueryAndFragment;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/requestdata.js
@@ -2705,26 +2272,15 @@ var require_requestdata = __commonJS({
       ip: false,
       request: true,
       transaction: true,
-      user: true,
+      user: true
     };
-    var DEFAULT_REQUEST_INCLUDES = [
-      "cookies",
-      "data",
-      "headers",
-      "method",
-      "query_string",
-      "url",
-    ];
+    var DEFAULT_REQUEST_INCLUDES = ["cookies", "data", "headers", "method", "query_string", "url"];
     var DEFAULT_USER_INCLUDES = ["id", "username", "email"];
     function addRequestDataToTransaction(transaction, req, deps) {
-      if (!transaction) return;
-      if (
-        !transaction.metadata.source ||
-        transaction.metadata.source === "url"
-      ) {
-        transaction.setName(
-          ...extractPathForTransaction(req, { path: true, method: true }),
-        );
+      if (!transaction)
+        return;
+      if (!transaction.metadata.source || transaction.metadata.source === "url") {
+        transaction.setName(...extractPathForTransaction(req, { path: true, method: true }));
       }
       transaction.setData("url", req.originalUrl || req.url);
       if (req.baseUrl) {
@@ -2737,9 +2293,7 @@ var require_requestdata = __commonJS({
       let path = "";
       let source = "url";
       if (options.customRoute || req.route) {
-        path =
-          options.customRoute ||
-          `${req.baseUrl || ""}${req.route && req.route.path}`;
+        path = options.customRoute || `${req.baseUrl || ""}${req.route && req.route.path}`;
         source = "route";
       } else if (req.originalUrl || req.url) {
         path = url.stripUrlQueryAndFragment(req.originalUrl || req.url || "");
@@ -2762,20 +2316,11 @@ var require_requestdata = __commonJS({
           return extractPathForTransaction(req, { path: true })[0];
         }
         case "handler": {
-          return (
-            (req.route &&
-              req.route.stack &&
-              req.route.stack[0] &&
-              req.route.stack[0].name) ||
-            "<anonymous>"
-          );
+          return req.route && req.route.stack && req.route.stack[0] && req.route.stack[0].name || "<anonymous>";
         }
         case "methodPath":
         default: {
-          return extractPathForTransaction(req, {
-            path: true,
-            method: true,
-          })[0];
+          return extractPathForTransaction(req, { path: true, method: true })[0];
         }
       }
     }
@@ -2795,10 +2340,7 @@ var require_requestdata = __commonJS({
       const headers2 = req.headers || {};
       const method = req.method;
       const host = req.hostname || req.host || headers2.host || "<no host>";
-      const protocol =
-        req.protocol === "https" || (req.socket && req.socket.encrypted)
-          ? "https"
-          : "http";
+      const protocol = req.protocol === "https" || req.socket && req.socket.encrypted ? "https" : "http";
       const originalUrl = req.originalUrl || req.url || "";
       const absoluteUrl = `${protocol}://${host}${originalUrl}`;
       include.forEach((key) => {
@@ -2816,13 +2358,7 @@ var require_requestdata = __commonJS({
             break;
           }
           case "cookies": {
-            requestData.cookies =
-              req.cookies ||
-              (headers2.cookie &&
-                deps &&
-                deps.cookie &&
-                deps.cookie.parse(headers2.cookie)) ||
-              {};
+            requestData.cookies = req.cookies || headers2.cookie && deps && deps.cookie && deps.cookie.parse(headers2.cookie) || {};
             break;
           }
           case "query_string": {
@@ -2834,9 +2370,7 @@ var require_requestdata = __commonJS({
               break;
             }
             if (req.body !== void 0) {
-              requestData.data = is.isString(req.body)
-                ? req.body
-                : JSON.stringify(normalize.normalize(req.body));
+              requestData.data = is.isString(req.body) ? req.body : JSON.stringify(normalize.normalize(req.body));
             }
             break;
           }
@@ -2850,39 +2384,22 @@ var require_requestdata = __commonJS({
       return requestData;
     }
     function addRequestDataToEvent(event, req, options) {
-      const include = __spreadValues(
-        __spreadValues({}, DEFAULT_INCLUDES),
-        options && options.include,
-      );
+      const include = __spreadValues(__spreadValues({}, DEFAULT_INCLUDES), options && options.include);
       if (include.request) {
-        const extractedRequestData = Array.isArray(include.request)
-          ? extractRequestData(req, {
-              include: include.request,
-              deps: options && options.deps,
-            })
-          : extractRequestData(req, { deps: options && options.deps });
-        event.request = __spreadValues(
-          __spreadValues({}, event.request),
-          extractedRequestData,
-        );
+        const extractedRequestData = Array.isArray(include.request) ? extractRequestData(req, { include: include.request, deps: options && options.deps }) : extractRequestData(req, { deps: options && options.deps });
+        event.request = __spreadValues(__spreadValues({}, event.request), extractedRequestData);
       }
       if (include.user) {
-        const extractedUser =
-          req.user && is.isPlainObject(req.user)
-            ? extractUserData(req.user, include.user)
-            : {};
+        const extractedUser = req.user && is.isPlainObject(req.user) ? extractUserData(req.user, include.user) : {};
         if (Object.keys(extractedUser).length) {
-          event.user = __spreadValues(
-            __spreadValues({}, event.user),
-            extractedUser,
-          );
+          event.user = __spreadValues(__spreadValues({}, event.user), extractedUser);
         }
       }
       if (include.ip) {
-        const ip = req.ip || (req.socket && req.socket.remoteAddress);
+        const ip = req.ip || req.socket && req.socket.remoteAddress;
         if (ip) {
           event.user = __spreadProps(__spreadValues({}, event.user), {
-            ip_address: ip,
+            ip_address: ip
           });
         }
       }
@@ -2899,47 +2416,30 @@ var require_requestdata = __commonJS({
       if (originalUrl.startsWith("/")) {
         originalUrl = `http://dogs.are.great${originalUrl}`;
       }
-      return (
-        req.query ||
-        (typeof URL !== void 0 &&
-          new URL(originalUrl).search.replace("?", "")) ||
-        (deps && deps.url && deps.url.parse(originalUrl).query) ||
-        void 0
-      );
+      return req.query || typeof URL !== void 0 && new URL(originalUrl).search.replace("?", "") || deps && deps.url && deps.url.parse(originalUrl).query || void 0;
     }
     exports.addRequestDataToEvent = addRequestDataToEvent;
     exports.addRequestDataToTransaction = addRequestDataToTransaction;
     exports.extractPathForTransaction = extractPathForTransaction;
     exports.extractRequestData = extractRequestData;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/severity.js
 var require_severity = __commonJS({
   "node_modules/@sentry/utils/cjs/severity.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
-    var validSeverityLevels = [
-      "fatal",
-      "error",
-      "warning",
-      "log",
-      "info",
-      "debug",
-    ];
+    var validSeverityLevels = ["fatal", "error", "warning", "log", "info", "debug"];
     function severityFromString(level) {
       return severityLevelFromString(level);
     }
     function severityLevelFromString(level) {
-      return level === "warn"
-        ? "warning"
-        : validSeverityLevels.includes(level)
-        ? level
-        : "log";
+      return level === "warn" ? "warning" : validSeverityLevels.includes(level) ? level : "log";
     }
     exports.severityFromString = severityFromString;
     exports.severityLevelFromString = severityLevelFromString;
     exports.validSeverityLevels = validSeverityLevels;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/time.js
@@ -2950,7 +2450,7 @@ var require_time = __commonJS({
     var worldwide = require_worldwide();
     var WINDOW = worldwide.getGlobalObject();
     var dateTimestampSource = {
-      nowSeconds: () => Date.now() / 1e3,
+      nowSeconds: () => Date.now() / 1e3
     };
     function getBrowserPerformance() {
       const { performance: performance2 } = WINDOW;
@@ -2960,7 +2460,7 @@ var require_time = __commonJS({
       const timeOrigin = Date.now() - performance2.now();
       return {
         now: () => performance2.now(),
-        timeOrigin,
+        timeOrigin
       };
     }
     function getNodePerformance() {
@@ -2971,19 +2471,11 @@ var require_time = __commonJS({
         return void 0;
       }
     }
-    var platformPerformance = node.isNodeEnv()
-      ? getNodePerformance()
-      : getBrowserPerformance();
-    var timestampSource =
-      platformPerformance === void 0
-        ? dateTimestampSource
-        : {
-            nowSeconds: () =>
-              (platformPerformance.timeOrigin + platformPerformance.now()) /
-              1e3,
-          };
-    var dateTimestampInSeconds =
-      dateTimestampSource.nowSeconds.bind(dateTimestampSource);
+    var platformPerformance = node.isNodeEnv() ? getNodePerformance() : getBrowserPerformance();
+    var timestampSource = platformPerformance === void 0 ? dateTimestampSource : {
+      nowSeconds: () => (platformPerformance.timeOrigin + platformPerformance.now()) / 1e3
+    };
+    var dateTimestampInSeconds = dateTimestampSource.nowSeconds.bind(dateTimestampSource);
     var timestampInSeconds = timestampSource.nowSeconds.bind(timestampSource);
     var timestampWithMs = timestampInSeconds;
     var usingPerformanceAPI = platformPerformance !== void 0;
@@ -2997,16 +2489,11 @@ var require_time = __commonJS({
       const threshold = 3600 * 1e3;
       const performanceNow = performance2.now();
       const dateNow = Date.now();
-      const timeOriginDelta = performance2.timeOrigin
-        ? Math.abs(performance2.timeOrigin + performanceNow - dateNow)
-        : threshold;
+      const timeOriginDelta = performance2.timeOrigin ? Math.abs(performance2.timeOrigin + performanceNow - dateNow) : threshold;
       const timeOriginIsReliable = timeOriginDelta < threshold;
-      const navigationStart =
-        performance2.timing && performance2.timing.navigationStart;
+      const navigationStart = performance2.timing && performance2.timing.navigationStart;
       const hasNavigationStart = typeof navigationStart === "number";
-      const navigationStartDelta = hasNavigationStart
-        ? Math.abs(navigationStart + performanceNow - dateNow)
-        : threshold;
+      const navigationStartDelta = hasNavigationStart ? Math.abs(navigationStart + performanceNow - dateNow) : threshold;
       const navigationStartIsReliable = navigationStartDelta < threshold;
       if (timeOriginIsReliable || navigationStartIsReliable) {
         if (timeOriginDelta <= navigationStartDelta) {
@@ -3025,7 +2512,7 @@ var require_time = __commonJS({
     exports.timestampInSeconds = timestampInSeconds;
     exports.timestampWithMs = timestampWithMs;
     exports.usingPerformanceAPI = usingPerformanceAPI;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/baggage.js
@@ -3054,87 +2541,59 @@ var require_baggage = __commonJS({
         }
         baggageObject = baggageHeaderToObject(baggageHeader);
       }
-      const dynamicSamplingContext = Object.entries(baggageObject).reduce(
-        (acc, [key, value]) => {
-          if (key.match(SENTRY_BAGGAGE_KEY_PREFIX_REGEX)) {
-            const nonPrefixedKey = key.slice(SENTRY_BAGGAGE_KEY_PREFIX.length);
-            acc[nonPrefixedKey] = value;
-          }
-          return acc;
-        },
-        {},
-      );
+      const dynamicSamplingContext = Object.entries(baggageObject).reduce((acc, [key, value]) => {
+        if (key.match(SENTRY_BAGGAGE_KEY_PREFIX_REGEX)) {
+          const nonPrefixedKey = key.slice(SENTRY_BAGGAGE_KEY_PREFIX.length);
+          acc[nonPrefixedKey] = value;
+        }
+        return acc;
+      }, {});
       if (Object.keys(dynamicSamplingContext).length > 0) {
         return dynamicSamplingContext;
       } else {
         return void 0;
       }
     }
-    function dynamicSamplingContextToSentryBaggageHeader(
-      dynamicSamplingContext,
-    ) {
+    function dynamicSamplingContextToSentryBaggageHeader(dynamicSamplingContext) {
       if (!dynamicSamplingContext) {
         return void 0;
       }
-      const sentryPrefixedDSC = Object.entries(dynamicSamplingContext).reduce(
-        (acc, [dscKey, dscValue]) => {
-          if (dscValue) {
-            acc[`${SENTRY_BAGGAGE_KEY_PREFIX}${dscKey}`] = dscValue;
-          }
-          return acc;
-        },
-        {},
-      );
+      const sentryPrefixedDSC = Object.entries(dynamicSamplingContext).reduce((acc, [dscKey, dscValue]) => {
+        if (dscValue) {
+          acc[`${SENTRY_BAGGAGE_KEY_PREFIX}${dscKey}`] = dscValue;
+        }
+        return acc;
+      }, {});
       return objectToBaggageHeader(sentryPrefixedDSC);
     }
     function baggageHeaderToObject(baggageHeader) {
-      return baggageHeader
-        .split(",")
-        .map((baggageEntry) =>
-          baggageEntry
-            .split("=")
-            .map((keyOrValue) => decodeURIComponent(keyOrValue.trim())),
-        )
-        .reduce((acc, [key, value]) => {
-          acc[key] = value;
-          return acc;
-        }, {});
+      return baggageHeader.split(",").map((baggageEntry) => baggageEntry.split("=").map((keyOrValue) => decodeURIComponent(keyOrValue.trim()))).reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {});
     }
     function objectToBaggageHeader(object) {
       if (Object.keys(object).length === 0) {
         return void 0;
       }
-      return Object.entries(object).reduce(
-        (baggageHeader, [objectKey, objectValue], currentIndex) => {
-          const baggageEntry = `${encodeURIComponent(
-            objectKey,
-          )}=${encodeURIComponent(objectValue)}`;
-          const newBaggageHeader =
-            currentIndex === 0
-              ? baggageEntry
-              : `${baggageHeader},${baggageEntry}`;
-          if (newBaggageHeader.length > MAX_BAGGAGE_STRING_LENGTH) {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              logger.logger.warn(
-                `Not adding key: ${objectKey} with val: ${objectValue} to baggage header due to exceeding baggage size limits.`,
-              );
-            return baggageHeader;
-          } else {
-            return newBaggageHeader;
-          }
-        },
-        "",
-      );
+      return Object.entries(object).reduce((baggageHeader, [objectKey, objectValue], currentIndex) => {
+        const baggageEntry = `${encodeURIComponent(objectKey)}=${encodeURIComponent(objectValue)}`;
+        const newBaggageHeader = currentIndex === 0 ? baggageEntry : `${baggageHeader},${baggageEntry}`;
+        if (newBaggageHeader.length > MAX_BAGGAGE_STRING_LENGTH) {
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && logger.logger.warn(`Not adding key: ${objectKey} with val: ${objectValue} to baggage header due to exceeding baggage size limits.`);
+          return baggageHeader;
+        } else {
+          return newBaggageHeader;
+        }
+      }, "");
     }
     exports.BAGGAGE_HEADER_NAME = BAGGAGE_HEADER_NAME;
     exports.MAX_BAGGAGE_STRING_LENGTH = MAX_BAGGAGE_STRING_LENGTH;
     exports.SENTRY_BAGGAGE_KEY_PREFIX = SENTRY_BAGGAGE_KEY_PREFIX;
     exports.SENTRY_BAGGAGE_KEY_PREFIX_REGEX = SENTRY_BAGGAGE_KEY_PREFIX_REGEX;
-    exports.baggageHeaderToDynamicSamplingContext =
-      baggageHeaderToDynamicSamplingContext;
-    exports.dynamicSamplingContextToSentryBaggageHeader =
-      dynamicSamplingContextToSentryBaggageHeader;
-  },
+    exports.baggageHeaderToDynamicSamplingContext = baggageHeaderToDynamicSamplingContext;
+    exports.dynamicSamplingContextToSentryBaggageHeader = dynamicSamplingContextToSentryBaggageHeader;
+  }
 });
 
 // node_modules/@sentry/utils/cjs/tracing.js
@@ -3143,9 +2602,7 @@ var require_tracing = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var baggage = require_baggage();
     var misc = require_misc();
-    var TRACEPARENT_REGEXP = new RegExp(
-      "^[ \\t]*([0-9a-f]{32})?-?([0-9a-f]{16})?-?([01])?[ \\t]*$",
-    );
+    var TRACEPARENT_REGEXP = new RegExp("^[ \\t]*([0-9a-f]{32})?-?([0-9a-f]{16})?-?([01])?[ \\t]*$");
     function extractTraceparentData(traceparent) {
       if (!traceparent) {
         return void 0;
@@ -3163,18 +2620,17 @@ var require_tracing = __commonJS({
       return {
         traceId: matches[1],
         parentSampled,
-        parentSpanId: matches[2],
+        parentSpanId: matches[2]
       };
     }
     function tracingContextFromHeaders(sentryTrace, baggage$1) {
       const traceparentData = extractTraceparentData(sentryTrace);
-      const dynamicSamplingContext =
-        baggage.baggageHeaderToDynamicSamplingContext(baggage$1);
+      const dynamicSamplingContext = baggage.baggageHeaderToDynamicSamplingContext(baggage$1);
       const { traceId, parentSpanId, parentSampled } = traceparentData || {};
       const propagationContext = {
         traceId: traceId || misc.uuid4(),
         spanId: misc.uuid4().substring(16),
-        sampled: parentSampled === void 0 ? false : parentSampled,
+        sampled: parentSampled === void 0 ? false : parentSampled
       };
       if (parentSpanId) {
         propagationContext.parentSpanId = parentSpanId;
@@ -3185,14 +2641,10 @@ var require_tracing = __commonJS({
       return {
         traceparentData,
         dynamicSamplingContext,
-        propagationContext,
+        propagationContext
       };
     }
-    function generateSentryTraceHeader(
-      traceId = misc.uuid4(),
-      spanId = misc.uuid4().substring(16),
-      sampled,
-    ) {
+    function generateSentryTraceHeader(traceId = misc.uuid4(), spanId = misc.uuid4().substring(16), sampled) {
       let sampledString = "";
       if (sampled !== void 0) {
         sampledString = sampled ? "-1" : "-0";
@@ -3203,7 +2655,7 @@ var require_tracing = __commonJS({
     exports.extractTraceparentData = extractTraceparentData;
     exports.generateSentryTraceHeader = generateSentryTraceHeader;
     exports.tracingContextFromHeaders = tracingContextFromHeaders;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/envelope.js
@@ -3243,14 +2695,9 @@ var require_envelope = __commonJS({
       let parts = JSON.stringify(envHeaders);
       function append(next) {
         if (typeof parts === "string") {
-          parts =
-            typeof next === "string"
-              ? parts + next
-              : [encodeUTF8(parts, textEncoder), next];
+          parts = typeof next === "string" ? parts + next : [encodeUTF8(parts, textEncoder), next];
         } else {
-          parts.push(
-            typeof next === "string" ? encodeUTF8(next, textEncoder) : next,
-          );
+          parts.push(typeof next === "string" ? encodeUTF8(next, textEncoder) : next);
         }
       }
       for (const item of items) {
@@ -3300,29 +2747,22 @@ ${JSON.stringify(itemHeaders)}
       const items = [];
       while (buffer.length) {
         const itemHeader = readJson();
-        const binaryLength =
-          typeof itemHeader.length === "number" ? itemHeader.length : void 0;
-        items.push([
-          itemHeader,
-          binaryLength ? readBinary(binaryLength) : readJson(),
-        ]);
+        const binaryLength = typeof itemHeader.length === "number" ? itemHeader.length : void 0;
+        items.push([itemHeader, binaryLength ? readBinary(binaryLength) : readJson()]);
       }
       return [envelopeHeader, items];
     }
     function createAttachmentEnvelopeItem(attachment, textEncoder) {
-      const buffer =
-        typeof attachment.data === "string"
-          ? encodeUTF8(attachment.data, textEncoder)
-          : attachment.data;
+      const buffer = typeof attachment.data === "string" ? encodeUTF8(attachment.data, textEncoder) : attachment.data;
       return [
         object.dropUndefinedKeys({
           type: "attachment",
           length: buffer.length,
           filename: attachment.filename,
           content_type: attachment.contentType,
-          attachment_type: attachment.attachmentType,
+          attachment_type: attachment.attachmentType
         }),
-        buffer,
+        buffer
       ];
     }
     var ITEM_TYPE_TO_DATA_CATEGORY_MAP = {
@@ -3336,7 +2776,7 @@ ${JSON.stringify(itemHeaders)}
       profile: "profile",
       replay_event: "replay",
       replay_recording: "replay",
-      check_in: "monitor",
+      check_in: "monitor"
     };
     function envelopeItemTypeToDataCategory(type) {
       return ITEM_TYPE_TO_DATA_CATEGORY_MAP[type];
@@ -3349,26 +2789,13 @@ ${JSON.stringify(itemHeaders)}
       return { name, version };
     }
     function createEventEnvelopeHeaders(event, sdkInfo, tunnel, dsn$1) {
-      const dynamicSamplingContext =
-        event.sdkProcessingMetadata &&
-        event.sdkProcessingMetadata.dynamicSamplingContext;
-      return __spreadValues(
-        __spreadValues(
-          __spreadValues(
-            {
-              event_id: event.event_id,
-              sent_at: new Date().toISOString(),
-            },
-            sdkInfo && { sdk: sdkInfo },
-          ),
-          !!tunnel && { dsn: dsn.dsnToString(dsn$1) },
-        ),
-        dynamicSamplingContext && {
-          trace: object.dropUndefinedKeys(
-            __spreadValues({}, dynamicSamplingContext),
-          ),
-        },
-      );
+      const dynamicSamplingContext = event.sdkProcessingMetadata && event.sdkProcessingMetadata.dynamicSamplingContext;
+      return __spreadValues(__spreadValues(__spreadValues({
+        event_id: event.event_id,
+        sent_at: new Date().toISOString()
+      }, sdkInfo && { sdk: sdkInfo }), !!tunnel && { dsn: dsn.dsnToString(dsn$1) }), dynamicSamplingContext && {
+        trace: object.dropUndefinedKeys(__spreadValues({}, dynamicSamplingContext))
+      });
     }
     exports.addItemToEnvelope = addItemToEnvelope;
     exports.createAttachmentEnvelopeItem = createAttachmentEnvelopeItem;
@@ -3380,7 +2807,7 @@ ${JSON.stringify(itemHeaders)}
     exports.getSdkMetadataForEnvelopeHeader = getSdkMetadataForEnvelopeHeader;
     exports.parseEnvelope = parseEnvelope;
     exports.serializeEnvelope = serializeEnvelope;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/clientreport.js
@@ -3394,13 +2821,13 @@ var require_clientreport = __commonJS({
         { type: "client_report" },
         {
           timestamp: timestamp || time.dateTimestampInSeconds(),
-          discarded_events,
-        },
+          discarded_events
+        }
       ];
       return envelope.createEnvelope(dsn ? { dsn } : {}, [clientReportItem]);
     }
     exports.createClientReportEnvelope = createClientReportEnvelope;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/ratelimit.js
@@ -3425,11 +2852,7 @@ var require_ratelimit = __commonJS({
     function isRateLimited(limits, category, now = Date.now()) {
       return disabledUntil(limits, category) > now;
     }
-    function updateRateLimits(
-      limits,
-      { statusCode: statusCode2, headers: headers2 },
-      now = Date.now(),
-    ) {
+    function updateRateLimits(limits, { statusCode: statusCode2, headers: headers2 }, now = Date.now()) {
       const updatedRateLimits = __spreadValues({}, limits);
       const rateLimitHeader = headers2 && headers2["x-sentry-rate-limits"];
       const retryAfterHeader = headers2 && headers2["retry-after"];
@@ -3447,8 +2870,7 @@ var require_ratelimit = __commonJS({
           }
         }
       } else if (retryAfterHeader) {
-        updatedRateLimits.all =
-          now + parseRetryAfterHeader(retryAfterHeader, now);
+        updatedRateLimits.all = now + parseRetryAfterHeader(retryAfterHeader, now);
       } else if (statusCode2 === 429) {
         updatedRateLimits.all = now + 60 * 1e3;
       }
@@ -3459,7 +2881,7 @@ var require_ratelimit = __commonJS({
     exports.isRateLimited = isRateLimited;
     exports.parseRetryAfterHeader = parseRetryAfterHeader;
     exports.updateRateLimits = updateRateLimits;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/userIntegrations.js
@@ -3475,31 +2897,11 @@ var require_userIntegrations = __commonJS({
         setNestedKey(innerObj, match[2], value);
       }
     }
-    function addOrUpdateIntegration(
-      defaultIntegrationInstance,
-      userIntegrations,
-      forcedOptions = {},
-    ) {
-      return Array.isArray(userIntegrations)
-        ? addOrUpdateIntegrationInArray(
-            defaultIntegrationInstance,
-            userIntegrations,
-            forcedOptions,
-          )
-        : addOrUpdateIntegrationInFunction(
-            defaultIntegrationInstance,
-            userIntegrations,
-            forcedOptions,
-          );
+    function addOrUpdateIntegration(defaultIntegrationInstance, userIntegrations, forcedOptions = {}) {
+      return Array.isArray(userIntegrations) ? addOrUpdateIntegrationInArray(defaultIntegrationInstance, userIntegrations, forcedOptions) : addOrUpdateIntegrationInFunction(defaultIntegrationInstance, userIntegrations, forcedOptions);
     }
-    function addOrUpdateIntegrationInArray(
-      defaultIntegrationInstance,
-      userIntegrations,
-      forcedOptions,
-    ) {
-      const userInstance = userIntegrations.find(
-        (integration) => integration.name === defaultIntegrationInstance.name,
-      );
+    function addOrUpdateIntegrationInArray(defaultIntegrationInstance, userIntegrations, forcedOptions) {
+      const userInstance = userIntegrations.find((integration) => integration.name === defaultIntegrationInstance.name);
       if (userInstance) {
         for (const [keyPath, value] of Object.entries(forcedOptions)) {
           setNestedKey(userInstance, keyPath, value);
@@ -3508,32 +2910,21 @@ var require_userIntegrations = __commonJS({
       }
       return [...userIntegrations, defaultIntegrationInstance];
     }
-    function addOrUpdateIntegrationInFunction(
-      defaultIntegrationInstance,
-      userIntegrationsFunc,
-      forcedOptions,
-    ) {
+    function addOrUpdateIntegrationInFunction(defaultIntegrationInstance, userIntegrationsFunc, forcedOptions) {
       const wrapper = (defaultIntegrations) => {
         const userFinalIntegrations = userIntegrationsFunc(defaultIntegrations);
         if (defaultIntegrationInstance.allowExclusionByUser) {
-          const userFinalInstance = userFinalIntegrations.find(
-            (integration) =>
-              integration.name === defaultIntegrationInstance.name,
-          );
+          const userFinalInstance = userFinalIntegrations.find((integration) => integration.name === defaultIntegrationInstance.name);
           if (!userFinalInstance) {
             return userFinalIntegrations;
           }
         }
-        return addOrUpdateIntegrationInArray(
-          defaultIntegrationInstance,
-          userFinalIntegrations,
-          forcedOptions,
-        );
+        return addOrUpdateIntegrationInArray(defaultIntegrationInstance, userFinalIntegrations, forcedOptions);
       };
       return wrapper;
     }
     exports.addOrUpdateIntegration = addOrUpdateIntegration;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/cache.js
@@ -3579,11 +2970,11 @@ var require_cache = __commonJS({
             }
           }
           return true;
-        },
+        }
       };
     }
     exports.makeFifoCache = makeFifoCache;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/vendor/escapeStringForRegex.js
@@ -3591,12 +2982,10 @@ var require_escapeStringForRegex = __commonJS({
   "node_modules/@sentry/utils/cjs/vendor/escapeStringForRegex.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function escapeStringForRegex(regexString) {
-      return regexString
-        .replace(/[|\\{}()[\]^$+*?.]/g, "\\$&")
-        .replace(/-/g, "\\x2d");
+      return regexString.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&").replace(/-/g, "\\x2d");
     }
     exports.escapeStringForRegex = escapeStringForRegex;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/index.js
@@ -3636,8 +3025,7 @@ var require_cjs = __commonJS({
     var cache = require_cache();
     var escapeStringForRegex = require_escapeStringForRegex();
     var supportsHistory = require_supportsHistory();
-    exports.applyAggregateErrorsToEvent =
-      aggregateErrors.applyAggregateErrorsToEvent;
+    exports.applyAggregateErrorsToEvent = aggregateErrors.applyAggregateErrorsToEvent;
     exports.getDomElement = browser.getDomElement;
     exports.getLocationHref = browser.getLocationHref;
     exports.htmlTreeAsString = browser.htmlTreeAsString;
@@ -3669,7 +3057,7 @@ var require_cjs = __commonJS({
     exports.consoleSandbox = logger.consoleSandbox;
     Object.defineProperty(exports, "logger", {
       enumerable: true,
-      get: () => logger.logger,
+      get: () => logger.logger
     });
     exports.memoBuilder = memo.memoBuilder;
     exports.addContextToFrame = misc.addContextToFrame;
@@ -3689,8 +3077,7 @@ var require_cjs = __commonJS({
     exports.addNonEnumerableProperty = object.addNonEnumerableProperty;
     exports.convertToPlainObject = object.convertToPlainObject;
     exports.dropUndefinedKeys = object.dropUndefinedKeys;
-    exports.extractExceptionKeysForMessage =
-      object.extractExceptionKeysForMessage;
+    exports.extractExceptionKeysForMessage = object.extractExceptionKeysForMessage;
     exports.fill = object.fill;
     exports.getOriginalFunction = object.getOriginalFunction;
     exports.markFunctionWrapped = object.markFunctionWrapped;
@@ -3705,8 +3092,7 @@ var require_cjs = __commonJS({
     exports.resolve = path.resolve;
     exports.makePromiseBuffer = promisebuffer.makePromiseBuffer;
     exports.addRequestDataToEvent = requestdata.addRequestDataToEvent;
-    exports.addRequestDataToTransaction =
-      requestdata.addRequestDataToTransaction;
+    exports.addRequestDataToTransaction = requestdata.addRequestDataToTransaction;
     exports.extractPathForTransaction = requestdata.extractPathForTransaction;
     exports.extractRequestData = requestdata.extractRequestData;
     exports.severityFromString = severity.severityFromString;
@@ -3715,10 +3101,8 @@ var require_cjs = __commonJS({
     exports.createStackParser = stacktrace.createStackParser;
     exports.getFunctionName = stacktrace.getFunctionName;
     exports.nodeStackLineParser = stacktrace.nodeStackLineParser;
-    exports.stackParserFromStackParserOptions =
-      stacktrace.stackParserFromStackParserOptions;
-    exports.stripSentryFramesAndReverse =
-      stacktrace.stripSentryFramesAndReverse;
+    exports.stackParserFromStackParserOptions = stacktrace.stackParserFromStackParserOptions;
+    exports.stripSentryFramesAndReverse = stacktrace.stripSentryFramesAndReverse;
     exports.isMatchingPattern = string.isMatchingPattern;
     exports.safeJoin = string.safeJoin;
     exports.snipLine = string.snipLine;
@@ -3737,7 +3121,7 @@ var require_cjs = __commonJS({
     exports.resolvedSyncPromise = syncpromise.resolvedSyncPromise;
     Object.defineProperty(exports, "_browserPerformanceTimeOriginMode", {
       enumerable: true,
-      get: () => time._browserPerformanceTimeOriginMode,
+      get: () => time._browserPerformanceTimeOriginMode
     });
     exports.browserPerformanceTimeOrigin = time.browserPerformanceTimeOrigin;
     exports.dateTimestampInSeconds = time.dateTimestampInSeconds;
@@ -3751,20 +3135,16 @@ var require_cjs = __commonJS({
     exports.getSDKSource = env.getSDKSource;
     exports.isBrowserBundle = env.isBrowserBundle;
     exports.addItemToEnvelope = envelope.addItemToEnvelope;
-    exports.createAttachmentEnvelopeItem =
-      envelope.createAttachmentEnvelopeItem;
+    exports.createAttachmentEnvelopeItem = envelope.createAttachmentEnvelopeItem;
     exports.createEnvelope = envelope.createEnvelope;
     exports.createEventEnvelopeHeaders = envelope.createEventEnvelopeHeaders;
     exports.envelopeContainsItemType = envelope.envelopeContainsItemType;
-    exports.envelopeItemTypeToDataCategory =
-      envelope.envelopeItemTypeToDataCategory;
+    exports.envelopeItemTypeToDataCategory = envelope.envelopeItemTypeToDataCategory;
     exports.forEachEnvelopeItem = envelope.forEachEnvelopeItem;
-    exports.getSdkMetadataForEnvelopeHeader =
-      envelope.getSdkMetadataForEnvelopeHeader;
+    exports.getSdkMetadataForEnvelopeHeader = envelope.getSdkMetadataForEnvelopeHeader;
     exports.parseEnvelope = envelope.parseEnvelope;
     exports.serializeEnvelope = envelope.serializeEnvelope;
-    exports.createClientReportEnvelope =
-      clientreport.createClientReportEnvelope;
+    exports.createClientReportEnvelope = clientreport.createClientReportEnvelope;
     exports.DEFAULT_RETRY_AFTER = ratelimit.DEFAULT_RETRY_AFTER;
     exports.disabledUntil = ratelimit.disabledUntil;
     exports.isRateLimited = ratelimit.isRateLimited;
@@ -3773,12 +3153,9 @@ var require_cjs = __commonJS({
     exports.BAGGAGE_HEADER_NAME = baggage.BAGGAGE_HEADER_NAME;
     exports.MAX_BAGGAGE_STRING_LENGTH = baggage.MAX_BAGGAGE_STRING_LENGTH;
     exports.SENTRY_BAGGAGE_KEY_PREFIX = baggage.SENTRY_BAGGAGE_KEY_PREFIX;
-    exports.SENTRY_BAGGAGE_KEY_PREFIX_REGEX =
-      baggage.SENTRY_BAGGAGE_KEY_PREFIX_REGEX;
-    exports.baggageHeaderToDynamicSamplingContext =
-      baggage.baggageHeaderToDynamicSamplingContext;
-    exports.dynamicSamplingContextToSentryBaggageHeader =
-      baggage.dynamicSamplingContextToSentryBaggageHeader;
+    exports.SENTRY_BAGGAGE_KEY_PREFIX_REGEX = baggage.SENTRY_BAGGAGE_KEY_PREFIX_REGEX;
+    exports.baggageHeaderToDynamicSamplingContext = baggage.baggageHeaderToDynamicSamplingContext;
+    exports.dynamicSamplingContextToSentryBaggageHeader = baggage.dynamicSamplingContextToSentryBaggageHeader;
     exports.getNumberOfUrlSegments = url.getNumberOfUrlSegments;
     exports.getSanitizedUrlString = url.getSanitizedUrlString;
     exports.parseUrl = url.parseUrl;
@@ -3787,7 +3164,7 @@ var require_cjs = __commonJS({
     exports.makeFifoCache = cache.makeFifoCache;
     exports.escapeStringForRegex = escapeStringForRegex.escapeStringForRegex;
     exports.supportsHistory = supportsHistory.supportsHistory;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/constants.js
@@ -3796,7 +3173,7 @@ var require_constants = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var DEFAULT_ENVIRONMENT = "production";
     exports.DEFAULT_ENVIRONMENT = DEFAULT_ENVIRONMENT;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/session.js
@@ -3815,7 +3192,7 @@ var require_session = __commonJS({
         status: "ok",
         errors: 0,
         ignoreDuration: false,
-        toJSON: () => sessionToJSON(session),
+        toJSON: () => sessionToJSON(session)
       };
       if (context) {
         updateSession(session, context);
@@ -3828,8 +3205,7 @@ var require_session = __commonJS({
           session.ipAddress = context.user.ip_address;
         }
         if (!session.did && !context.did) {
-          session.did =
-            context.user.id || context.user.email || context.user.username;
+          session.did = context.user.id || context.user.email || context.user.username;
         }
       }
       session.timestamp = context.timestamp || utils.timestampInSeconds();
@@ -3892,23 +3268,20 @@ var require_session = __commonJS({
         timestamp: new Date(session.timestamp * 1e3).toISOString(),
         status: session.status,
         errors: session.errors,
-        did:
-          typeof session.did === "number" || typeof session.did === "string"
-            ? `${session.did}`
-            : void 0,
+        did: typeof session.did === "number" || typeof session.did === "string" ? `${session.did}` : void 0,
         duration: session.duration,
         attrs: {
           release: session.release,
           environment: session.environment,
           ip_address: session.ipAddress,
-          user_agent: session.userAgent,
-        },
+          user_agent: session.userAgent
+        }
       });
     }
     exports.closeSession = closeSession;
     exports.makeSession = makeSession;
     exports.updateSession = updateSession;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/scope.js
@@ -3948,14 +3321,8 @@ var require_scope = __commonJS({
           newScope._eventProcessors = [...scope._eventProcessors];
           newScope._requestSession = scope._requestSession;
           newScope._attachments = [...scope._attachments];
-          newScope._sdkProcessingMetadata = __spreadValues(
-            {},
-            scope._sdkProcessingMetadata,
-          );
-          newScope._propagationContext = __spreadValues(
-            {},
-            scope._propagationContext,
-          );
+          newScope._sdkProcessingMetadata = __spreadValues({}, scope._sdkProcessingMetadata);
+          newScope._propagationContext = __spreadValues({}, scope._propagationContext);
         }
         return newScope;
       }
@@ -3990,9 +3357,7 @@ var require_scope = __commonJS({
         return this;
       }
       setTag(key, value) {
-        this._tags = __spreadProps(__spreadValues({}, this._tags), {
-          [key]: value,
-        });
+        this._tags = __spreadProps(__spreadValues({}, this._tags), { [key]: value });
         this._notifyScopeListeners();
         return this;
       }
@@ -4002,9 +3367,7 @@ var require_scope = __commonJS({
         return this;
       }
       setExtra(key, extra) {
-        this._extra = __spreadProps(__spreadValues({}, this._extra), {
-          [key]: extra,
-        });
+        this._extra = __spreadProps(__spreadValues({}, this._extra), { [key]: extra });
         this._notifyScopeListeners();
         return this;
       }
@@ -4065,22 +3428,10 @@ var require_scope = __commonJS({
           return updatedScope instanceof Scope ? updatedScope : this;
         }
         if (captureContext instanceof Scope) {
-          this._tags = __spreadValues(
-            __spreadValues({}, this._tags),
-            captureContext._tags,
-          );
-          this._extra = __spreadValues(
-            __spreadValues({}, this._extra),
-            captureContext._extra,
-          );
-          this._contexts = __spreadValues(
-            __spreadValues({}, this._contexts),
-            captureContext._contexts,
-          );
-          if (
-            captureContext._user &&
-            Object.keys(captureContext._user).length
-          ) {
+          this._tags = __spreadValues(__spreadValues({}, this._tags), captureContext._tags);
+          this._extra = __spreadValues(__spreadValues({}, this._extra), captureContext._extra);
+          this._contexts = __spreadValues(__spreadValues({}, this._contexts), captureContext._contexts);
+          if (captureContext._user && Object.keys(captureContext._user).length) {
             this._user = captureContext._user;
           }
           if (captureContext._level) {
@@ -4097,18 +3448,9 @@ var require_scope = __commonJS({
           }
         } else if (utils.isPlainObject(captureContext)) {
           captureContext = captureContext;
-          this._tags = __spreadValues(
-            __spreadValues({}, this._tags),
-            captureContext.tags,
-          );
-          this._extra = __spreadValues(
-            __spreadValues({}, this._extra),
-            captureContext.extra,
-          );
-          this._contexts = __spreadValues(
-            __spreadValues({}, this._contexts),
-            captureContext.contexts,
-          );
+          this._tags = __spreadValues(__spreadValues({}, this._tags), captureContext.tags);
+          this._extra = __spreadValues(__spreadValues({}, this._extra), captureContext.extra);
+          this._contexts = __spreadValues(__spreadValues({}, this._contexts), captureContext.contexts);
           if (captureContext.user) {
             this._user = captureContext.user;
           }
@@ -4145,22 +3487,14 @@ var require_scope = __commonJS({
         return this;
       }
       addBreadcrumb(breadcrumb, maxBreadcrumbs) {
-        const maxCrumbs =
-          typeof maxBreadcrumbs === "number"
-            ? maxBreadcrumbs
-            : DEFAULT_MAX_BREADCRUMBS;
+        const maxCrumbs = typeof maxBreadcrumbs === "number" ? maxBreadcrumbs : DEFAULT_MAX_BREADCRUMBS;
         if (maxCrumbs <= 0) {
           return this;
         }
-        const mergedBreadcrumb = __spreadValues(
-          {
-            timestamp: utils.dateTimestampInSeconds(),
-          },
-          breadcrumb,
-        );
-        this._breadcrumbs = [...this._breadcrumbs, mergedBreadcrumb].slice(
-          -maxCrumbs,
-        );
+        const mergedBreadcrumb = __spreadValues({
+          timestamp: utils.dateTimestampInSeconds()
+        }, breadcrumb);
+        this._breadcrumbs = [...this._breadcrumbs, mergedBreadcrumb].slice(-maxCrumbs);
         this._notifyScopeListeners();
         return this;
       }
@@ -4185,28 +3519,16 @@ var require_scope = __commonJS({
       }
       applyToEvent(event, hint = {}) {
         if (this._extra && Object.keys(this._extra).length) {
-          event.extra = __spreadValues(
-            __spreadValues({}, this._extra),
-            event.extra,
-          );
+          event.extra = __spreadValues(__spreadValues({}, this._extra), event.extra);
         }
         if (this._tags && Object.keys(this._tags).length) {
-          event.tags = __spreadValues(
-            __spreadValues({}, this._tags),
-            event.tags,
-          );
+          event.tags = __spreadValues(__spreadValues({}, this._tags), event.tags);
         }
         if (this._user && Object.keys(this._user).length) {
-          event.user = __spreadValues(
-            __spreadValues({}, this._user),
-            event.user,
-          );
+          event.user = __spreadValues(__spreadValues({}, this._user), event.user);
         }
         if (this._contexts && Object.keys(this._contexts).length) {
-          event.contexts = __spreadValues(
-            __spreadValues({}, this._contexts),
-            event.contexts,
-          );
+          event.contexts = __spreadValues(__spreadValues({}, this._contexts), event.contexts);
         }
         if (this._level) {
           event.level = this._level;
@@ -4215,54 +3537,28 @@ var require_scope = __commonJS({
           event.transaction = this._transactionName;
         }
         if (this._span) {
-          event.contexts = __spreadValues(
-            { trace: this._span.getTraceContext() },
-            event.contexts,
-          );
+          event.contexts = __spreadValues({ trace: this._span.getTraceContext() }, event.contexts);
           const transaction = this._span.transaction;
           if (transaction) {
-            event.sdkProcessingMetadata = __spreadValues(
-              {
-                dynamicSamplingContext: transaction.getDynamicSamplingContext(),
-              },
-              event.sdkProcessingMetadata,
-            );
+            event.sdkProcessingMetadata = __spreadValues({
+              dynamicSamplingContext: transaction.getDynamicSamplingContext()
+            }, event.sdkProcessingMetadata);
             const transactionName = transaction.name;
             if (transactionName) {
-              event.tags = __spreadValues(
-                { transaction: transactionName },
-                event.tags,
-              );
+              event.tags = __spreadValues({ transaction: transactionName }, event.tags);
             }
           }
         }
         this._applyFingerprint(event);
-        event.breadcrumbs = [
-          ...(event.breadcrumbs || []),
-          ...this._breadcrumbs,
-        ];
-        event.breadcrumbs =
-          event.breadcrumbs.length > 0 ? event.breadcrumbs : void 0;
-        event.sdkProcessingMetadata = __spreadProps(
-          __spreadValues(
-            __spreadValues({}, event.sdkProcessingMetadata),
-            this._sdkProcessingMetadata,
-          ),
-          {
-            propagationContext: this._propagationContext,
-          },
-        );
-        return this._notifyEventProcessors(
-          [...getGlobalEventProcessors(), ...this._eventProcessors],
-          event,
-          hint,
-        );
+        event.breadcrumbs = [...event.breadcrumbs || [], ...this._breadcrumbs];
+        event.breadcrumbs = event.breadcrumbs.length > 0 ? event.breadcrumbs : void 0;
+        event.sdkProcessingMetadata = __spreadProps(__spreadValues(__spreadValues({}, event.sdkProcessingMetadata), this._sdkProcessingMetadata), {
+          propagationContext: this._propagationContext
+        });
+        return this._notifyEventProcessors([...getGlobalEventProcessors(), ...this._eventProcessors], event, hint);
       }
       setSDKProcessingMetadata(newData) {
-        this._sdkProcessingMetadata = __spreadValues(
-          __spreadValues({}, this._sdkProcessingMetadata),
-          newData,
-        );
+        this._sdkProcessingMetadata = __spreadValues(__spreadValues({}, this._sdkProcessingMetadata), newData);
         return this;
       }
       setPropagationContext(context) {
@@ -4279,32 +3575,11 @@ var require_scope = __commonJS({
             resolve(event);
           } else {
             const result = processor(__spreadValues({}, event), hint);
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              processor.id &&
-              result === null &&
-              utils.logger.log(
-                `Event processor "${processor.id}" dropped event`,
-              );
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && processor.id && result === null && utils.logger.log(`Event processor "${processor.id}" dropped event`);
             if (utils.isThenable(result)) {
-              void result
-                .then((final) =>
-                  this._notifyEventProcessors(
-                    processors,
-                    final,
-                    hint,
-                    index + 1,
-                  ).then(resolve),
-                )
-                .then(null, reject);
+              void result.then((final) => this._notifyEventProcessors(processors, final, hint, index + 1).then(resolve)).then(null, reject);
             } else {
-              void this._notifyEventProcessors(
-                processors,
-                result,
-                hint,
-                index + 1,
-              )
-                .then(resolve)
-                .then(null, reject);
+              void this._notifyEventProcessors(processors, result, hint, index + 1).then(resolve).then(null, reject);
             }
           }
         });
@@ -4319,9 +3594,7 @@ var require_scope = __commonJS({
         }
       }
       _applyFingerprint(event) {
-        event.fingerprint = event.fingerprint
-          ? utils.arrayify(event.fingerprint)
-          : [];
+        event.fingerprint = event.fingerprint ? utils.arrayify(event.fingerprint) : [];
         if (this._fingerprint) {
           event.fingerprint = event.fingerprint.concat(this._fingerprint);
         }
@@ -4340,12 +3613,12 @@ var require_scope = __commonJS({
       return {
         traceId: utils.uuid4(),
         spanId: utils.uuid4().substring(16),
-        sampled: false,
+        sampled: false
       };
     }
     exports.Scope = Scope;
     exports.addGlobalEventProcessor = addGlobalEventProcessor;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/hub.js
@@ -4380,12 +3653,13 @@ var require_hub = __commonJS({
         const scope$1 = scope.Scope.clone(this.getScope());
         this.getStack().push({
           client: this.getClient(),
-          scope: scope$1,
+          scope: scope$1
         });
         return scope$1;
       }
       popScope() {
-        if (this.getStack().length <= 1) return false;
+        if (this.getStack().length <= 1)
+          return false;
         return !!this.getStack().pop();
       }
       withScope(callback) {
@@ -4409,51 +3683,28 @@ var require_hub = __commonJS({
         return this._stack[this._stack.length - 1];
       }
       captureException(exception, hint) {
-        const eventId = (this._lastEventId =
-          hint && hint.event_id ? hint.event_id : utils.uuid4());
+        const eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : utils.uuid4();
         const syntheticException = new Error("Sentry syntheticException");
         this._withClient((client, scope2) => {
-          client.captureException(
-            exception,
-            __spreadProps(
-              __spreadValues(
-                {
-                  originalException: exception,
-                  syntheticException,
-                },
-                hint,
-              ),
-              {
-                event_id: eventId,
-              },
-            ),
-            scope2,
-          );
+          client.captureException(exception, __spreadProps(__spreadValues({
+            originalException: exception,
+            syntheticException
+          }, hint), {
+            event_id: eventId
+          }), scope2);
         });
         return eventId;
       }
       captureMessage(message, level, hint) {
-        const eventId = (this._lastEventId =
-          hint && hint.event_id ? hint.event_id : utils.uuid4());
+        const eventId = this._lastEventId = hint && hint.event_id ? hint.event_id : utils.uuid4();
         const syntheticException = new Error(message);
         this._withClient((client, scope2) => {
-          client.captureMessage(
-            message,
-            level,
-            __spreadProps(
-              __spreadValues(
-                {
-                  originalException: message,
-                  syntheticException,
-                },
-                hint,
-              ),
-              {
-                event_id: eventId,
-              },
-            ),
-            scope2,
-          );
+          client.captureMessage(message, level, __spreadProps(__spreadValues({
+            originalException: message,
+            syntheticException
+          }, hint), {
+            event_id: eventId
+          }), scope2);
         });
         return eventId;
       }
@@ -4463,11 +3714,7 @@ var require_hub = __commonJS({
           this._lastEventId = eventId;
         }
         this._withClient((client, scope2) => {
-          client.captureEvent(
-            event,
-            __spreadProps(__spreadValues({}, hint), { event_id: eventId }),
-            scope2,
-          );
+          client.captureEvent(event, __spreadProps(__spreadValues({}, hint), { event_id: eventId }), scope2);
         });
         return eventId;
       }
@@ -4476,18 +3723,16 @@ var require_hub = __commonJS({
       }
       addBreadcrumb(breadcrumb, hint) {
         const { scope: scope2, client } = this.getStackTop();
-        if (!client) return;
-        const {
-          beforeBreadcrumb = null,
-          maxBreadcrumbs = DEFAULT_BREADCRUMBS,
-        } = (client.getOptions && client.getOptions()) || {};
-        if (maxBreadcrumbs <= 0) return;
+        if (!client)
+          return;
+        const { beforeBreadcrumb = null, maxBreadcrumbs = DEFAULT_BREADCRUMBS } = client.getOptions && client.getOptions() || {};
+        if (maxBreadcrumbs <= 0)
+          return;
         const timestamp = utils.dateTimestampInSeconds();
         const mergedBreadcrumb = __spreadValues({ timestamp }, breadcrumb);
-        const finalBreadcrumb = beforeBreadcrumb
-          ? utils.consoleSandbox(() => beforeBreadcrumb(mergedBreadcrumb, hint))
-          : mergedBreadcrumb;
-        if (finalBreadcrumb === null) return;
+        const finalBreadcrumb = beforeBreadcrumb ? utils.consoleSandbox(() => beforeBreadcrumb(mergedBreadcrumb, hint)) : mergedBreadcrumb;
+        if (finalBreadcrumb === null)
+          return;
         if (client.emit) {
           client.emit("beforeAddBreadcrumb", finalBreadcrumb, hint);
         }
@@ -4527,27 +3772,18 @@ var require_hub = __commonJS({
       }
       getIntegration(integration) {
         const client = this.getClient();
-        if (!client) return null;
+        if (!client)
+          return null;
         try {
           return client.getIntegration(integration);
         } catch (_oO) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              `Cannot retrieve integration ${integration.id} from the current Hub`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Cannot retrieve integration ${integration.id} from the current Hub`);
           return null;
         }
       }
       startTransaction(context, customSamplingContext) {
-        const result = this._callExtensionMethod(
-          "startTransaction",
-          context,
-          customSamplingContext,
-        );
-        if (
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          !result
-        ) {
+        const result = this._callExtensionMethod("startTransaction", context, customSamplingContext);
+        if ((typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && !result) {
           console.warn(`Tracing extension 'startTransaction' has not been added. Call 'addTracingExtensions' before calling 'init':
 Sentry.addTracingExtensions();
 Sentry.init({...});
@@ -4576,22 +3812,13 @@ Sentry.init({...});
       }
       startSession(context) {
         const { scope: scope2, client } = this.getStackTop();
-        const { release, environment = constants.DEFAULT_ENVIRONMENT } =
-          (client && client.getOptions()) || {};
+        const { release, environment = constants.DEFAULT_ENVIRONMENT } = client && client.getOptions() || {};
         const { userAgent } = utils.GLOBAL_OBJ.navigator || {};
-        const session$1 = session.makeSession(
-          __spreadValues(
-            __spreadValues(
-              {
-                release,
-                environment,
-                user: scope2.getUser(),
-              },
-              userAgent && { userAgent },
-            ),
-            context,
-          ),
-        );
+        const session$1 = session.makeSession(__spreadValues(__spreadValues({
+          release,
+          environment,
+          user: scope2.getUser()
+        }, userAgent && { userAgent }), context));
         const currentSession = scope2.getSession && scope2.getSession();
         if (currentSession && currentSession.status === "ok") {
           session.updateSession(currentSession, { status: "exited" });
@@ -4621,23 +3848,16 @@ Sentry.init({...});
       _callExtensionMethod(method, ...args) {
         const carrier = getMainCarrier();
         const sentry = carrier.__SENTRY__;
-        if (
-          sentry &&
-          sentry.extensions &&
-          typeof sentry.extensions[method] === "function"
-        ) {
+        if (sentry && sentry.extensions && typeof sentry.extensions[method] === "function") {
           return sentry.extensions[method].apply(this, args);
         }
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            `Extension method ${method} couldn't be found, doing nothing.`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Extension method ${method} couldn't be found, doing nothing.`);
       }
     };
     function getMainCarrier() {
       utils.GLOBAL_OBJ.__SENTRY__ = utils.GLOBAL_OBJ.__SENTRY__ || {
         extensions: {},
-        hub: void 0,
+        hub: void 0
       };
       return utils.GLOBAL_OBJ;
     }
@@ -4658,27 +3878,15 @@ Sentry.init({...});
       return getGlobalHub(registry);
     }
     function getGlobalHub(registry = getMainCarrier()) {
-      if (
-        !hasHubOnCarrier(registry) ||
-        getHubFromCarrier(registry).isOlderThan(API_VERSION)
-      ) {
+      if (!hasHubOnCarrier(registry) || getHubFromCarrier(registry).isOlderThan(API_VERSION)) {
         setHubOnCarrier(registry, new Hub());
       }
       return getHubFromCarrier(registry);
     }
     function ensureHubOnCarrier(carrier, parent = getGlobalHub()) {
-      if (
-        !hasHubOnCarrier(carrier) ||
-        getHubFromCarrier(carrier).isOlderThan(API_VERSION)
-      ) {
+      if (!hasHubOnCarrier(carrier) || getHubFromCarrier(carrier).isOlderThan(API_VERSION)) {
         const globalHubTopStack = parent.getStackTop();
-        setHubOnCarrier(
-          carrier,
-          new Hub(
-            globalHubTopStack.client,
-            scope.Scope.clone(globalHubTopStack.scope),
-          ),
-        );
+        setHubOnCarrier(carrier, new Hub(globalHubTopStack.client, scope.Scope.clone(globalHubTopStack.scope)));
       }
     }
     function setAsyncContextStrategy(strategy) {
@@ -4700,8 +3908,9 @@ Sentry.init({...});
       return utils.getGlobalSingleton("hub", () => new Hub(), carrier);
     }
     function setHubOnCarrier(carrier, hub) {
-      if (!carrier) return false;
-      const __SENTRY__ = (carrier.__SENTRY__ = carrier.__SENTRY__ || {});
+      if (!carrier)
+        return false;
+      const __SENTRY__ = carrier.__SENTRY__ = carrier.__SENTRY__ || {};
       __SENTRY__.hub = hub;
       return true;
     }
@@ -4715,7 +3924,7 @@ Sentry.init({...});
     exports.runWithAsyncContext = runWithAsyncContext;
     exports.setAsyncContextStrategy = setAsyncContextStrategy;
     exports.setHubOnCarrier = setHubOnCarrier;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/utils/hasTracingEnabled.js
@@ -4728,16 +3937,11 @@ var require_hasTracingEnabled = __commonJS({
         return false;
       }
       const client = hub.getCurrentHub().getClient();
-      const options = maybeOptions || (client && client.getOptions());
-      return (
-        !!options &&
-        (options.enableTracing ||
-          "tracesSampleRate" in options ||
-          "tracesSampler" in options)
-      );
+      const options = maybeOptions || client && client.getOptions();
+      return !!options && (options.enableTracing || "tracesSampleRate" in options || "tracesSampler" in options);
     }
     exports.hasTracingEnabled = hasTracingEnabled;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/utils.js
@@ -4755,7 +3959,7 @@ var require_utils = __commonJS({
     exports.extractTraceparentData = utils.extractTraceparentData;
     exports.stripUrlQueryAndFragment = utils.stripUrlQueryAndFragment;
     exports.getActiveTransaction = getActiveTransaction;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/errors.js
@@ -4777,16 +3981,13 @@ var require_errors = __commonJS({
       const activeTransaction = utils$1.getActiveTransaction();
       if (activeTransaction) {
         const status = "internal_error";
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(
-            `[Tracing] Transaction: ${status} -> Global error occured`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Transaction: ${status} -> Global error occured`);
         activeTransaction.setStatus(status);
       }
     }
     errorCallback.tag = "sentry_tracingErrorCallback";
     exports.registerErrorInstrumentation = registerErrorInstrumentation;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/span.js
@@ -4877,43 +4078,32 @@ var require_span = __commonJS({
         }
       }
       startChild(spanContext) {
-        const childSpan = new Span(
-          __spreadProps(__spreadValues({}, spanContext), {
-            parentSpanId: this.spanId,
-            sampled: this.sampled,
-            traceId: this.traceId,
-          }),
-        );
+        const childSpan = new Span(__spreadProps(__spreadValues({}, spanContext), {
+          parentSpanId: this.spanId,
+          sampled: this.sampled,
+          traceId: this.traceId
+        }));
         childSpan.spanRecorder = this.spanRecorder;
         if (childSpan.spanRecorder) {
           childSpan.spanRecorder.add(childSpan);
         }
         childSpan.transaction = this.transaction;
-        if (
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          childSpan.transaction
-        ) {
-          const opStr = (spanContext && spanContext.op) || "< unknown op >";
+        if ((typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && childSpan.transaction) {
+          const opStr = spanContext && spanContext.op || "< unknown op >";
           const nameStr = childSpan.transaction.name || "< unknown name >";
           const idStr = childSpan.transaction.spanId;
           const logMessage = `[Tracing] Starting '${opStr}' span on transaction '${nameStr}' (${idStr}).`;
-          childSpan.transaction.metadata.spanMetadata[childSpan.spanId] = {
-            logMessage,
-          };
+          childSpan.transaction.metadata.spanMetadata[childSpan.spanId] = { logMessage };
           utils.logger.log(logMessage);
         }
         return childSpan;
       }
       setTag(key, value) {
-        this.tags = __spreadProps(__spreadValues({}, this.tags), {
-          [key]: value,
-        });
+        this.tags = __spreadProps(__spreadValues({}, this.tags), { [key]: value });
         return this;
       }
       setData(key, value) {
-        this.data = __spreadProps(__spreadValues({}, this.data), {
-          [key]: value,
-        });
+        this.data = __spreadProps(__spreadValues({}, this.data), { [key]: value });
         return this;
       }
       setStatus(value) {
@@ -4933,28 +4123,16 @@ var require_span = __commonJS({
         return this.status === "ok";
       }
       finish(endTimestamp) {
-        if (
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          this.transaction &&
-          this.transaction.spanId !== this.spanId
-        ) {
-          const { logMessage } =
-            this.transaction.metadata.spanMetadata[this.spanId];
+        if ((typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && this.transaction && this.transaction.spanId !== this.spanId) {
+          const { logMessage } = this.transaction.metadata.spanMetadata[this.spanId];
           if (logMessage) {
             utils.logger.log(logMessage.replace("Starting", "Finishing"));
           }
         }
-        this.endTimestamp =
-          typeof endTimestamp === "number"
-            ? endTimestamp
-            : utils.timestampInSeconds();
+        this.endTimestamp = typeof endTimestamp === "number" ? endTimestamp : utils.timestampInSeconds();
       }
       toTraceparent() {
-        return utils.generateSentryTraceHeader(
-          this.traceId,
-          this.spanId,
-          this.sampled,
-        );
+        return utils.generateSentryTraceHeader(this.traceId, this.spanId, this.sampled);
       }
       toContext() {
         return utils.dropUndefinedKeys({
@@ -4968,7 +4146,7 @@ var require_span = __commonJS({
           startTimestamp: this.startTimestamp,
           status: this.status,
           tags: this.tags,
-          traceId: this.traceId,
+          traceId: this.traceId
         });
       }
       updateWithContext(spanContext) {
@@ -4994,7 +4172,7 @@ var require_span = __commonJS({
           span_id: this.spanId,
           status: this.status,
           tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
-          trace_id: this.traceId,
+          trace_id: this.traceId
         });
       }
       toJSON() {
@@ -5008,7 +4186,7 @@ var require_span = __commonJS({
           status: this.status,
           tags: Object.keys(this.tags).length > 0 ? this.tags : void 0,
           timestamp: this.endTimestamp,
-          trace_id: this.traceId,
+          trace_id: this.traceId
         });
       }
     };
@@ -5051,7 +4229,7 @@ var require_span = __commonJS({
     exports.Span = Span;
     exports.SpanRecorder = SpanRecorder;
     exports.spanStatusfromHttpCode = spanStatusfromHttpCode;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/dynamicSamplingContext.js
@@ -5063,20 +4241,19 @@ var require_dynamicSamplingContext = __commonJS({
     function getDynamicSamplingContextFromClient(trace_id, client, scope) {
       const options = client.getOptions();
       const { publicKey: public_key } = client.getDsn() || {};
-      const { segment: user_segment } = (scope && scope.getUser()) || {};
+      const { segment: user_segment } = scope && scope.getUser() || {};
       const dsc = utils.dropUndefinedKeys({
         environment: options.environment || constants.DEFAULT_ENVIRONMENT,
         release: options.release,
         user_segment,
         public_key,
-        trace_id,
+        trace_id
       });
       client.emit && client.emit("createDsc", dsc);
       return dsc;
     }
-    exports.getDynamicSamplingContextFromClient =
-      getDynamicSamplingContextFromClient;
-  },
+    exports.getDynamicSamplingContextFromClient = getDynamicSamplingContextFromClient;
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/transaction.js
@@ -5104,26 +4281,16 @@ var require_transaction = __commonJS({
         Transaction.prototype.__init3.call(this);
         this._hub = hub$1 || hub.getCurrentHub();
         this._name = transactionContext.name || "";
-        this.metadata = __spreadProps(
-          __spreadValues(
-            {
-              source: "custom",
-            },
-            transactionContext.metadata,
-          ),
-          {
-            spanMetadata: {},
-          },
-        );
+        this.metadata = __spreadProps(__spreadValues({
+          source: "custom"
+        }, transactionContext.metadata), {
+          spanMetadata: {}
+        });
         this._trimEnd = transactionContext.trimEnd;
         this.transaction = this;
-        const incomingDynamicSamplingContext =
-          this.metadata.dynamicSamplingContext;
+        const incomingDynamicSamplingContext = this.metadata.dynamicSamplingContext;
         if (incomingDynamicSamplingContext) {
-          this._frozenDynamicSamplingContext = __spreadValues(
-            {},
-            incomingDynamicSamplingContext,
-          );
+          this._frozenDynamicSamplingContext = __spreadValues({}, incomingDynamicSamplingContext);
         }
       }
       get name() {
@@ -5153,20 +4320,14 @@ var require_transaction = __commonJS({
         this._measurements[name] = { value, unit };
       }
       setMetadata(newMetadata) {
-        this.metadata = __spreadValues(
-          __spreadValues({}, this.metadata),
-          newMetadata,
-        );
+        this.metadata = __spreadValues(__spreadValues({}, this.metadata), newMetadata);
       }
       finish(endTimestamp) {
         if (this.endTimestamp !== void 0) {
           return void 0;
         }
         if (!this.name) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              "Transaction has no name, falling back to `<unlabeled transaction>`.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Transaction has no name, falling back to `<unlabeled transaction>`.");
           this.name = "<unlabeled transaction>";
         }
         super.finish(endTimestamp);
@@ -5175,18 +4336,13 @@ var require_transaction = __commonJS({
           client.emit("finishTransaction", this);
         }
         if (this.sampled !== true) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "[Tracing] Discarding transaction because its trace was not chosen to be sampled.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] Discarding transaction because its trace was not chosen to be sampled.");
           if (client) {
             client.recordDroppedEvent("sample_rate", "transaction");
           }
           return void 0;
         }
-        const finishedSpans = this.spanRecorder
-          ? this.spanRecorder.spans.filter((s) => s !== this && s.endTimestamp)
-          : [];
+        const finishedSpans = this.spanRecorder ? this.spanRecorder.spans.filter((s) => s !== this && s.endTimestamp) : [];
         if (this._trimEnd && finishedSpans.length > 0) {
           this.endTimestamp = finishedSpans.reduce((prev, current) => {
             if (prev.endTimestamp && current.endTimestamp) {
@@ -5196,50 +4352,38 @@ var require_transaction = __commonJS({
           }).endTimestamp;
         }
         const metadata = this.metadata;
-        const transaction = __spreadValues(
-          {
-            contexts: __spreadProps(__spreadValues({}, this._contexts), {
-              trace: this.getTraceContext(),
-            }),
-            spans: finishedSpans,
-            start_timestamp: this.startTimestamp,
-            tags: this.tags,
-            timestamp: this.endTimestamp,
-            transaction: this.name,
-            type: "transaction",
-            sdkProcessingMetadata: __spreadProps(__spreadValues({}, metadata), {
-              dynamicSamplingContext: this.getDynamicSamplingContext(),
-            }),
-          },
-          metadata.source && {
-            transaction_info: {
-              source: metadata.source,
-            },
-          },
-        );
+        const transaction = __spreadValues({
+          contexts: __spreadProps(__spreadValues({}, this._contexts), {
+            trace: this.getTraceContext()
+          }),
+          spans: finishedSpans,
+          start_timestamp: this.startTimestamp,
+          tags: this.tags,
+          timestamp: this.endTimestamp,
+          transaction: this.name,
+          type: "transaction",
+          sdkProcessingMetadata: __spreadProps(__spreadValues({}, metadata), {
+            dynamicSamplingContext: this.getDynamicSamplingContext()
+          })
+        }, metadata.source && {
+          transaction_info: {
+            source: metadata.source
+          }
+        });
         const hasMeasurements = Object.keys(this._measurements).length > 0;
         if (hasMeasurements) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "[Measurements] Adding measurements to transaction",
-              JSON.stringify(this._measurements, void 0, 2),
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding measurements to transaction", JSON.stringify(this._measurements, void 0, 2));
           transaction.measurements = this._measurements;
         }
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(
-            `[Tracing] Finishing ${this.op} transaction: ${this.name}.`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Finishing ${this.op} transaction: ${this.name}.`);
         return this._hub.captureEvent(transaction);
       }
       toContext() {
         const spanContext = super.toContext();
-        return utils.dropUndefinedKeys(
-          __spreadProps(__spreadValues({}, spanContext), {
-            name: this.name,
-            trimEnd: this._trimEnd,
-          }),
-        );
+        return utils.dropUndefinedKeys(__spreadProps(__spreadValues({}, spanContext), {
+          name: this.name,
+          trimEnd: this._trimEnd
+        }));
       }
       updateWithContext(transactionContext) {
         super.updateWithContext(transactionContext);
@@ -5253,13 +4397,10 @@ var require_transaction = __commonJS({
         }
         const hub$1 = this._hub || hub.getCurrentHub();
         const client = hub$1.getClient();
-        if (!client) return {};
+        if (!client)
+          return {};
         const scope = hub$1.getScope();
-        const dsc = dynamicSamplingContext.getDynamicSamplingContextFromClient(
-          this.traceId,
-          client,
-          scope,
-        );
+        const dsc = dynamicSamplingContext.getDynamicSamplingContextFromClient(this.traceId, client, scope);
         const maybeSampleRate = this.metadata.sampleRate;
         if (maybeSampleRate !== void 0) {
           dsc.sample_rate = `${maybeSampleRate}`;
@@ -5278,7 +4419,7 @@ var require_transaction = __commonJS({
       }
     };
     exports.Transaction = Transaction;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/idletransaction.js
@@ -5291,7 +4432,7 @@ var require_idletransaction = __commonJS({
     var TRACING_DEFAULTS = {
       idleTimeout: 1e3,
       finalTimeout: 3e4,
-      heartbeatInterval: 5e3,
+      heartbeatInterval: 5e3
     };
     var FINISH_REASON_TAG = "finishReason";
     var IDLE_TRANSACTION_FINISH_REASONS = [
@@ -5300,7 +4441,7 @@ var require_idletransaction = __commonJS({
       "documentHidden",
       "finalTimeout",
       "externalFinish",
-      "cancelled",
+      "cancelled"
     ];
     var IdleTransactionSpanRecorder = class extends span.SpanRecorder {
       constructor(_pushActivity, _popActivity, transactionSpanId, maxlen) {
@@ -5312,10 +4453,7 @@ var require_idletransaction = __commonJS({
       add(span2) {
         if (span2.spanId !== this.transactionSpanId) {
           span2.finish = (endTimestamp) => {
-            span2.endTimestamp =
-              typeof endTimestamp === "number"
-                ? endTimestamp
-                : utils.timestampInSeconds();
+            span2.endTimestamp = typeof endTimestamp === "number" ? endTimestamp : utils.timestampInSeconds();
             this._popActivity(span2.spanId);
           };
           if (span2.endTimestamp === void 0) {
@@ -5344,14 +4482,7 @@ var require_idletransaction = __commonJS({
       __init6() {
         this._finishReason = IDLE_TRANSACTION_FINISH_REASONS[4];
       }
-      constructor(
-        transactionContext,
-        _idleHub,
-        _idleTimeout = TRACING_DEFAULTS.idleTimeout,
-        _finalTimeout = TRACING_DEFAULTS.finalTimeout,
-        _heartbeatInterval = TRACING_DEFAULTS.heartbeatInterval,
-        _onScope = false,
-      ) {
+      constructor(transactionContext, _idleHub, _idleTimeout = TRACING_DEFAULTS.idleTimeout, _finalTimeout = TRACING_DEFAULTS.finalTimeout, _heartbeatInterval = TRACING_DEFAULTS.heartbeatInterval, _onScope = false) {
         super(transactionContext, _idleHub);
         this._idleHub = _idleHub;
         this._idleTimeout = _idleTimeout;
@@ -5365,10 +4496,7 @@ var require_idletransaction = __commonJS({
         IdleTransaction.prototype.__init5.call(this);
         IdleTransaction.prototype.__init6.call(this);
         if (_onScope) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              `Setting idle transaction on scope. Span ID: ${this.spanId}`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`Setting idle transaction on scope. Span ID: ${this.spanId}`);
           _idleHub.configureScope((scope) => scope.setSpan(this));
         }
         this._restartIdleTimeout();
@@ -5387,12 +4515,7 @@ var require_idletransaction = __commonJS({
           this.setTag(FINISH_REASON_TAG, this._finishReason);
         }
         if (this.spanRecorder) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "[Tracing] finishing IdleTransaction",
-              new Date(endTimestamp * 1e3).toISOString(),
-              this.op,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] finishing IdleTransaction", new Date(endTimestamp * 1e3).toISOString(), this.op);
           for (const callback of this._beforeFinishCallbacks) {
             callback(this, endTimestamp);
           }
@@ -5403,27 +4526,17 @@ var require_idletransaction = __commonJS({
             if (!span2.endTimestamp) {
               span2.endTimestamp = endTimestamp;
               span2.setStatus("cancelled");
-              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                utils.logger.log(
-                  "[Tracing] cancelling span since transaction ended early",
-                  JSON.stringify(span2, void 0, 2),
-                );
+              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] cancelling span since transaction ended early", JSON.stringify(span2, void 0, 2));
             }
             const keepSpan = span2.startTimestamp < endTimestamp;
             if (!keepSpan) {
-              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                utils.logger.log(
-                  "[Tracing] discarding Span since it happened after Transaction was finished",
-                  JSON.stringify(span2, void 0, 2),
-                );
+              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] discarding Span since it happened after Transaction was finished", JSON.stringify(span2, void 0, 2));
             }
             return keepSpan;
           });
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log("[Tracing] flushing IdleTransaction");
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] flushing IdleTransaction");
         } else {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log("[Tracing] No active IdleTransaction");
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] No active IdleTransaction");
         }
         if (this._onScope) {
           const scope = this._idleHub.getScope();
@@ -5450,33 +4563,22 @@ var require_idletransaction = __commonJS({
             }
             this._popActivity(id);
           };
-          this.spanRecorder = new IdleTransactionSpanRecorder(
-            pushActivity,
-            popActivity,
-            this.spanId,
-            maxlen,
-          );
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log("Starting heartbeat");
+          this.spanRecorder = new IdleTransactionSpanRecorder(pushActivity, popActivity, this.spanId, maxlen);
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("Starting heartbeat");
           this._pingHeartbeat();
         }
         this.spanRecorder.add(this);
       }
-      cancelIdleTimeout(
-        endTimestamp,
-        { restartOnChildSpanChange } = {
-          restartOnChildSpanChange: true,
-        },
-      ) {
-        this._idleTimeoutCanceledPermanently =
-          restartOnChildSpanChange === false;
+      cancelIdleTimeout(endTimestamp, {
+        restartOnChildSpanChange
+      } = {
+        restartOnChildSpanChange: true
+      }) {
+        this._idleTimeoutCanceledPermanently = restartOnChildSpanChange === false;
         if (this._idleTimeoutID) {
           clearTimeout(this._idleTimeoutID);
           this._idleTimeoutID = void 0;
-          if (
-            Object.keys(this.activities).length === 0 &&
-            this._idleTimeoutCanceledPermanently
-          ) {
+          if (Object.keys(this.activities).length === 0 && this._idleTimeoutCanceledPermanently) {
             this._finishReason = IDLE_TRANSACTION_FINISH_REASONS[5];
             this.finish(endTimestamp);
           }
@@ -5495,28 +4597,16 @@ var require_idletransaction = __commonJS({
         }, this._idleTimeout);
       }
       _pushActivity(spanId) {
-        this.cancelIdleTimeout(void 0, {
-          restartOnChildSpanChange: !this._idleTimeoutCanceledPermanently,
-        });
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(`[Tracing] pushActivity: ${spanId}`);
+        this.cancelIdleTimeout(void 0, { restartOnChildSpanChange: !this._idleTimeoutCanceledPermanently });
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] pushActivity: ${spanId}`);
         this.activities[spanId] = true;
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(
-            "[Tracing] new activities count",
-            Object.keys(this.activities).length,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
       }
       _popActivity(spanId) {
         if (this.activities[spanId]) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(`[Tracing] popActivity ${spanId}`);
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] popActivity ${spanId}`);
           delete this.activities[spanId];
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "[Tracing] new activities count",
-              Object.keys(this.activities).length,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] new activities count", Object.keys(this.activities).length);
         }
         if (Object.keys(this.activities).length === 0) {
           const endTimestamp = utils.timestampInSeconds();
@@ -5540,10 +4630,7 @@ var require_idletransaction = __commonJS({
         }
         this._prevHeartbeatString = heartbeatString;
         if (this._heartbeatCounter >= 3) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "[Tracing] Transaction finished because of no change for 3 heart beats",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] Transaction finished because of no change for 3 heart beats");
           this.setStatus("deadline_exceeded");
           this._finishReason = IDLE_TRANSACTION_FINISH_REASONS[0];
           this.finish();
@@ -5552,10 +4639,7 @@ var require_idletransaction = __commonJS({
         }
       }
       _pingHeartbeat() {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(
-            `pinging Heartbeat -> current counter: ${this._heartbeatCounter}`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`pinging Heartbeat -> current counter: ${this._heartbeatCounter}`);
         setTimeout(() => {
           this._beat();
         }, this._heartbeatInterval);
@@ -5564,7 +4648,7 @@ var require_idletransaction = __commonJS({
     exports.IdleTransaction = IdleTransaction;
     exports.IdleTransactionSpanRecorder = IdleTransactionSpanRecorder;
     exports.TRACING_DEFAULTS = TRACING_DEFAULTS;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/hubextensions.js
@@ -5580,11 +4664,9 @@ var require_hubextensions = __commonJS({
     function traceHeaders() {
       const scope = this.getScope();
       const span = scope.getSpan();
-      return span
-        ? {
-            "sentry-trace": span.toTraceparent(),
-          }
-        : {};
+      return span ? {
+        "sentry-trace": span.toTraceparent()
+      } : {};
     }
     function sample(transaction2, options, samplingContext) {
       if (!hasTracingEnabled.hasTracingEnabled(options)) {
@@ -5593,7 +4675,7 @@ var require_hubextensions = __commonJS({
       }
       if (transaction2.sampled !== void 0) {
         transaction2.setMetadata({
-          sampleRate: Number(transaction2.sampled),
+          sampleRate: Number(transaction2.sampled)
         });
         return transaction2;
       }
@@ -5601,148 +4683,83 @@ var require_hubextensions = __commonJS({
       if (typeof options.tracesSampler === "function") {
         sampleRate = options.tracesSampler(samplingContext);
         transaction2.setMetadata({
-          sampleRate: Number(sampleRate),
+          sampleRate: Number(sampleRate)
         });
       } else if (samplingContext.parentSampled !== void 0) {
         sampleRate = samplingContext.parentSampled;
       } else if (typeof options.tracesSampleRate !== "undefined") {
         sampleRate = options.tracesSampleRate;
         transaction2.setMetadata({
-          sampleRate: Number(sampleRate),
+          sampleRate: Number(sampleRate)
         });
       } else {
         sampleRate = 1;
         transaction2.setMetadata({
-          sampleRate,
+          sampleRate
         });
       }
       if (!isValidSampleRate(sampleRate)) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            "[Tracing] Discarding transaction because of invalid sample rate.",
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("[Tracing] Discarding transaction because of invalid sample rate.");
         transaction2.sampled = false;
         return transaction2;
       }
       if (!sampleRate) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(
-            `[Tracing] Discarding transaction because ${
-              typeof options.tracesSampler === "function"
-                ? "tracesSampler returned 0 or false"
-                : "a negative sampling decision was inherited or tracesSampleRate is set to 0"
-            }`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Discarding transaction because ${typeof options.tracesSampler === "function" ? "tracesSampler returned 0 or false" : "a negative sampling decision was inherited or tracesSampleRate is set to 0"}`);
         transaction2.sampled = false;
         return transaction2;
       }
       transaction2.sampled = Math.random() < sampleRate;
       if (!transaction2.sampled) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(
-            `[Tracing] Discarding transaction because it's not included in the random sample (sampling rate = ${Number(
-              sampleRate,
-            )})`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Discarding transaction because it's not included in the random sample (sampling rate = ${Number(sampleRate)})`);
         return transaction2;
       }
-      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-        utils.logger.log(
-          `[Tracing] starting ${transaction2.op} transaction - ${transaction2.name}`,
-        );
+      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] starting ${transaction2.op} transaction - ${transaction2.name}`);
       return transaction2;
     }
     function isValidSampleRate(rate) {
-      if (
-        utils.isNaN(rate) ||
-        !(typeof rate === "number" || typeof rate === "boolean")
-      ) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            `[Tracing] Given sample rate is invalid. Sample rate must be a boolean or a number between 0 and 1. Got ${JSON.stringify(
-              rate,
-            )} of type ${JSON.stringify(typeof rate)}.`,
-          );
+      if (utils.isNaN(rate) || !(typeof rate === "number" || typeof rate === "boolean")) {
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`[Tracing] Given sample rate is invalid. Sample rate must be a boolean or a number between 0 and 1. Got ${JSON.stringify(rate)} of type ${JSON.stringify(typeof rate)}.`);
         return false;
       }
       if (rate < 0 || rate > 1) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            `[Tracing] Given sample rate is invalid. Sample rate must be between 0 and 1. Got ${rate}.`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`[Tracing] Given sample rate is invalid. Sample rate must be between 0 and 1. Got ${rate}.`);
         return false;
       }
       return true;
     }
     function _startTransaction(transactionContext, customSamplingContext) {
       const client = this.getClient();
-      const options = (client && client.getOptions()) || {};
+      const options = client && client.getOptions() || {};
       const configInstrumenter = options.instrumenter || "sentry";
-      const transactionInstrumenter =
-        transactionContext.instrumenter || "sentry";
+      const transactionInstrumenter = transactionContext.instrumenter || "sentry";
       if (configInstrumenter !== transactionInstrumenter) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger
-            .error(`A transaction was started with instrumenter=\`${transactionInstrumenter}\`, but the SDK is configured with the \`${configInstrumenter}\` instrumenter.
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error(`A transaction was started with instrumenter=\`${transactionInstrumenter}\`, but the SDK is configured with the \`${configInstrumenter}\` instrumenter.
 The transaction will not be sampled. Please use the ${configInstrumenter} instrumentation to start transactions.`);
         transactionContext.sampled = false;
       }
       let transaction$1 = new transaction.Transaction(transactionContext, this);
-      transaction$1 = sample(
-        transaction$1,
-        options,
-        __spreadValues(
-          {
-            parentSampled: transactionContext.parentSampled,
-            transactionContext,
-          },
-          customSamplingContext,
-        ),
-      );
+      transaction$1 = sample(transaction$1, options, __spreadValues({
+        parentSampled: transactionContext.parentSampled,
+        transactionContext
+      }, customSamplingContext));
       if (transaction$1.sampled) {
-        transaction$1.initSpanRecorder(
-          options._experiments && options._experiments.maxSpans,
-        );
+        transaction$1.initSpanRecorder(options._experiments && options._experiments.maxSpans);
       }
       if (client && client.emit) {
         client.emit("startTransaction", transaction$1);
       }
       return transaction$1;
     }
-    function startIdleTransaction(
-      hub2,
-      transactionContext,
-      idleTimeout,
-      finalTimeout,
-      onScope,
-      customSamplingContext,
-      heartbeatInterval,
-    ) {
+    function startIdleTransaction(hub2, transactionContext, idleTimeout, finalTimeout, onScope, customSamplingContext, heartbeatInterval) {
       const client = hub2.getClient();
-      const options = (client && client.getOptions()) || {};
-      let transaction2 = new idletransaction.IdleTransaction(
-        transactionContext,
-        hub2,
-        idleTimeout,
-        finalTimeout,
-        heartbeatInterval,
-        onScope,
-      );
-      transaction2 = sample(
-        transaction2,
-        options,
-        __spreadValues(
-          {
-            parentSampled: transactionContext.parentSampled,
-            transactionContext,
-          },
-          customSamplingContext,
-        ),
-      );
+      const options = client && client.getOptions() || {};
+      let transaction2 = new idletransaction.IdleTransaction(transactionContext, hub2, idleTimeout, finalTimeout, heartbeatInterval, onScope);
+      transaction2 = sample(transaction2, options, __spreadValues({
+        parentSampled: transactionContext.parentSampled,
+        transactionContext
+      }, customSamplingContext));
       if (transaction2.sampled) {
-        transaction2.initSpanRecorder(
-          options._experiments && options._experiments.maxSpans,
-        );
+        transaction2.initSpanRecorder(options._experiments && options._experiments.maxSpans);
       }
       if (client && client.emit) {
         client.emit("startTransaction", transaction2);
@@ -5765,7 +4782,7 @@ The transaction will not be sampled. Please use the ${configInstrumenter} instru
     }
     exports.addTracingExtensions = addTracingExtensions;
     exports.startIdleTransaction = startIdleTransaction;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/spanstatus.js
@@ -5773,7 +4790,7 @@ var require_spanstatus = __commonJS({
   "node_modules/@sentry/core/cjs/tracing/spanstatus.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SpanStatus = void 0;
-    (function (SpanStatus) {
+    (function(SpanStatus) {
       const Ok = "ok";
       SpanStatus["Ok"] = Ok;
       const DeadlineExceeded = "deadline_exceeded";
@@ -5809,7 +4826,7 @@ var require_spanstatus = __commonJS({
       const DataLoss = "data_loss";
       SpanStatus["DataLoss"] = DataLoss;
     })(exports.SpanStatus || (exports.SpanStatus = {}));
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/tracing/trace.js
@@ -5819,7 +4836,8 @@ var require_trace = __commonJS({
     var utils = require_cjs();
     var hub = require_hub();
     var hasTracingEnabled = require_hasTracingEnabled();
-    function trace(context, callback, onError = () => {}) {
+    function trace(context, callback, onError = () => {
+    }) {
       const ctx = __spreadValues({}, context);
       if (ctx.name !== void 0 && ctx.description === void 0) {
         ctx.description = ctx.name;
@@ -5831,9 +4849,7 @@ var require_trace = __commonJS({
         if (!hasTracingEnabled.hasTracingEnabled()) {
           return void 0;
         }
-        return parentSpan
-          ? parentSpan.startChild(ctx)
-          : hub$1.startTransaction(ctx);
+        return parentSpan ? parentSpan.startChild(ctx) : hub$1.startTransaction(ctx);
       }
       const activeSpan = getActiveSpan();
       scope.setSpan(activeSpan);
@@ -5851,23 +4867,20 @@ var require_trace = __commonJS({
         throw e;
       }
       if (utils.isThenable(maybePromiseResult)) {
-        Promise.resolve(maybePromiseResult).then(
-          () => {
-            finishAndSetSpan();
-          },
-          (e) => {
-            activeSpan && activeSpan.setStatus("internal_error");
-            onError(e);
-            finishAndSetSpan();
-          },
-        );
+        Promise.resolve(maybePromiseResult).then(() => {
+          finishAndSetSpan();
+        }, (e) => {
+          activeSpan && activeSpan.setStatus("internal_error");
+          onError(e);
+          finishAndSetSpan();
+        });
       } else {
         finishAndSetSpan();
       }
       return maybePromiseResult;
     }
     exports.trace = trace;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/exports.js
@@ -5877,15 +4890,11 @@ var require_exports = __commonJS({
     var utils = require_cjs();
     var hub = require_hub();
     function captureException(exception, captureContext) {
-      return hub
-        .getCurrentHub()
-        .captureException(exception, { captureContext });
+      return hub.getCurrentHub().captureException(exception, { captureContext });
     }
     function captureMessage(message, captureContext) {
-      const level =
-        typeof captureContext === "string" ? captureContext : void 0;
-      const context =
-        typeof captureContext !== "string" ? { captureContext } : void 0;
+      const level = typeof captureContext === "string" ? captureContext : void 0;
+      const context = typeof captureContext !== "string" ? { captureContext } : void 0;
       return hub.getCurrentHub().captureMessage(message, level, context);
     }
     function captureEvent(event, hint) {
@@ -5919,22 +4928,16 @@ var require_exports = __commonJS({
       hub.getCurrentHub().withScope(callback);
     }
     function startTransaction(context, customSamplingContext) {
-      return hub
-        .getCurrentHub()
-        .startTransaction(__spreadValues({}, context), customSamplingContext);
+      return hub.getCurrentHub().startTransaction(__spreadValues({}, context), customSamplingContext);
     }
     function captureCheckIn(checkIn, upsertMonitorConfig) {
       const hub$1 = hub.getCurrentHub();
       const scope = hub$1.getScope();
       const client = hub$1.getClient();
       if (!client) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn("Cannot capture check-in. No client defined.");
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Cannot capture check-in. No client defined.");
       } else if (!client.captureCheckIn) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            "Cannot capture check-in. Client does not support sending check-ins.",
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Cannot capture check-in. Client does not support sending check-ins.");
       } else {
         return client.captureCheckIn(checkIn, upsertMonitorConfig, scope);
       }
@@ -5954,7 +4957,7 @@ var require_exports = __commonJS({
     exports.setUser = setUser;
     exports.startTransaction = startTransaction;
     exports.withScope = withScope;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/sessionflusher.js
@@ -5978,10 +4981,7 @@ var require_sessionflusher = __commonJS({
         SessionFlusher.prototype.__init2.call(this);
         SessionFlusher.prototype.__init3.call(this);
         this._client = client;
-        this._intervalId = setInterval(
-          () => this.flush(),
-          this.flushTimeout * 1e3,
-        );
+        this._intervalId = setInterval(() => this.flush(), this.flushTimeout * 1e3);
         this._sessionAttrs = attrs;
       }
       flush() {
@@ -5998,7 +4998,7 @@ var require_sessionflusher = __commonJS({
         });
         const sessionAggregates = {
           attrs: this._sessionAttrs,
-          aggregates,
+          aggregates
         };
         return utils.dropUndefinedKeys(sessionAggregates);
       }
@@ -6020,13 +5020,10 @@ var require_sessionflusher = __commonJS({
       }
       _incrementSessionStatusCount(status, date) {
         const sessionStartedTrunc = new Date(date).setSeconds(0, 0);
-        this._pendingAggregates[sessionStartedTrunc] =
-          this._pendingAggregates[sessionStartedTrunc] || {};
+        this._pendingAggregates[sessionStartedTrunc] = this._pendingAggregates[sessionStartedTrunc] || {};
         const aggregationCounts = this._pendingAggregates[sessionStartedTrunc];
         if (!aggregationCounts.started) {
-          aggregationCounts.started = new Date(
-            sessionStartedTrunc,
-          ).toISOString();
+          aggregationCounts.started = new Date(sessionStartedTrunc).toISOString();
         }
         switch (status) {
           case "errored":
@@ -6042,7 +5039,7 @@ var require_sessionflusher = __commonJS({
       }
     };
     exports.SessionFlusher = SessionFlusher;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/api.js
@@ -6054,36 +5051,21 @@ var require_api = __commonJS({
     function getBaseApiEndpoint(dsn) {
       const protocol = dsn.protocol ? `${dsn.protocol}:` : "";
       const port = dsn.port ? `:${dsn.port}` : "";
-      return `${protocol}//${dsn.host}${port}${
-        dsn.path ? `/${dsn.path}` : ""
-      }/api/`;
+      return `${protocol}//${dsn.host}${port}${dsn.path ? `/${dsn.path}` : ""}/api/`;
     }
     function _getIngestEndpoint(dsn) {
       return `${getBaseApiEndpoint(dsn)}${dsn.projectId}/envelope/`;
     }
     function _encodedAuth(dsn, sdkInfo) {
-      return utils.urlEncode(
-        __spreadValues(
-          {
-            sentry_key: dsn.publicKey,
-            sentry_version: SENTRY_API_VERSION,
-          },
-          sdkInfo && { sentry_client: `${sdkInfo.name}/${sdkInfo.version}` },
-        ),
-      );
+      return utils.urlEncode(__spreadValues({
+        sentry_key: dsn.publicKey,
+        sentry_version: SENTRY_API_VERSION
+      }, sdkInfo && { sentry_client: `${sdkInfo.name}/${sdkInfo.version}` }));
     }
     function getEnvelopeEndpointWithUrlEncodedAuth(dsn, tunnelOrOptions = {}) {
-      const tunnel =
-        typeof tunnelOrOptions === "string"
-          ? tunnelOrOptions
-          : tunnelOrOptions.tunnel;
-      const sdkInfo =
-        typeof tunnelOrOptions === "string" || !tunnelOrOptions._metadata
-          ? void 0
-          : tunnelOrOptions._metadata.sdk;
-      return tunnel
-        ? tunnel
-        : `${_getIngestEndpoint(dsn)}?${_encodedAuth(dsn, sdkInfo)}`;
+      const tunnel = typeof tunnelOrOptions === "string" ? tunnelOrOptions : tunnelOrOptions.tunnel;
+      const sdkInfo = typeof tunnelOrOptions === "string" || !tunnelOrOptions._metadata ? void 0 : tunnelOrOptions._metadata.sdk;
+      return tunnel ? tunnel : `${_getIngestEndpoint(dsn)}?${_encodedAuth(dsn, sdkInfo)}`;
     }
     function getReportDialogEndpoint(dsnLike, dialogOptions) {
       const dsn = utils.makeDsn(dsnLike);
@@ -6108,17 +5090,14 @@ var require_api = __commonJS({
             encodedOptions += `&email=${encodeURIComponent(user.email)}`;
           }
         } else {
-          encodedOptions += `&${encodeURIComponent(key)}=${encodeURIComponent(
-            dialogOptions[key],
-          )}`;
+          encodedOptions += `&${encodeURIComponent(key)}=${encodeURIComponent(dialogOptions[key])}`;
         }
       }
       return `${endpoint}?${encodedOptions}`;
     }
-    exports.getEnvelopeEndpointWithUrlEncodedAuth =
-      getEnvelopeEndpointWithUrlEncodedAuth;
+    exports.getEnvelopeEndpointWithUrlEncodedAuth = getEnvelopeEndpointWithUrlEncodedAuth;
     exports.getReportDialogEndpoint = getReportDialogEndpoint;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/envelope.js
@@ -6133,51 +5112,30 @@ var require_envelope2 = __commonJS({
       event.sdk = event.sdk || {};
       event.sdk.name = event.sdk.name || sdkInfo.name;
       event.sdk.version = event.sdk.version || sdkInfo.version;
-      event.sdk.integrations = [
-        ...(event.sdk.integrations || []),
-        ...(sdkInfo.integrations || []),
-      ];
-      event.sdk.packages = [
-        ...(event.sdk.packages || []),
-        ...(sdkInfo.packages || []),
-      ];
+      event.sdk.integrations = [...event.sdk.integrations || [], ...sdkInfo.integrations || []];
+      event.sdk.packages = [...event.sdk.packages || [], ...sdkInfo.packages || []];
       return event;
     }
     function createSessionEnvelope(session, dsn, metadata, tunnel) {
       const sdkInfo = utils.getSdkMetadataForEnvelopeHeader(metadata);
-      const envelopeHeaders = __spreadValues(
-        __spreadValues(
-          {
-            sent_at: new Date().toISOString(),
-          },
-          sdkInfo && { sdk: sdkInfo },
-        ),
-        !!tunnel && { dsn: utils.dsnToString(dsn) },
-      );
-      const envelopeItem =
-        "aggregates" in session
-          ? [{ type: "sessions" }, session]
-          : [{ type: "session" }, session.toJSON()];
+      const envelopeHeaders = __spreadValues(__spreadValues({
+        sent_at: new Date().toISOString()
+      }, sdkInfo && { sdk: sdkInfo }), !!tunnel && { dsn: utils.dsnToString(dsn) });
+      const envelopeItem = "aggregates" in session ? [{ type: "sessions" }, session] : [{ type: "session" }, session.toJSON()];
       return utils.createEnvelope(envelopeHeaders, [envelopeItem]);
     }
     function createEventEnvelope(event, dsn, metadata, tunnel) {
       const sdkInfo = utils.getSdkMetadataForEnvelopeHeader(metadata);
-      const eventType =
-        event.type && event.type !== "replay_event" ? event.type : "event";
+      const eventType = event.type && event.type !== "replay_event" ? event.type : "event";
       enhanceEventWithSdkInfo(event, metadata && metadata.sdk);
-      const envelopeHeaders = utils.createEventEnvelopeHeaders(
-        event,
-        sdkInfo,
-        tunnel,
-        dsn,
-      );
+      const envelopeHeaders = utils.createEventEnvelopeHeaders(event, sdkInfo, tunnel, dsn);
       delete event.sdkProcessingMetadata;
       const eventItem = [{ type: eventType }, event];
       return utils.createEnvelope(envelopeHeaders, [eventItem]);
     }
     exports.createEventEnvelope = createEventEnvelope;
     exports.createSessionEnvelope = createSessionEnvelope;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/integration.js
@@ -6193,11 +5151,7 @@ var require_integration = __commonJS({
       integrations.forEach((currentInstance) => {
         const { name } = currentInstance;
         const existingInstance = integrationsByName[name];
-        if (
-          existingInstance &&
-          !existingInstance.isDefaultInstance &&
-          currentInstance.isDefaultInstance
-        ) {
+        if (existingInstance && !existingInstance.isDefaultInstance && currentInstance.isDefaultInstance) {
           return;
         }
         integrationsByName[name] = currentInstance;
@@ -6219,10 +5173,7 @@ var require_integration = __commonJS({
         integrations = defaultIntegrations;
       }
       const finalIntegrations = filterDuplicates(integrations);
-      const debugIndex = findIndex(
-        finalIntegrations,
-        (integration) => integration.name === "Debug",
-      );
+      const debugIndex = findIndex(finalIntegrations, (integration) => integration.name === "Debug");
       if (debugIndex !== -1) {
         const [debugInstance] = finalIntegrations.splice(debugIndex, 1);
         finalIntegrations.push(debugInstance);
@@ -6243,8 +5194,7 @@ var require_integration = __commonJS({
       if (installedIntegrations.indexOf(integration.name) === -1) {
         integration.setupOnce(scope.addGlobalEventProcessor, hub.getCurrentHub);
         installedIntegrations.push(integration.name);
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(`Integration installed: ${integration.name}`);
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`Integration installed: ${integration.name}`);
       }
     }
     function findIndex(arr, callback) {
@@ -6259,7 +5209,7 @@ var require_integration = __commonJS({
     exports.installedIntegrations = installedIntegrations;
     exports.setupIntegration = setupIntegration;
     exports.setupIntegrations = setupIntegrations;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/utils/prepareEvent.js
@@ -6273,10 +5223,9 @@ var require_prepareEvent = __commonJS({
       const { normalizeDepth = 3, normalizeMaxBreadth = 1e3 } = options;
       const prepared = __spreadProps(__spreadValues({}, event), {
         event_id: event.event_id || hint.event_id || utils.uuid4(),
-        timestamp: event.timestamp || utils.dateTimestampInSeconds(),
+        timestamp: event.timestamp || utils.dateTimestampInSeconds()
       });
-      const integrations =
-        hint.integrations || options.integrations.map((i) => i.name);
+      const integrations = hint.integrations || options.integrations.map((i) => i.name);
       applyClientOptions(prepared, options);
       applyIntegrationsMetadata(prepared, integrations);
       if (event.type === void 0) {
@@ -6289,10 +5238,7 @@ var require_prepareEvent = __commonJS({
       let result = utils.resolvedSyncPromise(prepared);
       if (finalScope) {
         if (finalScope.getAttachments) {
-          const attachments = [
-            ...(hint.attachments || []),
-            ...finalScope.getAttachments(),
-          ];
+          const attachments = [...hint.attachments || [], ...finalScope.getAttachments()];
           if (attachments.length) {
             hint.attachments = attachments;
           }
@@ -6312,10 +5258,7 @@ var require_prepareEvent = __commonJS({
     function applyClientOptions(event, options) {
       const { environment, release, dist, maxValueLength = 250 } = options;
       if (!("environment" in event)) {
-        event.environment =
-          "environment" in options
-            ? environment
-            : constants.DEFAULT_ENVIRONMENT;
+        event.environment = "environment" in options ? environment : constants.DEFAULT_ENVIRONMENT;
       }
       if (event.release === void 0 && release !== void 0) {
         event.release = release;
@@ -6326,8 +5269,7 @@ var require_prepareEvent = __commonJS({
       if (event.message) {
         event.message = utils.truncate(event.message, maxValueLength);
       }
-      const exception =
-        event.exception && event.exception.values && event.exception.values[0];
+      const exception = event.exception && event.exception.values && event.exception.values[0];
       if (exception && exception.value) {
         exception.value = utils.truncate(exception.value, maxValueLength);
       }
@@ -6343,36 +5285,31 @@ var require_prepareEvent = __commonJS({
         return;
       }
       let debugIdStackFramesCache;
-      const cachedDebugIdStackFrameCache =
-        debugIdStackParserCache.get(stackParser);
+      const cachedDebugIdStackFrameCache = debugIdStackParserCache.get(stackParser);
       if (cachedDebugIdStackFrameCache) {
         debugIdStackFramesCache = cachedDebugIdStackFrameCache;
       } else {
         debugIdStackFramesCache = /* @__PURE__ */ new Map();
         debugIdStackParserCache.set(stackParser, debugIdStackFramesCache);
       }
-      const filenameDebugIdMap = Object.keys(debugIdMap).reduce(
-        (acc, debugIdStackTrace) => {
-          let parsedStack;
-          const cachedParsedStack =
-            debugIdStackFramesCache.get(debugIdStackTrace);
-          if (cachedParsedStack) {
-            parsedStack = cachedParsedStack;
-          } else {
-            parsedStack = stackParser(debugIdStackTrace);
-            debugIdStackFramesCache.set(debugIdStackTrace, parsedStack);
+      const filenameDebugIdMap = Object.keys(debugIdMap).reduce((acc, debugIdStackTrace) => {
+        let parsedStack;
+        const cachedParsedStack = debugIdStackFramesCache.get(debugIdStackTrace);
+        if (cachedParsedStack) {
+          parsedStack = cachedParsedStack;
+        } else {
+          parsedStack = stackParser(debugIdStackTrace);
+          debugIdStackFramesCache.set(debugIdStackTrace, parsedStack);
+        }
+        for (let i = parsedStack.length - 1; i >= 0; i--) {
+          const stackFrame = parsedStack[i];
+          if (stackFrame.filename) {
+            acc[stackFrame.filename] = debugIdMap[debugIdStackTrace];
+            break;
           }
-          for (let i = parsedStack.length - 1; i >= 0; i--) {
-            const stackFrame = parsedStack[i];
-            if (stackFrame.filename) {
-              acc[stackFrame.filename] = debugIdMap[debugIdStackTrace];
-              break;
-            }
-          }
-          return acc;
-        },
-        {},
-      );
+        }
+        return acc;
+      }, {});
       try {
         event.exception.values.forEach((exception) => {
           exception.stacktrace.frames.forEach((frame) => {
@@ -6381,7 +5318,8 @@ var require_prepareEvent = __commonJS({
             }
           });
         });
-      } catch (e) {}
+      } catch (e) {
+      }
     }
     function applyDebugMeta(event) {
       const filenameDebugIdMap = {};
@@ -6398,7 +5336,8 @@ var require_prepareEvent = __commonJS({
             }
           });
         });
-      } catch (e) {}
+      } catch (e) {
+      }
       if (Object.keys(filenameDebugIdMap).length === 0) {
         return;
       }
@@ -6409,59 +5348,35 @@ var require_prepareEvent = __commonJS({
         images.push({
           type: "sourcemap",
           code_file: filename,
-          debug_id: filenameDebugIdMap[filename],
+          debug_id: filenameDebugIdMap[filename]
         });
       });
     }
     function applyIntegrationsMetadata(event, integrationNames) {
       if (integrationNames.length > 0) {
         event.sdk = event.sdk || {};
-        event.sdk.integrations = [
-          ...(event.sdk.integrations || []),
-          ...integrationNames,
-        ];
+        event.sdk.integrations = [...event.sdk.integrations || [], ...integrationNames];
       }
     }
     function normalizeEvent(event, depth, maxBreadth) {
       if (!event) {
         return null;
       }
-      const normalized = __spreadValues(
-        __spreadValues(
-          __spreadValues(
-            __spreadValues(
-              __spreadValues({}, event),
-              event.breadcrumbs && {
-                breadcrumbs: event.breadcrumbs.map((b) =>
-                  __spreadValues(
-                    __spreadValues({}, b),
-                    b.data && {
-                      data: utils.normalize(b.data, depth, maxBreadth),
-                    },
-                  ),
-                ),
-              },
-            ),
-            event.user && {
-              user: utils.normalize(event.user, depth, maxBreadth),
-            },
-          ),
-          event.contexts && {
-            contexts: utils.normalize(event.contexts, depth, maxBreadth),
-          },
-        ),
-        event.extra && {
-          extra: utils.normalize(event.extra, depth, maxBreadth),
-        },
-      );
+      const normalized = __spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues({}, event), event.breadcrumbs && {
+        breadcrumbs: event.breadcrumbs.map((b) => __spreadValues(__spreadValues({}, b), b.data && {
+          data: utils.normalize(b.data, depth, maxBreadth)
+        }))
+      }), event.user && {
+        user: utils.normalize(event.user, depth, maxBreadth)
+      }), event.contexts && {
+        contexts: utils.normalize(event.contexts, depth, maxBreadth)
+      }), event.extra && {
+        extra: utils.normalize(event.extra, depth, maxBreadth)
+      });
       if (event.contexts && event.contexts.trace && normalized.contexts) {
         normalized.contexts.trace = event.contexts.trace;
         if (event.contexts.trace.data) {
-          normalized.contexts.trace.data = utils.normalize(
-            event.contexts.trace.data,
-            depth,
-            maxBreadth,
-          );
+          normalized.contexts.trace.data = utils.normalize(event.contexts.trace.data, depth, maxBreadth);
         }
       }
       if (event.spans) {
@@ -6477,7 +5392,7 @@ var require_prepareEvent = __commonJS({
     exports.applyDebugIds = applyDebugIds;
     exports.applyDebugMeta = applyDebugMeta;
     exports.prepareEvent = prepareEvent;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/baseclient.js
@@ -6491,8 +5406,7 @@ var require_baseclient = __commonJS({
     var session = require_session();
     var dynamicSamplingContext = require_dynamicSamplingContext();
     var prepareEvent = require_prepareEvent();
-    var ALREADY_SEEN_ERROR =
-      "Not capturing exception because it's already been captured.";
+    var ALREADY_SEEN_ERROR = "Not capturing exception because it's already been captured.";
     var BaseClient = class {
       __init() {
         this._integrations = {};
@@ -6519,88 +5433,54 @@ var require_baseclient = __commonJS({
         if (options.dsn) {
           this._dsn = utils.makeDsn(options.dsn);
         } else {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn("No DSN provided, client will not do anything.");
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("No DSN provided, client will not do anything.");
         }
         if (this._dsn) {
-          const url = api.getEnvelopeEndpointWithUrlEncodedAuth(
-            this._dsn,
-            options,
-          );
-          this._transport = options.transport(
-            __spreadProps(
-              __spreadValues(
-                {
-                  recordDroppedEvent: this.recordDroppedEvent.bind(this),
-                },
-                options.transportOptions,
-              ),
-              {
-                url,
-              },
-            ),
-          );
+          const url = api.getEnvelopeEndpointWithUrlEncodedAuth(this._dsn, options);
+          this._transport = options.transport(__spreadProps(__spreadValues({
+            recordDroppedEvent: this.recordDroppedEvent.bind(this)
+          }, options.transportOptions), {
+            url
+          }));
         }
       }
       captureException(exception, hint, scope) {
         if (utils.checkOrSetAlreadyCaught(exception)) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(ALREADY_SEEN_ERROR);
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(ALREADY_SEEN_ERROR);
           return;
         }
         let eventId = hint && hint.event_id;
-        this._process(
-          this.eventFromException(exception, hint)
-            .then((event) => this._captureEvent(event, hint, scope))
-            .then((result) => {
-              eventId = result;
-            }),
-        );
+        this._process(this.eventFromException(exception, hint).then((event) => this._captureEvent(event, hint, scope)).then((result) => {
+          eventId = result;
+        }));
         return eventId;
       }
       captureMessage(message, level, hint, scope) {
         let eventId = hint && hint.event_id;
-        const promisedEvent = utils.isPrimitive(message)
-          ? this.eventFromMessage(String(message), level, hint)
-          : this.eventFromException(message, hint);
-        this._process(
-          promisedEvent
-            .then((event) => this._captureEvent(event, hint, scope))
-            .then((result) => {
-              eventId = result;
-            }),
-        );
+        const promisedEvent = utils.isPrimitive(message) ? this.eventFromMessage(String(message), level, hint) : this.eventFromException(message, hint);
+        this._process(promisedEvent.then((event) => this._captureEvent(event, hint, scope)).then((result) => {
+          eventId = result;
+        }));
         return eventId;
       }
       captureEvent(event, hint, scope) {
-        if (
-          hint &&
-          hint.originalException &&
-          utils.checkOrSetAlreadyCaught(hint.originalException)
-        ) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(ALREADY_SEEN_ERROR);
+        if (hint && hint.originalException && utils.checkOrSetAlreadyCaught(hint.originalException)) {
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(ALREADY_SEEN_ERROR);
           return;
         }
         let eventId = hint && hint.event_id;
-        this._process(
-          this._captureEvent(event, hint, scope).then((result) => {
-            eventId = result;
-          }),
-        );
+        this._process(this._captureEvent(event, hint, scope).then((result) => {
+          eventId = result;
+        }));
         return eventId;
       }
       captureSession(session$1) {
         if (!this._isEnabled()) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn("SDK not enabled, will not capture session.");
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("SDK not enabled, will not capture session.");
           return;
         }
         if (!(typeof session$1.release === "string")) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              "Discarded session because of missing or non-string release",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Discarded session because of missing or non-string release");
         } else {
           this.sendSession(session$1);
           session.updateSession(session$1, { init: false });
@@ -6621,13 +5501,9 @@ var require_baseclient = __commonJS({
       flush(timeout) {
         const transport = this._transport;
         if (transport) {
-          return this._isClientDoneProcessing(timeout).then(
-            (clientFinished) => {
-              return transport
-                .flush(timeout)
-                .then((transportFlushed) => clientFinished && transportFlushed);
-            },
-          );
+          return this._isClientDoneProcessing(timeout).then((clientFinished) => {
+            return transport.flush(timeout).then((transportFlushed) => clientFinished && transportFlushed);
+          });
         } else {
           return utils.resolvedSyncPromise(true);
         }
@@ -6640,9 +5516,7 @@ var require_baseclient = __commonJS({
       }
       setupIntegrations() {
         if (this._isEnabled() && !this._integrationsInitialized) {
-          this._integrations = integration.setupIntegrations(
-            this._options.integrations,
-          );
+          this._integrations = integration.setupIntegrations(this._options.integrations);
           this._integrationsInitialized = true;
         }
       }
@@ -6653,10 +5527,7 @@ var require_baseclient = __commonJS({
         try {
           return this._integrations[integration2.id] || null;
         } catch (_oO) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              `Cannot retrieve integration ${integration2.id} from the current Client`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Cannot retrieve integration ${integration2.id} from the current Client`);
           return null;
         }
       }
@@ -6665,48 +5536,26 @@ var require_baseclient = __commonJS({
       }
       sendEvent(event, hint = {}) {
         if (this._dsn) {
-          let env = envelope.createEventEnvelope(
-            event,
-            this._dsn,
-            this._options._metadata,
-            this._options.tunnel,
-          );
+          let env = envelope.createEventEnvelope(event, this._dsn, this._options._metadata, this._options.tunnel);
           for (const attachment of hint.attachments || []) {
-            env = utils.addItemToEnvelope(
-              env,
-              utils.createAttachmentEnvelopeItem(
-                attachment,
-                this._options.transportOptions &&
-                  this._options.transportOptions.textEncoder,
-              ),
-            );
+            env = utils.addItemToEnvelope(env, utils.createAttachmentEnvelopeItem(attachment, this._options.transportOptions && this._options.transportOptions.textEncoder));
           }
           const promise = this._sendEnvelope(env);
           if (promise) {
-            promise.then(
-              (sendResponse) =>
-                this.emit("afterSendEvent", event, sendResponse),
-              null,
-            );
+            promise.then((sendResponse) => this.emit("afterSendEvent", event, sendResponse), null);
           }
         }
       }
       sendSession(session2) {
         if (this._dsn) {
-          const env = envelope.createSessionEnvelope(
-            session2,
-            this._dsn,
-            this._options._metadata,
-            this._options.tunnel,
-          );
+          const env = envelope.createSessionEnvelope(session2, this._dsn, this._options._metadata, this._options.tunnel);
           void this._sendEnvelope(env);
         }
       }
       recordDroppedEvent(reason, category, _event) {
         if (this._options.sendClientReports) {
           const key = `${reason}:${category}`;
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(`Adding outcome: "${key}"`);
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`Adding outcome: "${key}"`);
           this._outcomes[key] = this._outcomes[key] + 1 || 1;
         }
       }
@@ -6736,19 +5585,11 @@ var require_baseclient = __commonJS({
           }
         }
         const sessionNonTerminal = session$1.status === "ok";
-        const shouldUpdateAndSend =
-          (sessionNonTerminal && session$1.errors === 0) ||
-          (sessionNonTerminal && crashed);
+        const shouldUpdateAndSend = sessionNonTerminal && session$1.errors === 0 || sessionNonTerminal && crashed;
         if (shouldUpdateAndSend) {
-          session.updateSession(
-            session$1,
-            __spreadProps(
-              __spreadValues({}, crashed && { status: "crashed" }),
-              {
-                errors: session$1.errors || Number(errored || crashed),
-              },
-            ),
-          );
+          session.updateSession(session$1, __spreadProps(__spreadValues({}, crashed && { status: "crashed" }), {
+            errors: session$1.errors || Number(errored || crashed)
+          }));
           this.captureSession(session$1);
         }
       }
@@ -6779,179 +5620,120 @@ var require_baseclient = __commonJS({
         if (!hint.integrations && integrations.length > 0) {
           hint.integrations = integrations;
         }
-        return prepareEvent
-          .prepareEvent(options, event, hint, scope)
-          .then((evt) => {
-            if (evt === null) {
-              return evt;
-            }
-            const { propagationContext } = evt.sdkProcessingMetadata || {};
-            const trace = evt.contexts && evt.contexts.trace;
-            if (!trace && propagationContext) {
-              const {
-                traceId: trace_id,
-                spanId,
-                parentSpanId,
-                dsc,
-              } = propagationContext;
-              evt.contexts = __spreadValues(
-                {
-                  trace: {
-                    trace_id,
-                    span_id: spanId,
-                    parent_span_id: parentSpanId,
-                  },
-                },
-                evt.contexts,
-              );
-              const dynamicSamplingContext$1 = dsc
-                ? dsc
-                : dynamicSamplingContext.getDynamicSamplingContextFromClient(
-                    trace_id,
-                    this,
-                    scope,
-                  );
-              evt.sdkProcessingMetadata = __spreadValues(
-                {
-                  dynamicSamplingContext: dynamicSamplingContext$1,
-                },
-                evt.sdkProcessingMetadata,
-              );
-            }
+        return prepareEvent.prepareEvent(options, event, hint, scope).then((evt) => {
+          if (evt === null) {
             return evt;
-          });
+          }
+          const { propagationContext } = evt.sdkProcessingMetadata || {};
+          const trace = evt.contexts && evt.contexts.trace;
+          if (!trace && propagationContext) {
+            const { traceId: trace_id, spanId, parentSpanId, dsc } = propagationContext;
+            evt.contexts = __spreadValues({
+              trace: {
+                trace_id,
+                span_id: spanId,
+                parent_span_id: parentSpanId
+              }
+            }, evt.contexts);
+            const dynamicSamplingContext$1 = dsc ? dsc : dynamicSamplingContext.getDynamicSamplingContextFromClient(trace_id, this, scope);
+            evt.sdkProcessingMetadata = __spreadValues({
+              dynamicSamplingContext: dynamicSamplingContext$1
+            }, evt.sdkProcessingMetadata);
+          }
+          return evt;
+        });
       }
       _captureEvent(event, hint = {}, scope) {
-        return this._processEvent(event, hint, scope).then(
-          (finalEvent) => {
-            return finalEvent.event_id;
-          },
-          (reason) => {
-            if (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) {
-              const sentryError = reason;
-              if (sentryError.logLevel === "log") {
-                utils.logger.log(sentryError.message);
-              } else {
-                utils.logger.warn(sentryError);
-              }
+        return this._processEvent(event, hint, scope).then((finalEvent) => {
+          return finalEvent.event_id;
+        }, (reason) => {
+          if (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) {
+            const sentryError = reason;
+            if (sentryError.logLevel === "log") {
+              utils.logger.log(sentryError.message);
+            } else {
+              utils.logger.warn(sentryError);
             }
-            return void 0;
-          },
-        );
+          }
+          return void 0;
+        });
       }
       _processEvent(event, hint, scope) {
         const options = this.getOptions();
         const { sampleRate } = options;
         if (!this._isEnabled()) {
-          return utils.rejectedSyncPromise(
-            new utils.SentryError(
-              "SDK not enabled, will not capture event.",
-              "log",
-            ),
-          );
+          return utils.rejectedSyncPromise(new utils.SentryError("SDK not enabled, will not capture event.", "log"));
         }
         const isTransaction = isTransactionEvent(event);
         const isError = isErrorEvent(event);
         const eventType = event.type || "error";
         const beforeSendLabel = `before send for type \`${eventType}\``;
-        if (
-          isError &&
-          typeof sampleRate === "number" &&
-          Math.random() > sampleRate
-        ) {
+        if (isError && typeof sampleRate === "number" && Math.random() > sampleRate) {
           this.recordDroppedEvent("sample_rate", "error", event);
-          return utils.rejectedSyncPromise(
-            new utils.SentryError(
-              `Discarding event because it's not included in the random sample (sampling rate = ${sampleRate})`,
-              "log",
-            ),
-          );
+          return utils.rejectedSyncPromise(new utils.SentryError(`Discarding event because it's not included in the random sample (sampling rate = ${sampleRate})`, "log"));
         }
-        const dataCategory =
-          eventType === "replay_event" ? "replay" : eventType;
-        return this._prepareEvent(event, hint, scope)
-          .then((prepared) => {
-            if (prepared === null) {
-              this.recordDroppedEvent("event_processor", dataCategory, event);
-              throw new utils.SentryError(
-                "An event processor returned `null`, will not send event.",
-                "log",
-              );
-            }
-            const isInternalException =
-              hint.data && hint.data.__sentry__ === true;
-            if (isInternalException) {
-              return prepared;
-            }
-            const result = processBeforeSend(options, prepared, hint);
-            return _validateBeforeSendResult(result, beforeSendLabel);
-          })
-          .then((processedEvent) => {
-            if (processedEvent === null) {
-              this.recordDroppedEvent("before_send", dataCategory, event);
-              throw new utils.SentryError(
-                `${beforeSendLabel} returned \`null\`, will not send event.`,
-                "log",
-              );
-            }
-            const session2 = scope && scope.getSession();
-            if (!isTransaction && session2) {
-              this._updateSessionFromEvent(session2, processedEvent);
-            }
-            const transactionInfo = processedEvent.transaction_info;
-            if (
-              isTransaction &&
-              transactionInfo &&
-              processedEvent.transaction !== event.transaction
-            ) {
-              const source = "custom";
-              processedEvent.transaction_info = __spreadProps(
-                __spreadValues({}, transactionInfo),
-                {
-                  source,
-                },
-              );
-            }
-            this.sendEvent(processedEvent, hint);
-            return processedEvent;
-          })
-          .then(null, (reason) => {
-            if (reason instanceof utils.SentryError) {
-              throw reason;
-            }
-            this.captureException(reason, {
-              data: {
-                __sentry__: true,
-              },
-              originalException: reason,
+        const dataCategory = eventType === "replay_event" ? "replay" : eventType;
+        return this._prepareEvent(event, hint, scope).then((prepared) => {
+          if (prepared === null) {
+            this.recordDroppedEvent("event_processor", dataCategory, event);
+            throw new utils.SentryError("An event processor returned `null`, will not send event.", "log");
+          }
+          const isInternalException = hint.data && hint.data.__sentry__ === true;
+          if (isInternalException) {
+            return prepared;
+          }
+          const result = processBeforeSend(options, prepared, hint);
+          return _validateBeforeSendResult(result, beforeSendLabel);
+        }).then((processedEvent) => {
+          if (processedEvent === null) {
+            this.recordDroppedEvent("before_send", dataCategory, event);
+            throw new utils.SentryError(`${beforeSendLabel} returned \`null\`, will not send event.`, "log");
+          }
+          const session2 = scope && scope.getSession();
+          if (!isTransaction && session2) {
+            this._updateSessionFromEvent(session2, processedEvent);
+          }
+          const transactionInfo = processedEvent.transaction_info;
+          if (isTransaction && transactionInfo && processedEvent.transaction !== event.transaction) {
+            const source = "custom";
+            processedEvent.transaction_info = __spreadProps(__spreadValues({}, transactionInfo), {
+              source
             });
-            throw new utils.SentryError(`Event processing pipeline threw an error, original event will not be sent. Details have been sent as a new event.
-Reason: ${reason}`);
+          }
+          this.sendEvent(processedEvent, hint);
+          return processedEvent;
+        }).then(null, (reason) => {
+          if (reason instanceof utils.SentryError) {
+            throw reason;
+          }
+          this.captureException(reason, {
+            data: {
+              __sentry__: true
+            },
+            originalException: reason
           });
+          throw new utils.SentryError(`Event processing pipeline threw an error, original event will not be sent. Details have been sent as a new event.
+Reason: ${reason}`);
+        });
       }
       _process(promise) {
         this._numProcessing++;
-        void promise.then(
-          (value) => {
-            this._numProcessing--;
-            return value;
-          },
-          (reason) => {
-            this._numProcessing--;
-            return reason;
-          },
-        );
+        void promise.then((value) => {
+          this._numProcessing--;
+          return value;
+        }, (reason) => {
+          this._numProcessing--;
+          return reason;
+        });
       }
       _sendEnvelope(envelope2) {
         if (this._transport && this._dsn) {
           this.emit("beforeEnvelope", envelope2);
           return this._transport.send(envelope2).then(null, (reason) => {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.error("Error while sending event:", reason);
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Error while sending event:", reason);
           });
         } else {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error("Transport disabled");
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Transport disabled");
         }
       }
       _clearOutcomes() {
@@ -6962,7 +5744,7 @@ Reason: ${reason}`);
           return {
             reason,
             category,
-            quantity: outcomes[key],
+            quantity: outcomes[key]
           };
         });
       }
@@ -6970,23 +5752,15 @@ Reason: ${reason}`);
     function _validateBeforeSendResult(beforeSendResult, beforeSendLabel) {
       const invalidValueError = `${beforeSendLabel} must return \`null\` or a valid event.`;
       if (utils.isThenable(beforeSendResult)) {
-        return beforeSendResult.then(
-          (event) => {
-            if (!utils.isPlainObject(event) && event !== null) {
-              throw new utils.SentryError(invalidValueError);
-            }
-            return event;
-          },
-          (e) => {
-            throw new utils.SentryError(
-              `${beforeSendLabel} rejected with ${e}`,
-            );
-          },
-        );
-      } else if (
-        !utils.isPlainObject(beforeSendResult) &&
-        beforeSendResult !== null
-      ) {
+        return beforeSendResult.then((event) => {
+          if (!utils.isPlainObject(event) && event !== null) {
+            throw new utils.SentryError(invalidValueError);
+          }
+          return event;
+        }, (e) => {
+          throw new utils.SentryError(`${beforeSendLabel} rejected with ${e}`);
+        });
+      } else if (!utils.isPlainObject(beforeSendResult) && beforeSendResult !== null) {
         throw new utils.SentryError(invalidValueError);
       }
       return beforeSendResult;
@@ -7008,7 +5782,7 @@ Reason: ${reason}`);
       return event.type === "transaction";
     }
     exports.BaseClient = BaseClient;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/sdk.js
@@ -7022,9 +5796,7 @@ var require_sdk = __commonJS({
         if (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) {
           utils.logger.enable();
         } else {
-          console.warn(
-            "[Sentry] Cannot initialize SDK with `debug` option using a non-debug bundle.",
-          );
+          console.warn("[Sentry] Cannot initialize SDK with `debug` option using a non-debug bundle.");
         }
       }
       const hub$1 = hub.getCurrentHub();
@@ -7034,7 +5806,7 @@ var require_sdk = __commonJS({
       hub$1.bindClient(client);
     }
     exports.initAndBind = initAndBind;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/transports/base.js
@@ -7043,27 +5815,16 @@ var require_base = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var DEFAULT_TRANSPORT_BUFFER_SIZE = 30;
-    function createTransport(
-      options,
-      makeRequest,
-      buffer = utils.makePromiseBuffer(
-        options.bufferSize || DEFAULT_TRANSPORT_BUFFER_SIZE,
-      ),
-    ) {
+    function createTransport(options, makeRequest, buffer = utils.makePromiseBuffer(options.bufferSize || DEFAULT_TRANSPORT_BUFFER_SIZE)) {
       let rateLimits = {};
       const flush = (timeout) => buffer.drain(timeout);
       function send(envelope) {
         const filteredEnvelopeItems = [];
         utils.forEachEnvelopeItem(envelope, (item, type) => {
-          const envelopeItemDataCategory =
-            utils.envelopeItemTypeToDataCategory(type);
+          const envelopeItemDataCategory = utils.envelopeItemTypeToDataCategory(type);
           if (utils.isRateLimited(rateLimits, envelopeItemDataCategory)) {
             const event = getEventForEnvelopeItem(item, type);
-            options.recordDroppedEvent(
-              "ratelimit_backoff",
-              envelopeItemDataCategory,
-              event,
-            );
+            options.recordDroppedEvent("ratelimit_backoff", envelopeItemDataCategory, event);
           } else {
             filteredEnvelopeItems.push(item);
           }
@@ -7071,65 +5832,37 @@ var require_base = __commonJS({
         if (filteredEnvelopeItems.length === 0) {
           return utils.resolvedSyncPromise();
         }
-        const filteredEnvelope = utils.createEnvelope(
-          envelope[0],
-          filteredEnvelopeItems,
-        );
+        const filteredEnvelope = utils.createEnvelope(envelope[0], filteredEnvelopeItems);
         const recordEnvelopeLoss = (reason) => {
           utils.forEachEnvelopeItem(filteredEnvelope, (item, type) => {
             const event = getEventForEnvelopeItem(item, type);
-            options.recordDroppedEvent(
-              reason,
-              utils.envelopeItemTypeToDataCategory(type),
-              event,
-            );
+            options.recordDroppedEvent(reason, utils.envelopeItemTypeToDataCategory(type), event);
           });
         };
-        const requestTask = () =>
-          makeRequest({
-            body: utils.serializeEnvelope(
-              filteredEnvelope,
-              options.textEncoder,
-            ),
-          }).then(
-            (response) => {
-              if (
-                response.statusCode !== void 0 &&
-                (response.statusCode < 200 || response.statusCode >= 300)
-              ) {
-                (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                  utils.logger.warn(
-                    `Sentry responded with status code ${response.statusCode} to sent event.`,
-                  );
-              }
-              rateLimits = utils.updateRateLimits(rateLimits, response);
-              return response;
-            },
-            (error) => {
-              recordEnvelopeLoss("network_error");
-              throw error;
-            },
-          );
-        return buffer.add(requestTask).then(
-          (result) => result,
-          (error) => {
-            if (error instanceof utils.SentryError) {
-              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                utils.logger.error(
-                  "Skipped sending event because buffer is full.",
-                );
-              recordEnvelopeLoss("queue_overflow");
-              return utils.resolvedSyncPromise();
-            } else {
-              throw error;
-            }
-          },
-        );
+        const requestTask = () => makeRequest({ body: utils.serializeEnvelope(filteredEnvelope, options.textEncoder) }).then((response) => {
+          if (response.statusCode !== void 0 && (response.statusCode < 200 || response.statusCode >= 300)) {
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Sentry responded with status code ${response.statusCode} to sent event.`);
+          }
+          rateLimits = utils.updateRateLimits(rateLimits, response);
+          return response;
+        }, (error) => {
+          recordEnvelopeLoss("network_error");
+          throw error;
+        });
+        return buffer.add(requestTask).then((result) => result, (error) => {
+          if (error instanceof utils.SentryError) {
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Skipped sending event because buffer is full.");
+            recordEnvelopeLoss("queue_overflow");
+            return utils.resolvedSyncPromise();
+          } else {
+            throw error;
+          }
+        });
       }
       send.__sentry__baseTransport__ = true;
       return {
         send,
-        flush,
+        flush
       };
     }
     function getEventForEnvelopeItem(item, type) {
@@ -7140,7 +5873,7 @@ var require_base = __commonJS({
     }
     exports.DEFAULT_TRANSPORT_BUFFER_SIZE = DEFAULT_TRANSPORT_BUFFER_SIZE;
     exports.createTransport = createTransport;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/transports/offline.js
@@ -7152,25 +5885,16 @@ var require_offline = __commonJS({
     var START_DELAY = 5e3;
     var MAX_DELAY = 36e5;
     function log(msg, error) {
-      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-        utils.logger.info(`[Offline]: ${msg}`, error);
+      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.info(`[Offline]: ${msg}`, error);
     }
     function makeOfflineTransport(createTransport) {
       return (options) => {
         const transport = createTransport(options);
-        const store = options.createStore
-          ? options.createStore(options)
-          : void 0;
+        const store = options.createStore ? options.createStore(options) : void 0;
         let retryDelay = START_DELAY;
         let flushTimer;
         function shouldQueue(env, error, retryDelay2) {
-          if (
-            utils.envelopeContainsItemType(env, [
-              "replay_event",
-              "replay_recording",
-              "client_report",
-            ])
-          ) {
+          if (utils.envelopeContainsItemType(env, ["replay_event", "replay_recording", "client_report"])) {
             return false;
           }
           if (options.shouldStore) {
@@ -7212,9 +5936,7 @@ var require_offline = __commonJS({
             let delay = MIN_DELAY;
             if (result) {
               if (result.headers && result.headers["retry-after"]) {
-                delay = utils.parseRetryAfterHeader(
-                  result.headers["retry-after"],
-                );
+                delay = utils.parseRetryAfterHeader(result.headers["retry-after"]);
               } else if ((result.statusCode || 0) >= 400) {
                 return result;
               }
@@ -7223,7 +5945,7 @@ var require_offline = __commonJS({
             retryDelay = START_DELAY;
             return result;
           } catch (e) {
-            if (store && (await shouldQueue(envelope, e, retryDelay))) {
+            if (store && await shouldQueue(envelope, e, retryDelay)) {
               await store.insert(envelope);
               flushWithBackOff();
               log("Error sending. Event queued", e);
@@ -7238,14 +5960,14 @@ var require_offline = __commonJS({
         }
         return {
           send,
-          flush: (t) => transport.flush(t),
+          flush: (t) => transport.flush(t)
         };
       };
     }
     exports.MIN_DELAY = MIN_DELAY;
     exports.START_DELAY = START_DELAY;
     exports.makeOfflineTransport = makeOfflineTransport;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/transports/multiplexed.js
@@ -7275,9 +5997,7 @@ var require_multiplexed = __commonJS({
               return void 0;
             }
             const url = api.getEnvelopeEndpointWithUrlEncodedAuth(validatedDsn);
-            otherTransports[dsn] = createTransport(
-              __spreadProps(__spreadValues({}, options), { url }),
-            );
+            otherTransports[dsn] = createTransport(__spreadProps(__spreadValues({}, options), { url }));
           }
           return otherTransports[dsn];
         }
@@ -7286,35 +6006,26 @@ var require_multiplexed = __commonJS({
             const eventTypes = types && types.length ? types : ["event"];
             return eventFromEnvelope(envelope, eventTypes);
           }
-          const transports = matcher({ envelope, getEvent })
-            .map((dsn) => getTransport(dsn))
-            .filter((t) => !!t);
+          const transports = matcher({ envelope, getEvent }).map((dsn) => getTransport(dsn)).filter((t) => !!t);
           if (transports.length === 0) {
             transports.push(fallbackTransport);
           }
-          const results = await Promise.all(
-            transports.map((transport) => transport.send(envelope)),
-          );
+          const results = await Promise.all(transports.map((transport) => transport.send(envelope)));
           return results[0];
         }
         async function flush(timeout) {
-          const allTransports = [
-            ...Object.keys(otherTransports).map((dsn) => otherTransports[dsn]),
-            fallbackTransport,
-          ];
-          const results = await Promise.all(
-            allTransports.map((transport) => transport.flush(timeout)),
-          );
+          const allTransports = [...Object.keys(otherTransports).map((dsn) => otherTransports[dsn]), fallbackTransport];
+          const results = await Promise.all(allTransports.map((transport) => transport.flush(timeout)));
           return results.every((r) => r);
         }
         return {
           send,
-          flush,
+          flush
         };
       };
     }
     exports.makeMultiplexedTransport = makeMultiplexedTransport;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/version.js
@@ -7323,7 +6034,7 @@ var require_version = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var SDK_VERSION = "7.58.1";
     exports.SDK_VERSION = SDK_VERSION;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/integrations/functiontostring.js
@@ -7345,16 +6056,17 @@ var require_functiontostring = __commonJS({
       setupOnce() {
         originalFunctionToString = Function.prototype.toString;
         try {
-          Function.prototype.toString = function (...args) {
+          Function.prototype.toString = function(...args) {
             const context = utils.getOriginalFunction(this) || this;
             return originalFunctionToString.apply(context, args);
           };
-        } catch (e) {}
+        } catch (e) {
+        }
       }
     };
     FunctionToString.__initStatic();
     exports.FunctionToString = FunctionToString;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/integrations/inboundfilters.js
@@ -7362,10 +6074,7 @@ var require_inboundfilters = __commonJS({
   "node_modules/@sentry/core/cjs/integrations/inboundfilters.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
-    var DEFAULT_IGNORE_ERRORS = [
-      /^Script error\.?$/,
-      /^Javascript error: Script error\.? on line 0$/,
-    ];
+    var DEFAULT_IGNORE_ERRORS = [/^Script error\.?$/, /^Javascript error: Script error\.? on line 0$/];
     var DEFAULT_IGNORE_TRANSACTIONS = [
       /^.*healthcheck.*$/,
       /^.*healthy.*$/,
@@ -7373,7 +6082,7 @@ var require_inboundfilters = __commonJS({
       /^.*ready.*$/,
       /^.*heartbeat.*$/,
       /^.*\/health$/,
-      /^.*\/healthz$/,
+      /^.*\/healthz$/
     ];
     var InboundFilters = class {
       static __initStatic() {
@@ -7407,67 +6116,45 @@ var require_inboundfilters = __commonJS({
     InboundFilters.__initStatic();
     function _mergeOptions(internalOptions = {}, clientOptions = {}) {
       return {
-        allowUrls: [
-          ...(internalOptions.allowUrls || []),
-          ...(clientOptions.allowUrls || []),
-        ],
-        denyUrls: [
-          ...(internalOptions.denyUrls || []),
-          ...(clientOptions.denyUrls || []),
-        ],
+        allowUrls: [...internalOptions.allowUrls || [], ...clientOptions.allowUrls || []],
+        denyUrls: [...internalOptions.denyUrls || [], ...clientOptions.denyUrls || []],
         ignoreErrors: [
-          ...(internalOptions.ignoreErrors || []),
-          ...(clientOptions.ignoreErrors || []),
-          ...(internalOptions.disableErrorDefaults
-            ? []
-            : DEFAULT_IGNORE_ERRORS),
+          ...internalOptions.ignoreErrors || [],
+          ...clientOptions.ignoreErrors || [],
+          ...internalOptions.disableErrorDefaults ? [] : DEFAULT_IGNORE_ERRORS
         ],
         ignoreTransactions: [
-          ...(internalOptions.ignoreTransactions || []),
-          ...(clientOptions.ignoreTransactions || []),
-          ...(internalOptions.disableTransactionDefaults
-            ? []
-            : DEFAULT_IGNORE_TRANSACTIONS),
+          ...internalOptions.ignoreTransactions || [],
+          ...clientOptions.ignoreTransactions || [],
+          ...internalOptions.disableTransactionDefaults ? [] : DEFAULT_IGNORE_TRANSACTIONS
         ],
-        ignoreInternal:
-          internalOptions.ignoreInternal !== void 0
-            ? internalOptions.ignoreInternal
-            : true,
+        ignoreInternal: internalOptions.ignoreInternal !== void 0 ? internalOptions.ignoreInternal : true
       };
     }
     function _shouldDropEvent(event, options) {
       if (options.ignoreInternal && _isSentryError(event)) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(`Event dropped due to being internal Sentry Error.
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Event dropped due to being internal Sentry Error.
 Event: ${utils.getEventDescription(event)}`);
         return true;
       }
       if (_isIgnoredError(event, options.ignoreErrors)) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger
-            .warn(`Event dropped due to being matched by \`ignoreErrors\` option.
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Event dropped due to being matched by \`ignoreErrors\` option.
 Event: ${utils.getEventDescription(event)}`);
         return true;
       }
       if (_isIgnoredTransaction(event, options.ignoreTransactions)) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger
-            .warn(`Event dropped due to being matched by \`ignoreTransactions\` option.
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Event dropped due to being matched by \`ignoreTransactions\` option.
 Event: ${utils.getEventDescription(event)}`);
         return true;
       }
       if (_isDeniedUrl(event, options.denyUrls)) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger
-            .warn(`Event dropped due to being matched by \`denyUrls\` option.
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Event dropped due to being matched by \`denyUrls\` option.
 Event: ${utils.getEventDescription(event)}.
 Url: ${_getEventFilterUrl(event)}`);
         return true;
       }
       if (!_isAllowedUrl(event, options.allowUrls)) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger
-            .warn(`Event dropped due to not being matched by \`allowUrls\` option.
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Event dropped due to not being matched by \`allowUrls\` option.
 Event: ${utils.getEventDescription(event)}.
 Url: ${_getEventFilterUrl(event)}`);
         return true;
@@ -7478,22 +6165,14 @@ Url: ${_getEventFilterUrl(event)}`);
       if (event.type || !ignoreErrors || !ignoreErrors.length) {
         return false;
       }
-      return _getPossibleEventMessages(event).some((message) =>
-        utils.stringMatchesSomePattern(message, ignoreErrors),
-      );
+      return _getPossibleEventMessages(event).some((message) => utils.stringMatchesSomePattern(message, ignoreErrors));
     }
     function _isIgnoredTransaction(event, ignoreTransactions) {
-      if (
-        event.type !== "transaction" ||
-        !ignoreTransactions ||
-        !ignoreTransactions.length
-      ) {
+      if (event.type !== "transaction" || !ignoreTransactions || !ignoreTransactions.length) {
         return false;
       }
       const name = event.transaction;
-      return name
-        ? utils.stringMatchesSomePattern(name, ignoreTransactions)
-        : false;
+      return name ? utils.stringMatchesSomePattern(name, ignoreTransactions) : false;
     }
     function _isDeniedUrl(event, denyUrls) {
       if (!denyUrls || !denyUrls.length) {
@@ -7516,16 +6195,10 @@ Url: ${_getEventFilterUrl(event)}`);
       if (event.exception) {
         const { values } = event.exception;
         try {
-          const { type = "", value = "" } =
-            (values && values[values.length - 1]) || {};
+          const { type = "", value = "" } = values && values[values.length - 1] || {};
           return [`${value}`, `${type}: ${value}`];
         } catch (oO) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(
-              `Cannot extract message for event ${utils.getEventDescription(
-                event,
-              )}`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error(`Cannot extract message for event ${utils.getEventDescription(event)}`);
           return [];
         }
       }
@@ -7534,17 +6207,14 @@ Url: ${_getEventFilterUrl(event)}`);
     function _isSentryError(event) {
       try {
         return event.exception.values[0].type === "SentryError";
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function _getLastValidUrl(frames = []) {
       for (let i = frames.length - 1; i >= 0; i--) {
         const frame = frames[i];
-        if (
-          frame &&
-          frame.filename !== "<anonymous>" &&
-          frame.filename !== "[native code]"
-        ) {
+        if (frame && frame.filename !== "<anonymous>" && frame.filename !== "[native code]") {
           return frame.filename || null;
         }
       }
@@ -7555,20 +6225,18 @@ Url: ${_getEventFilterUrl(event)}`);
         let frames;
         try {
           frames = event.exception.values[0].stacktrace.frames;
-        } catch (e) {}
+        } catch (e) {
+        }
         return frames ? _getLastValidUrl(frames) : null;
       } catch (oO) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.error(
-            `Cannot extract url for event ${utils.getEventDescription(event)}`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error(`Cannot extract url for event ${utils.getEventDescription(event)}`);
         return null;
       }
     }
     exports.InboundFilters = InboundFilters;
     exports._mergeOptions = _mergeOptions;
     exports._shouldDropEvent = _shouldDropEvent;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/integrations/index.js
@@ -7579,7 +6247,7 @@ var require_integrations = __commonJS({
     var inboundfilters = require_inboundfilters();
     exports.FunctionToString = functiontostring.FunctionToString;
     exports.InboundFilters = inboundfilters.InboundFilters;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/checkin.js
@@ -7587,20 +6255,14 @@ var require_checkin = __commonJS({
   "node_modules/@sentry/core/cjs/checkin.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
-    function createCheckInEnvelope(
-      checkIn,
-      dynamicSamplingContext,
-      metadata,
-      tunnel,
-      dsn,
-    ) {
+    function createCheckInEnvelope(checkIn, dynamicSamplingContext, metadata, tunnel, dsn) {
       const headers2 = {
-        sent_at: new Date().toISOString(),
+        sent_at: new Date().toISOString()
       };
       if (metadata && metadata.sdk) {
         headers2.sdk = {
           name: metadata.sdk.name,
-          version: metadata.sdk.version,
+          version: metadata.sdk.version
         };
       }
       if (!!tunnel && !!dsn) {
@@ -7614,12 +6276,12 @@ var require_checkin = __commonJS({
     }
     function createCheckInEnvelopeItem(checkIn) {
       const checkInHeaders = {
-        type: "check_in",
+        type: "check_in"
       };
       return [checkInHeaders, checkIn];
     }
     exports.createCheckInEnvelope = createCheckInEnvelope;
-  },
+  }
 });
 
 // node_modules/@sentry/core/cjs/index.js
@@ -7665,11 +6327,10 @@ var require_cjs2 = __commonJS({
     exports.getActiveTransaction = utils$1.getActiveTransaction;
     Object.defineProperty(exports, "SpanStatus", {
       enumerable: true,
-      get: () => spanstatus.SpanStatus,
+      get: () => spanstatus.SpanStatus
     });
     exports.trace = trace.trace;
-    exports.getDynamicSamplingContextFromClient =
-      dynamicSamplingContext.getDynamicSamplingContextFromClient;
+    exports.getDynamicSamplingContextFromClient = dynamicSamplingContext.getDynamicSamplingContextFromClient;
     exports.addBreadcrumb = exports$1.addBreadcrumb;
     exports.captureCheckIn = exports$1.captureCheckIn;
     exports.captureEvent = exports$1.captureEvent;
@@ -7699,8 +6360,7 @@ var require_cjs2 = __commonJS({
     exports.SessionFlusher = sessionflusher.SessionFlusher;
     exports.Scope = scope.Scope;
     exports.addGlobalEventProcessor = scope.addGlobalEventProcessor;
-    exports.getEnvelopeEndpointWithUrlEncodedAuth =
-      api.getEnvelopeEndpointWithUrlEncodedAuth;
+    exports.getEnvelopeEndpointWithUrlEncodedAuth = api.getEnvelopeEndpointWithUrlEncodedAuth;
     exports.getReportDialogEndpoint = api.getReportDialogEndpoint;
     exports.BaseClient = baseclient.BaseClient;
     exports.initAndBind = sdk.initAndBind;
@@ -7717,7 +6377,7 @@ var require_cjs2 = __commonJS({
     exports.FunctionToString = functiontostring.FunctionToString;
     exports.InboundFilters = inboundfilters.InboundFilters;
     exports.extractTraceparentData = utils.extractTraceparentData;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_nullishCoalesce.js
@@ -7728,28 +6388,24 @@ var require_nullishCoalesce = __commonJS({
       return lhs != null ? lhs : rhsFn();
     }
     exports._nullishCoalesce = _nullishCoalesce;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_asyncNullishCoalesce.js
 var require_asyncNullishCoalesce = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_asyncNullishCoalesce.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_asyncNullishCoalesce.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var _nullishCoalesce = require_nullishCoalesce();
     async function _asyncNullishCoalesce(lhs, rhsFn) {
       return _nullishCoalesce._nullishCoalesce(lhs, rhsFn);
     }
     exports._asyncNullishCoalesce = _asyncNullishCoalesce;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_asyncOptionalChain.js
 var require_asyncOptionalChain = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_asyncOptionalChain.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_asyncOptionalChain.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     async function _asyncOptionalChain(ops) {
       let lastAccessLHS = void 0;
@@ -7759,10 +6415,7 @@ var require_asyncOptionalChain = __commonJS({
         const op = ops[i];
         const fn = ops[i + 1];
         i += 2;
-        if (
-          (op === "optionalAccess" || op === "optionalCall") &&
-          value == null
-        ) {
+        if ((op === "optionalAccess" || op === "optionalCall") && value == null) {
           return;
         }
         if (op === "access" || op === "optionalAccess") {
@@ -7776,14 +6429,12 @@ var require_asyncOptionalChain = __commonJS({
       return value;
     }
     exports._asyncOptionalChain = _asyncOptionalChain;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_asyncOptionalChainDelete.js
 var require_asyncOptionalChainDelete = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_asyncOptionalChainDelete.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_asyncOptionalChainDelete.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var _asyncOptionalChain = require_asyncOptionalChain();
     async function _asyncOptionalChainDelete(ops) {
@@ -7791,38 +6442,29 @@ var require_asyncOptionalChainDelete = __commonJS({
       return result == null ? true : result;
     }
     exports._asyncOptionalChainDelete = _asyncOptionalChainDelete;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_createNamedExportFrom.js
 var require_createNamedExportFrom = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_createNamedExportFrom.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_createNamedExportFrom.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function _createNamedExportFrom(obj, localName, importedName) {
       exports[localName] = obj[importedName];
     }
     exports._createNamedExportFrom = _createNamedExportFrom;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_createStarExport.js
 var require_createStarExport = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_createStarExport.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_createStarExport.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function _createStarExport(obj) {
-      Object.keys(obj)
-        .filter(
-          (key) =>
-            key !== "default" && key !== "__esModule" && !(key in exports),
-        )
-        .forEach((key) => (exports[key] = obj[key]));
+      Object.keys(obj).filter((key) => key !== "default" && key !== "__esModule" && !(key in exports)).forEach((key) => exports[key] = obj[key]);
     }
     exports._createStarExport = _createStarExport;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_interopDefault.js
@@ -7833,72 +6475,54 @@ var require_interopDefault = __commonJS({
       return requireResult.__esModule ? requireResult.default : requireResult;
     }
     exports._interopDefault = _interopDefault$1;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_interopNamespace.js
 var require_interopNamespace = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopNamespace.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopNamespace.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function _interopNamespace$1(requireResult) {
-      return requireResult.__esModule
-        ? requireResult
-        : __spreadProps(__spreadValues({}, requireResult), {
-            default: requireResult,
-          });
+      return requireResult.__esModule ? requireResult : __spreadProps(__spreadValues({}, requireResult), { default: requireResult });
     }
     exports._interopNamespace = _interopNamespace$1;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_interopNamespaceDefaultOnly.js
 var require_interopNamespaceDefaultOnly = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopNamespaceDefaultOnly.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopNamespaceDefaultOnly.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function _interopNamespaceDefaultOnly$1(requireResult) {
       return {
         __proto__: null,
-        default: requireResult,
+        default: requireResult
       };
     }
     exports._interopNamespaceDefaultOnly = _interopNamespaceDefaultOnly$1;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_interopRequireDefault.js
 var require_interopRequireDefault = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopRequireDefault.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopRequireDefault.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function _interopRequireDefault(requireResult) {
-      return requireResult.__esModule
-        ? requireResult
-        : { default: requireResult };
+      return requireResult.__esModule ? requireResult : { default: requireResult };
     }
     exports._interopRequireDefault = _interopRequireDefault;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_interopRequireWildcard.js
 var require_interopRequireWildcard = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopRequireWildcard.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_interopRequireWildcard.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function _interopRequireWildcard(requireResult) {
-      return requireResult.__esModule
-        ? requireResult
-        : __spreadProps(__spreadValues({}, requireResult), {
-            default: requireResult,
-          });
+      return requireResult.__esModule ? requireResult : __spreadProps(__spreadValues({}, requireResult), { default: requireResult });
     }
     exports._interopRequireWildcard = _interopRequireWildcard;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_optionalChain.js
@@ -7913,10 +6537,7 @@ var require_optionalChain = __commonJS({
         const op = ops[i];
         const fn = ops[i + 1];
         i += 2;
-        if (
-          (op === "optionalAccess" || op === "optionalCall") &&
-          value == null
-        ) {
+        if ((op === "optionalAccess" || op === "optionalCall") && value == null) {
           return;
         }
         if (op === "access" || op === "optionalAccess") {
@@ -7930,14 +6551,12 @@ var require_optionalChain = __commonJS({
       return value;
     }
     exports._optionalChain = _optionalChain;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/_optionalChainDelete.js
 var require_optionalChainDelete = __commonJS({
-  "node_modules/@sentry/utils/cjs/buildPolyfills/_optionalChainDelete.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/utils/cjs/buildPolyfills/_optionalChainDelete.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var _optionalChain = require_optionalChain();
     function _optionalChainDelete(ops) {
@@ -7945,7 +6564,7 @@ var require_optionalChainDelete = __commonJS({
       return result == null ? true : result;
     }
     exports._optionalChainDelete = _optionalChainDelete;
-  },
+  }
 });
 
 // node_modules/@sentry/utils/cjs/buildPolyfills/index.js
@@ -7967,64 +6586,42 @@ var require_buildPolyfills = __commonJS({
     var _optionalChainDelete = require_optionalChainDelete();
     exports._asyncNullishCoalesce = _asyncNullishCoalesce._asyncNullishCoalesce;
     exports._asyncOptionalChain = _asyncOptionalChain._asyncOptionalChain;
-    exports._asyncOptionalChainDelete =
-      _asyncOptionalChainDelete._asyncOptionalChainDelete;
-    exports._createNamedExportFrom =
-      _createNamedExportFrom._createNamedExportFrom;
+    exports._asyncOptionalChainDelete = _asyncOptionalChainDelete._asyncOptionalChainDelete;
+    exports._createNamedExportFrom = _createNamedExportFrom._createNamedExportFrom;
     exports._createStarExport = _createStarExport._createStarExport;
     exports._interopDefault = _interopDefault$1._interopDefault;
     exports._interopNamespace = _interopNamespace$1._interopNamespace;
-    exports._interopNamespaceDefaultOnly =
-      _interopNamespaceDefaultOnly$1._interopNamespaceDefaultOnly;
-    exports._interopRequireDefault =
-      _interopRequireDefault._interopRequireDefault;
-    exports._interopRequireWildcard =
-      _interopRequireWildcard._interopRequireWildcard;
+    exports._interopNamespaceDefaultOnly = _interopNamespaceDefaultOnly$1._interopNamespaceDefaultOnly;
+    exports._interopRequireDefault = _interopRequireDefault._interopRequireDefault;
+    exports._interopRequireWildcard = _interopRequireWildcard._interopRequireWildcard;
     exports._nullishCoalesce = _nullishCoalesce._nullishCoalesce;
     exports._optionalChain = _optionalChain._optionalChain;
     exports._optionalChainDelete = _optionalChainDelete._optionalChainDelete;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/utils/node-utils.js
 var require_node_utils = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/utils/node-utils.js"(
-    exports,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/utils/node-utils.js"(exports) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     function shouldDisableAutoInstrumentation(getCurrentHub) {
-      const clientOptions = _optionalChain([
-        getCurrentHub,
-        "call",
-        (_) => _(),
-        "access",
-        (_2) => _2.getClient,
-        "call",
-        (_3) => _3(),
-        "optionalAccess",
-        (_4) => _4.getOptions,
-        "call",
-        (_5) => _5(),
-      ]);
-      const instrumenter =
-        _optionalChain([
-          clientOptions,
-          "optionalAccess",
-          (_6) => _6.instrumenter,
-        ]) || "sentry";
+      const clientOptions = _optionalChain([getCurrentHub, "call", (_) => _(), "access", (_2) => _2.getClient, "call", (_3) => _3(), "optionalAccess", (_4) => _4.getOptions, "call", (_5) => _5()]);
+      const instrumenter = _optionalChain([clientOptions, "optionalAccess", (_6) => _6.instrumenter]) || "sentry";
       return instrumenter !== "sentry";
     }
     exports.shouldDisableAutoInstrumentation = shouldDisableAutoInstrumentation;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/express.js
 var require_express = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/express.js"(
-    exports,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/express.js"(exports) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var nodeUtils = require_node_utils();
@@ -8038,23 +6635,15 @@ var require_express = __commonJS({
       constructor(options = {}) {
         Express.prototype.__init.call(this);
         this._router = options.router || options.app;
-        this._methods = (
-          Array.isArray(options.methods) ? options.methods : []
-        ).concat("use");
+        this._methods = (Array.isArray(options.methods) ? options.methods : []).concat("use");
       }
       setupOnce(_, getCurrentHub) {
         if (!this._router) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(
-              "ExpressIntegration is missing an Express instance",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("ExpressIntegration is missing an Express instance");
           return;
         }
         if (nodeUtils.shouldDisableAutoInstrumentation(getCurrentHub)) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "Express Integration is skipped because of instrumenter configuration.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("Express Integration is skipped because of instrumenter configuration.");
           return;
         }
         instrumentMiddlewares(this._router, this._methods);
@@ -8066,12 +6655,12 @@ var require_express = __commonJS({
       const arity = fn.length;
       switch (arity) {
         case 2: {
-          return function (req, res) {
+          return function(req, res) {
             const transaction = res.__sentry_transaction;
             if (transaction) {
               const span = transaction.startChild({
                 description: fn.name,
-                op: `middleware.express.${method}`,
+                op: `middleware.express.${method}`
               });
               res.once("finish", () => {
                 span.finish();
@@ -8081,61 +6670,33 @@ var require_express = __commonJS({
           };
         }
         case 3: {
-          return function (req, res, next) {
+          return function(req, res, next) {
             const transaction = res.__sentry_transaction;
-            const span = _optionalChain([
-              transaction,
-              "optionalAccess",
-              (_2) => _2.startChild,
-              "call",
-              (_3) =>
-                _3({
-                  description: fn.name,
-                  op: `middleware.express.${method}`,
-                }),
-            ]);
-            fn.call(this, req, res, function (...args) {
-              _optionalChain([
-                span,
-                "optionalAccess",
-                (_4) => _4.finish,
-                "call",
-                (_5) => _5(),
-              ]);
+            const span = _optionalChain([transaction, "optionalAccess", (_2) => _2.startChild, "call", (_3) => _3({
+              description: fn.name,
+              op: `middleware.express.${method}`
+            })]);
+            fn.call(this, req, res, function(...args) {
+              _optionalChain([span, "optionalAccess", (_4) => _4.finish, "call", (_5) => _5()]);
               next.call(this, ...args);
             });
           };
         }
         case 4: {
-          return function (err, req, res, next) {
+          return function(err, req, res, next) {
             const transaction = res.__sentry_transaction;
-            const span = _optionalChain([
-              transaction,
-              "optionalAccess",
-              (_6) => _6.startChild,
-              "call",
-              (_7) =>
-                _7({
-                  description: fn.name,
-                  op: `middleware.express.${method}`,
-                }),
-            ]);
-            fn.call(this, err, req, res, function (...args) {
-              _optionalChain([
-                span,
-                "optionalAccess",
-                (_8) => _8.finish,
-                "call",
-                (_9) => _9(),
-              ]);
+            const span = _optionalChain([transaction, "optionalAccess", (_6) => _6.startChild, "call", (_7) => _7({
+              description: fn.name,
+              op: `middleware.express.${method}`
+            })]);
+            fn.call(this, err, req, res, function(...args) {
+              _optionalChain([span, "optionalAccess", (_8) => _8.finish, "call", (_9) => _9()]);
               next.call(this, ...args);
             });
           };
         }
         default: {
-          throw new Error(
-            `Express middleware takes 2-4 arguments. Got: ${arity}`,
-          );
+          throw new Error(`Express middleware takes 2-4 arguments. Got: ${arity}`);
         }
       }
     }
@@ -8157,7 +6718,7 @@ var require_express = __commonJS({
     }
     function patchMiddleware(router, method) {
       const originalCallback = router[method];
-      router[method] = function (...args) {
+      router[method] = function(...args) {
         return originalCallback.call(this, ...wrapMiddlewareArgs(args, method));
       };
       return router;
@@ -8172,104 +6733,56 @@ var require_express = __commonJS({
       }
       const router = isApp ? appOrRouter._router : appOrRouter;
       if (!router) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.debug(
-            "Cannot instrument router for URL Parameterization (did not find a valid router).",
-          );
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.debug(
-            "Routing instrumentation is currently only supported in Express 4.",
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.debug("Cannot instrument router for URL Parameterization (did not find a valid router).");
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.debug("Routing instrumentation is currently only supported in Express 4.");
         return;
       }
       const routerProto = Object.getPrototypeOf(router);
       const originalProcessParams = routerProto.process_params;
-      routerProto.process_params = function process_params(
-        layer,
-        called,
-        req,
-        res,
-        done,
-      ) {
+      routerProto.process_params = function process_params(layer, called, req, res, done) {
         if (!req._reconstructedRoute) {
           req._reconstructedRoute = "";
         }
-        const { layerRoutePath, isRegex, isArray, numExtraSegments } =
-          getLayerRoutePathInfo(layer);
+        const { layerRoutePath, isRegex, isArray, numExtraSegments } = getLayerRoutePathInfo(layer);
         if (layerRoutePath || isRegex || isArray) {
           req._hasParameters = true;
         }
         const partialRoute = layerRoutePath || layer.path || "";
-        const finalPartialRoute = partialRoute
-          .split("/")
-          .filter(
-            (segment) =>
-              segment.length > 0 &&
-              (isRegex || isArray || !segment.includes("*")),
-          )
-          .join("/");
+        const finalPartialRoute = partialRoute.split("/").filter((segment) => segment.length > 0 && (isRegex || isArray || !segment.includes("*"))).join("/");
         if (finalPartialRoute && finalPartialRoute.length > 0) {
-          req._reconstructedRoute += `/${finalPartialRoute}${
-            isRegex ? "/" : ""
-          }`;
+          req._reconstructedRoute += `/${finalPartialRoute}${isRegex ? "/" : ""}`;
         }
-        const urlLength =
-          utils.getNumberOfUrlSegments(req.originalUrl || "") +
-          numExtraSegments;
-        const routeLength = utils.getNumberOfUrlSegments(
-          req._reconstructedRoute,
-        );
+        const urlLength = utils.getNumberOfUrlSegments(req.originalUrl || "") + numExtraSegments;
+        const routeLength = utils.getNumberOfUrlSegments(req._reconstructedRoute);
         if (urlLength === routeLength) {
           if (!req._hasParameters) {
             if (req._reconstructedRoute !== req.originalUrl) {
-              req._reconstructedRoute = req.originalUrl
-                ? utils.stripUrlQueryAndFragment(req.originalUrl)
-                : req.originalUrl;
+              req._reconstructedRoute = req.originalUrl ? utils.stripUrlQueryAndFragment(req.originalUrl) : req.originalUrl;
             }
           }
           const transaction = res.__sentry_transaction;
           if (transaction && transaction.metadata.source !== "custom") {
             const finalRoute = req._reconstructedRoute || "/";
-            transaction.setName(
-              ...utils.extractPathForTransaction(req, {
-                path: true,
-                method: true,
-                customRoute: finalRoute,
-              }),
-            );
+            transaction.setName(...utils.extractPathForTransaction(req, { path: true, method: true, customRoute: finalRoute }));
           }
         }
         return originalProcessParams.call(this, layer, called, req, res, done);
       };
     }
     function getLayerRoutePathInfo(layer) {
-      const lrp = _optionalChain([
-        layer,
-        "access",
-        (_10) => _10.route,
-        "optionalAccess",
-        (_11) => _11.path,
-      ]);
+      const lrp = _optionalChain([layer, "access", (_10) => _10.route, "optionalAccess", (_11) => _11.path]);
       const isRegex = utils.isRegExp(lrp);
       const isArray = Array.isArray(lrp);
       if (!lrp) {
         return { isRegex, isArray, numExtraSegments: 0 };
       }
-      const numExtraSegments = isArray
-        ? Math.max(
-            getNumberOfArrayUrlSegments(lrp) -
-              utils.getNumberOfUrlSegments(layer.path || ""),
-            0,
-          )
-        : 0;
+      const numExtraSegments = isArray ? Math.max(getNumberOfArrayUrlSegments(lrp) - utils.getNumberOfUrlSegments(layer.path || ""), 0) : 0;
       const layerRoutePath = getLayerRoutePathString(isArray, lrp);
       return { layerRoutePath, isRegex, isArray, numExtraSegments };
     }
     function getNumberOfArrayUrlSegments(routesArray) {
       return routesArray.reduce((accNumSegments, currentRoute) => {
-        return (
-          accNumSegments + utils.getNumberOfUrlSegments(currentRoute.toString())
-        );
+        return accNumSegments + utils.getNumberOfUrlSegments(currentRoute.toString());
       }, 0);
     }
     function getLayerRoutePathString(isArray, lrp) {
@@ -8279,15 +6792,15 @@ var require_express = __commonJS({
       return lrp && lrp.toString();
     }
     exports.Express = Express;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/postgres.js
 var require_postgres = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/postgres.js"(
-    exports,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/postgres.js"(exports) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var nodeUtils = require_node_utils();
@@ -8303,113 +6816,54 @@ var require_postgres = __commonJS({
         this._usePgNative = !!options.usePgNative;
       }
       loadDependency() {
-        return (this._module = this._module || utils.loadModule("pg"));
+        return this._module = this._module || utils.loadModule("pg");
       }
       setupOnce(_, getCurrentHub) {
         if (nodeUtils.shouldDisableAutoInstrumentation(getCurrentHub)) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "Postgres Integration is skipped because of instrumenter configuration.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("Postgres Integration is skipped because of instrumenter configuration.");
           return;
         }
         const pkg = this.loadDependency();
         if (!pkg) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(
-              "Postgres Integration was unable to require `pg` package.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Postgres Integration was unable to require `pg` package.");
           return;
         }
-        if (
-          this._usePgNative &&
-          !_optionalChain([
-            pkg,
-            "access",
-            (_2) => _2.native,
-            "optionalAccess",
-            (_3) => _3.Client,
-          ])
-        ) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(
-              "Postgres Integration was unable to access 'pg-native' bindings.",
-            );
+        if (this._usePgNative && !_optionalChain([pkg, "access", (_2) => _2.native, "optionalAccess", (_3) => _3.Client])) {
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Postgres Integration was unable to access 'pg-native' bindings.");
           return;
         }
         const { Client } = this._usePgNative ? pkg.native : pkg;
-        utils.fill(Client.prototype, "query", function (orig) {
-          return function (config, values, callback) {
+        utils.fill(Client.prototype, "query", function(orig) {
+          return function(config, values, callback) {
             const scope = getCurrentHub().getScope();
-            const parentSpan = _optionalChain([
-              scope,
-              "optionalAccess",
-              (_4) => _4.getSpan,
-              "call",
-              (_5) => _5(),
-            ]);
-            const span = _optionalChain([
-              parentSpan,
-              "optionalAccess",
-              (_6) => _6.startChild,
-              "call",
-              (_7) =>
-                _7({
-                  description:
-                    typeof config === "string" ? config : config.text,
-                  op: "db",
-                  data: {
-                    "db.system": "postgresql",
-                  },
-                }),
-            ]);
+            const parentSpan = _optionalChain([scope, "optionalAccess", (_4) => _4.getSpan, "call", (_5) => _5()]);
+            const span = _optionalChain([parentSpan, "optionalAccess", (_6) => _6.startChild, "call", (_7) => _7({
+              description: typeof config === "string" ? config : config.text,
+              op: "db",
+              data: {
+                "db.system": "postgresql"
+              }
+            })]);
             if (typeof callback === "function") {
-              return orig.call(this, config, values, function (err, result) {
-                _optionalChain([
-                  span,
-                  "optionalAccess",
-                  (_8) => _8.finish,
-                  "call",
-                  (_9) => _9(),
-                ]);
+              return orig.call(this, config, values, function(err, result) {
+                _optionalChain([span, "optionalAccess", (_8) => _8.finish, "call", (_9) => _9()]);
                 callback(err, result);
               });
             }
             if (typeof values === "function") {
-              return orig.call(this, config, function (err, result) {
-                _optionalChain([
-                  span,
-                  "optionalAccess",
-                  (_10) => _10.finish,
-                  "call",
-                  (_11) => _11(),
-                ]);
+              return orig.call(this, config, function(err, result) {
+                _optionalChain([span, "optionalAccess", (_10) => _10.finish, "call", (_11) => _11()]);
                 values(err, result);
               });
             }
-            const rv =
-              typeof values !== "undefined"
-                ? orig.call(this, config, values)
-                : orig.call(this, config);
+            const rv = typeof values !== "undefined" ? orig.call(this, config, values) : orig.call(this, config);
             if (utils.isThenable(rv)) {
               return rv.then((res) => {
-                _optionalChain([
-                  span,
-                  "optionalAccess",
-                  (_12) => _12.finish,
-                  "call",
-                  (_13) => _13(),
-                ]);
+                _optionalChain([span, "optionalAccess", (_12) => _12.finish, "call", (_13) => _13()]);
                 return res;
               });
             }
-            _optionalChain([
-              span,
-              "optionalAccess",
-              (_14) => _14.finish,
-              "call",
-              (_15) => _15(),
-            ]);
+            _optionalChain([span, "optionalAccess", (_14) => _14.finish, "call", (_15) => _15()]);
             return rv;
           };
         });
@@ -8417,15 +6871,15 @@ var require_postgres = __commonJS({
     };
     Postgres.__initStatic();
     exports.Postgres = Postgres;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/mysql.js
 var require_mysql = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/mysql.js"(
-    exports,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/mysql.js"(exports) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var nodeUtils = require_node_utils();
@@ -8440,76 +6894,38 @@ var require_mysql = __commonJS({
         this.name = Mysql.id;
       }
       loadDependency() {
-        return (this._module =
-          this._module || utils.loadModule("mysql/lib/Connection.js"));
+        return this._module = this._module || utils.loadModule("mysql/lib/Connection.js");
       }
       setupOnce(_, getCurrentHub) {
         if (nodeUtils.shouldDisableAutoInstrumentation(getCurrentHub)) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "Mysql Integration is skipped because of instrumenter configuration.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("Mysql Integration is skipped because of instrumenter configuration.");
           return;
         }
         const pkg = this.loadDependency();
         if (!pkg) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(
-              "Mysql Integration was unable to require `mysql` package.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Mysql Integration was unable to require `mysql` package.");
           return;
         }
-        utils.fill(pkg, "createQuery", function (orig) {
-          return function (options, values, callback) {
+        utils.fill(pkg, "createQuery", function(orig) {
+          return function(options, values, callback) {
             const scope = getCurrentHub().getScope();
-            const parentSpan = _optionalChain([
-              scope,
-              "optionalAccess",
-              (_2) => _2.getSpan,
-              "call",
-              (_3) => _3(),
-            ]);
-            const span = _optionalChain([
-              parentSpan,
-              "optionalAccess",
-              (_4) => _4.startChild,
-              "call",
-              (_5) =>
-                _5({
-                  description:
-                    typeof options === "string" ? options : options.sql,
-                  op: "db",
-                  data: {
-                    "db.system": "mysql",
-                  },
-                }),
-            ]);
+            const parentSpan = _optionalChain([scope, "optionalAccess", (_2) => _2.getSpan, "call", (_3) => _3()]);
+            const span = _optionalChain([parentSpan, "optionalAccess", (_4) => _4.startChild, "call", (_5) => _5({
+              description: typeof options === "string" ? options : options.sql,
+              op: "db",
+              data: {
+                "db.system": "mysql"
+              }
+            })]);
             if (typeof callback === "function") {
-              return orig.call(
-                this,
-                options,
-                values,
-                function (err, result, fields) {
-                  _optionalChain([
-                    span,
-                    "optionalAccess",
-                    (_6) => _6.finish,
-                    "call",
-                    (_7) => _7(),
-                  ]);
-                  callback(err, result, fields);
-                },
-              );
+              return orig.call(this, options, values, function(err, result, fields) {
+                _optionalChain([span, "optionalAccess", (_6) => _6.finish, "call", (_7) => _7()]);
+                callback(err, result, fields);
+              });
             }
             if (typeof values === "function") {
-              return orig.call(this, options, function (err, result, fields) {
-                _optionalChain([
-                  span,
-                  "optionalAccess",
-                  (_8) => _8.finish,
-                  "call",
-                  (_9) => _9(),
-                ]);
+              return orig.call(this, options, function(err, result, fields) {
+                _optionalChain([span, "optionalAccess", (_8) => _8.finish, "call", (_9) => _9()]);
                 values(err, result, fields);
               });
             }
@@ -8520,15 +6936,15 @@ var require_mysql = __commonJS({
     };
     Mysql.__initStatic();
     exports.Mysql = Mysql;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/mongo.js
 var require_mongo = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/mongo.js"(
-    exports,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/mongo.js"(exports) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var nodeUtils = require_node_utils();
@@ -8564,7 +6980,7 @@ var require_mongo = __commonJS({
       "replaceOne",
       "stats",
       "updateMany",
-      "updateOne",
+      "updateOne"
     ];
     var OPERATION_SIGNATURES = {
       bulkWrite: ["operations"],
@@ -8587,15 +7003,10 @@ var require_mongo = __commonJS({
       rename: ["newName"],
       replaceOne: ["filter", "doc"],
       updateMany: ["filter", "update"],
-      updateOne: ["filter", "update"],
+      updateOne: ["filter", "update"]
     };
     function isCursor(maybeCursor) {
-      return (
-        maybeCursor &&
-        typeof maybeCursor === "object" &&
-        maybeCursor.once &&
-        typeof maybeCursor.once === "function"
-      );
+      return maybeCursor && typeof maybeCursor === "object" && maybeCursor.once && typeof maybeCursor.once === "function";
     }
     var Mongo = class {
       static __initStatic() {
@@ -8606,137 +7017,67 @@ var require_mongo = __commonJS({
       }
       constructor(options = {}) {
         Mongo.prototype.__init.call(this);
-        this._operations = Array.isArray(options.operations)
-          ? options.operations
-          : OPERATIONS;
-        this._describeOperations =
-          "describeOperations" in options ? options.describeOperations : true;
+        this._operations = Array.isArray(options.operations) ? options.operations : OPERATIONS;
+        this._describeOperations = "describeOperations" in options ? options.describeOperations : true;
         this._useMongoose = !!options.useMongoose;
       }
       loadDependency() {
         const moduleName = this._useMongoose ? "mongoose" : "mongodb";
-        return (this._module = this._module || utils.loadModule(moduleName));
+        return this._module = this._module || utils.loadModule(moduleName);
       }
       setupOnce(_, getCurrentHub) {
         if (nodeUtils.shouldDisableAutoInstrumentation(getCurrentHub)) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "Mongo Integration is skipped because of instrumenter configuration.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("Mongo Integration is skipped because of instrumenter configuration.");
           return;
         }
         const pkg = this.loadDependency();
         if (!pkg) {
           const moduleName = this._useMongoose ? "mongoose" : "mongodb";
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(
-              `Mongo Integration was unable to require \`${moduleName}\` package.`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error(`Mongo Integration was unable to require \`${moduleName}\` package.`);
           return;
         }
-        this._instrumentOperations(
-          pkg.Collection,
-          this._operations,
-          getCurrentHub,
-        );
+        this._instrumentOperations(pkg.Collection, this._operations, getCurrentHub);
       }
       _instrumentOperations(collection, operations, getCurrentHub) {
-        operations.forEach((operation) =>
-          this._patchOperation(collection, operation, getCurrentHub),
-        );
+        operations.forEach((operation) => this._patchOperation(collection, operation, getCurrentHub));
       }
       _patchOperation(collection, operation, getCurrentHub) {
-        if (!(operation in collection.prototype)) return;
-        const getSpanContext =
-          this._getSpanContextFromOperationArguments.bind(this);
-        utils.fill(collection.prototype, operation, function (orig) {
-          return function (...args) {
+        if (!(operation in collection.prototype))
+          return;
+        const getSpanContext = this._getSpanContextFromOperationArguments.bind(this);
+        utils.fill(collection.prototype, operation, function(orig) {
+          return function(...args) {
             const lastArg = args[args.length - 1];
             const scope = getCurrentHub().getScope();
-            const parentSpan = _optionalChain([
-              scope,
-              "optionalAccess",
-              (_2) => _2.getSpan,
-              "call",
-              (_3) => _3(),
-            ]);
-            if (
-              typeof lastArg !== "function" ||
-              (operation === "mapReduce" && args.length === 2)
-            ) {
-              const span2 = _optionalChain([
-                parentSpan,
-                "optionalAccess",
-                (_4) => _4.startChild,
-                "call",
-                (_5) => _5(getSpanContext(this, operation, args)),
-              ]);
+            const parentSpan = _optionalChain([scope, "optionalAccess", (_2) => _2.getSpan, "call", (_3) => _3()]);
+            if (typeof lastArg !== "function" || operation === "mapReduce" && args.length === 2) {
+              const span2 = _optionalChain([parentSpan, "optionalAccess", (_4) => _4.startChild, "call", (_5) => _5(getSpanContext(this, operation, args))]);
               const maybePromiseOrCursor = orig.call(this, ...args);
               if (utils.isThenable(maybePromiseOrCursor)) {
                 return maybePromiseOrCursor.then((res) => {
-                  _optionalChain([
-                    span2,
-                    "optionalAccess",
-                    (_6) => _6.finish,
-                    "call",
-                    (_7) => _7(),
-                  ]);
+                  _optionalChain([span2, "optionalAccess", (_6) => _6.finish, "call", (_7) => _7()]);
                   return res;
                 });
               } else if (isCursor(maybePromiseOrCursor)) {
                 const cursor = maybePromiseOrCursor;
                 try {
                   cursor.once("close", () => {
-                    _optionalChain([
-                      span2,
-                      "optionalAccess",
-                      (_8) => _8.finish,
-                      "call",
-                      (_9) => _9(),
-                    ]);
+                    _optionalChain([span2, "optionalAccess", (_8) => _8.finish, "call", (_9) => _9()]);
                   });
                 } catch (e) {
-                  _optionalChain([
-                    span2,
-                    "optionalAccess",
-                    (_10) => _10.finish,
-                    "call",
-                    (_11) => _11(),
-                  ]);
+                  _optionalChain([span2, "optionalAccess", (_10) => _10.finish, "call", (_11) => _11()]);
                 }
                 return cursor;
               } else {
-                _optionalChain([
-                  span2,
-                  "optionalAccess",
-                  (_12) => _12.finish,
-                  "call",
-                  (_13) => _13(),
-                ]);
+                _optionalChain([span2, "optionalAccess", (_12) => _12.finish, "call", (_13) => _13()]);
                 return maybePromiseOrCursor;
               }
             }
-            const span = _optionalChain([
-              parentSpan,
-              "optionalAccess",
-              (_14) => _14.startChild,
-              "call",
-              (_15) => _15(getSpanContext(this, operation, args.slice(0, -1))),
-            ]);
-            return orig.call(
-              this,
-              ...args.slice(0, -1),
-              function (err, result) {
-                _optionalChain([
-                  span,
-                  "optionalAccess",
-                  (_16) => _16.finish,
-                  "call",
-                  (_17) => _17(),
-                ]);
-                lastArg(err, result);
-              },
-            );
+            const span = _optionalChain([parentSpan, "optionalAccess", (_14) => _14.startChild, "call", (_15) => _15(getSpanContext(this, operation, args.slice(0, -1)))]);
+            return orig.call(this, ...args.slice(0, -1), function(err, result) {
+              _optionalChain([span, "optionalAccess", (_16) => _16.finish, "call", (_17) => _17()]);
+              lastArg(err, result);
+            });
           };
         });
       }
@@ -8745,48 +7086,41 @@ var require_mongo = __commonJS({
           collectionName: collection.collectionName,
           dbName: collection.dbName,
           namespace: collection.namespace,
-          "db.system": "mongodb",
+          "db.system": "mongodb"
         };
         const spanContext = {
           op: "db",
           description: operation,
-          data,
+          data
         };
         const signature = OPERATION_SIGNATURES[operation];
-        const shouldDescribe = Array.isArray(this._describeOperations)
-          ? this._describeOperations.includes(operation)
-          : this._describeOperations;
+        const shouldDescribe = Array.isArray(this._describeOperations) ? this._describeOperations.includes(operation) : this._describeOperations;
         if (!signature || !shouldDescribe) {
           return spanContext;
         }
         try {
           if (operation === "mapReduce") {
             const [map, reduce] = args;
-            data[signature[0]] =
-              typeof map === "string" ? map : map.name || "<anonymous>";
-            data[signature[1]] =
-              typeof reduce === "string"
-                ? reduce
-                : reduce.name || "<anonymous>";
+            data[signature[0]] = typeof map === "string" ? map : map.name || "<anonymous>";
+            data[signature[1]] = typeof reduce === "string" ? reduce : reduce.name || "<anonymous>";
           } else {
             for (let i = 0; i < signature.length; i++) {
               data[signature[i]] = JSON.stringify(args[i]);
             }
           }
-        } catch (_oO) {}
+        } catch (_oO) {
+        }
         return spanContext;
       }
     };
     Mongo.__initStatic();
     exports.Mongo = Mongo;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/prisma.js
 var require_prisma = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/prisma.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/prisma.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -8803,54 +7137,34 @@ var require_prisma = __commonJS({
       }
       constructor(options = {}) {
         Prisma.prototype.__init.call(this);
-        if (
-          isValidPrismaClient(options.client) &&
-          !options.client._sentryInstrumented
-        ) {
-          utils.addNonEnumerableProperty(
-            options.client,
-            "_sentryInstrumented",
-            true,
-          );
+        if (isValidPrismaClient(options.client) && !options.client._sentryInstrumented) {
+          utils.addNonEnumerableProperty(options.client, "_sentryInstrumented", true);
           options.client.$use((params, next) => {
-            if (
-              nodeUtils.shouldDisableAutoInstrumentation(core.getCurrentHub)
-            ) {
+            if (nodeUtils.shouldDisableAutoInstrumentation(core.getCurrentHub)) {
               return next(params);
             }
             const action = params.action;
             const model = params.model;
-            return core.trace(
-              {
-                name: model ? `${model} ${action}` : action,
-                op: "db.sql.prisma",
-                data: { "db.system": "prisma" },
-              },
-              () => next(params),
-            );
+            return core.trace({ name: model ? `${model} ${action}` : action, op: "db.sql.prisma", data: { "db.system": "prisma" } }, () => next(params));
           });
         } else {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              `Unsupported Prisma client provided to PrismaIntegration. Provided client: ${JSON.stringify(
-                options.client,
-              )}`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`Unsupported Prisma client provided to PrismaIntegration. Provided client: ${JSON.stringify(options.client)}`);
         }
       }
-      setupOnce() {}
+      setupOnce() {
+      }
     };
     Prisma.__initStatic();
     exports.Prisma = Prisma;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/graphql.js
 var require_graphql = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/graphql.js"(
-    exports,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/graphql.js"(exports) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var nodeUtils = require_node_utils();
@@ -8865,87 +7179,37 @@ var require_graphql = __commonJS({
         this.name = GraphQL.id;
       }
       loadDependency() {
-        return (this._module =
-          this._module || utils.loadModule("graphql/execution/execute.js"));
+        return this._module = this._module || utils.loadModule("graphql/execution/execute.js");
       }
       setupOnce(_, getCurrentHub) {
         if (nodeUtils.shouldDisableAutoInstrumentation(getCurrentHub)) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "GraphQL Integration is skipped because of instrumenter configuration.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("GraphQL Integration is skipped because of instrumenter configuration.");
           return;
         }
         const pkg = this.loadDependency();
         if (!pkg) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(
-              "GraphQL Integration was unable to require graphql/execution package.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("GraphQL Integration was unable to require graphql/execution package.");
           return;
         }
-        utils.fill(pkg, "execute", function (orig) {
-          return function (...args) {
+        utils.fill(pkg, "execute", function(orig) {
+          return function(...args) {
             const scope = getCurrentHub().getScope();
-            const parentSpan = _optionalChain([
-              scope,
-              "optionalAccess",
-              (_2) => _2.getSpan,
-              "call",
-              (_3) => _3(),
-            ]);
-            const span = _optionalChain([
-              parentSpan,
-              "optionalAccess",
-              (_4) => _4.startChild,
-              "call",
-              (_5) =>
-                _5({
-                  description: "execute",
-                  op: "graphql.execute",
-                }),
-            ]);
-            _optionalChain([
-              scope,
-              "optionalAccess",
-              (_6) => _6.setSpan,
-              "call",
-              (_7) => _7(span),
-            ]);
+            const parentSpan = _optionalChain([scope, "optionalAccess", (_2) => _2.getSpan, "call", (_3) => _3()]);
+            const span = _optionalChain([parentSpan, "optionalAccess", (_4) => _4.startChild, "call", (_5) => _5({
+              description: "execute",
+              op: "graphql.execute"
+            })]);
+            _optionalChain([scope, "optionalAccess", (_6) => _6.setSpan, "call", (_7) => _7(span)]);
             const rv = orig.call(this, ...args);
             if (utils.isThenable(rv)) {
               return rv.then((res) => {
-                _optionalChain([
-                  span,
-                  "optionalAccess",
-                  (_8) => _8.finish,
-                  "call",
-                  (_9) => _9(),
-                ]);
-                _optionalChain([
-                  scope,
-                  "optionalAccess",
-                  (_10) => _10.setSpan,
-                  "call",
-                  (_11) => _11(parentSpan),
-                ]);
+                _optionalChain([span, "optionalAccess", (_8) => _8.finish, "call", (_9) => _9()]);
+                _optionalChain([scope, "optionalAccess", (_10) => _10.setSpan, "call", (_11) => _11(parentSpan)]);
                 return res;
               });
             }
-            _optionalChain([
-              span,
-              "optionalAccess",
-              (_12) => _12.finish,
-              "call",
-              (_13) => _13(),
-            ]);
-            _optionalChain([
-              scope,
-              "optionalAccess",
-              (_14) => _14.setSpan,
-              "call",
-              (_15) => _15(parentSpan),
-            ]);
+            _optionalChain([span, "optionalAccess", (_12) => _12.finish, "call", (_13) => _13()]);
+            _optionalChain([scope, "optionalAccess", (_14) => _14.setSpan, "call", (_15) => _15(parentSpan)]);
             return rv;
           };
         });
@@ -8953,15 +7217,15 @@ var require_graphql = __commonJS({
     };
     GraphQL.__initStatic();
     exports.GraphQL = GraphQL;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/apollo.js
 var require_apollo = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/apollo.js"(
-    exports,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/apollo.js"(exports) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var nodeUtils = require_node_utils();
@@ -8972,11 +7236,9 @@ var require_apollo = __commonJS({
       __init() {
         this.name = Apollo.id;
       }
-      constructor(
-        options = {
-          useNestjs: false,
-        },
-      ) {
+      constructor(options = {
+        useNestjs: false
+      }) {
         Apollo.prototype.__init.call(this);
         this._useNest = !!options.useNestjs;
       }
@@ -8990,88 +7252,52 @@ var require_apollo = __commonJS({
       }
       setupOnce(_, getCurrentHub) {
         if (nodeUtils.shouldDisableAutoInstrumentation(getCurrentHub)) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "Apollo Integration is skipped because of instrumenter configuration.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("Apollo Integration is skipped because of instrumenter configuration.");
           return;
         }
         if (this._useNest) {
           const pkg = this.loadDependency();
           if (!pkg) {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.error(
-                "Apollo-NestJS Integration was unable to require @nestjs/graphql package.",
-              );
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Apollo-NestJS Integration was unable to require @nestjs/graphql package.");
             return;
           }
-          utils.fill(
-            pkg.GraphQLFactory.prototype,
-            "mergeWithSchema",
-            function (orig) {
-              return function (...args) {
-                utils.fill(
-                  this.resolversExplorerService,
-                  "explore",
-                  function (orig2) {
-                    return function () {
-                      const resolvers = utils.arrayify(orig2.call(this));
-                      const instrumentedResolvers = instrumentResolvers(
-                        resolvers,
-                        getCurrentHub,
-                      );
-                      return instrumentedResolvers;
-                    };
-                  },
-                );
-                return orig.call(this, ...args);
-              };
-            },
-          );
+          utils.fill(pkg.GraphQLFactory.prototype, "mergeWithSchema", function(orig) {
+            return function(...args) {
+              utils.fill(this.resolversExplorerService, "explore", function(orig2) {
+                return function() {
+                  const resolvers = utils.arrayify(orig2.call(this));
+                  const instrumentedResolvers = instrumentResolvers(resolvers, getCurrentHub);
+                  return instrumentedResolvers;
+                };
+              });
+              return orig.call(this, ...args);
+            };
+          });
         } else {
           const pkg = this.loadDependency();
           if (!pkg) {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.error(
-                "Apollo Integration was unable to require apollo-server-core package.",
-              );
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error("Apollo Integration was unable to require apollo-server-core package.");
             return;
           }
-          utils.fill(
-            pkg.ApolloServerBase.prototype,
-            "constructSchema",
-            function (orig) {
-              return function () {
-                if (!this.config.resolvers) {
-                  if (
-                    typeof __SENTRY_DEBUG__ === "undefined" ||
-                    __SENTRY_DEBUG__
-                  ) {
-                    if (this.config.schema) {
-                      utils.logger.warn(
-                        "Apollo integration is not able to trace `ApolloServer` instances constructed via `schema` property.If you are using NestJS with Apollo, please use `Sentry.Integrations.Apollo({ useNestjs: true })` instead.",
-                      );
-                      utils.logger.warn();
-                    } else if (this.config.modules) {
-                      utils.logger.warn(
-                        "Apollo integration is not able to trace `ApolloServer` instances constructed via `modules` property.",
-                      );
-                    }
-                    utils.logger.error(
-                      "Skipping tracing as no resolvers found on the `ApolloServer` instance.",
-                    );
+          utils.fill(pkg.ApolloServerBase.prototype, "constructSchema", function(orig) {
+            return function() {
+              if (!this.config.resolvers) {
+                if (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) {
+                  if (this.config.schema) {
+                    utils.logger.warn("Apollo integration is not able to trace `ApolloServer` instances constructed via `schema` property.If you are using NestJS with Apollo, please use `Sentry.Integrations.Apollo({ useNestjs: true })` instead.");
+                    utils.logger.warn();
+                  } else if (this.config.modules) {
+                    utils.logger.warn("Apollo integration is not able to trace `ApolloServer` instances constructed via `modules` property.");
                   }
-                  return orig.call(this);
+                  utils.logger.error("Skipping tracing as no resolvers found on the `ApolloServer` instance.");
                 }
-                const resolvers = utils.arrayify(this.config.resolvers);
-                this.config.resolvers = instrumentResolvers(
-                  resolvers,
-                  getCurrentHub,
-                );
                 return orig.call(this);
-              };
-            },
-          );
+              }
+              const resolvers = utils.arrayify(this.config.resolvers);
+              this.config.resolvers = instrumentResolvers(resolvers, getCurrentHub);
+              return orig.call(this);
+            };
+          });
         }
       }
     };
@@ -9089,67 +7315,34 @@ var require_apollo = __commonJS({
         return model;
       });
     }
-    function wrapResolver(
-      model,
-      resolverGroupName,
-      resolverName,
-      getCurrentHub,
-    ) {
-      utils.fill(model[resolverGroupName], resolverName, function (orig) {
-        return function (...args) {
+    function wrapResolver(model, resolverGroupName, resolverName, getCurrentHub) {
+      utils.fill(model[resolverGroupName], resolverName, function(orig) {
+        return function(...args) {
           const scope = getCurrentHub().getScope();
-          const parentSpan = _optionalChain([
-            scope,
-            "optionalAccess",
-            (_2) => _2.getSpan,
-            "call",
-            (_3) => _3(),
-          ]);
-          const span = _optionalChain([
-            parentSpan,
-            "optionalAccess",
-            (_4) => _4.startChild,
-            "call",
-            (_5) =>
-              _5({
-                description: `${resolverGroupName}.${resolverName}`,
-                op: "graphql.resolve",
-              }),
-          ]);
+          const parentSpan = _optionalChain([scope, "optionalAccess", (_2) => _2.getSpan, "call", (_3) => _3()]);
+          const span = _optionalChain([parentSpan, "optionalAccess", (_4) => _4.startChild, "call", (_5) => _5({
+            description: `${resolverGroupName}.${resolverName}`,
+            op: "graphql.resolve"
+          })]);
           const rv = orig.call(this, ...args);
           if (utils.isThenable(rv)) {
             return rv.then((res) => {
-              _optionalChain([
-                span,
-                "optionalAccess",
-                (_6) => _6.finish,
-                "call",
-                (_7) => _7(),
-              ]);
+              _optionalChain([span, "optionalAccess", (_6) => _6.finish, "call", (_7) => _7()]);
               return res;
             });
           }
-          _optionalChain([
-            span,
-            "optionalAccess",
-            (_8) => _8.finish,
-            "call",
-            (_9) => _9(),
-          ]);
+          _optionalChain([span, "optionalAccess", (_8) => _8.finish, "call", (_9) => _9()]);
           return rv;
         };
       });
     }
     exports.Apollo = Apollo;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/node/integrations/lazy.js
 var require_lazy = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/node/integrations/lazy.js"(
-    exports,
-    module2,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/node/integrations/lazy.js"(exports, module2) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var lazyLoadedNodePerformanceMonitoringIntegrations = [
@@ -9180,11 +7373,10 @@ var require_lazy = __commonJS({
       () => {
         const integration = utils.dynamicRequire(module2, "./postgres");
         return new integration.Postgres();
-      },
+      }
     ];
-    exports.lazyLoadedNodePerformanceMonitoringIntegrations =
-      lazyLoadedNodePerformanceMonitoringIntegrations;
-  },
+    exports.lazyLoadedNodePerformanceMonitoringIntegrations = lazyLoadedNodePerformanceMonitoringIntegrations;
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/types.js
@@ -9194,14 +7386,12 @@ var require_types = __commonJS({
     var utils = require_cjs();
     var WINDOW = utils.GLOBAL_OBJ;
     exports.WINDOW = WINDOW;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/backgroundtab.js
 var require_backgroundtab = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/backgroundtab.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/backgroundtab.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -9212,10 +7402,7 @@ var require_backgroundtab = __commonJS({
           const activeTransaction = core.getActiveTransaction();
           if (types.WINDOW.document.hidden && activeTransaction) {
             const statusType = "cancelled";
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.log(
-                `[Tracing] Transaction: ${statusType} -> since tab moved to the background, op: ${activeTransaction.op}`,
-              );
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Transaction: ${statusType} -> since tab moved to the background, op: ${activeTransaction.op}`);
             if (!activeTransaction.status) {
               activeTransaction.setStatus(statusType);
             }
@@ -9224,21 +7411,16 @@ var require_backgroundtab = __commonJS({
           }
         });
       } else {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            "[Tracing] Could not set up background tab detection due to lack of global document",
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("[Tracing] Could not set up background tab detection due to lack of global document");
       }
     }
     exports.registerBackgroundTabDetection = registerBackgroundTabDetection;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/bindReporter.js
 var require_bindReporter = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/bindReporter.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/bindReporter.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var bindReporter = (callback, metric, reportAllChanges) => {
       let prevValue;
@@ -9257,29 +7439,23 @@ var require_bindReporter = __commonJS({
       };
     };
     exports.bindReporter = bindReporter;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/generateUniqueID.js
 var require_generateUniqueID = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/generateUniqueID.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/generateUniqueID.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var generateUniqueID = () => {
-      return `v3-${Date.now()}-${
-        Math.floor(Math.random() * (9e12 - 1)) + 1e12
-      }`;
+      return `v3-${Date.now()}-${Math.floor(Math.random() * (9e12 - 1)) + 1e12}`;
     };
     exports.generateUniqueID = generateUniqueID;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getNavigationEntry.js
 var require_getNavigationEntry = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getNavigationEntry.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getNavigationEntry.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var types = require_types();
     var getNavigationEntryFromPerformanceTiming = () => {
@@ -9288,58 +7464,42 @@ var require_getNavigationEntry = __commonJS({
       const navigationEntry = {
         entryType: "navigation",
         startTime: 0,
-        type: type == 2 ? "back_forward" : type === 1 ? "reload" : "navigate",
+        type: type == 2 ? "back_forward" : type === 1 ? "reload" : "navigate"
       };
       for (const key in timing) {
         if (key !== "navigationStart" && key !== "toJSON") {
-          navigationEntry[key] = Math.max(
-            timing[key] - timing.navigationStart,
-            0,
-          );
+          navigationEntry[key] = Math.max(timing[key] - timing.navigationStart, 0);
         }
       }
       return navigationEntry;
     };
     var getNavigationEntry = () => {
       if (types.WINDOW.__WEB_VITALS_POLYFILL__) {
-        return (
-          types.WINDOW.performance &&
-          ((performance.getEntriesByType &&
-            performance.getEntriesByType("navigation")[0]) ||
-            getNavigationEntryFromPerformanceTiming())
-        );
+        return types.WINDOW.performance && (performance.getEntriesByType && performance.getEntriesByType("navigation")[0] || getNavigationEntryFromPerformanceTiming());
       } else {
-        return (
-          types.WINDOW.performance &&
-          performance.getEntriesByType &&
-          performance.getEntriesByType("navigation")[0]
-        );
+        return types.WINDOW.performance && performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
       }
     };
     exports.getNavigationEntry = getNavigationEntry;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getActivationStart.js
 var require_getActivationStart = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getActivationStart.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getActivationStart.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var getNavigationEntry = require_getNavigationEntry();
     var getActivationStart = () => {
       const navEntry = getNavigationEntry.getNavigationEntry();
-      return (navEntry && navEntry.activationStart) || 0;
+      return navEntry && navEntry.activationStart || 0;
     };
     exports.getActivationStart = getActivationStart;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/initMetric.js
 var require_initMetric = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/initMetric.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/initMetric.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var types = require_types();
     var generateUniqueID = require_generateUniqueID();
@@ -9349,10 +7509,7 @@ var require_initMetric = __commonJS({
       const navEntry = getNavigationEntry.getNavigationEntry();
       let navigationType = "navigate";
       if (navEntry) {
-        if (
-          types.WINDOW.document.prerendering ||
-          getActivationStart.getActivationStart() > 0
-        ) {
+        if (types.WINDOW.document.prerendering || getActivationStart.getActivationStart() > 0) {
           navigationType = "prerender";
         } else {
           navigationType = navEntry.type.replace(/_/g, "-");
@@ -9365,18 +7522,16 @@ var require_initMetric = __commonJS({
         delta: 0,
         entries: [],
         id: generateUniqueID.generateUniqueID(),
-        navigationType,
+        navigationType
       };
     };
     exports.initMetric = initMetric;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/observe.js
 var require_observe = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/observe.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/observe.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var observe = (type, callback, opts) => {
       try {
@@ -9384,37 +7539,28 @@ var require_observe = __commonJS({
           const po = new PerformanceObserver((list) => {
             callback(list.getEntries());
           });
-          po.observe(
-            Object.assign(
-              {
-                type,
-                buffered: true,
-              },
-              opts || {},
-            ),
-          );
+          po.observe(Object.assign({
+            type,
+            buffered: true
+          }, opts || {}));
           return po;
         }
-      } catch (e) {}
+      } catch (e) {
+      }
       return;
     };
     exports.observe = observe;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/onHidden.js
 var require_onHidden = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/onHidden.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/onHidden.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var types = require_types();
     var onHidden = (cb, once) => {
       const onHiddenOrPageHide = (event) => {
-        if (
-          event.type === "pagehide" ||
-          types.WINDOW.document.visibilityState === "hidden"
-        ) {
+        if (event.type === "pagehide" || types.WINDOW.document.visibilityState === "hidden") {
           cb(event);
           if (once) {
             removeEventListener("visibilitychange", onHiddenOrPageHide, true);
@@ -9426,14 +7572,12 @@ var require_onHidden = __commonJS({
       addEventListener("pagehide", onHiddenOrPageHide, true);
     };
     exports.onHidden = onHidden;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getCLS.js
 var require_getCLS = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getCLS.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getCLS.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var bindReporter = require_bindReporter();
     var initMetric = require_initMetric();
@@ -9449,12 +7593,7 @@ var require_getCLS = __commonJS({
           if (!entry.hadRecentInput) {
             const firstSessionEntry = sessionEntries[0];
             const lastSessionEntry = sessionEntries[sessionEntries.length - 1];
-            if (
-              sessionValue &&
-              sessionEntries.length !== 0 &&
-              entry.startTime - lastSessionEntry.startTime < 1e3 &&
-              entry.startTime - firstSessionEntry.startTime < 5e3
-            ) {
+            if (sessionValue && sessionEntries.length !== 0 && entry.startTime - lastSessionEntry.startTime < 1e3 && entry.startTime - firstSessionEntry.startTime < 5e3) {
               sessionValue += entry.value;
               sessionEntries.push(entry);
             } else {
@@ -9484,23 +7623,18 @@ var require_getCLS = __commonJS({
       return;
     };
     exports.onCLS = onCLS;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getVisibilityWatcher.js
 var require_getVisibilityWatcher = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getVisibilityWatcher.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/lib/getVisibilityWatcher.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var types = require_types();
     var onHidden = require_onHidden();
     var firstHiddenTime = -1;
     var initHiddenTime = () => {
-      return types.WINDOW.document.visibilityState === "hidden" &&
-        !types.WINDOW.document.prerendering
-        ? 0
-        : Infinity;
+      return types.WINDOW.document.visibilityState === "hidden" && !types.WINDOW.document.prerendering ? 0 : Infinity;
     };
     var trackChanges = () => {
       onHidden.onHidden(({ timeStamp }) => {
@@ -9515,18 +7649,16 @@ var require_getVisibilityWatcher = __commonJS({
       return {
         get firstHiddenTime() {
           return firstHiddenTime;
-        },
+        }
       };
     };
     exports.getVisibilityWatcher = getVisibilityWatcher;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getFID.js
 var require_getFID = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getFID.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getFID.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var bindReporter = require_bindReporter();
     var getVisibilityWatcher = require_getVisibilityWatcher();
@@ -9557,14 +7689,12 @@ var require_getFID = __commonJS({
       }
     };
     exports.onFID = onFID;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getLCP.js
 var require_getLCP = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getLCP.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/web-vitals/getLCP.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var bindReporter = require_bindReporter();
     var getActivationStart = require_getActivationStart();
@@ -9580,10 +7710,7 @@ var require_getLCP = __commonJS({
       const handleEntries = (entries) => {
         const lastEntry = entries[entries.length - 1];
         if (lastEntry) {
-          const value = Math.max(
-            lastEntry.startTime - getActivationStart.getActivationStart(),
-            0,
-          );
+          const value = Math.max(lastEntry.startTime - getActivationStart.getActivationStart(), 0);
           if (value < visibilityWatcher.firstHiddenTime) {
             metric.value = value;
             metric.entries = [lastEntry];
@@ -9611,44 +7738,33 @@ var require_getLCP = __commonJS({
       return;
     };
     exports.onLCP = onLCP;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/metrics/utils.js
 var require_utils2 = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/metrics/utils.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/metrics/utils.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     function isMeasurementValue(value) {
       return typeof value === "number" && isFinite(value);
     }
     function _startChild(transaction, _a) {
-      var _b = _a,
-        { startTimestamp } = _b,
-        ctx = __objRest(_b, ["startTimestamp"]);
+      var _b = _a, { startTimestamp } = _b, ctx = __objRest(_b, ["startTimestamp"]);
       if (startTimestamp && transaction.startTimestamp > startTimestamp) {
         transaction.startTimestamp = startTimestamp;
       }
-      return transaction.startChild(
-        __spreadValues(
-          {
-            startTimestamp,
-          },
-          ctx,
-        ),
-      );
+      return transaction.startChild(__spreadValues({
+        startTimestamp
+      }, ctx));
     }
     exports._startChild = _startChild;
     exports.isMeasurementValue = isMeasurementValue;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/metrics/index.js
 var require_metrics = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/metrics/index.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/metrics/index.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -9663,11 +7779,7 @@ var require_metrics = __commonJS({
       return time / 1e3;
     }
     function getBrowserPerformanceAPI() {
-      return (
-        types.WINDOW &&
-        types.WINDOW.addEventListener &&
-        types.WINDOW.performance
-      );
+      return types.WINDOW && types.WINDOW.addEventListener && types.WINDOW.performance;
     }
     var _performanceCursor = 0;
     var _measurements = {};
@@ -9700,15 +7812,13 @@ var require_metrics = __commonJS({
           if (!transaction) {
             return;
           }
-          const startTime = msToSec(
-            utils.browserPerformanceTimeOrigin + entry.startTime,
-          );
+          const startTime = msToSec(utils.browserPerformanceTimeOrigin + entry.startTime);
           const duration = msToSec(entry.duration);
           transaction.startChild({
             description: "Main UI thread blocked",
             op: "ui.long-task",
             startTimestamp: startTime,
-            endTimestamp: startTime + duration,
+            endTimestamp: startTime + duration
           });
         }
       };
@@ -9722,15 +7832,13 @@ var require_metrics = __commonJS({
             return;
           }
           if (entry.name === "click") {
-            const startTime = msToSec(
-              utils.browserPerformanceTimeOrigin + entry.startTime,
-            );
+            const startTime = msToSec(utils.browserPerformanceTimeOrigin + entry.startTime);
             const duration = msToSec(entry.duration);
             transaction.startChild({
               description: utils.htmlTreeAsString(entry.target),
               op: `ui.interaction.${entry.name}`,
               startTimestamp: startTime,
-              endTimestamp: startTime + duration,
+              endTimestamp: startTime + duration
             });
           }
         }
@@ -9743,8 +7851,7 @@ var require_metrics = __commonJS({
         if (!entry) {
           return;
         }
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log("[Measurements] Adding CLS");
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding CLS");
         _measurements["cls"] = { value: metric.value, unit: "" };
         _clsEntry = entry;
       });
@@ -9755,8 +7862,7 @@ var require_metrics = __commonJS({
         if (!entry) {
           return;
         }
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log("[Measurements] Adding LCP");
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding LCP");
         _measurements["lcp"] = { value: metric.value, unit: "millisecond" };
         _lcpEntry = entry;
       });
@@ -9769,28 +7875,17 @@ var require_metrics = __commonJS({
         }
         const timeOrigin = msToSec(utils.browserPerformanceTimeOrigin);
         const startTime = msToSec(entry.startTime);
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log("[Measurements] Adding FID");
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding FID");
         _measurements["fid"] = { value: metric.value, unit: "millisecond" };
-        _measurements["mark.fid"] = {
-          value: timeOrigin + startTime,
-          unit: "second",
-        };
+        _measurements["mark.fid"] = { value: timeOrigin + startTime, unit: "second" };
       });
     }
     function addPerformanceEntries(transaction) {
       const performance2 = getBrowserPerformanceAPI();
-      if (
-        !performance2 ||
-        !types.WINDOW.performance.getEntries ||
-        !utils.browserPerformanceTimeOrigin
-      ) {
+      if (!performance2 || !types.WINDOW.performance.getEntries || !utils.browserPerformanceTimeOrigin) {
         return;
       }
-      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-        utils.logger.log(
-          "[Tracing] Adding & adjusting spans using Performance API",
-        );
+      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Tracing] Adding & adjusting spans using Performance API");
       const timeOrigin = msToSec(utils.browserPerformanceTimeOrigin);
       const performanceEntries = performance2.getEntries();
       let responseStartTimestamp;
@@ -9798,10 +7893,7 @@ var require_metrics = __commonJS({
       performanceEntries.slice(_performanceCursor).forEach((entry) => {
         const startTime = msToSec(entry.startTime);
         const duration = msToSec(entry.duration);
-        if (
-          transaction.op === "navigation" &&
-          timeOrigin + startTime < transaction.startTimestamp
-        ) {
+        if (transaction.op === "navigation" && timeOrigin + startTime < transaction.startTimestamp) {
           return;
         }
         switch (entry.entryType) {
@@ -9814,46 +7906,22 @@ var require_metrics = __commonJS({
           case "mark":
           case "paint":
           case "measure": {
-            _addMeasureSpans(
-              transaction,
-              entry,
-              startTime,
-              duration,
-              timeOrigin,
-            );
+            _addMeasureSpans(transaction, entry, startTime, duration, timeOrigin);
             const firstHidden = getVisibilityWatcher.getVisibilityWatcher();
             const shouldRecord = entry.startTime < firstHidden.firstHiddenTime;
             if (entry.name === "first-paint" && shouldRecord) {
-              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                utils.logger.log("[Measurements] Adding FP");
-              _measurements["fp"] = {
-                value: entry.startTime,
-                unit: "millisecond",
-              };
+              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding FP");
+              _measurements["fp"] = { value: entry.startTime, unit: "millisecond" };
             }
             if (entry.name === "first-contentful-paint" && shouldRecord) {
-              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                utils.logger.log("[Measurements] Adding FCP");
-              _measurements["fcp"] = {
-                value: entry.startTime,
-                unit: "millisecond",
-              };
+              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding FCP");
+              _measurements["fcp"] = { value: entry.startTime, unit: "millisecond" };
             }
             break;
           }
           case "resource": {
-            const resourceName = entry.name.replace(
-              types.WINDOW.location.origin,
-              "",
-            );
-            _addResourceSpans(
-              transaction,
-              entry,
-              resourceName,
-              startTime,
-              duration,
-              timeOrigin,
-            );
+            const resourceName = entry.name.replace(types.WINDOW.location.origin, "");
+            _addResourceSpans(transaction, entry, resourceName, startTime, duration, timeOrigin);
             break;
           }
         }
@@ -9862,39 +7930,27 @@ var require_metrics = __commonJS({
       _trackNavigator(transaction);
       if (transaction.op === "pageload") {
         if (typeof responseStartTimestamp === "number") {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log("[Measurements] Adding TTFB");
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding TTFB");
           _measurements["ttfb"] = {
             value: (responseStartTimestamp - transaction.startTimestamp) * 1e3,
-            unit: "millisecond",
+            unit: "millisecond"
           };
-          if (
-            typeof requestStartTimestamp === "number" &&
-            requestStartTimestamp <= responseStartTimestamp
-          ) {
+          if (typeof requestStartTimestamp === "number" && requestStartTimestamp <= responseStartTimestamp) {
             _measurements["ttfb.requestTime"] = {
               value: (responseStartTimestamp - requestStartTimestamp) * 1e3,
-              unit: "millisecond",
+              unit: "millisecond"
             };
           }
         }
         ["fcp", "fp", "lcp"].forEach((name) => {
-          if (
-            !_measurements[name] ||
-            timeOrigin >= transaction.startTimestamp
-          ) {
+          if (!_measurements[name] || timeOrigin >= transaction.startTimestamp) {
             return;
           }
           const oldValue = _measurements[name].value;
           const measurementTimestamp = timeOrigin + msToSec(oldValue);
-          const normalizedValue = Math.abs(
-            (measurementTimestamp - transaction.startTimestamp) * 1e3,
-          );
+          const normalizedValue = Math.abs((measurementTimestamp - transaction.startTimestamp) * 1e3);
           const delta = normalizedValue - oldValue;
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              `[Measurements] Normalized ${name} from ${oldValue} to ${normalizedValue} (${delta})`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Measurements] Normalized ${name} from ${oldValue} to ${normalizedValue} (${delta})`);
           _measurements[name].value = normalizedValue;
         });
         const fidMark = _measurements["mark.fid"];
@@ -9903,7 +7959,7 @@ var require_metrics = __commonJS({
             description: "first input delay",
             endTimestamp: fidMark.value + msToSec(_measurements["fid"].value),
             op: "ui.action",
-            startTimestamp: fidMark.value,
+            startTimestamp: fidMark.value
           });
           delete _measurements["mark.fid"];
         }
@@ -9911,11 +7967,7 @@ var require_metrics = __commonJS({
           delete _measurements.cls;
         }
         Object.keys(_measurements).forEach((measurementName) => {
-          transaction.setMeasurement(
-            measurementName,
-            _measurements[measurementName].value,
-            _measurements[measurementName].unit,
-          );
+          transaction.setMeasurement(measurementName, _measurements[measurementName].value, _measurements[measurementName].unit);
         });
         _tagMetricInfo(transaction);
       }
@@ -9923,66 +7975,27 @@ var require_metrics = __commonJS({
       _clsEntry = void 0;
       _measurements = {};
     }
-    function _addMeasureSpans(
-      transaction,
-      entry,
-      startTime,
-      duration,
-      timeOrigin,
-    ) {
+    function _addMeasureSpans(transaction, entry, startTime, duration, timeOrigin) {
       const measureStartTimestamp = timeOrigin + startTime;
       const measureEndTimestamp = measureStartTimestamp + duration;
       utils$1._startChild(transaction, {
         description: entry.name,
         endTimestamp: measureEndTimestamp,
         op: entry.entryType,
-        startTimestamp: measureStartTimestamp,
+        startTimestamp: measureStartTimestamp
       });
       return measureStartTimestamp;
     }
     function _addNavigationSpans(transaction, entry, timeOrigin) {
-      [
-        "unloadEvent",
-        "redirect",
-        "domContentLoadedEvent",
-        "loadEvent",
-        "connect",
-      ].forEach((event) => {
+      ["unloadEvent", "redirect", "domContentLoadedEvent", "loadEvent", "connect"].forEach((event) => {
         _addPerformanceNavigationTiming(transaction, entry, event, timeOrigin);
       });
-      _addPerformanceNavigationTiming(
-        transaction,
-        entry,
-        "secureConnection",
-        timeOrigin,
-        "TLS/SSL",
-        "connectEnd",
-      );
-      _addPerformanceNavigationTiming(
-        transaction,
-        entry,
-        "fetch",
-        timeOrigin,
-        "cache",
-        "domainLookupStart",
-      );
-      _addPerformanceNavigationTiming(
-        transaction,
-        entry,
-        "domainLookup",
-        timeOrigin,
-        "DNS",
-      );
+      _addPerformanceNavigationTiming(transaction, entry, "secureConnection", timeOrigin, "TLS/SSL", "connectEnd");
+      _addPerformanceNavigationTiming(transaction, entry, "fetch", timeOrigin, "cache", "domainLookupStart");
+      _addPerformanceNavigationTiming(transaction, entry, "domainLookup", timeOrigin, "DNS");
       _addRequest(transaction, entry, timeOrigin);
     }
-    function _addPerformanceNavigationTiming(
-      transaction,
-      entry,
-      event,
-      timeOrigin,
-      description,
-      eventEnd,
-    ) {
+    function _addPerformanceNavigationTiming(transaction, entry, event, timeOrigin, description, eventEnd) {
       const end = eventEnd ? entry[eventEnd] : entry[`${event}End`];
       const start = entry[`${event}Start`];
       if (!start || !end) {
@@ -9992,7 +8005,7 @@ var require_metrics = __commonJS({
         op: "browser",
         description: description || event,
         startTimestamp: timeOrigin + msToSec(start),
-        endTimestamp: timeOrigin + msToSec(end),
+        endTimestamp: timeOrigin + msToSec(end)
       });
     }
     function _addRequest(transaction, entry, timeOrigin) {
@@ -10000,27 +8013,17 @@ var require_metrics = __commonJS({
         op: "browser",
         description: "request",
         startTimestamp: timeOrigin + msToSec(entry.requestStart),
-        endTimestamp: timeOrigin + msToSec(entry.responseEnd),
+        endTimestamp: timeOrigin + msToSec(entry.responseEnd)
       });
       utils$1._startChild(transaction, {
         op: "browser",
         description: "response",
         startTimestamp: timeOrigin + msToSec(entry.responseStart),
-        endTimestamp: timeOrigin + msToSec(entry.responseEnd),
+        endTimestamp: timeOrigin + msToSec(entry.responseEnd)
       });
     }
-    function _addResourceSpans(
-      transaction,
-      entry,
-      resourceName,
-      startTime,
-      duration,
-      timeOrigin,
-    ) {
-      if (
-        entry.initiatorType === "xmlhttprequest" ||
-        entry.initiatorType === "fetch"
-      ) {
+    function _addResourceSpans(transaction, entry, resourceName, startTime, duration, timeOrigin) {
+      if (entry.initiatorType === "xmlhttprequest" || entry.initiatorType === "fetch") {
         return;
       }
       const data = {};
@@ -10041,11 +8044,9 @@ var require_metrics = __commonJS({
       utils$1._startChild(transaction, {
         description: resourceName,
         endTimestamp,
-        op: entry.initiatorType
-          ? `resource.${entry.initiatorType}`
-          : "resource.other",
+        op: entry.initiatorType ? `resource.${entry.initiatorType}` : "resource.other",
         startTimestamp,
-        data,
+        data
       });
     }
     function _trackNavigator(transaction) {
@@ -10056,40 +8057,27 @@ var require_metrics = __commonJS({
       const connection = navigator2.connection;
       if (connection) {
         if (connection.effectiveType) {
-          transaction.setTag(
-            "effectiveConnectionType",
-            connection.effectiveType,
-          );
+          transaction.setTag("effectiveConnectionType", connection.effectiveType);
         }
         if (connection.type) {
           transaction.setTag("connectionType", connection.type);
         }
         if (utils$1.isMeasurementValue(connection.rtt)) {
-          _measurements["connection.rtt"] = {
-            value: connection.rtt,
-            unit: "millisecond",
-          };
+          _measurements["connection.rtt"] = { value: connection.rtt, unit: "millisecond" };
         }
       }
       if (utils$1.isMeasurementValue(navigator2.deviceMemory)) {
         transaction.setTag("deviceMemory", `${navigator2.deviceMemory} GB`);
       }
       if (utils$1.isMeasurementValue(navigator2.hardwareConcurrency)) {
-        transaction.setTag(
-          "hardwareConcurrency",
-          String(navigator2.hardwareConcurrency),
-        );
+        transaction.setTag("hardwareConcurrency", String(navigator2.hardwareConcurrency));
       }
     }
     function _tagMetricInfo(transaction) {
       if (_lcpEntry) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log("[Measurements] Adding LCP Data");
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding LCP Data");
         if (_lcpEntry.element) {
-          transaction.setTag(
-            "lcp.element",
-            utils.htmlTreeAsString(_lcpEntry.element),
-          );
+          transaction.setTag("lcp.element", utils.htmlTreeAsString(_lcpEntry.element));
         }
         if (_lcpEntry.id) {
           transaction.setTag("lcp.id", _lcpEntry.id);
@@ -10100,14 +8088,8 @@ var require_metrics = __commonJS({
         transaction.setTag("lcp.size", _lcpEntry.size);
       }
       if (_clsEntry && _clsEntry.sources) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log("[Measurements] Adding CLS Data");
-        _clsEntry.sources.forEach((source, index) =>
-          transaction.setTag(
-            `cls.source.${index + 1}`,
-            utils.htmlTreeAsString(source.node),
-          ),
-        );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("[Measurements] Adding CLS Data");
+        _clsEntry.sources.forEach((source, index) => transaction.setTag(`cls.source.${index + 1}`, utils.htmlTreeAsString(source.node)));
       }
     }
     exports._addMeasureSpans = _addMeasureSpans;
@@ -10116,13 +8098,15 @@ var require_metrics = __commonJS({
     exports.startTrackingInteractions = startTrackingInteractions;
     exports.startTrackingLongTasks = startTrackingLongTasks;
     exports.startTrackingWebVitals = startTrackingWebVitals;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/request.js
 var require_request = __commonJS({
   "node_modules/@sentry-internal/tracing/cjs/browser/request.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -10132,66 +8116,28 @@ var require_request = __commonJS({
       traceXHR: true,
       tracingOrigins: DEFAULT_TRACE_PROPAGATION_TARGETS,
       tracePropagationTargets: DEFAULT_TRACE_PROPAGATION_TARGETS,
-      _experiments: {},
+      _experiments: {}
     };
     function instrumentOutgoingRequests(_options) {
-      const {
-        traceFetch,
-        traceXHR,
-        tracePropagationTargets,
-        tracingOrigins,
-        shouldCreateSpanForRequest,
-        _experiments,
-      } = __spreadValues(
-        {
-          traceFetch: defaultRequestInstrumentationOptions.traceFetch,
-          traceXHR: defaultRequestInstrumentationOptions.traceXHR,
-        },
-        _options,
-      );
-      const shouldCreateSpan =
-        typeof shouldCreateSpanForRequest === "function"
-          ? shouldCreateSpanForRequest
-          : (_) => true;
-      const shouldAttachHeadersWithTargets = (url) =>
-        shouldAttachHeaders(url, tracePropagationTargets || tracingOrigins);
+      const { traceFetch, traceXHR, tracePropagationTargets, tracingOrigins, shouldCreateSpanForRequest, _experiments } = __spreadValues({
+        traceFetch: defaultRequestInstrumentationOptions.traceFetch,
+        traceXHR: defaultRequestInstrumentationOptions.traceXHR
+      }, _options);
+      const shouldCreateSpan = typeof shouldCreateSpanForRequest === "function" ? shouldCreateSpanForRequest : (_) => true;
+      const shouldAttachHeadersWithTargets = (url) => shouldAttachHeaders(url, tracePropagationTargets || tracingOrigins);
       const spans = {};
       if (traceFetch) {
         utils.addInstrumentationHandler("fetch", (handlerData) => {
-          const createdSpan = fetchCallback(
-            handlerData,
-            shouldCreateSpan,
-            shouldAttachHeadersWithTargets,
-            spans,
-          );
-          if (
-            _optionalChain([
-              _experiments,
-              "optionalAccess",
-              (_2) => _2.enableHTTPTimings,
-            ]) &&
-            createdSpan
-          ) {
+          const createdSpan = fetchCallback(handlerData, shouldCreateSpan, shouldAttachHeadersWithTargets, spans);
+          if (_optionalChain([_experiments, "optionalAccess", (_2) => _2.enableHTTPTimings]) && createdSpan) {
             addHTTPTimings(createdSpan);
           }
         });
       }
       if (traceXHR) {
         utils.addInstrumentationHandler("xhr", (handlerData) => {
-          const createdSpan = xhrCallback(
-            handlerData,
-            shouldCreateSpan,
-            shouldAttachHeadersWithTargets,
-            spans,
-          );
-          if (
-            _optionalChain([
-              _experiments,
-              "optionalAccess",
-              (_3) => _3.enableHTTPTimings,
-            ]) &&
-            createdSpan
-          ) {
+          const createdSpan = xhrCallback(handlerData, shouldCreateSpan, shouldAttachHeadersWithTargets, spans);
+          if (_optionalChain([_experiments, "optionalAccess", (_3) => _3.enableHTTPTimings]) && createdSpan) {
             addHTTPTimings(createdSpan);
           }
         });
@@ -10202,11 +8148,7 @@ var require_request = __commonJS({
       const observer = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         entries.forEach((entry) => {
-          if (
-            (entry.initiatorType === "fetch" ||
-              entry.initiatorType === "xmlhttprequest") &&
-            entry.name.endsWith(url)
-          ) {
+          if ((entry.initiatorType === "fetch" || entry.initiatorType === "xmlhttprequest") && entry.name.endsWith(url)) {
             const spanData = resourceTimingEntryToSpanData(entry);
             spanData.forEach((data) => span.setData(...data));
             observer.disconnect();
@@ -10214,7 +8156,7 @@ var require_request = __commonJS({
         });
       });
       observer.observe({
-        entryTypes: ["resource"],
+        entryTypes: ["resource"]
       });
     }
     function resourceTimingEntryToSpanData(resourceTiming) {
@@ -10228,52 +8170,28 @@ var require_request = __commonJS({
       }
       return [
         ...timingSpanData,
-        [
-          "http.request.connect_start",
-          (utils.browserPerformanceTimeOrigin + resourceTiming.connectStart) /
-            1e3,
-        ],
-        [
-          "http.request.request_start",
-          (utils.browserPerformanceTimeOrigin + resourceTiming.requestStart) /
-            1e3,
-        ],
-        [
-          "http.request.response_start",
-          (utils.browserPerformanceTimeOrigin + resourceTiming.responseStart) /
-            1e3,
-        ],
+        ["http.request.connect_start", (utils.browserPerformanceTimeOrigin + resourceTiming.connectStart) / 1e3],
+        ["http.request.request_start", (utils.browserPerformanceTimeOrigin + resourceTiming.requestStart) / 1e3],
+        ["http.request.response_start", (utils.browserPerformanceTimeOrigin + resourceTiming.responseStart) / 1e3]
       ];
     }
     function shouldAttachHeaders(url, tracePropagationTargets) {
-      return utils.stringMatchesSomePattern(
-        url,
-        tracePropagationTargets || DEFAULT_TRACE_PROPAGATION_TARGETS,
-      );
+      return utils.stringMatchesSomePattern(url, tracePropagationTargets || DEFAULT_TRACE_PROPAGATION_TARGETS);
     }
-    function fetchCallback(
-      handlerData,
-      shouldCreateSpan,
-      shouldAttachHeaders2,
-      spans,
-    ) {
+    function fetchCallback(handlerData, shouldCreateSpan, shouldAttachHeaders2, spans) {
       if (!core.hasTracingEnabled() || !handlerData.fetchData) {
         return void 0;
       }
-      const shouldCreateSpanResult = shouldCreateSpan(
-        handlerData.fetchData.url,
-      );
+      const shouldCreateSpanResult = shouldCreateSpan(handlerData.fetchData.url);
       if (handlerData.endTimestamp && shouldCreateSpanResult) {
         const spanId = handlerData.fetchData.__span;
-        if (!spanId) return;
+        if (!spanId)
+          return;
         const span2 = spans[spanId];
         if (span2) {
           if (handlerData.response) {
             span2.setHttpStatus(handlerData.response.status);
-            const contentLength =
-              handlerData.response &&
-              handlerData.response.headers &&
-              handlerData.response.headers.get("content-length");
+            const contentLength = handlerData.response && handlerData.response.headers && handlerData.response.headers.get("content-length");
             const contentLengthNum = parseInt(contentLength);
             if (contentLengthNum > 0) {
               span2.setData("http.response_content_length", contentLengthNum);
@@ -10291,18 +8209,15 @@ var require_request = __commonJS({
       const client = hub.getClient();
       const parentSpan = scope.getSpan();
       const { method, url } = handlerData.fetchData;
-      const span =
-        shouldCreateSpanResult && parentSpan
-          ? parentSpan.startChild({
-              data: {
-                url,
-                type: "fetch",
-                "http.method": method,
-              },
-              description: `${method} ${url}`,
-              op: "http.client",
-            })
-          : void 0;
+      const span = shouldCreateSpanResult && parentSpan ? parentSpan.startChild({
+        data: {
+          url,
+          type: "fetch",
+          "http.method": method
+        },
+        description: `${method} ${url}`,
+        op: "http.client"
+      }) : void 0;
       if (span) {
         handlerData.fetchData.__span = span.spanId;
         spans[span.spanId] = span;
@@ -10311,12 +8226,7 @@ var require_request = __commonJS({
         const request = handlerData.args[0];
         handlerData.args[1] = handlerData.args[1] || {};
         const options = handlerData.args[1];
-        options.headers = addTracingHeadersToFetchRequest(
-          request,
-          client,
-          scope,
-          options,
-        );
+        options.headers = addTracingHeadersToFetchRequest(request, client, scope, options);
       }
       return span;
     }
@@ -10324,31 +8234,13 @@ var require_request = __commonJS({
       const span = scope.getSpan();
       const transaction = span && span.transaction;
       const { traceId, sampled, dsc } = scope.getPropagationContext();
-      const sentryTraceHeader = span
-        ? span.toTraceparent()
-        : utils.generateSentryTraceHeader(traceId, void 0, sampled);
-      const dynamicSamplingContext = transaction
-        ? transaction.getDynamicSamplingContext()
-        : dsc
-        ? dsc
-        : core.getDynamicSamplingContextFromClient(traceId, client, scope);
-      const sentryBaggageHeader =
-        utils.dynamicSamplingContextToSentryBaggageHeader(
-          dynamicSamplingContext,
-        );
-      const headers2 =
-        typeof Request !== "undefined" && utils.isInstanceOf(request, Request)
-          ? request.headers
-          : options.headers;
+      const sentryTraceHeader = span ? span.toTraceparent() : utils.generateSentryTraceHeader(traceId, void 0, sampled);
+      const dynamicSamplingContext = transaction ? transaction.getDynamicSamplingContext() : dsc ? dsc : core.getDynamicSamplingContextFromClient(traceId, client, scope);
+      const sentryBaggageHeader = utils.dynamicSamplingContextToSentryBaggageHeader(dynamicSamplingContext);
+      const headers2 = typeof Request !== "undefined" && utils.isInstanceOf(request, Request) ? request.headers : options.headers;
       if (!headers2) {
-        return {
-          "sentry-trace": sentryTraceHeader,
-          baggage: sentryBaggageHeader,
-        };
-      } else if (
-        typeof Headers !== "undefined" &&
-        utils.isInstanceOf(headers2, Headers)
-      ) {
+        return { "sentry-trace": sentryTraceHeader, baggage: sentryBaggageHeader };
+      } else if (typeof Headers !== "undefined" && utils.isInstanceOf(headers2, Headers)) {
         const newHeaders = new Headers(headers2);
         newHeaders.append("sentry-trace", sentryTraceHeader);
         if (sentryBaggageHeader) {
@@ -10362,8 +8254,7 @@ var require_request = __commonJS({
         }
         return newHeaders;
       } else {
-        const existingBaggageHeader =
-          "baggage" in headers2 ? headers2.baggage : void 0;
+        const existingBaggageHeader = "baggage" in headers2 ? headers2.baggage : void 0;
         const newBaggageHeaders = [];
         if (Array.isArray(existingBaggageHeader)) {
           newBaggageHeaders.push(...existingBaggageHeader);
@@ -10375,31 +8266,21 @@ var require_request = __commonJS({
         }
         return __spreadProps(__spreadValues({}, headers2), {
           "sentry-trace": sentryTraceHeader,
-          baggage:
-            newBaggageHeaders.length > 0 ? newBaggageHeaders.join(",") : void 0,
+          baggage: newBaggageHeaders.length > 0 ? newBaggageHeaders.join(",") : void 0
         });
       }
     }
-    function xhrCallback(
-      handlerData,
-      shouldCreateSpan,
-      shouldAttachHeaders2,
-      spans,
-    ) {
+    function xhrCallback(handlerData, shouldCreateSpan, shouldAttachHeaders2, spans) {
       const xhr = handlerData.xhr;
       const sentryXhrData = xhr && xhr[utils.SENTRY_XHR_DATA_KEY];
-      if (
-        !core.hasTracingEnabled() ||
-        (xhr && xhr.__sentry_own_request__) ||
-        !xhr ||
-        !sentryXhrData
-      ) {
+      if (!core.hasTracingEnabled() || xhr && xhr.__sentry_own_request__ || !xhr || !sentryXhrData) {
         return void 0;
       }
       const shouldCreateSpanResult = shouldCreateSpan(sentryXhrData.url);
       if (handlerData.endTimestamp && shouldCreateSpanResult) {
         const spanId = xhr.__sentry_xhr_span_id__;
-        if (!spanId) return;
+        if (!spanId)
+          return;
         const span2 = spans[spanId];
         if (span2) {
           span2.setHttpStatus(sentryXhrData.status_code);
@@ -10411,18 +8292,15 @@ var require_request = __commonJS({
       const hub = core.getCurrentHub();
       const scope = hub.getScope();
       const parentSpan = scope.getSpan();
-      const span =
-        shouldCreateSpanResult && parentSpan
-          ? parentSpan.startChild({
-              data: __spreadProps(__spreadValues({}, sentryXhrData.data), {
-                type: "xhr",
-                "http.method": sentryXhrData.method,
-                url: sentryXhrData.url,
-              }),
-              description: `${sentryXhrData.method} ${sentryXhrData.url}`,
-              op: "http.client",
-            })
-          : void 0;
+      const span = shouldCreateSpanResult && parentSpan ? parentSpan.startChild({
+        data: __spreadProps(__spreadValues({}, sentryXhrData.data), {
+          type: "xhr",
+          "http.method": sentryXhrData.method,
+          url: sentryXhrData.url
+        }),
+        description: `${sentryXhrData.method} ${sentryXhrData.url}`,
+        op: "http.client"
+      }) : void 0;
       if (span) {
         xhr.__sentry_xhr_span_id__ = span.spanId;
         spans[xhr.__sentry_xhr_span_id__] = span;
@@ -10430,30 +8308,15 @@ var require_request = __commonJS({
       if (xhr.setRequestHeader && shouldAttachHeaders2(sentryXhrData.url)) {
         if (span) {
           const transaction = span && span.transaction;
-          const dynamicSamplingContext =
-            transaction && transaction.getDynamicSamplingContext();
-          const sentryBaggageHeader =
-            utils.dynamicSamplingContextToSentryBaggageHeader(
-              dynamicSamplingContext,
-            );
+          const dynamicSamplingContext = transaction && transaction.getDynamicSamplingContext();
+          const sentryBaggageHeader = utils.dynamicSamplingContextToSentryBaggageHeader(dynamicSamplingContext);
           setHeaderOnXhr(xhr, span.toTraceparent(), sentryBaggageHeader);
         } else {
           const client = hub.getClient();
           const { traceId, sampled, dsc } = scope.getPropagationContext();
-          const sentryTraceHeader = utils.generateSentryTraceHeader(
-            traceId,
-            void 0,
-            sampled,
-          );
-          const dynamicSamplingContext =
-            dsc ||
-            (client
-              ? core.getDynamicSamplingContextFromClient(traceId, client, scope)
-              : void 0);
-          const sentryBaggageHeader =
-            utils.dynamicSamplingContextToSentryBaggageHeader(
-              dynamicSamplingContext,
-            );
+          const sentryTraceHeader = utils.generateSentryTraceHeader(traceId, void 0, sampled);
+          const dynamicSamplingContext = dsc || (client ? core.getDynamicSamplingContextFromClient(traceId, client, scope) : void 0);
+          const sentryBaggageHeader = utils.dynamicSamplingContextToSentryBaggageHeader(dynamicSamplingContext);
           setHeaderOnXhr(xhr, sentryTraceHeader, sentryBaggageHeader);
         }
       }
@@ -10465,18 +8328,17 @@ var require_request = __commonJS({
         if (sentryBaggageHeader) {
           xhr.setRequestHeader(utils.BAGGAGE_HEADER_NAME, sentryBaggageHeader);
         }
-      } catch (_) {}
+      } catch (_) {
+      }
     }
-    exports.DEFAULT_TRACE_PROPAGATION_TARGETS =
-      DEFAULT_TRACE_PROPAGATION_TARGETS;
+    exports.DEFAULT_TRACE_PROPAGATION_TARGETS = DEFAULT_TRACE_PROPAGATION_TARGETS;
     exports.addTracingHeadersToFetchRequest = addTracingHeadersToFetchRequest;
-    exports.defaultRequestInstrumentationOptions =
-      defaultRequestInstrumentationOptions;
+    exports.defaultRequestInstrumentationOptions = defaultRequestInstrumentationOptions;
     exports.fetchCallback = fetchCallback;
     exports.instrumentOutgoingRequests = instrumentOutgoingRequests;
     exports.shouldAttachHeaders = shouldAttachHeaders;
     exports.xhrCallback = xhrCallback;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/router.js
@@ -10485,16 +8347,9 @@ var require_router = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var types = require_types();
-    function instrumentRoutingWithDefaults(
-      customStartTransaction,
-      startTransactionOnPageLoad = true,
-      startTransactionOnLocationChange = true,
-    ) {
+    function instrumentRoutingWithDefaults(customStartTransaction, startTransactionOnPageLoad = true, startTransactionOnLocationChange = true) {
       if (!types.WINDOW || !types.WINDOW.location) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            "Could not initialize routing instrumentation due to invalid location",
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Could not initialize routing instrumentation due to invalid location");
         return;
       }
       let startingUrl = types.WINDOW.location.href;
@@ -10502,50 +8357,39 @@ var require_router = __commonJS({
       if (startTransactionOnPageLoad) {
         activeTransaction = customStartTransaction({
           name: types.WINDOW.location.pathname,
-          startTimestamp: utils.browserPerformanceTimeOrigin
-            ? utils.browserPerformanceTimeOrigin / 1e3
-            : void 0,
+          startTimestamp: utils.browserPerformanceTimeOrigin ? utils.browserPerformanceTimeOrigin / 1e3 : void 0,
           op: "pageload",
-          metadata: { source: "url" },
+          metadata: { source: "url" }
         });
       }
       if (startTransactionOnLocationChange) {
         utils.addInstrumentationHandler("history", ({ to, from }) => {
-          if (
-            from === void 0 &&
-            startingUrl &&
-            startingUrl.indexOf(to) !== -1
-          ) {
+          if (from === void 0 && startingUrl && startingUrl.indexOf(to) !== -1) {
             startingUrl = void 0;
             return;
           }
           if (from !== to) {
             startingUrl = void 0;
             if (activeTransaction) {
-              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                utils.logger.log(
-                  `[Tracing] Finishing current transaction with op: ${activeTransaction.op}`,
-                );
+              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Finishing current transaction with op: ${activeTransaction.op}`);
               activeTransaction.finish();
             }
             activeTransaction = customStartTransaction({
               name: types.WINDOW.location.pathname,
               op: "navigation",
-              metadata: { source: "url" },
+              metadata: { source: "url" }
             });
           }
         });
       }
     }
     exports.instrumentRoutingWithDefaults = instrumentRoutingWithDefaults;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/browser/browsertracing.js
 var require_browsertracing = __commonJS({
-  "node_modules/@sentry-internal/tracing/cjs/browser/browsertracing.js"(
-    exports,
-  ) {
+  "node_modules/@sentry-internal/tracing/cjs/browser/browsertracing.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -10555,16 +8399,13 @@ var require_browsertracing = __commonJS({
     var router = require_router();
     var types = require_types();
     var BROWSER_TRACING_INTEGRATION_ID = "BrowserTracing";
-    var DEFAULT_BROWSER_TRACING_OPTIONS = __spreadValues(
-      __spreadProps(__spreadValues({}, core.TRACING_DEFAULTS), {
-        markBackgroundTransactions: true,
-        routingInstrumentation: router.instrumentRoutingWithDefaults,
-        startTransactionOnLocationChange: true,
-        startTransactionOnPageLoad: true,
-        enableLongTask: true,
-      }),
-      request.defaultRequestInstrumentationOptions,
-    );
+    var DEFAULT_BROWSER_TRACING_OPTIONS = __spreadValues(__spreadProps(__spreadValues({}, core.TRACING_DEFAULTS), {
+      markBackgroundTransactions: true,
+      routingInstrumentation: router.instrumentRoutingWithDefaults,
+      startTransactionOnLocationChange: true,
+      startTransactionOnPageLoad: true,
+      enableLongTask: true
+    }), request.defaultRequestInstrumentationOptions);
     var BrowserTracing = class {
       __init() {
         this.name = BROWSER_TRACING_INTEGRATION_ID;
@@ -10577,24 +8418,13 @@ var require_browsertracing = __commonJS({
         BrowserTracing.prototype.__init2.call(this);
         core.addTracingExtensions();
         if (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) {
-          this._hasSetTracePropagationTargets = !!(
-            _options &&
-            (_options.tracePropagationTargets || _options.tracingOrigins)
-          );
+          this._hasSetTracePropagationTargets = !!(_options && (_options.tracePropagationTargets || _options.tracingOrigins));
         }
-        this.options = __spreadValues(
-          __spreadValues({}, DEFAULT_BROWSER_TRACING_OPTIONS),
-          _options,
-        );
+        this.options = __spreadValues(__spreadValues({}, DEFAULT_BROWSER_TRACING_OPTIONS), _options);
         if (this.options._experiments.enableLongTask !== void 0) {
-          this.options.enableLongTask =
-            this.options._experiments.enableLongTask;
+          this.options.enableLongTask = this.options._experiments.enableLongTask;
         }
-        if (
-          _options &&
-          !_options.tracePropagationTargets &&
-          _options.tracingOrigins
-        ) {
+        if (_options && !_options.tracePropagationTargets && _options.tracingOrigins) {
           this.options.tracePropagationTargets = _options.tracingOrigins;
         }
         this._collectWebVitals = index.startTrackingWebVitals();
@@ -10618,36 +8448,18 @@ var require_browsertracing = __commonJS({
           traceFetch,
           traceXHR,
           shouldCreateSpanForRequest,
-          _experiments,
+          _experiments
         } = this.options;
-        const clientOptionsTracePropagationTargets =
-          clientOptions && clientOptions.tracePropagationTargets;
-        const tracePropagationTargets =
-          clientOptionsTracePropagationTargets ||
-          this.options.tracePropagationTargets;
-        if (
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          this._hasSetTracePropagationTargets &&
-          clientOptionsTracePropagationTargets
-        ) {
-          utils.logger.warn(
-            "[Tracing] The `tracePropagationTargets` option was set in the BrowserTracing integration and top level `Sentry.init`. The top level `Sentry.init` value is being used.",
-          );
+        const clientOptionsTracePropagationTargets = clientOptions && clientOptions.tracePropagationTargets;
+        const tracePropagationTargets = clientOptionsTracePropagationTargets || this.options.tracePropagationTargets;
+        if ((typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && this._hasSetTracePropagationTargets && clientOptionsTracePropagationTargets) {
+          utils.logger.warn("[Tracing] The `tracePropagationTargets` option was set in the BrowserTracing integration and top level `Sentry.init`. The top level `Sentry.init` value is being used.");
         }
-        instrumentRouting(
-          (context) => {
-            const transaction = this._createRouteTransaction(context);
-            this.options._experiments.onStartRouteTransaction &&
-              this.options._experiments.onStartRouteTransaction(
-                transaction,
-                context,
-                getCurrentHub,
-              );
-            return transaction;
-          },
-          startTransactionOnPageLoad,
-          startTransactionOnLocationChange,
-        );
+        instrumentRouting((context) => {
+          const transaction = this._createRouteTransaction(context);
+          this.options._experiments.onStartRouteTransaction && this.options._experiments.onStartRouteTransaction(transaction, context, getCurrentHub);
+          return transaction;
+        }, startTransactionOnPageLoad, startTransactionOnLocationChange);
         if (markBackgroundTransactions) {
           backgroundtab.registerBackgroundTabDetection();
         }
@@ -10660,79 +8472,38 @@ var require_browsertracing = __commonJS({
           tracePropagationTargets,
           shouldCreateSpanForRequest,
           _experiments: {
-            enableHTTPTimings: _experiments.enableHTTPTimings,
-          },
+            enableHTTPTimings: _experiments.enableHTTPTimings
+          }
         });
       }
       _createRouteTransaction(context) {
         if (!this._getCurrentHub) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              `[Tracing] Did not create ${context.op} transaction because _getCurrentHub is invalid.`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`[Tracing] Did not create ${context.op} transaction because _getCurrentHub is invalid.`);
           return void 0;
         }
         const hub = this._getCurrentHub();
-        const { beforeNavigate, idleTimeout, finalTimeout, heartbeatInterval } =
-          this.options;
+        const { beforeNavigate, idleTimeout, finalTimeout, heartbeatInterval } = this.options;
         const isPageloadTransaction = context.op === "pageload";
-        const sentryTrace = isPageloadTransaction
-          ? getMetaContent("sentry-trace")
-          : "";
+        const sentryTrace = isPageloadTransaction ? getMetaContent("sentry-trace") : "";
         const baggage = isPageloadTransaction ? getMetaContent("baggage") : "";
-        const { traceparentData, dynamicSamplingContext, propagationContext } =
-          utils.tracingContextFromHeaders(sentryTrace, baggage);
-        const expandedContext = __spreadProps(
-          __spreadValues(__spreadValues({}, context), traceparentData),
-          {
-            metadata: __spreadProps(__spreadValues({}, context.metadata), {
-              dynamicSamplingContext:
-                traceparentData && !dynamicSamplingContext
-                  ? {}
-                  : dynamicSamplingContext,
-            }),
-            trimEnd: true,
-          },
-        );
-        const modifiedContext =
-          typeof beforeNavigate === "function"
-            ? beforeNavigate(expandedContext)
-            : expandedContext;
-        const finalContext =
-          modifiedContext === void 0
-            ? __spreadProps(__spreadValues({}, expandedContext), {
-                sampled: false,
-              })
-            : modifiedContext;
-        finalContext.metadata =
-          finalContext.name !== expandedContext.name
-            ? __spreadProps(__spreadValues({}, finalContext.metadata), {
-                source: "custom",
-              })
-            : finalContext.metadata;
+        const { traceparentData, dynamicSamplingContext, propagationContext } = utils.tracingContextFromHeaders(sentryTrace, baggage);
+        const expandedContext = __spreadProps(__spreadValues(__spreadValues({}, context), traceparentData), {
+          metadata: __spreadProps(__spreadValues({}, context.metadata), {
+            dynamicSamplingContext: traceparentData && !dynamicSamplingContext ? {} : dynamicSamplingContext
+          }),
+          trimEnd: true
+        });
+        const modifiedContext = typeof beforeNavigate === "function" ? beforeNavigate(expandedContext) : expandedContext;
+        const finalContext = modifiedContext === void 0 ? __spreadProps(__spreadValues({}, expandedContext), { sampled: false }) : modifiedContext;
+        finalContext.metadata = finalContext.name !== expandedContext.name ? __spreadProps(__spreadValues({}, finalContext.metadata), { source: "custom" }) : finalContext.metadata;
         this._latestRouteName = finalContext.name;
-        this._latestRouteSource =
-          finalContext.metadata && finalContext.metadata.source;
+        this._latestRouteSource = finalContext.metadata && finalContext.metadata.source;
         if (finalContext.sampled === false) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              `[Tracing] Will not send ${finalContext.op} transaction because of beforeNavigate.`,
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Will not send ${finalContext.op} transaction because of beforeNavigate.`);
         }
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.log(
-            `[Tracing] Starting ${finalContext.op} transaction on scope`,
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Starting ${finalContext.op} transaction on scope`);
         const { location } = types.WINDOW;
-        const idleTransaction = core.startIdleTransaction(
-          hub,
-          finalContext,
-          idleTimeout,
-          finalTimeout,
-          true,
-          { location },
-          heartbeatInterval,
-        );
+        const idleTransaction = core.startIdleTransaction(hub, finalContext, idleTimeout, finalTimeout, true, { location }, heartbeatInterval);
         const scope = hub.getScope();
         if (isPageloadTransaction && traceparentData) {
           scope.setPropagationContext(propagationContext);
@@ -10741,7 +8512,7 @@ var require_browsertracing = __commonJS({
             traceId: idleTransaction.traceId,
             spanId: idleTransaction.spanId,
             parentSpanId: idleTransaction.parentSpanId,
-            sampled: !!idleTransaction.sampled,
+            sampled: !!idleTransaction.sampled
           });
         }
         idleTransaction.registerBeforeFinishCallback((transaction) => {
@@ -10756,36 +8527,21 @@ var require_browsertracing = __commonJS({
           const { idleTimeout, finalTimeout, heartbeatInterval } = this.options;
           const op = "ui.action.click";
           const currentTransaction = core.getActiveTransaction();
-          if (
-            currentTransaction &&
-            currentTransaction.op &&
-            ["navigation", "pageload"].includes(currentTransaction.op)
-          ) {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.warn(
-                `[Tracing] Did not create ${op} transaction because a pageload or navigation transaction is in progress.`,
-              );
+          if (currentTransaction && currentTransaction.op && ["navigation", "pageload"].includes(currentTransaction.op)) {
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`[Tracing] Did not create ${op} transaction because a pageload or navigation transaction is in progress.`);
             return void 0;
           }
           if (inflightInteractionTransaction) {
-            inflightInteractionTransaction.setFinishReason(
-              "interactionInterrupted",
-            );
+            inflightInteractionTransaction.setFinishReason("interactionInterrupted");
             inflightInteractionTransaction.finish();
             inflightInteractionTransaction = void 0;
           }
           if (!this._getCurrentHub) {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.warn(
-                `[Tracing] Did not create ${op} transaction because _getCurrentHub is invalid.`,
-              );
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`[Tracing] Did not create ${op} transaction because _getCurrentHub is invalid.`);
             return void 0;
           }
           if (!this._latestRouteName) {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.warn(
-                `[Tracing] Did not create ${op} transaction because _latestRouteName is missing.`,
-              );
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn(`[Tracing] Did not create ${op} transaction because _latestRouteName is missing.`);
             return void 0;
           }
           const hub = this._getCurrentHub();
@@ -10795,24 +8551,13 @@ var require_browsertracing = __commonJS({
             op,
             trimEnd: true,
             metadata: {
-              source: this._latestRouteSource || "url",
-            },
+              source: this._latestRouteSource || "url"
+            }
           };
-          inflightInteractionTransaction = core.startIdleTransaction(
-            hub,
-            context,
-            idleTimeout,
-            finalTimeout,
-            true,
-            { location },
-            heartbeatInterval,
-          );
+          inflightInteractionTransaction = core.startIdleTransaction(hub, context, idleTimeout, finalTimeout, true, { location }, heartbeatInterval);
         };
         ["click"].forEach((type) => {
-          addEventListener(type, registerInteractionTransaction, {
-            once: false,
-            capture: true,
-          });
+          addEventListener(type, registerInteractionTransaction, { once: false, capture: true });
         });
       }
     };
@@ -10823,7 +8568,7 @@ var require_browsertracing = __commonJS({
     exports.BROWSER_TRACING_INTEGRATION_ID = BROWSER_TRACING_INTEGRATION_ID;
     exports.BrowserTracing = BrowserTracing;
     exports.getMetaContent = getMetaContent;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/extensions.js
@@ -10839,49 +8584,31 @@ var require_extensions = __commonJS({
       }
       const packageToIntegrationMapping = {
         mongodb() {
-          const integration = utils.dynamicRequire(
-            module2,
-            "./node/integrations/mongo",
-          );
+          const integration = utils.dynamicRequire(module2, "./node/integrations/mongo");
           return new integration.Mongo();
         },
         mongoose() {
-          const integration = utils.dynamicRequire(
-            module2,
-            "./node/integrations/mongo",
-          );
+          const integration = utils.dynamicRequire(module2, "./node/integrations/mongo");
           return new integration.Mongo();
         },
         mysql() {
-          const integration = utils.dynamicRequire(
-            module2,
-            "./node/integrations/mysql",
-          );
+          const integration = utils.dynamicRequire(module2, "./node/integrations/mysql");
           return new integration.Mysql();
         },
         pg() {
-          const integration = utils.dynamicRequire(
-            module2,
-            "./node/integrations/postgres",
-          );
+          const integration = utils.dynamicRequire(module2, "./node/integrations/postgres");
           return new integration.Postgres();
-        },
+        }
       };
-      const mappedPackages = Object.keys(packageToIntegrationMapping)
-        .filter((moduleName) => !!utils.loadModule(moduleName))
-        .map((pkg) => {
-          try {
-            return packageToIntegrationMapping[pkg]();
-          } catch (e) {
-            return void 0;
-          }
-        })
-        .filter((p) => p);
+      const mappedPackages = Object.keys(packageToIntegrationMapping).filter((moduleName) => !!utils.loadModule(moduleName)).map((pkg) => {
+        try {
+          return packageToIntegrationMapping[pkg]();
+        } catch (e) {
+          return void 0;
+        }
+      }).filter((p) => p);
       if (mappedPackages.length > 0) {
-        carrier.__SENTRY__.integrations = [
-          ...(carrier.__SENTRY__.integrations || []),
-          ...mappedPackages,
-        ];
+        carrier.__SENTRY__.integrations = [...carrier.__SENTRY__.integrations || [], ...mappedPackages];
       }
     }
     function addExtensionMethods() {
@@ -10891,7 +8618,7 @@ var require_extensions = __commonJS({
       }
     }
     exports.addExtensionMethods = addExtensionMethods;
-  },
+  }
 });
 
 // node_modules/@sentry-internal/tracing/cjs/index.js
@@ -10929,18 +8656,14 @@ var require_cjs3 = __commonJS({
     exports.Prisma = prisma.Prisma;
     exports.GraphQL = graphql.GraphQL;
     exports.Apollo = apollo.Apollo;
-    exports.lazyLoadedNodePerformanceMonitoringIntegrations =
-      lazy.lazyLoadedNodePerformanceMonitoringIntegrations;
-    exports.BROWSER_TRACING_INTEGRATION_ID =
-      browsertracing.BROWSER_TRACING_INTEGRATION_ID;
+    exports.lazyLoadedNodePerformanceMonitoringIntegrations = lazy.lazyLoadedNodePerformanceMonitoringIntegrations;
+    exports.BROWSER_TRACING_INTEGRATION_ID = browsertracing.BROWSER_TRACING_INTEGRATION_ID;
     exports.BrowserTracing = browsertracing.BrowserTracing;
-    exports.addTracingHeadersToFetchRequest =
-      request.addTracingHeadersToFetchRequest;
-    exports.defaultRequestInstrumentationOptions =
-      request.defaultRequestInstrumentationOptions;
+    exports.addTracingHeadersToFetchRequest = request.addTracingHeadersToFetchRequest;
+    exports.defaultRequestInstrumentationOptions = request.defaultRequestInstrumentationOptions;
     exports.instrumentOutgoingRequests = request.instrumentOutgoingRequests;
     exports.addExtensionMethods = extensions.addExtensionMethods;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/tracing/index.js
@@ -10950,28 +8673,20 @@ var require_tracing2 = __commonJS({
     var tracing = require_cjs3();
     var utils = require_cjs();
     function autoDiscoverNodePerformanceMonitoringIntegrations() {
-      const loadedIntegrations =
-        tracing.lazyLoadedNodePerformanceMonitoringIntegrations
-          .map((tryLoad) => {
-            try {
-              return tryLoad();
-            } catch (_) {
-              return void 0;
-            }
-          })
-          .filter((integration) => !!integration);
+      const loadedIntegrations = tracing.lazyLoadedNodePerformanceMonitoringIntegrations.map((tryLoad) => {
+        try {
+          return tryLoad();
+        } catch (_) {
+          return void 0;
+        }
+      }).filter((integration) => !!integration);
       if (loadedIntegrations.length === 0) {
-        utils.logger.warn(
-          "Performance monitoring integrations could not be automatically loaded.",
-        );
+        utils.logger.warn("Performance monitoring integrations could not be automatically loaded.");
       }
-      return loadedIntegrations.filter(
-        (integration) => !!integration.loadDependency(),
-      );
+      return loadedIntegrations.filter((integration) => !!integration.loadDependency());
     }
-    exports.autoDiscoverNodePerformanceMonitoringIntegrations =
-      autoDiscoverNodePerformanceMonitoringIntegrations;
-  },
+    exports.autoDiscoverNodePerformanceMonitoringIntegrations = autoDiscoverNodePerformanceMonitoringIntegrations;
+  }
 });
 
 // node_modules/@sentry/node/cjs/eventbuilder.js
@@ -10986,7 +8701,7 @@ var require_eventbuilder = __commonJS({
     function exceptionFromError(stackParser, error) {
       const exception = {
         type: error.name || error.constructor.name,
-        value: error.message,
+        value: error.message
       };
       const frames = parseStackFrames(stackParser, error);
       if (frames.length) {
@@ -10999,52 +8714,41 @@ var require_eventbuilder = __commonJS({
       const providedMechanism = hint && hint.data && hint.data.mechanism;
       const mechanism = providedMechanism || {
         handled: true,
-        type: "generic",
+        type: "generic"
       };
       if (!utils.isError(exception)) {
         if (utils.isPlainObject(exception)) {
-          const message = `Non-Error exception captured with keys: ${utils.extractExceptionKeysForMessage(
-            exception,
-          )}`;
+          const message = `Non-Error exception captured with keys: ${utils.extractExceptionKeysForMessage(exception)}`;
           const hub = core.getCurrentHub();
           const client = hub.getClient();
           const normalizeDepth = client && client.getOptions().normalizeDepth;
           hub.configureScope((scope) => {
-            scope.setExtra(
-              "__serialized__",
-              utils.normalizeToSize(exception, normalizeDepth),
-            );
+            scope.setExtra("__serialized__", utils.normalizeToSize(exception, normalizeDepth));
           });
-          ex = (hint && hint.syntheticException) || new Error(message);
+          ex = hint && hint.syntheticException || new Error(message);
           ex.message = message;
         } else {
-          ex = (hint && hint.syntheticException) || new Error(exception);
+          ex = hint && hint.syntheticException || new Error(exception);
           ex.message = exception;
         }
         mechanism.synthetic = true;
       }
       const event = {
         exception: {
-          values: [exceptionFromError(stackParser, ex)],
-        },
+          values: [exceptionFromError(stackParser, ex)]
+        }
       };
       utils.addExceptionTypeValue(event, void 0, void 0);
       utils.addExceptionMechanism(event, mechanism);
       return __spreadProps(__spreadValues({}, event), {
-        event_id: hint && hint.event_id,
+        event_id: hint && hint.event_id
       });
     }
-    function eventFromMessage(
-      stackParser,
-      message,
-      level = "info",
-      hint,
-      attachStacktrace,
-    ) {
+    function eventFromMessage(stackParser, message, level = "info", hint, attachStacktrace) {
       const event = {
         event_id: hint && hint.event_id,
         level,
-        message,
+        message
       };
       if (attachStacktrace && hint && hint.syntheticException) {
         const frames = parseStackFrames(stackParser, hint.syntheticException);
@@ -11053,9 +8757,9 @@ var require_eventbuilder = __commonJS({
             values: [
               {
                 value: message,
-                stacktrace: { frames },
-              },
-            ],
+                stacktrace: { frames }
+              }
+            ]
           };
         }
       }
@@ -11065,13 +8769,15 @@ var require_eventbuilder = __commonJS({
     exports.eventFromUnknownInput = eventFromUnknownInput;
     exports.exceptionFromError = exceptionFromError;
     exports.parseStackFrames = parseStackFrames;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/client.js
 var require_client = __commonJS({
   "node_modules/@sentry/node/cjs/client.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -11086,26 +8792,19 @@ var require_client = __commonJS({
           packages: [
             {
               name: "npm:@sentry/node",
-              version: core.SDK_VERSION,
-            },
+              version: core.SDK_VERSION
+            }
           ],
-          version: core.SDK_VERSION,
+          version: core.SDK_VERSION
         };
-        options.transportOptions = __spreadValues(
-          {
-            textEncoder: new util.TextEncoder(),
-          },
-          options.transportOptions,
-        );
+        options.transportOptions = __spreadValues({
+          textEncoder: new util.TextEncoder()
+        }, options.transportOptions);
         core.addTracingExtensions();
         super(options);
       }
       captureException(exception, hint, scope) {
-        if (
-          this._options.autoSessionTracking &&
-          this._sessionFlusher &&
-          scope
-        ) {
+        if (this._options.autoSessionTracking && this._sessionFlusher && scope) {
           const requestSession = scope.getRequestSession();
           if (requestSession && requestSession.status === "ok") {
             requestSession.status = "errored";
@@ -11114,17 +8813,9 @@ var require_client = __commonJS({
         return super.captureException(exception, hint, scope);
       }
       captureEvent(event, hint, scope) {
-        if (
-          this._options.autoSessionTracking &&
-          this._sessionFlusher &&
-          scope
-        ) {
+        if (this._options.autoSessionTracking && this._sessionFlusher && scope) {
           const eventType = event.type || "exception";
-          const isException =
-            eventType === "exception" &&
-            event.exception &&
-            event.exception.values &&
-            event.exception.values.length > 0;
+          const isException = eventType === "exception" && event.exception && event.exception.values && event.exception.values.length > 0;
           if (isException) {
             const requestSession = scope.getRequestSession();
             if (requestSession && requestSession.status === "ok") {
@@ -11135,59 +8826,30 @@ var require_client = __commonJS({
         return super.captureEvent(event, hint, scope);
       }
       close(timeout) {
-        _optionalChain([
-          this,
-          "access",
-          (_) => _._sessionFlusher,
-          "optionalAccess",
-          (_2) => _2.close,
-          "call",
-          (_3) => _3(),
-        ]);
+        _optionalChain([this, "access", (_) => _._sessionFlusher, "optionalAccess", (_2) => _2.close, "call", (_3) => _3()]);
         return super.close(timeout);
       }
       initSessionFlusher() {
         const { release, environment } = this._options;
         if (!release) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              "Cannot initialise an instance of SessionFlusher if no release is provided!",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Cannot initialise an instance of SessionFlusher if no release is provided!");
         } else {
           this._sessionFlusher = new core.SessionFlusher(this, {
             release,
-            environment,
+            environment
           });
         }
       }
       eventFromException(exception, hint) {
-        return utils.resolvedSyncPromise(
-          eventbuilder.eventFromUnknownInput(
-            this._options.stackParser,
-            exception,
-            hint,
-          ),
-        );
+        return utils.resolvedSyncPromise(eventbuilder.eventFromUnknownInput(this._options.stackParser, exception, hint));
       }
       eventFromMessage(message, level = "info", hint) {
-        return utils.resolvedSyncPromise(
-          eventbuilder.eventFromMessage(
-            this._options.stackParser,
-            message,
-            level,
-            hint,
-            this._options.attachStacktrace,
-          ),
-        );
+        return utils.resolvedSyncPromise(eventbuilder.eventFromMessage(this._options.stackParser, message, level, hint, this._options.attachStacktrace));
       }
       captureCheckIn(checkIn, monitorConfig, scope) {
-        const id =
-          checkIn.status !== "in_progress" && checkIn.checkInId
-            ? checkIn.checkInId
-            : utils.uuid4();
+        const id = checkIn.status !== "in_progress" && checkIn.checkInId ? checkIn.checkInId : utils.uuid4();
         if (!this._isEnabled()) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn("SDK not enabled, will not capture checkin.");
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("SDK not enabled, will not capture checkin.");
           return id;
         }
         const options = this.getOptions();
@@ -11197,7 +8859,7 @@ var require_client = __commonJS({
           monitor_slug: checkIn.monitorSlug,
           status: checkIn.status,
           release,
-          environment,
+          environment
         };
         if (checkIn.status !== "in_progress") {
           serializedCheckIn.duration = checkIn.duration;
@@ -11207,59 +8869,34 @@ var require_client = __commonJS({
             schedule: monitorConfig.schedule,
             checkin_margin: monitorConfig.checkinMargin,
             max_runtime: monitorConfig.maxRuntime,
-            timezone: monitorConfig.timezone,
+            timezone: monitorConfig.timezone
           };
         }
-        const [dynamicSamplingContext, traceContext] =
-          this._getTraceInfoFromScope(scope);
+        const [dynamicSamplingContext, traceContext] = this._getTraceInfoFromScope(scope);
         if (traceContext) {
           serializedCheckIn.contexts = {
-            trace: traceContext,
+            trace: traceContext
           };
         }
-        const envelope = core.createCheckInEnvelope(
-          serializedCheckIn,
-          dynamicSamplingContext,
-          this.getSdkMetadata(),
-          tunnel,
-          this.getDsn(),
-        );
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.info(
-            "Sending checkin:",
-            checkIn.monitorSlug,
-            checkIn.status,
-          );
+        const envelope = core.createCheckInEnvelope(serializedCheckIn, dynamicSamplingContext, this.getSdkMetadata(), tunnel, this.getDsn());
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.info("Sending checkin:", checkIn.monitorSlug, checkIn.status);
         void this._sendEnvelope(envelope);
         return id;
       }
       _prepareEvent(event, hint, scope) {
         event.platform = event.platform || "node";
         event.contexts = __spreadProps(__spreadValues({}, event.contexts), {
-          runtime: _optionalChain([
-            event,
-            "access",
-            (_4) => _4.contexts,
-            "optionalAccess",
-            (_5) => _5.runtime,
-          ]) || {
+          runtime: _optionalChain([event, "access", (_4) => _4.contexts, "optionalAccess", (_5) => _5.runtime]) || {
             name: "node",
-            version: global.process.version,
-          },
+            version: global.process.version
+          }
         });
-        event.server_name =
-          event.server_name ||
-          this.getOptions().serverName ||
-          global.process.env.SENTRY_NAME ||
-          os.hostname();
+        event.server_name = event.server_name || this.getOptions().serverName || global.process.env.SENTRY_NAME || os.hostname();
         return super._prepareEvent(event, hint, scope);
       }
       _captureRequestSession() {
         if (!this._sessionFlusher) {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.warn(
-              "Discarded request mode session because autoSessionTracking option was disabled",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Discarded request mode session because autoSessionTracking option was disabled");
         } else {
           this._sessionFlusher.incrementSessionStatusCount();
         }
@@ -11270,43 +8907,22 @@ var require_client = __commonJS({
         }
         const span = scope.getSpan();
         if (span) {
-          return [
-            _optionalChain([
-              span,
-              "optionalAccess",
-              (_6) => _6.transaction,
-              "optionalAccess",
-              (_7) => _7.getDynamicSamplingContext,
-              "call",
-              (_8) => _8(),
-            ]),
-            _optionalChain([
-              span,
-              "optionalAccess",
-              (_9) => _9.getTraceContext,
-              "call",
-              (_10) => _10(),
-            ]),
-          ];
+          return [_optionalChain([span, "optionalAccess", (_6) => _6.transaction, "optionalAccess", (_7) => _7.getDynamicSamplingContext, "call", (_8) => _8()]), _optionalChain([span, "optionalAccess", (_9) => _9.getTraceContext, "call", (_10) => _10()])];
         }
-        const { traceId, spanId, parentSpanId, dsc } =
-          scope.getPropagationContext();
+        const { traceId, spanId, parentSpanId, dsc } = scope.getPropagationContext();
         const traceContext = {
           trace_id: traceId,
           span_id: spanId,
-          parent_span_id: parentSpanId,
+          parent_span_id: parentSpanId
         };
         if (dsc) {
           return [dsc, traceContext];
         }
-        return [
-          core.getDynamicSamplingContextFromClient(traceId, this, scope),
-          traceContext,
-        ];
+        return [core.getDynamicSamplingContextFromClient(traceId, this, scope), traceContext];
       }
     };
     exports.NodeClient = NodeClient;
-  },
+  }
 });
 
 // node_modules/ms/index.js
@@ -11318,7 +8934,7 @@ var require_ms = __commonJS({
     var d = h * 24;
     var w = d * 7;
     var y = d * 365.25;
-    module2.exports = function (val, options) {
+    module2.exports = function(val, options) {
       options = options || {};
       var type = typeof val;
       if (type === "string" && val.length > 0) {
@@ -11326,20 +8942,14 @@ var require_ms = __commonJS({
       } else if (type === "number" && isFinite(val)) {
         return options.long ? fmtLong(val) : fmtShort(val);
       }
-      throw new Error(
-        "val is not a non-empty string or a valid number. val=" +
-          JSON.stringify(val),
-      );
+      throw new Error("val is not a non-empty string or a valid number. val=" + JSON.stringify(val));
     };
     function parse(str) {
       str = String(str);
       if (str.length > 100) {
         return;
       }
-      var match =
-        /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
-          str,
-        );
+      var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(str);
       if (!match) {
         return;
       }
@@ -11424,7 +9034,7 @@ var require_ms = __commonJS({
       var isPlural = msAbs >= n * 1.5;
       return Math.round(ms / n) + " " + name + (isPlural ? "s" : "");
     }
-  },
+  }
 });
 
 // node_modules/debug/src/common.js
@@ -11513,7 +9123,7 @@ var require_common = __commonJS({
           },
           set: (v) => {
             enableOverride = v;
-          },
+          }
         });
         if (typeof createDebug.init === "function") {
           createDebug.init(debug);
@@ -11521,11 +9131,7 @@ var require_common = __commonJS({
         return debug;
       }
       function extend(namespace, delimiter) {
-        const newDebug = createDebug(
-          this.namespace +
-            (typeof delimiter === "undefined" ? ":" : delimiter) +
-            namespace,
-        );
+        const newDebug = createDebug(this.namespace + (typeof delimiter === "undefined" ? ":" : delimiter) + namespace);
         newDebug.log = this.log;
         return newDebug;
       }
@@ -11535,9 +9141,7 @@ var require_common = __commonJS({
         createDebug.names = [];
         createDebug.skips = [];
         let i;
-        const split = (typeof namespaces === "string" ? namespaces : "").split(
-          /[\s,]+/,
-        );
+        const split = (typeof namespaces === "string" ? namespaces : "").split(/[\s,]+/);
         const len = split.length;
         for (i = 0; i < len; i++) {
           if (!split[i]) {
@@ -11554,9 +9158,7 @@ var require_common = __commonJS({
       function disable() {
         const namespaces = [
           ...createDebug.names.map(toNamespace),
-          ...createDebug.skips
-            .map(toNamespace)
-            .map((namespace) => "-" + namespace),
+          ...createDebug.skips.map(toNamespace).map((namespace) => "-" + namespace)
         ].join(",");
         createDebug.enable("");
         return namespaces;
@@ -11580,10 +9182,7 @@ var require_common = __commonJS({
         return false;
       }
       function toNamespace(regexp) {
-        return regexp
-          .toString()
-          .substring(2, regexp.toString().length - 2)
-          .replace(/\.\*\?$/, "*");
+        return regexp.toString().substring(2, regexp.toString().length - 2).replace(/\.\*\?$/, "*");
       }
       function coerce(val) {
         if (val instanceof Error) {
@@ -11592,15 +9191,13 @@ var require_common = __commonJS({
         return val;
       }
       function destroy() {
-        console.warn(
-          "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.",
-        );
+        console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
       }
       createDebug.enable(createDebug.load());
       return createDebug;
     }
     module2.exports = setup;
-  },
+  }
 });
 
 // node_modules/debug/src/browser.js
@@ -11616,9 +9213,7 @@ var require_browser2 = __commonJS({
       return () => {
         if (!warned) {
           warned = true;
-          console.warn(
-            "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.",
-          );
+          console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
         }
       };
     })();
@@ -11698,50 +9293,19 @@ var require_browser2 = __commonJS({
       "#FF9900",
       "#FF9933",
       "#FFCC00",
-      "#FFCC33",
+      "#FFCC33"
     ];
     function useColors() {
-      if (
-        typeof window !== "undefined" &&
-        window.process &&
-        (window.process.type === "renderer" || window.process.__nwjs)
-      ) {
+      if (typeof window !== "undefined" && window.process && (window.process.type === "renderer" || window.process.__nwjs)) {
         return true;
       }
-      if (
-        typeof navigator !== "undefined" &&
-        navigator.userAgent &&
-        navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)
-      ) {
+      if (typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
         return false;
       }
-      return (
-        (typeof document !== "undefined" &&
-          document.documentElement &&
-          document.documentElement.style &&
-          document.documentElement.style.WebkitAppearance) ||
-        (typeof window !== "undefined" &&
-          window.console &&
-          (window.console.firebug ||
-            (window.console.exception && window.console.table))) ||
-        (typeof navigator !== "undefined" &&
-          navigator.userAgent &&
-          navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) &&
-          parseInt(RegExp.$1, 10) >= 31) ||
-        (typeof navigator !== "undefined" &&
-          navigator.userAgent &&
-          navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/))
-      );
+      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
     }
     function formatArgs(args) {
-      args[0] =
-        (this.useColors ? "%c" : "") +
-        this.namespace +
-        (this.useColors ? " %c" : " ") +
-        args[0] +
-        (this.useColors ? "%c " : " ") +
-        "+" +
-        module2.exports.humanize(this.diff);
+      args[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args[0] + (this.useColors ? "%c " : " ") + "+" + module2.exports.humanize(this.diff);
       if (!this.useColors) {
         return;
       }
@@ -11760,7 +9324,8 @@ var require_browser2 = __commonJS({
       });
       args.splice(lastC, 0, c);
     }
-    exports.log = console.debug || console.log || (() => {});
+    exports.log = console.debug || console.log || (() => {
+    });
     function save(namespaces) {
       try {
         if (namespaces) {
@@ -11768,13 +9333,15 @@ var require_browser2 = __commonJS({
         } else {
           exports.storage.removeItem("debug");
         }
-      } catch (error) {}
+      } catch (error) {
+      }
     }
     function load() {
       let r;
       try {
         r = exports.storage.getItem("debug");
-      } catch (error) {}
+      } catch (error) {
+      }
       if (!r && typeof process !== "undefined" && "env" in process) {
         r = process.env.DEBUG;
       }
@@ -11783,18 +9350,19 @@ var require_browser2 = __commonJS({
     function localstorage() {
       try {
         return localStorage;
-      } catch (error) {}
+      } catch (error) {
+      }
     }
     module2.exports = require_common()(exports);
     var { formatters } = module2.exports;
-    formatters.j = function (v) {
+    formatters.j = function(v) {
       try {
         return JSON.stringify(v);
       } catch (error) {
         return "[UnexpectedJSONParseError]: " + error.message;
       }
     };
-  },
+  }
 });
 
 // node_modules/has-flag/index.js
@@ -11808,7 +9376,7 @@ var require_has_flag = __commonJS({
       const terminatorPos = argv.indexOf("--");
       return pos !== -1 && (terminatorPos === -1 ? true : pos < terminatorPos);
     };
-  },
+  }
 });
 
 // node_modules/supports-color/index.js
@@ -11821,17 +9389,11 @@ var require_supports_color = __commonJS({
     var forceColor;
     if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false")) {
       forceColor = false;
-    } else if (
-      hasFlag("color") ||
-      hasFlag("colors") ||
-      hasFlag("color=true") ||
-      hasFlag("color=always")
-    ) {
+    } else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
       forceColor = true;
     }
     if ("FORCE_COLOR" in env) {
-      forceColor =
-        env.FORCE_COLOR.length === 0 || parseInt(env.FORCE_COLOR, 10) !== 0;
+      forceColor = env.FORCE_COLOR.length === 0 || parseInt(env.FORCE_COLOR, 10) !== 0;
     }
     function translateLevel(level) {
       if (level === 0) {
@@ -11841,18 +9403,14 @@ var require_supports_color = __commonJS({
         level,
         hasBasic: true,
         has256: level >= 2,
-        has16m: level >= 3,
+        has16m: level >= 3
       };
     }
     function supportsColor(stream) {
       if (forceColor === false) {
         return 0;
       }
-      if (
-        hasFlag("color=16m") ||
-        hasFlag("color=full") ||
-        hasFlag("color=truecolor")
-      ) {
+      if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
         return 3;
       }
       if (hasFlag("color=256")) {
@@ -11864,39 +9422,25 @@ var require_supports_color = __commonJS({
       const min = forceColor ? 1 : 0;
       if (process.platform === "win32") {
         const osRelease = os.release().split(".");
-        if (
-          Number(process.versions.node.split(".")[0]) >= 8 &&
-          Number(osRelease[0]) >= 10 &&
-          Number(osRelease[2]) >= 10586
-        ) {
+        if (Number(process.versions.node.split(".")[0]) >= 8 && Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
           return Number(osRelease[2]) >= 14931 ? 3 : 2;
         }
         return 1;
       }
       if ("CI" in env) {
-        if (
-          ["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI"].some(
-            (sign) => sign in env,
-          ) ||
-          env.CI_NAME === "codeship"
-        ) {
+        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI"].some((sign) => sign in env) || env.CI_NAME === "codeship") {
           return 1;
         }
         return min;
       }
       if ("TEAMCITY_VERSION" in env) {
-        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION)
-          ? 1
-          : 0;
+        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
       }
       if (env.COLORTERM === "truecolor") {
         return 3;
       }
       if ("TERM_PROGRAM" in env) {
-        const version = parseInt(
-          (env.TERM_PROGRAM_VERSION || "").split(".")[0],
-          10,
-        );
+        const version = parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
         switch (env.TERM_PROGRAM) {
           case "iTerm.app":
             return version >= 3 ? 3 : 2;
@@ -11907,11 +9451,7 @@ var require_supports_color = __commonJS({
       if (/-256(color)?$/i.test(env.TERM)) {
         return 2;
       }
-      if (
-        /^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(
-          env.TERM,
-        )
-      ) {
+      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM)) {
         return 1;
       }
       if ("COLORTERM" in env) {
@@ -11929,9 +9469,9 @@ var require_supports_color = __commonJS({
     module2.exports = {
       supportsColor: getSupportLevel,
       stdout: getSupportLevel(process.stdout),
-      stderr: getSupportLevel(process.stderr),
+      stderr: getSupportLevel(process.stderr)
     };
-  },
+  }
 });
 
 // node_modules/debug/src/node.js
@@ -11945,51 +9485,114 @@ var require_node2 = __commonJS({
     exports.save = save;
     exports.load = load;
     exports.useColors = useColors;
-    exports.destroy = util.deprecate(
-      () => {},
-      "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.",
-    );
+    exports.destroy = util.deprecate(() => {
+    }, "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
     exports.colors = [6, 2, 3, 4, 5, 1];
     try {
       const supportsColor = require_supports_color();
       if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
         exports.colors = [
-          20, 21, 26, 27, 32, 33, 38, 39, 40, 41, 42, 43, 44, 45, 56, 57, 62,
-          63, 68, 69, 74, 75, 76, 77, 78, 79, 80, 81, 92, 93, 98, 99, 112, 113,
-          128, 129, 134, 135, 148, 149, 160, 161, 162, 163, 164, 165, 166, 167,
-          168, 169, 170, 171, 172, 173, 178, 179, 184, 185, 196, 197, 198, 199,
-          200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 214, 215, 220, 221,
+          20,
+          21,
+          26,
+          27,
+          32,
+          33,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          56,
+          57,
+          62,
+          63,
+          68,
+          69,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          92,
+          93,
+          98,
+          99,
+          112,
+          113,
+          128,
+          129,
+          134,
+          135,
+          148,
+          149,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          178,
+          179,
+          184,
+          185,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          214,
+          215,
+          220,
+          221
         ];
       }
-    } catch (error) {}
-    exports.inspectOpts = Object.keys(process.env)
-      .filter((key) => {
-        return /^debug_/i.test(key);
-      })
-      .reduce((obj, key) => {
-        const prop = key
-          .substring(6)
-          .toLowerCase()
-          .replace(/_([a-z])/g, (_, k) => {
-            return k.toUpperCase();
-          });
-        let val = process.env[key];
-        if (/^(yes|on|true|enabled)$/i.test(val)) {
-          val = true;
-        } else if (/^(no|off|false|disabled)$/i.test(val)) {
-          val = false;
-        } else if (val === "null") {
-          val = null;
-        } else {
-          val = Number(val);
-        }
-        obj[prop] = val;
-        return obj;
-      }, {});
+    } catch (error) {
+    }
+    exports.inspectOpts = Object.keys(process.env).filter((key) => {
+      return /^debug_/i.test(key);
+    }).reduce((obj, key) => {
+      const prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, (_, k) => {
+        return k.toUpperCase();
+      });
+      let val = process.env[key];
+      if (/^(yes|on|true|enabled)$/i.test(val)) {
+        val = true;
+      } else if (/^(no|off|false|disabled)$/i.test(val)) {
+        val = false;
+      } else if (val === "null") {
+        val = null;
+      } else {
+        val = Number(val);
+      }
+      obj[prop] = val;
+      return obj;
+    }, {});
     function useColors() {
-      return "colors" in exports.inspectOpts
-        ? Boolean(exports.inspectOpts.colors)
-        : tty.isatty(process.stderr.fd);
+      return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(process.stderr.fd);
     }
     function formatArgs(args) {
       const { namespace: name, useColors: useColors2 } = this;
@@ -11998,9 +9601,7 @@ var require_node2 = __commonJS({
         const colorCode = "\x1B[3" + (c < 8 ? c : "8;5;" + c);
         const prefix = `  ${colorCode};1m${name} \x1B[0m`;
         args[0] = prefix + args[0].split("\n").join("\n" + prefix);
-        args.push(
-          colorCode + "m+" + module2.exports.humanize(this.diff) + "\x1B[0m",
-        );
+        args.push(colorCode + "m+" + module2.exports.humanize(this.diff) + "\x1B[0m");
       } else {
         args[0] = getDate() + name + " " + args[0];
       }
@@ -12033,35 +9634,26 @@ var require_node2 = __commonJS({
     }
     module2.exports = require_common()(exports);
     var { formatters } = module2.exports;
-    formatters.o = function (v) {
+    formatters.o = function(v) {
       this.inspectOpts.colors = this.useColors;
-      return util
-        .inspect(v, this.inspectOpts)
-        .split("\n")
-        .map((str) => str.trim())
-        .join(" ");
+      return util.inspect(v, this.inspectOpts).split("\n").map((str) => str.trim()).join(" ");
     };
-    formatters.O = function (v) {
+    formatters.O = function(v) {
       this.inspectOpts.colors = this.useColors;
       return util.inspect(v, this.inspectOpts);
     };
-  },
+  }
 });
 
 // node_modules/debug/src/index.js
 var require_src = __commonJS({
   "node_modules/debug/src/index.js"(exports, module2) {
-    if (
-      typeof process === "undefined" ||
-      process.type === "renderer" ||
-      process.browser === true ||
-      process.__nwjs
-    ) {
+    if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
       module2.exports = require_browser2();
     } else {
       module2.exports = require_node2();
     }
-  },
+  }
 });
 
 // node_modules/agent-base/dist/src/promisify.js
@@ -12070,7 +9662,7 @@ var require_promisify = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function promisify(fn) {
-      return function (req, opts) {
+      return function(req, opts) {
         return new Promise((resolve, reject) => {
           fn.call(this, req, opts, (err, rtn) => {
             if (err) {
@@ -12083,18 +9675,16 @@ var require_promisify = __commonJS({
       };
     }
     exports.default = promisify;
-  },
+  }
 });
 
 // node_modules/agent-base/dist/src/index.js
 var require_src2 = __commonJS({
   "node_modules/agent-base/dist/src/index.js"(exports, module2) {
     "use strict";
-    var __importDefault =
-      (exports && exports.__importDefault) ||
-      function (mod) {
-        return mod && mod.__esModule ? mod : { default: mod };
-      };
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
     var events_1 = require("events");
     var debug_1 = __importDefault(require_src());
     var promisify_1 = __importDefault(require_promisify());
@@ -12104,18 +9694,14 @@ var require_src2 = __commonJS({
     }
     function isSecureEndpoint() {
       const { stack } = new Error();
-      if (typeof stack !== "string") return false;
-      return stack
-        .split("\n")
-        .some(
-          (l) =>
-            l.indexOf("(https.js:") !== -1 || l.indexOf("node:https:") !== -1,
-        );
+      if (typeof stack !== "string")
+        return false;
+      return stack.split("\n").some((l) => l.indexOf("(https.js:") !== -1 || l.indexOf("node:https:") !== -1);
     }
     function createAgent(callback, opts) {
       return new createAgent.Agent(callback, opts);
     }
-    (function (createAgent2) {
+    (function(createAgent2) {
       class Agent3 extends events_1.EventEmitter {
         constructor(callback, _opts) {
           super();
@@ -12156,9 +9742,7 @@ var require_src2 = __commonJS({
           this.explicitProtocol = v;
         }
         callback(req, opts, fn) {
-          throw new Error(
-            '"agent-base" has no default implementation, you must subclass and override `callback()`',
-          );
+          throw new Error('"agent-base" has no default implementation, you must subclass and override `callback()`');
         }
         addRequest(req, _opts) {
           const opts = Object.assign({}, _opts);
@@ -12188,21 +9772,21 @@ var require_src2 = __commonJS({
           let timeoutId = null;
           const timeoutMs = opts.timeout || this.timeout;
           const onerror = (err) => {
-            if (req._hadError) return;
+            if (req._hadError)
+              return;
             req.emit("error", err);
             req._hadError = true;
           };
           const ontimeout = () => {
             timeoutId = null;
             timedOut = true;
-            const err = new Error(
-              `A "socket" was not created for HTTP request before ${timeoutMs}ms`,
-            );
+            const err = new Error(`A "socket" was not created for HTTP request before ${timeoutMs}ms`);
             err.code = "ETIMEOUT";
             onerror(err);
           };
           const callbackError = (err) => {
-            if (timedOut) return;
+            if (timedOut)
+              return;
             if (timeoutId !== null) {
               clearTimeout(timeoutId);
               timeoutId = null;
@@ -12210,16 +9794,14 @@ var require_src2 = __commonJS({
             onerror(err);
           };
           const onsocket = (socket) => {
-            if (timedOut) return;
+            if (timedOut)
+              return;
             if (timeoutId != null) {
               clearTimeout(timeoutId);
               timeoutId = null;
             }
             if (isAgent(socket)) {
-              debug(
-                "Callback returned another Agent instance %o",
-                socket.constructor.name,
-              );
+              debug("Callback returned another Agent instance %o", socket.constructor.name);
               socket.addRequest(req, opts);
               return;
             }
@@ -12230,9 +9812,7 @@ var require_src2 = __commonJS({
               req.onSocket(socket);
               return;
             }
-            const err = new Error(
-              `no Duplex stream was returned to agent-base for \`${req.method} ${req.path}\``,
-            );
+            const err = new Error(`no Duplex stream was returned to agent-base for \`${req.method} ${req.path}\``);
             onerror(err);
           };
           if (typeof this.callback !== "function") {
@@ -12254,15 +9834,8 @@ var require_src2 = __commonJS({
             opts.port = Number(opts.port);
           }
           try {
-            debug(
-              "Resolving socket for %o request: %o",
-              opts.protocol,
-              `${req.method} ${req.path}`,
-            );
-            Promise.resolve(this.promisifiedCallback(req, opts)).then(
-              onsocket,
-              callbackError,
-            );
+            debug("Resolving socket for %o request: %o", opts.protocol, `${req.method} ${req.path}`);
+            Promise.resolve(this.promisifiedCallback(req, opts)).then(onsocket, callbackError);
           } catch (err) {
             Promise.reject(err).catch(callbackError);
           }
@@ -12279,18 +9852,16 @@ var require_src2 = __commonJS({
       createAgent2.prototype = createAgent2.Agent.prototype;
     })(createAgent || (createAgent = {}));
     module2.exports = createAgent;
-  },
+  }
 });
 
 // node_modules/https-proxy-agent/dist/parse-proxy-response.js
 var require_parse_proxy_response = __commonJS({
   "node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports) {
     "use strict";
-    var __importDefault =
-      (exports && exports.__importDefault) ||
-      function (mod) {
-        return mod && mod.__esModule ? mod : { default: mod };
-      };
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
     Object.defineProperty(exports, "__esModule", { value: true });
     var debug_1 = __importDefault(require_src());
     var debug = debug_1.default("https-proxy-agent:parse-proxy-response");
@@ -12300,8 +9871,10 @@ var require_parse_proxy_response = __commonJS({
         const buffers = [];
         function read() {
           const b = socket.read();
-          if (b) ondata(b);
-          else socket.once("readable", read);
+          if (b)
+            ondata(b);
+          else
+            socket.once("readable", read);
         }
         function cleanup() {
           socket.removeListener("end", onend);
@@ -12330,16 +9903,12 @@ var require_parse_proxy_response = __commonJS({
             read();
             return;
           }
-          const firstLine = buffered.toString(
-            "ascii",
-            0,
-            buffered.indexOf("\r\n"),
-          );
+          const firstLine = buffered.toString("ascii", 0, buffered.indexOf("\r\n"));
           const statusCode2 = +firstLine.split(" ")[1];
           debug("got proxy server response: %o", firstLine);
           resolve({
             statusCode: statusCode2,
-            buffered,
+            buffered
           });
         }
         socket.on("error", onerror);
@@ -12349,51 +9918,43 @@ var require_parse_proxy_response = __commonJS({
       });
     }
     exports.default = parseProxyResponse;
-  },
+  }
 });
 
 // node_modules/https-proxy-agent/dist/agent.js
 var require_agent = __commonJS({
   "node_modules/https-proxy-agent/dist/agent.js"(exports) {
     "use strict";
-    var __awaiter =
-      (exports && exports.__awaiter) ||
-      function (thisArg, _arguments, P, generator) {
-        function adopt(value) {
-          return value instanceof P
-            ? value
-            : new P(function (resolve) {
-                resolve(value);
-              });
-        }
-        return new (P || (P = Promise))(function (resolve, reject) {
-          function fulfilled(value) {
-            try {
-              step(generator.next(value));
-            } catch (e) {
-              reject(e);
-            }
-          }
-          function rejected(value) {
-            try {
-              step(generator["throw"](value));
-            } catch (e) {
-              reject(e);
-            }
-          }
-          function step(result) {
-            result.done
-              ? resolve(result.value)
-              : adopt(result.value).then(fulfilled, rejected);
-          }
-          step((generator = generator.apply(thisArg, _arguments || [])).next());
+    var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+          resolve(value);
         });
-      };
-    var __importDefault =
-      (exports && exports.__importDefault) ||
-      function (mod) {
-        return mod && mod.__esModule ? mod : { default: mod };
-      };
+      }
+      return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function rejected(value) {
+          try {
+            step(generator["throw"](value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
     Object.defineProperty(exports, "__esModule", { value: true });
     var net_1 = __importDefault(require("net"));
     var tls_1 = __importDefault(require("tls"));
@@ -12401,9 +9962,7 @@ var require_agent = __commonJS({
     var assert_1 = __importDefault(require("assert"));
     var debug_1 = __importDefault(require_src());
     var agent_base_1 = require_src2();
-    var parse_proxy_response_1 = __importDefault(
-      require_parse_proxy_response(),
-    );
+    var parse_proxy_response_1 = __importDefault(require_parse_proxy_response());
     var debug = debug_1.default("https-proxy-agent:agent");
     var HttpsProxyAgent = class extends agent_base_1.Agent {
       constructor(_opts) {
@@ -12414,9 +9973,7 @@ var require_agent = __commonJS({
           opts = _opts;
         }
         if (!opts) {
-          throw new Error(
-            "an HTTP(S) proxy server `host` and `port` must be specified!",
-          );
+          throw new Error("an HTTP(S) proxy server `host` and `port` must be specified!");
         }
         debug("creating new HttpsProxyAgent instance: %o", opts);
         super(opts);
@@ -12454,9 +10011,7 @@ var require_agent = __commonJS({
           let payload = `CONNECT ${hostname} HTTP/1.1\r
 `;
           if (proxy.auth) {
-            headers2["Proxy-Authorization"] = `Basic ${Buffer.from(
-              proxy.auth,
-            ).toString("base64")}`;
+            headers2["Proxy-Authorization"] = `Basic ${Buffer.from(proxy.auth).toString("base64")}`;
           }
           let { host, port, secureEndpoint } = opts;
           if (!isDefaultPort(port, secureEndpoint)) {
@@ -12471,8 +10026,7 @@ var require_agent = __commonJS({
           const proxyResponsePromise = parse_proxy_response_1.default(socket);
           socket.write(`${payload}\r
 `);
-          const { statusCode: statusCode2, buffered } =
-            yield proxyResponsePromise;
+          const { statusCode: statusCode2, buffered } = yield proxyResponsePromise;
           if (statusCode2 === 200) {
             req.once("socket", resume);
             if (opts.secureEndpoint) {
@@ -12481,18 +10035,10 @@ var require_agent = __commonJS({
                 throw new Error('Could not determine "servername"');
               }
               debug("Upgrading socket connection to TLS");
-              return tls_1.default.connect(
-                Object.assign(
-                  Object.assign(
-                    {},
-                    omit(opts, "host", "hostname", "path", "port"),
-                  ),
-                  {
-                    socket,
-                    servername,
-                  },
-                ),
-              );
+              return tls_1.default.connect(Object.assign(Object.assign({}, omit(opts, "host", "hostname", "path", "port")), {
+                socket,
+                servername
+              }));
             }
             return socket;
           }
@@ -12514,7 +10060,7 @@ var require_agent = __commonJS({
       socket.resume();
     }
     function isDefaultPort(port, secure) {
-      return Boolean((!secure && port === 80) || (secure && port === 443));
+      return Boolean(!secure && port === 80 || secure && port === 443);
     }
     function isHTTPS(protocol) {
       return typeof protocol === "string" ? /^https:?$/i.test(protocol) : false;
@@ -12529,34 +10075,34 @@ var require_agent = __commonJS({
       }
       return ret;
     }
-  },
+  }
 });
 
 // node_modules/https-proxy-agent/dist/index.js
 var require_dist = __commonJS({
   "node_modules/https-proxy-agent/dist/index.js"(exports, module2) {
     "use strict";
-    var __importDefault =
-      (exports && exports.__importDefault) ||
-      function (mod) {
-        return mod && mod.__esModule ? mod : { default: mod };
-      };
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
     var agent_1 = __importDefault(require_agent());
     function createHttpsProxyAgent(opts) {
       return new agent_1.default(opts);
     }
-    (function (createHttpsProxyAgent2) {
+    (function(createHttpsProxyAgent2) {
       createHttpsProxyAgent2.HttpsProxyAgent = agent_1.default;
       createHttpsProxyAgent2.prototype = agent_1.default.prototype;
     })(createHttpsProxyAgent || (createHttpsProxyAgent = {}));
     module2.exports = createHttpsProxyAgent;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/transports/http.js
 var require_http = __commonJS({
   "node_modules/@sentry/node/cjs/transports/http.js"(exports) {
-    var { _nullishCoalesce } = require_buildPolyfills();
+    var {
+      _nullishCoalesce
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var http2 = require("http");
@@ -12571,7 +10117,7 @@ var require_http = __commonJS({
         read() {
           this.push(body);
           this.push(null);
-        },
+        }
       });
     }
     function makeNodeTransport(options) {
@@ -12579,46 +10125,20 @@ var require_http = __commonJS({
       try {
         urlSegments = new url.URL(options.url);
       } catch (e) {
-        console.warn(
-          "[@sentry/node]: Invalid dsn or tunnel option, will not send any events. The tunnel option must be a full URL when used.",
-        );
+        console.warn("[@sentry/node]: Invalid dsn or tunnel option, will not send any events. The tunnel option must be a full URL when used.");
         return core.createTransport(options, () => Promise.resolve({}));
       }
       const isHttps = urlSegments.protocol === "https:";
-      const proxy = applyNoProxyOption(
-        urlSegments,
-        options.proxy ||
-          (isHttps ? process.env.https_proxy : void 0) ||
-          process.env.http_proxy,
-      );
+      const proxy = applyNoProxyOption(urlSegments, options.proxy || (isHttps ? process.env.https_proxy : void 0) || process.env.http_proxy);
       const nativeHttpModule = isHttps ? https2 : http2;
-      const keepAlive =
-        options.keepAlive === void 0 ? false : options.keepAlive;
-      const agent = proxy
-        ? new httpsProxyAgent.HttpsProxyAgent(proxy)
-        : new nativeHttpModule.Agent({
-            keepAlive,
-            maxSockets: 30,
-            timeout: 2e3,
-          });
-      const requestExecutor = createRequestExecutor(
-        options,
-        _nullishCoalesce(options.httpModule, () => nativeHttpModule),
-        agent,
-      );
+      const keepAlive = options.keepAlive === void 0 ? false : options.keepAlive;
+      const agent = proxy ? new httpsProxyAgent.HttpsProxyAgent(proxy) : new nativeHttpModule.Agent({ keepAlive, maxSockets: 30, timeout: 2e3 });
+      const requestExecutor = createRequestExecutor(options, _nullishCoalesce(options.httpModule, () => nativeHttpModule), agent);
       return core.createTransport(options, requestExecutor);
     }
     function applyNoProxyOption(transportUrlSegments, proxy) {
       const { no_proxy } = process.env;
-      const urlIsExemptFromProxy =
-        no_proxy &&
-        no_proxy
-          .split(",")
-          .some(
-            (exemption) =>
-              transportUrlSegments.host.endsWith(exemption) ||
-              transportUrlSegments.hostname.endsWith(exemption),
-          );
+      const urlIsExemptFromProxy = no_proxy && no_proxy.split(",").some((exemption) => transportUrlSegments.host.endsWith(exemption) || transportUrlSegments.hostname.endsWith(exemption));
       if (urlIsExemptFromProxy) {
         return void 0;
       } else {
@@ -12626,9 +10146,7 @@ var require_http = __commonJS({
       }
     }
     function createRequestExecutor(options, httpModule, agent) {
-      const { hostname, pathname, port, protocol, search } = new url.URL(
-        options.url,
-      );
+      const { hostname, pathname, port, protocol, search } = new url.URL(options.url);
       return function makeRequest(request) {
         return new Promise((resolve, reject) => {
           let body = streamFromBody(request.body);
@@ -12637,47 +10155,38 @@ var require_http = __commonJS({
             headers2["content-encoding"] = "gzip";
             body = body.pipe(zlib.createGzip());
           }
-          const req = httpModule.request(
-            {
-              method: "POST",
-              agent,
-              headers: headers2,
-              hostname,
-              path: `${pathname}${search}`,
-              port,
-              protocol,
-              ca: options.caCerts,
-            },
-            (res) => {
-              res.on("data", () => {});
-              res.on("end", () => {});
-              res.setEncoding("utf8");
-              const retryAfterHeader = _nullishCoalesce(
-                res.headers["retry-after"],
-                () => null,
-              );
-              const rateLimitsHeader = _nullishCoalesce(
-                res.headers["x-sentry-rate-limits"],
-                () => null,
-              );
-              resolve({
-                statusCode: res.statusCode,
-                headers: {
-                  "retry-after": retryAfterHeader,
-                  "x-sentry-rate-limits": Array.isArray(rateLimitsHeader)
-                    ? rateLimitsHeader[0]
-                    : rateLimitsHeader,
-                },
-              });
-            },
-          );
+          const req = httpModule.request({
+            method: "POST",
+            agent,
+            headers: headers2,
+            hostname,
+            path: `${pathname}${search}`,
+            port,
+            protocol,
+            ca: options.caCerts
+          }, (res) => {
+            res.on("data", () => {
+            });
+            res.on("end", () => {
+            });
+            res.setEncoding("utf8");
+            const retryAfterHeader = _nullishCoalesce(res.headers["retry-after"], () => null);
+            const rateLimitsHeader = _nullishCoalesce(res.headers["x-sentry-rate-limits"], () => null);
+            resolve({
+              statusCode: res.statusCode,
+              headers: {
+                "retry-after": retryAfterHeader,
+                "x-sentry-rate-limits": Array.isArray(rateLimitsHeader) ? rateLimitsHeader[0] : rateLimitsHeader
+              }
+            });
+          });
           req.on("error", reject);
           body.pipe(req);
         });
       };
     }
     exports.makeNodeTransport = makeNodeTransport;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/nodeVersion.js
@@ -12687,13 +10196,15 @@ var require_nodeVersion = __commonJS({
     var utils = require_cjs();
     var NODE_VERSION = utils.parseSemver(process.versions.node);
     exports.NODE_VERSION = NODE_VERSION;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/async/domain.js
 var require_domain = __commonJS({
   "node_modules/@sentry/node/cjs/async/domain.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var domain2 = require("domain");
@@ -12715,16 +10226,11 @@ var require_domain = __commonJS({
     }
     function runWithAsyncContext(callback, options) {
       const activeDomain = getActiveDomain();
-      if (
-        activeDomain &&
-        _optionalChain([options, "optionalAccess", (_) => _.reuseExisting])
-      ) {
+      if (activeDomain && _optionalChain([options, "optionalAccess", (_) => _.reuseExisting])) {
         return callback();
       }
       const local = domain2.create();
-      const parentHub = activeDomain
-        ? core.getHubFromCarrier(activeDomain)
-        : void 0;
+      const parentHub = activeDomain ? core.getHubFromCarrier(activeDomain) : void 0;
       const newHub = createNewHub(parentHub);
       core.setHubOnCarrier(local, newHub);
       return local.bind(() => {
@@ -12735,13 +10241,15 @@ var require_domain = __commonJS({
       core.setAsyncContextStrategy({ getCurrentHub, runWithAsyncContext });
     }
     exports.setDomainAsyncContextStrategy = setDomainAsyncContextStrategy;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/async/hooks.js
 var require_hooks = __commonJS({
   "node_modules/@sentry/node/cjs/async/hooks.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var async_hooks = require("async_hooks");
@@ -12757,10 +10265,7 @@ var require_hooks = __commonJS({
       }
       function runWithAsyncContext(callback, options) {
         const existingHub = getCurrentHub();
-        if (
-          existingHub &&
-          _optionalChain([options, "optionalAccess", (_) => _.reuseExisting])
-        ) {
+        if (existingHub && _optionalChain([options, "optionalAccess", (_) => _.reuseExisting])) {
           return callback();
         }
         const newHub = createNewHub(existingHub);
@@ -12771,7 +10276,7 @@ var require_hooks = __commonJS({
       core.setAsyncContextStrategy({ getCurrentHub, runWithAsyncContext });
     }
     exports.setHooksAsyncContextStrategy = setHooksAsyncContextStrategy;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/async/index.js
@@ -12782,17 +10287,14 @@ var require_async = __commonJS({
     var domain2 = require_domain();
     var hooks = require_hooks();
     function setNodeAsyncContextStrategy() {
-      if (
-        nodeVersion.NODE_VERSION.major &&
-        nodeVersion.NODE_VERSION.major >= 14
-      ) {
+      if (nodeVersion.NODE_VERSION.major && nodeVersion.NODE_VERSION.major >= 14) {
         hooks.setHooksAsyncContextStrategy();
       } else {
         domain2.setDomainAsyncContextStrategy();
       }
     }
     exports.setNodeAsyncContextStrategy = setNodeAsyncContextStrategy;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/console.js
@@ -12822,39 +10324,35 @@ var require_console = __commonJS({
     function createConsoleWrapper(level) {
       return function consoleWrapper(originalConsoleMethod) {
         const sentryLevel = utils.severityLevelFromString(level);
-        return function () {
+        return function() {
           if (core.getCurrentHub().getIntegration(Console)) {
-            core.getCurrentHub().addBreadcrumb(
-              {
-                category: "console",
-                level: sentryLevel,
-                message: util.format.apply(void 0, arguments),
-              },
-              {
-                input: [...arguments],
-                level,
-              },
-            );
+            core.getCurrentHub().addBreadcrumb({
+              category: "console",
+              level: sentryLevel,
+              message: util.format.apply(void 0, arguments)
+            }, {
+              input: [...arguments],
+              level
+            });
           }
           originalConsoleMethod.apply(this, arguments);
         };
       };
     }
     exports.Console = Console;
-  },
+  }
 });
 
 // node_modules/lru_map/lru.js
 var require_lru = __commonJS({
   "node_modules/lru_map/lru.js"(exports) {
-    (function (g, f) {
-      const e =
-        typeof exports == "object" ? exports : typeof g == "object" ? g : {};
+    (function(g, f) {
+      const e = typeof exports == "object" ? exports : typeof g == "object" ? g : {};
       f(e);
       if (typeof define == "function" && define.amd) {
         define("lru", e);
       }
-    })(exports, function (exports2) {
+    })(exports, function(exports2) {
       const NEWER = Symbol("newer");
       const OLDER = Symbol("older");
       function LRUMap(limit, entries) {
@@ -12880,7 +10378,7 @@ var require_lru = __commonJS({
         this[NEWER] = void 0;
         this[OLDER] = void 0;
       }
-      LRUMap.prototype._markEntryAsUsed = function (entry) {
+      LRUMap.prototype._markEntryAsUsed = function(entry) {
         if (entry === this.newest) {
           return;
         }
@@ -12900,9 +10398,8 @@ var require_lru = __commonJS({
         }
         this.newest = entry;
       };
-      LRUMap.prototype.assign = function (entries) {
-        let entry,
-          limit = this.limit || Number.MAX_VALUE;
+      LRUMap.prototype.assign = function(entries) {
+        let entry, limit = this.limit || Number.MAX_VALUE;
         this._keymap.clear();
         let it = entries[Symbol.iterator]();
         for (let itv = it.next(); !itv.done; itv = it.next()) {
@@ -12922,20 +10419,21 @@ var require_lru = __commonJS({
         this.newest = entry;
         this.size = this._keymap.size;
       };
-      LRUMap.prototype.get = function (key) {
+      LRUMap.prototype.get = function(key) {
         var entry = this._keymap.get(key);
-        if (!entry) return;
+        if (!entry)
+          return;
         this._markEntryAsUsed(entry);
         return entry.value;
       };
-      LRUMap.prototype.set = function (key, value) {
+      LRUMap.prototype.set = function(key, value) {
         var entry = this._keymap.get(key);
         if (entry) {
           entry.value = value;
           this._markEntryAsUsed(entry);
           return this;
         }
-        this._keymap.set(key, (entry = new Entry(key, value)));
+        this._keymap.set(key, entry = new Entry(key, value));
         if (this.newest) {
           this.newest[NEWER] = entry;
           entry[OLDER] = this.newest;
@@ -12949,7 +10447,7 @@ var require_lru = __commonJS({
         }
         return this;
       };
-      LRUMap.prototype.shift = function () {
+      LRUMap.prototype.shift = function() {
         var entry = this.oldest;
         if (entry) {
           if (this.oldest[NEWER]) {
@@ -12965,16 +10463,17 @@ var require_lru = __commonJS({
           return [entry.key, entry.value];
         }
       };
-      LRUMap.prototype.find = function (key) {
+      LRUMap.prototype.find = function(key) {
         let e = this._keymap.get(key);
         return e ? e.value : void 0;
       };
-      LRUMap.prototype.has = function (key) {
+      LRUMap.prototype.has = function(key) {
         return this._keymap.has(key);
       };
-      LRUMap.prototype["delete"] = function (key) {
+      LRUMap.prototype["delete"] = function(key) {
         var entry = this._keymap.get(key);
-        if (!entry) return;
+        if (!entry)
+          return;
         this._keymap.delete(entry.key);
         if (entry[NEWER] && entry[OLDER]) {
           entry[OLDER][NEWER] = entry[NEWER];
@@ -12991,7 +10490,7 @@ var require_lru = __commonJS({
         this.size--;
         return entry.value;
       };
-      LRUMap.prototype.clear = function () {
+      LRUMap.prototype.clear = function() {
         this.oldest = this.newest = void 0;
         this.size = 0;
         this._keymap.clear();
@@ -12999,10 +10498,10 @@ var require_lru = __commonJS({
       function EntryIterator(oldestEntry) {
         this.entry = oldestEntry;
       }
-      EntryIterator.prototype[Symbol.iterator] = function () {
+      EntryIterator.prototype[Symbol.iterator] = function() {
         return this;
       };
-      EntryIterator.prototype.next = function () {
+      EntryIterator.prototype.next = function() {
         let ent = this.entry;
         if (ent) {
           this.entry = ent[NEWER];
@@ -13014,10 +10513,10 @@ var require_lru = __commonJS({
       function KeyIterator(oldestEntry) {
         this.entry = oldestEntry;
       }
-      KeyIterator.prototype[Symbol.iterator] = function () {
+      KeyIterator.prototype[Symbol.iterator] = function() {
         return this;
       };
-      KeyIterator.prototype.next = function () {
+      KeyIterator.prototype.next = function() {
         let ent = this.entry;
         if (ent) {
           this.entry = ent[NEWER];
@@ -13029,10 +10528,10 @@ var require_lru = __commonJS({
       function ValueIterator(oldestEntry) {
         this.entry = oldestEntry;
       }
-      ValueIterator.prototype[Symbol.iterator] = function () {
+      ValueIterator.prototype[Symbol.iterator] = function() {
         return this;
       };
-      ValueIterator.prototype.next = function () {
+      ValueIterator.prototype.next = function() {
         let ent = this.entry;
         if (ent) {
           this.entry = ent[NEWER];
@@ -13041,19 +10540,19 @@ var require_lru = __commonJS({
           return { done: true, value: void 0 };
         }
       };
-      LRUMap.prototype.keys = function () {
+      LRUMap.prototype.keys = function() {
         return new KeyIterator(this.oldest);
       };
-      LRUMap.prototype.values = function () {
+      LRUMap.prototype.values = function() {
         return new ValueIterator(this.oldest);
       };
-      LRUMap.prototype.entries = function () {
+      LRUMap.prototype.entries = function() {
         return this;
       };
-      LRUMap.prototype[Symbol.iterator] = function () {
+      LRUMap.prototype[Symbol.iterator] = function() {
         return new EntryIterator(this.oldest);
       };
-      LRUMap.prototype.forEach = function (fun, thisObj) {
+      LRUMap.prototype.forEach = function(fun, thisObj) {
         if (typeof thisObj !== "object") {
           thisObj = this;
         }
@@ -13063,19 +10562,16 @@ var require_lru = __commonJS({
           entry = entry[NEWER];
         }
       };
-      LRUMap.prototype.toJSON = function () {
-        var s = new Array(this.size),
-          i = 0,
-          entry = this.oldest;
+      LRUMap.prototype.toJSON = function() {
+        var s = new Array(this.size), i = 0, entry = this.oldest;
         while (entry) {
           s[i++] = { key: entry.key, value: entry.value };
           entry = entry[NEWER];
         }
         return s;
       };
-      LRUMap.prototype.toString = function () {
-        var s = "",
-          entry = this.oldest;
+      LRUMap.prototype.toString = function() {
+        var s = "", entry = this.oldest;
         while (entry) {
           s += String(entry.key) + ":" + entry.value;
           entry = entry[NEWER];
@@ -13086,58 +10582,36 @@ var require_lru = __commonJS({
         return s;
       };
     });
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/utils/http.js
 var require_http2 = __commonJS({
   "node_modules/@sentry/node/cjs/integrations/utils/http.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var url = require("url");
     var nodeVersion = require_nodeVersion();
     function isSentryRequest(url2) {
-      const dsn = _optionalChain([
-        core.getCurrentHub,
-        "call",
-        (_) => _(),
-        "access",
-        (_2) => _2.getClient,
-        "call",
-        (_3) => _3(),
-        "optionalAccess",
-        (_4) => _4.getDsn,
-        "call",
-        (_5) => _5(),
-      ]);
+      const dsn = _optionalChain([core.getCurrentHub, "call", (_) => _(), "access", (_2) => _2.getClient, "call", (_3) => _3(), "optionalAccess", (_4) => _4.getDsn, "call", (_5) => _5()]);
       return dsn ? url2.includes(dsn.host) : false;
     }
     function extractRawUrl(requestOptions) {
       const protocol = requestOptions.protocol || "";
       const hostname = requestOptions.hostname || requestOptions.host || "";
-      const port =
-        !requestOptions.port ||
-        requestOptions.port === 80 ||
-        requestOptions.port === 443
-          ? ""
-          : `:${requestOptions.port}`;
+      const port = !requestOptions.port || requestOptions.port === 80 || requestOptions.port === 443 ? "" : `:${requestOptions.port}`;
       const path = requestOptions.path ? requestOptions.path : "/";
       return `${protocol}//${hostname}${port}${path}`;
     }
     function extractUrl(requestOptions) {
       const protocol = requestOptions.protocol || "";
       const hostname = requestOptions.hostname || requestOptions.host || "";
-      const port =
-        !requestOptions.port ||
-        requestOptions.port === 80 ||
-        requestOptions.port === 443
-          ? ""
-          : `:${requestOptions.port}`;
+      const port = !requestOptions.port || requestOptions.port === 80 || requestOptions.port === 443 ? "" : `:${requestOptions.port}`;
       const path = requestOptions.pathname || "/";
-      const authority = requestOptions.auth
-        ? redactAuthority(requestOptions.auth)
-        : "";
+      const authority = requestOptions.auth ? redactAuthority(requestOptions.auth) : "";
       return `${protocol}//${authority}${hostname}${port}${path}`;
     }
     function redactAuthority(auth) {
@@ -13150,24 +10624,10 @@ var require_http2 = __commonJS({
       }
       let [method, requestUrl] = description.split(" ");
       if (requestOptions.host && !requestOptions.protocol) {
-        requestOptions.protocol = _optionalChain([
-          request,
-          "optionalAccess",
-          (_6) => _6.agent,
-          "optionalAccess",
-          (_7) => _7.protocol,
-        ]);
+        requestOptions.protocol = _optionalChain([request, "optionalAccess", (_6) => _6.agent, "optionalAccess", (_7) => _7.protocol]);
         requestUrl = extractUrl(requestOptions);
       }
-      if (
-        _optionalChain([
-          requestUrl,
-          "optionalAccess",
-          (_8) => _8.startsWith,
-          "call",
-          (_9) => _9("///"),
-        ])
-      ) {
+      if (_optionalChain([requestUrl, "optionalAccess", (_8) => _8.startsWith, "call", (_9) => _9("///")])) {
         requestUrl = requestUrl.slice(2);
       }
       return `${method} ${requestUrl}`;
@@ -13175,15 +10635,12 @@ var require_http2 = __commonJS({
     function urlToOptions(url2) {
       const options = {
         protocol: url2.protocol,
-        hostname:
-          typeof url2.hostname === "string" && url2.hostname.startsWith("[")
-            ? url2.hostname.slice(1, -1)
-            : url2.hostname,
+        hostname: typeof url2.hostname === "string" && url2.hostname.startsWith("[") ? url2.hostname.slice(1, -1) : url2.hostname,
         hash: url2.hash,
         search: url2.search,
         pathname: url2.pathname,
         path: `${url2.pathname || ""}${url2.search || ""}`,
-        href: url2.href,
+        href: url2.href
       };
       if (url2.port !== "") {
         options.port = Number(url2.port);
@@ -13206,57 +10663,13 @@ var require_http2 = __commonJS({
         requestOptions = requestArgs[0];
       }
       if (requestArgs.length === 2) {
-        requestOptions = __spreadValues(
-          __spreadValues({}, requestOptions),
-          requestArgs[1],
-        );
+        requestOptions = __spreadValues(__spreadValues({}, requestOptions), requestArgs[1]);
       }
       if (requestOptions.protocol === void 0) {
-        if (
-          nodeVersion.NODE_VERSION.major &&
-          nodeVersion.NODE_VERSION.major > 8
-        ) {
-          requestOptions.protocol =
-            _optionalChain([
-              _optionalChain([
-                httpModule,
-                "optionalAccess",
-                (_10) => _10.globalAgent,
-              ]),
-              "optionalAccess",
-              (_11) => _11.protocol,
-            ]) ||
-            _optionalChain([
-              requestOptions.agent,
-              "optionalAccess",
-              (_12) => _12.protocol,
-            ]) ||
-            _optionalChain([
-              requestOptions._defaultAgent,
-              "optionalAccess",
-              (_13) => _13.protocol,
-            ]);
+        if (nodeVersion.NODE_VERSION.major && nodeVersion.NODE_VERSION.major > 8) {
+          requestOptions.protocol = _optionalChain([_optionalChain([httpModule, "optionalAccess", (_10) => _10.globalAgent]), "optionalAccess", (_11) => _11.protocol]) || _optionalChain([requestOptions.agent, "optionalAccess", (_12) => _12.protocol]) || _optionalChain([requestOptions._defaultAgent, "optionalAccess", (_13) => _13.protocol]);
         } else {
-          requestOptions.protocol =
-            _optionalChain([
-              requestOptions.agent,
-              "optionalAccess",
-              (_14) => _14.protocol,
-            ]) ||
-            _optionalChain([
-              requestOptions._defaultAgent,
-              "optionalAccess",
-              (_15) => _15.protocol,
-            ]) ||
-            _optionalChain([
-              _optionalChain([
-                httpModule,
-                "optionalAccess",
-                (_16) => _16.globalAgent,
-              ]),
-              "optionalAccess",
-              (_17) => _17.protocol,
-            ]);
+          requestOptions.protocol = _optionalChain([requestOptions.agent, "optionalAccess", (_14) => _14.protocol]) || _optionalChain([requestOptions._defaultAgent, "optionalAccess", (_15) => _15.protocol]) || _optionalChain([_optionalChain([httpModule, "optionalAccess", (_16) => _16.globalAgent]), "optionalAccess", (_17) => _17.protocol]);
         }
       }
       if (callback) {
@@ -13271,13 +10684,15 @@ var require_http2 = __commonJS({
     exports.isSentryRequest = isSentryRequest;
     exports.normalizeRequestArgs = normalizeRequestArgs;
     exports.urlToOptions = urlToOptions;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/http.js
 var require_http3 = __commonJS({
   "node_modules/@sentry/node/cjs/integrations/http.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -13293,98 +10708,34 @@ var require_http3 = __commonJS({
       }
       constructor(options = {}) {
         Http.prototype.__init.call(this);
-        this._breadcrumbs =
-          typeof options.breadcrumbs === "undefined"
-            ? true
-            : options.breadcrumbs;
-        this._tracing = !options.tracing
-          ? void 0
-          : options.tracing === true
-          ? {}
-          : options.tracing;
+        this._breadcrumbs = typeof options.breadcrumbs === "undefined" ? true : options.breadcrumbs;
+        this._tracing = !options.tracing ? void 0 : options.tracing === true ? {} : options.tracing;
       }
       setupOnce(_addGlobalEventProcessor, setupOnceGetCurrentHub) {
         if (!this._breadcrumbs && !this._tracing) {
           return;
         }
-        const clientOptions = _optionalChain([
-          setupOnceGetCurrentHub,
-          "call",
-          (_) => _(),
-          "access",
-          (_2) => _2.getClient,
-          "call",
-          (_3) => _3(),
-          "optionalAccess",
-          (_4) => _4.getOptions,
-          "call",
-          (_5) => _5(),
-        ]);
+        const clientOptions = _optionalChain([setupOnceGetCurrentHub, "call", (_) => _(), "access", (_2) => _2.getClient, "call", (_3) => _3(), "optionalAccess", (_4) => _4.getOptions, "call", (_5) => _5()]);
         if (clientOptions && clientOptions.instrumenter !== "sentry") {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.log(
-              "HTTP Integration is skipped because of instrumenter configuration.",
-            );
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log("HTTP Integration is skipped because of instrumenter configuration.");
           return;
         }
-        const shouldCreateSpanForRequest =
-          _optionalChain([
-            this,
-            "access",
-            (_6) => _6._tracing,
-            "optionalAccess",
-            (_7) => _7.shouldCreateSpanForRequest,
-          ]) ||
-          _optionalChain([
-            clientOptions,
-            "optionalAccess",
-            (_8) => _8.shouldCreateSpanForRequest,
-          ]);
-        const tracePropagationTargets =
-          _optionalChain([
-            clientOptions,
-            "optionalAccess",
-            (_9) => _9.tracePropagationTargets,
-          ]) ||
-          _optionalChain([
-            this,
-            "access",
-            (_10) => _10._tracing,
-            "optionalAccess",
-            (_11) => _11.tracePropagationTargets,
-          ]);
+        const shouldCreateSpanForRequest = _optionalChain([this, "access", (_6) => _6._tracing, "optionalAccess", (_7) => _7.shouldCreateSpanForRequest]) || _optionalChain([clientOptions, "optionalAccess", (_8) => _8.shouldCreateSpanForRequest]);
+        const tracePropagationTargets = _optionalChain([clientOptions, "optionalAccess", (_9) => _9.tracePropagationTargets]) || _optionalChain([this, "access", (_10) => _10._tracing, "optionalAccess", (_11) => _11.tracePropagationTargets]);
         const httpModule = require("http");
-        const wrappedHttpHandlerMaker = _createWrappedRequestMethodFactory(
-          httpModule,
-          this._breadcrumbs,
-          shouldCreateSpanForRequest,
-          tracePropagationTargets,
-        );
+        const wrappedHttpHandlerMaker = _createWrappedRequestMethodFactory(httpModule, this._breadcrumbs, shouldCreateSpanForRequest, tracePropagationTargets);
         utils.fill(httpModule, "get", wrappedHttpHandlerMaker);
         utils.fill(httpModule, "request", wrappedHttpHandlerMaker);
-        if (
-          nodeVersion.NODE_VERSION.major &&
-          nodeVersion.NODE_VERSION.major > 8
-        ) {
+        if (nodeVersion.NODE_VERSION.major && nodeVersion.NODE_VERSION.major > 8) {
           const httpsModule = require("https");
-          const wrappedHttpsHandlerMaker = _createWrappedRequestMethodFactory(
-            httpsModule,
-            this._breadcrumbs,
-            shouldCreateSpanForRequest,
-            tracePropagationTargets,
-          );
+          const wrappedHttpsHandlerMaker = _createWrappedRequestMethodFactory(httpsModule, this._breadcrumbs, shouldCreateSpanForRequest, tracePropagationTargets);
           utils.fill(httpsModule, "get", wrappedHttpsHandlerMaker);
           utils.fill(httpsModule, "request", wrappedHttpsHandlerMaker);
         }
       }
     };
     Http.__initStatic();
-    function _createWrappedRequestMethodFactory(
-      httpModule,
-      breadcrumbsEnabled,
-      shouldCreateSpanForRequest,
-      tracePropagationTargets,
-    ) {
+    function _createWrappedRequestMethodFactory(httpModule, breadcrumbsEnabled, shouldCreateSpanForRequest, tracePropagationTargets) {
       const createSpanUrlMap = new lru_map.LRUMap(100);
       const headersUrlMap = new lru_map.LRUMap(100);
       const shouldCreateSpan = (url) => {
@@ -13407,10 +10758,7 @@ var require_http3 = __commonJS({
         if (cachedDecision !== void 0) {
           return cachedDecision;
         }
-        const decision = utils.stringMatchesSomePattern(
-          url,
-          tracePropagationTargets,
-        );
+        const decision = utils.stringMatchesSomePattern(url, tracePropagationTargets);
         headersUrlMap.set(url, decision);
         return decision;
       };
@@ -13418,23 +10766,17 @@ var require_http3 = __commonJS({
         if (!core.getCurrentHub().getIntegration(Http)) {
           return;
         }
-        core.getCurrentHub().addBreadcrumb(
-          {
-            category: "http",
-            data: __spreadValues(
-              {
-                status_code: res && res.statusCode,
-              },
-              requestSpanData,
-            ),
-            type: "http",
-          },
-          {
-            event,
-            request: req,
-            response: res,
-          },
-        );
+        core.getCurrentHub().addBreadcrumb({
+          category: "http",
+          data: __spreadValues({
+            status_code: res && res.statusCode
+          }, requestSpanData),
+          type: "http"
+        }, {
+          event,
+          request: req,
+          response: res
+        });
       }
       return function wrappedRequestMethodFactory(originalRequestMethod) {
         return function wrappedMethod(...args) {
@@ -13449,134 +10791,65 @@ var require_http3 = __commonJS({
           const scope = hub.getScope();
           const parentSpan = scope.getSpan();
           const data = getRequestSpanData(requestUrl, requestOptions);
-          const requestSpan = shouldCreateSpan(rawRequestUrl)
-            ? _optionalChain([
-                parentSpan,
-                "optionalAccess",
-                (_12) => _12.startChild,
-                "call",
-                (_13) =>
-                  _13({
-                    op: "http.client",
-                    description: `${data["http.method"]} ${data.url}`,
-                    data,
-                  }),
-              ])
-            : void 0;
+          const requestSpan = shouldCreateSpan(rawRequestUrl) ? _optionalChain([parentSpan, "optionalAccess", (_12) => _12.startChild, "call", (_13) => _13({
+            op: "http.client",
+            description: `${data["http.method"]} ${data.url}`,
+            data
+          })]) : void 0;
           if (shouldAttachTraceData(rawRequestUrl)) {
             if (requestSpan) {
               const sentryTraceHeader = requestSpan.toTraceparent();
-              const dynamicSamplingContext = _optionalChain([
-                requestSpan,
-                "optionalAccess",
-                (_14) => _14.transaction,
-                "optionalAccess",
-                (_15) => _15.getDynamicSamplingContext,
-                "call",
-                (_16) => _16(),
-              ]);
-              addHeadersToRequestOptions(
-                requestOptions,
-                requestUrl,
-                sentryTraceHeader,
-                dynamicSamplingContext,
-              );
+              const dynamicSamplingContext = _optionalChain([requestSpan, "optionalAccess", (_14) => _14.transaction, "optionalAccess", (_15) => _15.getDynamicSamplingContext, "call", (_16) => _16()]);
+              addHeadersToRequestOptions(requestOptions, requestUrl, sentryTraceHeader, dynamicSamplingContext);
             } else {
               const client = hub.getClient();
               const { traceId, sampled, dsc } = scope.getPropagationContext();
-              const sentryTraceHeader = utils.generateSentryTraceHeader(
-                traceId,
-                void 0,
-                sampled,
-              );
-              const dynamicSamplingContext =
-                dsc ||
-                (client
-                  ? core.getDynamicSamplingContextFromClient(
-                      traceId,
-                      client,
-                      scope,
-                    )
-                  : void 0);
-              addHeadersToRequestOptions(
-                requestOptions,
-                requestUrl,
-                sentryTraceHeader,
-                dynamicSamplingContext,
-              );
+              const sentryTraceHeader = utils.generateSentryTraceHeader(traceId, void 0, sampled);
+              const dynamicSamplingContext = dsc || (client ? core.getDynamicSamplingContextFromClient(traceId, client, scope) : void 0);
+              addHeadersToRequestOptions(requestOptions, requestUrl, sentryTraceHeader, dynamicSamplingContext);
             }
           } else {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.log(
-                `[Tracing] Not adding sentry-trace header to outgoing request (${requestUrl}) due to mismatching tracePropagationTargets option.`,
-              );
+            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Not adding sentry-trace header to outgoing request (${requestUrl}) due to mismatching tracePropagationTargets option.`);
           }
-          return originalRequestMethod
-            .apply(httpModule, requestArgs)
-            .once("response", function (res) {
-              const req = this;
-              if (breadcrumbsEnabled) {
-                addRequestBreadcrumb("response", data, req, res);
+          return originalRequestMethod.apply(httpModule, requestArgs).once("response", function(res) {
+            const req = this;
+            if (breadcrumbsEnabled) {
+              addRequestBreadcrumb("response", data, req, res);
+            }
+            if (requestSpan) {
+              if (res.statusCode) {
+                requestSpan.setHttpStatus(res.statusCode);
               }
-              if (requestSpan) {
-                if (res.statusCode) {
-                  requestSpan.setHttpStatus(res.statusCode);
-                }
-                requestSpan.description = http2.cleanSpanDescription(
-                  requestSpan.description,
-                  requestOptions,
-                  req,
-                );
-                requestSpan.finish();
-              }
-            })
-            .once("error", function () {
-              const req = this;
-              if (breadcrumbsEnabled) {
-                addRequestBreadcrumb("error", data, req);
-              }
-              if (requestSpan) {
-                requestSpan.setHttpStatus(500);
-                requestSpan.description = http2.cleanSpanDescription(
-                  requestSpan.description,
-                  requestOptions,
-                  req,
-                );
-                requestSpan.finish();
-              }
-            });
+              requestSpan.description = http2.cleanSpanDescription(requestSpan.description, requestOptions, req);
+              requestSpan.finish();
+            }
+          }).once("error", function() {
+            const req = this;
+            if (breadcrumbsEnabled) {
+              addRequestBreadcrumb("error", data, req);
+            }
+            if (requestSpan) {
+              requestSpan.setHttpStatus(500);
+              requestSpan.description = http2.cleanSpanDescription(requestSpan.description, requestOptions, req);
+              requestSpan.finish();
+            }
+          });
         };
       };
     }
-    function addHeadersToRequestOptions(
-      requestOptions,
-      requestUrl,
-      sentryTraceHeader,
-      dynamicSamplingContext,
-    ) {
-      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-        utils.logger.log(
-          `[Tracing] Adding sentry-trace header ${sentryTraceHeader} to outgoing request to "${requestUrl}": `,
-        );
-      const sentryBaggage = utils.dynamicSamplingContextToSentryBaggageHeader(
-        dynamicSamplingContext,
-      );
-      const sentryBaggageHeader = normalizeBaggageHeader(
-        requestOptions,
-        sentryBaggage,
-      );
-      requestOptions.headers = __spreadValues(
-        __spreadProps(__spreadValues({}, requestOptions.headers), {
-          "sentry-trace": sentryTraceHeader,
-        }),
-        sentryBaggageHeader && { baggage: sentryBaggageHeader },
-      );
+    function addHeadersToRequestOptions(requestOptions, requestUrl, sentryTraceHeader, dynamicSamplingContext) {
+      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.log(`[Tracing] Adding sentry-trace header ${sentryTraceHeader} to outgoing request to "${requestUrl}": `);
+      const sentryBaggage = utils.dynamicSamplingContextToSentryBaggageHeader(dynamicSamplingContext);
+      const sentryBaggageHeader = normalizeBaggageHeader(requestOptions, sentryBaggage);
+      requestOptions.headers = __spreadValues(__spreadProps(__spreadValues({}, requestOptions.headers), {
+        "sentry-trace": sentryTraceHeader
+      }), sentryBaggageHeader && { baggage: sentryBaggageHeader });
     }
     function getRequestSpanData(requestUrl, requestOptions) {
       const method = requestOptions.method || "GET";
       const data = {
         url: requestUrl,
-        "http.method": method,
+        "http.method": method
       };
       if (requestOptions.hash) {
         data["http.fragment"] = requestOptions.hash.substring(1);
@@ -13597,7 +10870,7 @@ var require_http3 = __commonJS({
       return [requestOptions.headers.baggage, sentryBaggageHeader];
     }
     exports.Http = Http;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/utils/errorhandling.js
@@ -13611,37 +10884,22 @@ var require_errorhandling = __commonJS({
       console.error(error && error.stack ? error.stack : error);
       const client = core.getCurrentHub().getClient();
       if (client === void 0) {
-        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-          utils.logger.warn(
-            "No NodeClient was defined, we are exiting the process now.",
-          );
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("No NodeClient was defined, we are exiting the process now.");
         global.process.exit(1);
       }
       const options = client.getOptions();
-      const timeout =
-        (options &&
-          options.shutdownTimeout &&
-          options.shutdownTimeout > 0 &&
-          options.shutdownTimeout) ||
-        DEFAULT_SHUTDOWN_TIMEOUT;
-      client.close(timeout).then(
-        (result) => {
-          if (!result) {
-            (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-              utils.logger.warn(
-                "We reached the timeout for emptying the request buffer, still exiting now!",
-              );
-          }
-          global.process.exit(1);
-        },
-        (error2) => {
-          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-            utils.logger.error(error2);
-        },
-      );
+      const timeout = options && options.shutdownTimeout && options.shutdownTimeout > 0 && options.shutdownTimeout || DEFAULT_SHUTDOWN_TIMEOUT;
+      client.close(timeout).then((result) => {
+        if (!result) {
+          (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("We reached the timeout for emptying the request buffer, still exiting now!");
+        }
+        global.process.exit(1);
+      }, (error2) => {
+        (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error(error2);
+      });
     }
     exports.logAndExitProcess = logAndExitProcess;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/onuncaughtexception.js
@@ -13664,12 +10922,9 @@ var require_onuncaughtexception = __commonJS({
       constructor(options = {}) {
         OnUncaughtException.prototype.__init.call(this);
         OnUncaughtException.prototype.__init2.call(this);
-        this._options = __spreadValues(
-          {
-            exitEvenIfOtherHandlersAreRegistered: true,
-          },
-          options,
-        );
+        this._options = __spreadValues({
+          exitEvenIfOtherHandlersAreRegistered: true
+        }, options);
       }
       setupOnce() {
         global.process.on("uncaughtException", this.handler);
@@ -13688,24 +10943,15 @@ var require_onuncaughtexception = __commonJS({
           } else if (client && client.getOptions().onFatalError) {
             onFatalError = client.getOptions().onFatalError;
           }
-          const userProvidedListenersCount = global.process
-            .listeners("uncaughtException")
-            .reduce((acc, listener) => {
-              if (
-                listener.name === "domainUncaughtExceptionClear" ||
-                (listener.tag &&
-                  listener.tag === "sentry_tracingErrorCallback") ||
-                listener === this.handler
-              ) {
-                return acc;
-              } else {
-                return acc + 1;
-              }
-            }, 0);
+          const userProvidedListenersCount = global.process.listeners("uncaughtException").reduce((acc, listener) => {
+            if (listener.name === "domainUncaughtExceptionClear" || listener.tag && listener.tag === "sentry_tracingErrorCallback" || listener === this.handler) {
+              return acc;
+            } else {
+              return acc + 1;
+            }
+          }, 0);
           const processWouldExit = userProvidedListenersCount === 0;
-          const shouldApplyFatalHandlingLogic =
-            this._options.exitEvenIfOtherHandlersAreRegistered ||
-            processWouldExit;
+          const shouldApplyFatalHandlingLogic = this._options.exitEvenIfOtherHandlersAreRegistered || processWouldExit;
           if (!caughtFirstError) {
             const hub = core.getCurrentHub();
             firstError = error;
@@ -13715,9 +10961,7 @@ var require_onuncaughtexception = __commonJS({
                 scope.setLevel("fatal");
                 hub.captureException(error, {
                   originalException: error,
-                  data: {
-                    mechanism: { handled: false, type: "onuncaughtexception" },
-                  },
+                  data: { mechanism: { handled: false, type: "onuncaughtexception" } }
                 });
                 if (!calledFatalError && shouldApplyFatalHandlingLogic) {
                   calledFatalError = true;
@@ -13733,10 +10977,7 @@ var require_onuncaughtexception = __commonJS({
           } else {
             if (shouldApplyFatalHandlingLogic) {
               if (calledFatalError) {
-                (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                  utils.logger.warn(
-                    "uncaught exception after calling fatal error shutdown callback - this is bad! forcing shutdown",
-                  );
+                (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("uncaught exception after calling fatal error shutdown callback - this is bad! forcing shutdown");
                 errorhandling.logAndExitProcess(error);
               } else if (!caughtSecondError) {
                 caughtSecondError = true;
@@ -13754,14 +10995,12 @@ var require_onuncaughtexception = __commonJS({
     };
     OnUncaughtException.__initStatic();
     exports.OnUncaughtException = OnUncaughtException;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/onunhandledrejection.js
 var require_onunhandledrejection = __commonJS({
-  "node_modules/@sentry/node/cjs/integrations/onunhandledrejection.js"(
-    exports,
-  ) {
+  "node_modules/@sentry/node/cjs/integrations/onunhandledrejection.js"(exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -13778,10 +11017,7 @@ var require_onunhandledrejection = __commonJS({
         OnUnhandledRejection.prototype.__init.call(this);
       }
       setupOnce() {
-        global.process.on(
-          "unhandledRejection",
-          this.sendUnhandledPromise.bind(this),
-        );
+        global.process.on("unhandledRejection", this.sendUnhandledPromise.bind(this));
       }
       sendUnhandledPromise(reason, promise) {
         const hub = core.getCurrentHub();
@@ -13790,17 +11026,14 @@ var require_onunhandledrejection = __commonJS({
             scope.setExtra("unhandledPromiseRejection", true);
             hub.captureException(reason, {
               originalException: promise,
-              data: {
-                mechanism: { handled: false, type: "onunhandledrejection" },
-              },
+              data: { mechanism: { handled: false, type: "onunhandledrejection" } }
             });
           });
         }
         this._handleRejection(reason);
       }
       _handleRejection(reason) {
-        const rejectionWarning =
-          "This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). The promise rejected with the reason:";
+        const rejectionWarning = "This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). The promise rejected with the reason:";
         if (this._options.mode === "warn") {
           utils.consoleSandbox(() => {
             console.warn(rejectionWarning);
@@ -13816,13 +11049,15 @@ var require_onunhandledrejection = __commonJS({
     };
     OnUnhandledRejection.__initStatic();
     exports.OnUnhandledRejection = OnUnhandledRejection;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/contextlines.js
 var require_contextlines = __commonJS({
   "node_modules/@sentry/node/cjs/integrations/contextlines.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var fs = require("fs");
@@ -13832,8 +11067,10 @@ var require_contextlines = __commonJS({
     function readTextFileAsync(path) {
       return new Promise((resolve, reject) => {
         fs.readFile(path, "utf8", (err, data) => {
-          if (err) reject(err);
-          else resolve(data);
+          if (err)
+            reject(err);
+          else
+            resolve(data);
         });
       });
     }
@@ -13849,9 +11086,7 @@ var require_contextlines = __commonJS({
         ContextLines.prototype.__init.call(this);
       }
       get _contextLines() {
-        return this._options.frameContextLines !== void 0
-          ? this._options.frameContextLines
-          : DEFAULT_LINES_OF_CONTEXT;
+        return this._options.frameContextLines !== void 0 ? this._options.frameContextLines : DEFAULT_LINES_OF_CONTEXT;
       }
       setupOnce(addGlobalEventProcessor) {
         addGlobalEventProcessor((event) => this.addSourceContext(event));
@@ -13859,35 +11094,14 @@ var require_contextlines = __commonJS({
       async addSourceContext(event) {
         const enqueuedReadSourceFileTasks = {};
         const readSourceFileTasks = [];
-        if (
-          this._contextLines > 0 &&
-          _optionalChain([
-            event,
-            "access",
-            (_2) => _2.exception,
-            "optionalAccess",
-            (_3) => _3.values,
-          ])
-        ) {
+        if (this._contextLines > 0 && _optionalChain([event, "access", (_2) => _2.exception, "optionalAccess", (_3) => _3.values])) {
           for (const exception of event.exception.values) {
-            if (
-              !_optionalChain([
-                exception,
-                "access",
-                (_4) => _4.stacktrace,
-                "optionalAccess",
-                (_5) => _5.frames,
-              ])
-            ) {
+            if (!_optionalChain([exception, "access", (_4) => _4.stacktrace, "optionalAccess", (_5) => _5.frames])) {
               continue;
             }
             for (let i = exception.stacktrace.frames.length - 1; i >= 0; i--) {
               const frame = exception.stacktrace.frames[i];
-              if (
-                frame.filename &&
-                !enqueuedReadSourceFileTasks[frame.filename] &&
-                !FILE_CONTENT_CACHE.get(frame.filename)
-              ) {
+              if (frame.filename && !enqueuedReadSourceFileTasks[frame.filename] && !FILE_CONTENT_CACHE.get(frame.filename)) {
                 readSourceFileTasks.push(_readSourceFile(frame.filename));
                 enqueuedReadSourceFileTasks[frame.filename] = 1;
               }
@@ -13897,16 +11111,7 @@ var require_contextlines = __commonJS({
         if (readSourceFileTasks.length > 0) {
           await Promise.all(readSourceFileTasks);
         }
-        if (
-          this._contextLines > 0 &&
-          _optionalChain([
-            event,
-            "access",
-            (_6) => _6.exception,
-            "optionalAccess",
-            (_7) => _7.values,
-          ])
-        ) {
+        if (this._contextLines > 0 && _optionalChain([event, "access", (_6) => _6.exception, "optionalAccess", (_7) => _7.values])) {
           for (const exception of event.exception.values) {
             if (exception.stacktrace && exception.stacktrace.frames) {
               await this.addSourceContextToFrames(exception.stacktrace.frames);
@@ -13921,12 +11126,9 @@ var require_contextlines = __commonJS({
             const sourceFileLines = FILE_CONTENT_CACHE.get(frame.filename);
             if (sourceFileLines) {
               try {
-                utils.addContextToFrame(
-                  sourceFileLines,
-                  frame,
-                  this._contextLines,
-                );
-              } catch (e) {}
+                utils.addContextToFrame(sourceFileLines, frame, this._contextLines);
+              } catch (e) {
+              }
             }
           }
         }
@@ -13945,12 +11147,13 @@ var require_contextlines = __commonJS({
       try {
         const rawFileContents = await readTextFileAsync(filename);
         content = rawFileContents.split("\n");
-      } catch (_) {}
+      } catch (_) {
+      }
       FILE_CONTENT_CACHE.set(filename, content);
       return content;
     }
     exports.ContextLines = ContextLines;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/linkederrors.js
@@ -13982,17 +11185,8 @@ var require_linkederrors = __commonJS({
           if (!client || !self2) {
             return event;
           }
-          utils.applyAggregateErrorsToEvent(
-            eventbuilder.exceptionFromError,
-            client.getOptions().stackParser,
-            self2._key,
-            self2._limit,
-            event,
-            hint,
-          );
-          const contextLines = getCurrentHub().getIntegration(
-            contextlines.ContextLines,
-          );
+          utils.applyAggregateErrorsToEvent(eventbuilder.exceptionFromError, client.getOptions().stackParser, self2._key, self2._limit, event, hint);
+          const contextLines = getCurrentHub().getIntegration(contextlines.ContextLines);
           if (contextLines) {
             await contextLines.addSourceContext(event);
           }
@@ -14002,7 +11196,7 @@ var require_linkederrors = __commonJS({
     };
     LinkedErrors.__initStatic();
     exports.LinkedErrors = LinkedErrors;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/modules.js
@@ -14020,7 +11214,7 @@ var require_modules = __commonJS({
       }
     }
     function collectModules() {
-      const mainPaths = (require.main && require.main.paths) || [];
+      const mainPaths = require.main && require.main.paths || [];
       const paths = getPaths();
       const infos = {};
       const seen = {};
@@ -14043,7 +11237,8 @@ var require_modules = __commonJS({
           try {
             const info = JSON.parse(fs.readFileSync(pkgfile, "utf8"));
             infos[info.name] = info.version;
-          } catch (_oO) {}
+          } catch (_oO) {
+          }
         };
         updir();
       });
@@ -14065,10 +11260,7 @@ var require_modules = __commonJS({
             return event;
           }
           return __spreadProps(__spreadValues({}, event), {
-            modules: __spreadValues(
-              __spreadValues({}, event.modules),
-              this._getModules(),
-            ),
+            modules: __spreadValues(__spreadValues({}, event.modules), this._getModules())
           });
         });
       }
@@ -14081,13 +11273,15 @@ var require_modules = __commonJS({
     };
     Modules.__initStatic();
     exports.Modules = Modules;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/context.js
 var require_context = __commonJS({
   "node_modules/@sentry/node/cjs/integrations/context.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var child_process = require("child_process");
     var fs = require("fs");
@@ -14103,9 +11297,7 @@ var require_context = __commonJS({
       __init() {
         this.name = Context.id;
       }
-      constructor(
-        _options = { app: true, os: true, device: true, culture: true },
-      ) {
+      constructor(_options = { app: true, os: true, device: true, culture: true }) {
         this._options = _options;
         Context.prototype.__init.call(this);
       }
@@ -14118,70 +11310,18 @@ var require_context = __commonJS({
         }
         const updatedContext = this._updateContext(await this._cachedContext);
         event.contexts = __spreadProps(__spreadValues({}, event.contexts), {
-          app: __spreadValues(
-            __spreadValues({}, updatedContext.app),
-            _optionalChain([
-              event,
-              "access",
-              (_) => _.contexts,
-              "optionalAccess",
-              (_2) => _2.app,
-            ]),
-          ),
-          os: __spreadValues(
-            __spreadValues({}, updatedContext.os),
-            _optionalChain([
-              event,
-              "access",
-              (_3) => _3.contexts,
-              "optionalAccess",
-              (_4) => _4.os,
-            ]),
-          ),
-          device: __spreadValues(
-            __spreadValues({}, updatedContext.device),
-            _optionalChain([
-              event,
-              "access",
-              (_5) => _5.contexts,
-              "optionalAccess",
-              (_6) => _6.device,
-            ]),
-          ),
-          culture: __spreadValues(
-            __spreadValues({}, updatedContext.culture),
-            _optionalChain([
-              event,
-              "access",
-              (_7) => _7.contexts,
-              "optionalAccess",
-              (_8) => _8.culture,
-            ]),
-          ),
+          app: __spreadValues(__spreadValues({}, updatedContext.app), _optionalChain([event, "access", (_) => _.contexts, "optionalAccess", (_2) => _2.app])),
+          os: __spreadValues(__spreadValues({}, updatedContext.os), _optionalChain([event, "access", (_3) => _3.contexts, "optionalAccess", (_4) => _4.os])),
+          device: __spreadValues(__spreadValues({}, updatedContext.device), _optionalChain([event, "access", (_5) => _5.contexts, "optionalAccess", (_6) => _6.device])),
+          culture: __spreadValues(__spreadValues({}, updatedContext.culture), _optionalChain([event, "access", (_7) => _7.contexts, "optionalAccess", (_8) => _8.culture]))
         });
         return event;
       }
       _updateContext(contexts) {
-        if (
-          _optionalChain([
-            contexts,
-            "optionalAccess",
-            (_9) => _9.app,
-            "optionalAccess",
-            (_10) => _10.app_memory,
-          ])
-        ) {
+        if (_optionalChain([contexts, "optionalAccess", (_9) => _9.app, "optionalAccess", (_10) => _10.app_memory])) {
           contexts.app.app_memory = process.memoryUsage().rss;
         }
-        if (
-          _optionalChain([
-            contexts,
-            "optionalAccess",
-            (_11) => _11.device,
-            "optionalAccess",
-            (_12) => _12.free_memory,
-          ])
-        ) {
+        if (_optionalChain([contexts, "optionalAccess", (_11) => _11.device, "optionalAccess", (_12) => _12.free_memory])) {
           contexts.device.free_memory = os.freemem();
         }
         return contexts;
@@ -14217,7 +11357,7 @@ var require_context = __commonJS({
         default:
           return {
             name: PLATFORM_NAMES[platformId] || platformId,
-            version: os.release(),
+            version: os.release()
           };
       }
     }
@@ -14232,17 +11372,16 @@ var require_context = __commonJS({
           const options = Intl.DateTimeFormat().resolvedOptions();
           return {
             locale: options.locale,
-            timezone: options.timeZone,
+            timezone: options.timeZone
           };
         }
-      } catch (err) {}
+      } catch (err) {
+      }
       return;
     }
     function getAppContext() {
       const app_memory = process.memoryUsage().rss;
-      const app_start_time = new Date(
-        Date.now() - process.uptime() * 1e3,
-      ).toISOString();
+      const app_start_time = new Date(Date.now() - process.uptime() * 1e3).toISOString();
       return { app_start_time, app_memory };
     }
     function getDeviceContext(deviceOpt) {
@@ -14250,7 +11389,8 @@ var require_context = __commonJS({
       let uptime;
       try {
         uptime = os.uptime && os.uptime();
-      } catch (e) {}
+      } catch (e) {
+      }
       if (typeof uptime === "number") {
         device.boot_time = new Date(Date.now() - uptime * 1e3).toISOString();
       }
@@ -14275,7 +11415,7 @@ var require_context = __commonJS({
       freebsd: "FreeBSD",
       openbsd: "OpenBSD",
       sunos: "SunOS",
-      win32: "Windows",
+      win32: "Windows"
     };
     var LINUX_DISTROS = [
       { name: "fedora-release", distros: ["Fedora"] },
@@ -14288,7 +11428,7 @@ var require_context = __commonJS({
       { name: "arch-release", distros: ["Arch Linux"] },
       { name: "gentoo-release", distros: ["Gentoo Linux"] },
       { name: "novell-release", distros: ["SUSE Linux"] },
-      { name: "alpine-release", distros: ["Alpine Linux"] },
+      { name: "alpine-release", distros: ["Alpine Linux"] }
     ];
     var LINUX_VERSIONS = {
       alpine: (content) => content,
@@ -14299,7 +11439,7 @@ var require_context = __commonJS({
       mint: (content) => matchFirst(/distrib_release=(.*)/, content),
       red: (content) => matchFirst(/release ([^ ]+)/, content),
       suse: (content) => matchFirst(/VERSION = (.*)\n/, content),
-      ubuntu: (content) => matchFirst(/distrib_release=(.*)/, content),
+      ubuntu: (content) => matchFirst(/distrib_release=(.*)/, content)
     };
     function matchFirst(regex, text) {
       const match = regex.exec(text);
@@ -14309,7 +11449,7 @@ var require_context = __commonJS({
       const darwinInfo = {
         kernel_version: os.release(),
         name: "Mac OS X",
-        version: `10.${Number(os.release().split(".")[0]) - 4}`,
+        version: `10.${Number(os.release().split(".")[0]) - 4}`
       };
       try {
         const output = await new Promise((resolve, reject) => {
@@ -14324,7 +11464,8 @@ var require_context = __commonJS({
         darwinInfo.name = matchFirst(/^ProductName:\s+(.*)$/m, output);
         darwinInfo.version = matchFirst(/^ProductVersion:\s+(.*)$/m, output);
         darwinInfo.build = matchFirst(/^BuildVersion:\s+(.*)$/m, output);
-      } catch (e) {}
+      } catch (e) {
+      }
       return darwinInfo;
     }
     function getLinuxDistroId(name) {
@@ -14333,34 +11474,29 @@ var require_context = __commonJS({
     async function getLinuxInfo() {
       const linuxInfo = {
         kernel_version: os.release(),
-        name: "Linux",
+        name: "Linux"
       };
       try {
         const etcFiles = await readDirAsync("/etc");
-        const distroFile = LINUX_DISTROS.find((file) =>
-          etcFiles.includes(file.name),
-        );
+        const distroFile = LINUX_DISTROS.find((file) => etcFiles.includes(file.name));
         if (!distroFile) {
           return linuxInfo;
         }
         const distroPath = path.join("/etc", distroFile.name);
-        const contents = (
-          await readFileAsync(distroPath, { encoding: "utf-8" })
-        ).toLowerCase();
+        const contents = (await readFileAsync(distroPath, { encoding: "utf-8" })).toLowerCase();
         const { distros } = distroFile;
-        linuxInfo.name =
-          distros.find((d) => contents.indexOf(getLinuxDistroId(d)) >= 0) ||
-          distros[0];
+        linuxInfo.name = distros.find((d) => contents.indexOf(getLinuxDistroId(d)) >= 0) || distros[0];
         const id = getLinuxDistroId(linuxInfo.name);
         linuxInfo.version = LINUX_VERSIONS[id](contents);
-      } catch (e) {}
+      } catch (e) {
+      }
       return linuxInfo;
     }
     exports.Context = Context;
     exports.getDeviceContext = getDeviceContext;
     exports.readDirAsync = readDirAsync;
     exports.readFileAsync = readFileAsync;
-  },
+  }
 });
 
 // node_modules/@sentry/node/node_modules/cookie/index.js
@@ -14443,10 +11579,7 @@ var require_cookie = __commonJS({
         str += "; Secure";
       }
       if (opt.sameSite) {
-        var sameSite =
-          typeof opt.sameSite === "string"
-            ? opt.sameSite.toLowerCase()
-            : opt.sameSite;
+        var sameSite = typeof opt.sameSite === "string" ? opt.sameSite.toLowerCase() : opt.sameSite;
         switch (sameSite) {
           case true:
             str += "; SameSite=Strict";
@@ -14473,13 +11606,15 @@ var require_cookie = __commonJS({
         return str;
       }
     }
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/requestdata.js
 var require_requestdata2 = __commonJS({
   "node_modules/@sentry/node/cjs/requestdata.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var cookie = require_cookie();
@@ -14488,25 +11623,16 @@ var require_requestdata2 = __commonJS({
       ip: false,
       request: true,
       transaction: true,
-      user: true,
+      user: true
     };
-    var DEFAULT_REQUEST_INCLUDES = [
-      "cookies",
-      "data",
-      "headers",
-      "method",
-      "query_string",
-      "url",
-    ];
+    var DEFAULT_REQUEST_INCLUDES = ["cookies", "data", "headers", "method", "query_string", "url"];
     var DEFAULT_USER_INCLUDES = ["id", "username", "email"];
     function extractPathForTransaction(req, options = {}) {
       const method = req.method && req.method.toUpperCase();
       let path = "";
       let source = "url";
       if (options.customRoute || req.route) {
-        path =
-          options.customRoute ||
-          `${req.baseUrl || ""}${req.route && req.route.path}`;
+        path = options.customRoute || `${req.baseUrl || ""}${req.route && req.route.path}`;
         source = "route";
       } else if (req.originalUrl || req.url) {
         path = utils.stripUrlQueryAndFragment(req.originalUrl || req.url || "");
@@ -14529,20 +11655,11 @@ var require_requestdata2 = __commonJS({
           return extractPathForTransaction(req, { path: true })[0];
         }
         case "handler": {
-          return (
-            (req.route &&
-              req.route.stack &&
-              req.route.stack[0] &&
-              req.route.stack[0].name) ||
-            "<anonymous>"
-          );
+          return req.route && req.route.stack && req.route.stack[0] && req.route.stack[0].name || "<anonymous>";
         }
         case "methodPath":
         default: {
-          return extractPathForTransaction(req, {
-            path: true,
-            method: true,
-          })[0];
+          return extractPathForTransaction(req, { path: true, method: true })[0];
         }
       }
     }
@@ -14562,14 +11679,9 @@ var require_requestdata2 = __commonJS({
       const headers2 = req.headers || {};
       const method = req.method;
       const host = req.hostname || req.host || headers2.host || "<no host>";
-      const protocol =
-        req.protocol === "https" || (req.socket && req.socket.encrypted)
-          ? "https"
-          : "http";
+      const protocol = req.protocol === "https" || req.socket && req.socket.encrypted ? "https" : "http";
       const originalUrl = req.originalUrl || req.url || "";
-      const absoluteUrl = originalUrl.startsWith(protocol)
-        ? originalUrl
-        : `${protocol}://${host}${originalUrl}`;
+      const absoluteUrl = originalUrl.startsWith(protocol) ? originalUrl : `${protocol}://${host}${originalUrl}`;
       include.forEach((key) => {
         switch (key) {
           case "headers": {
@@ -14588,10 +11700,7 @@ var require_requestdata2 = __commonJS({
             break;
           }
           case "cookies": {
-            requestData.cookies =
-              req.cookies ||
-              (headers2.cookie && cookie.parse(headers2.cookie)) ||
-              {};
+            requestData.cookies = req.cookies || headers2.cookie && cookie.parse(headers2.cookie) || {};
             break;
           }
           case "query_string": {
@@ -14603,9 +11712,7 @@ var require_requestdata2 = __commonJS({
               break;
             }
             if (req.body !== void 0) {
-              requestData.data = utils.isString(req.body)
-                ? req.body
-                : JSON.stringify(utils.normalize(req.body));
+              requestData.data = utils.isString(req.body) ? req.body : JSON.stringify(utils.normalize(req.body));
             }
             break;
           }
@@ -14619,36 +11726,22 @@ var require_requestdata2 = __commonJS({
       return requestData;
     }
     function addRequestDataToEvent(event, req, options) {
-      const include = __spreadValues(
-        __spreadValues({}, DEFAULT_INCLUDES),
-        _optionalChain([options, "optionalAccess", (_) => _.include]),
-      );
+      const include = __spreadValues(__spreadValues({}, DEFAULT_INCLUDES), _optionalChain([options, "optionalAccess", (_) => _.include]));
       if (include.request) {
-        const extractedRequestData = Array.isArray(include.request)
-          ? extractRequestData(req, { include: include.request })
-          : extractRequestData(req);
-        event.request = __spreadValues(
-          __spreadValues({}, event.request),
-          extractedRequestData,
-        );
+        const extractedRequestData = Array.isArray(include.request) ? extractRequestData(req, { include: include.request }) : extractRequestData(req);
+        event.request = __spreadValues(__spreadValues({}, event.request), extractedRequestData);
       }
       if (include.user) {
-        const extractedUser =
-          req.user && utils.isPlainObject(req.user)
-            ? extractUserData(req.user, include.user)
-            : {};
+        const extractedUser = req.user && utils.isPlainObject(req.user) ? extractUserData(req.user, include.user) : {};
         if (Object.keys(extractedUser).length) {
-          event.user = __spreadValues(
-            __spreadValues({}, event.user),
-            extractedUser,
-          );
+          event.user = __spreadValues(__spreadValues({}, event.user), extractedUser);
         }
       }
       if (include.ip) {
-        const ip = req.ip || (req.socket && req.socket.remoteAddress);
+        const ip = req.ip || req.socket && req.socket.remoteAddress;
         if (ip) {
           event.user = __spreadProps(__spreadValues({}, event.user), {
-            ip_address: ip,
+            ip_address: ip
           });
         }
       }
@@ -14665,19 +11758,13 @@ var require_requestdata2 = __commonJS({
       if (originalUrl.startsWith("/")) {
         originalUrl = `http://dogs.are.great${originalUrl}`;
       }
-      return (
-        req.query ||
-        (typeof URL !== void 0 &&
-          new URL(originalUrl).search.replace("?", "")) ||
-        url.parse(originalUrl).query ||
-        void 0
-      );
+      return req.query || typeof URL !== void 0 && new URL(originalUrl).search.replace("?", "") || url.parse(originalUrl).query || void 0;
     }
     exports.DEFAULT_USER_INCLUDES = DEFAULT_USER_INCLUDES;
     exports.addRequestDataToEvent = addRequestDataToEvent;
     exports.extractPathForTransaction = extractPathForTransaction;
     exports.extractRequestData = extractRequestData;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/requestdata.js
@@ -14697,10 +11784,10 @@ var require_requestdata3 = __commonJS({
         user: {
           id: true,
           username: true,
-          email: true,
-        },
+          email: true
+        }
       },
-      transactionNamingScheme: "methodPath",
+      transactionNamingScheme: "methodPath"
     };
     var RequestData = class {
       static __initStatic() {
@@ -14712,31 +11799,13 @@ var require_requestdata3 = __commonJS({
       constructor(options = {}) {
         RequestData.prototype.__init.call(this);
         this._addRequestData = requestdata.addRequestDataToEvent;
-        this._options = __spreadProps(
-          __spreadValues(__spreadValues({}, DEFAULT_OPTIONS), options),
-          {
-            include: __spreadProps(
-              __spreadValues(
-                __spreadValues(
-                  {
-                    method: true,
-                  },
-                  DEFAULT_OPTIONS.include,
-                ),
-                options.include,
-              ),
-              {
-                user:
-                  options.include && typeof options.include.user === "boolean"
-                    ? options.include.user
-                    : __spreadValues(
-                        __spreadValues({}, DEFAULT_OPTIONS.include.user),
-                        (options.include || {}).user,
-                      ),
-              },
-            ),
-          },
-        );
+        this._options = __spreadProps(__spreadValues(__spreadValues({}, DEFAULT_OPTIONS), options), {
+          include: __spreadProps(__spreadValues(__spreadValues({
+            method: true
+          }, DEFAULT_OPTIONS.include), options.include), {
+            user: options.include && typeof options.include.user === "boolean" ? options.include.user : __spreadValues(__spreadValues({}, DEFAULT_OPTIONS.include.user), (options.include || {}).user)
+          })
+        });
       }
       setupOnce(addGlobalEventProcessor, getCurrentHub) {
         const { transactionNamingScheme } = this._options;
@@ -14748,32 +11817,19 @@ var require_requestdata3 = __commonJS({
           if (!self2 || !req) {
             return event;
           }
-          const addRequestDataOptions =
-            sdkProcessingMetadata.requestDataOptionsFromExpressHandler ||
-            sdkProcessingMetadata.requestDataOptionsFromGCPWrapper ||
-            convertReqDataIntegrationOptsToAddReqDataOpts(this._options);
-          const processedEvent = this._addRequestData(
-            event,
-            req,
-            addRequestDataOptions,
-          );
-          if (
-            event.type === "transaction" ||
-            transactionNamingScheme === "handler"
-          ) {
+          const addRequestDataOptions = sdkProcessingMetadata.requestDataOptionsFromExpressHandler || sdkProcessingMetadata.requestDataOptionsFromGCPWrapper || convertReqDataIntegrationOptsToAddReqDataOpts(this._options);
+          const processedEvent = this._addRequestData(event, req, addRequestDataOptions);
+          if (event.type === "transaction" || transactionNamingScheme === "handler") {
             return processedEvent;
           }
           const reqWithTransaction = req;
           const transaction = reqWithTransaction._sentryTransaction;
           if (transaction) {
-            const shouldIncludeMethodInTransactionName =
-              getSDKName(hub) === "sentry.javascript.nextjs"
-                ? transaction.name.startsWith("/api")
-                : transactionNamingScheme !== "path";
+            const shouldIncludeMethodInTransactionName = getSDKName(hub) === "sentry.javascript.nextjs" ? transaction.name.startsWith("/api") : transactionNamingScheme !== "path";
             const [transactionValue] = utils.extractPathForTransaction(req, {
               path: true,
               method: shouldIncludeMethodInTransactionName,
-              customRoute: transaction.name,
+              customRoute: transaction.name
             });
             processedEvent.transaction = transactionValue;
           }
@@ -14783,10 +11839,10 @@ var require_requestdata3 = __commonJS({
     };
     RequestData.__initStatic();
     function convertReqDataIntegrationOptsToAddReqDataOpts(integrationOptions) {
-      const { transactionNamingScheme, include: _a } = integrationOptions,
-        _b = _a,
-        { ip, user } = _b,
-        requestOptions = __objRest(_b, ["ip", "user"]);
+      const {
+        transactionNamingScheme,
+        include: _a
+      } = integrationOptions, _b = _a, { ip, user } = _b, requestOptions = __objRest(_b, ["ip", "user"]);
       const requestIncludeKeys = [];
       for (const [key, value] of Object.entries(requestOptions)) {
         if (value) {
@@ -14811,10 +11867,9 @@ var require_requestdata3 = __commonJS({
         include: {
           ip,
           user: addReqDataUserOpt,
-          request:
-            requestIncludeKeys.length !== 0 ? requestIncludeKeys : void 0,
-          transaction: transactionNamingScheme,
-        },
+          request: requestIncludeKeys.length !== 0 ? requestIncludeKeys : void 0,
+          transaction: transactionNamingScheme
+        }
       };
     }
     function getSDKName(hub) {
@@ -14825,13 +11880,15 @@ var require_requestdata3 = __commonJS({
       }
     }
     exports.RequestData = RequestData;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/localvariables.js
 var require_localvariables = __commonJS({
   "node_modules/@sentry/node/cjs/integrations/localvariables.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var utils = require_cjs();
     var lru_map = require_lru();
@@ -14874,66 +11931,19 @@ var require_localvariables = __commonJS({
           });
         });
         this._session.post("Debugger.enable");
-        this._session.post("Debugger.setPauseOnExceptions", {
-          state: captureAll ? "all" : "uncaught",
-        });
+        this._session.post("Debugger.setPauseOnExceptions", { state: captureAll ? "all" : "uncaught" });
       }
       getLocalVariables(objectId, complete) {
         this._getProperties(objectId, (props) => {
           const { add, next } = createCallbackList(complete);
           for (const prop of props) {
-            if (
-              _optionalChain([
-                prop,
-                "optionalAccess",
-                (_2) => _2.value,
-                "optionalAccess",
-                (_3) => _3.objectId,
-              ]) &&
-              _optionalChain([
-                prop,
-                "optionalAccess",
-                (_4) => _4.value,
-                "access",
-                (_5) => _5.className,
-              ]) === "Array"
-            ) {
+            if (_optionalChain([prop, "optionalAccess", (_2) => _2.value, "optionalAccess", (_3) => _3.objectId]) && _optionalChain([prop, "optionalAccess", (_4) => _4.value, "access", (_5) => _5.className]) === "Array") {
               const id = prop.value.objectId;
               add((vars) => this._unrollArray(id, prop.name, vars, next));
-            } else if (
-              _optionalChain([
-                prop,
-                "optionalAccess",
-                (_6) => _6.value,
-                "optionalAccess",
-                (_7) => _7.objectId,
-              ]) &&
-              _optionalChain([
-                prop,
-                "optionalAccess",
-                (_8) => _8.value,
-                "optionalAccess",
-                (_9) => _9.className,
-              ]) === "Object"
-            ) {
+            } else if (_optionalChain([prop, "optionalAccess", (_6) => _6.value, "optionalAccess", (_7) => _7.objectId]) && _optionalChain([prop, "optionalAccess", (_8) => _8.value, "optionalAccess", (_9) => _9.className]) === "Object") {
               const id = prop.value.objectId;
               add((vars) => this._unrollObject(id, prop.name, vars, next));
-            } else if (
-              _optionalChain([
-                prop,
-                "optionalAccess",
-                (_10) => _10.value,
-                "optionalAccess",
-                (_11) => _11.value,
-              ]) ||
-              _optionalChain([
-                prop,
-                "optionalAccess",
-                (_12) => _12.value,
-                "optionalAccess",
-                (_13) => _13.description,
-              ])
-            ) {
+            } else if (_optionalChain([prop, "optionalAccess", (_10) => _10.value, "optionalAccess", (_11) => _11.value]) || _optionalChain([prop, "optionalAccess", (_12) => _12.value, "optionalAccess", (_13) => _13.description])) {
               add((vars) => this._unrollOther(prop, vars, next));
             }
           }
@@ -14941,85 +11951,36 @@ var require_localvariables = __commonJS({
         });
       }
       _getProperties(objectId, next) {
-        this._session.post(
-          "Runtime.getProperties",
-          {
-            objectId,
-            ownProperties: true,
-          },
-          (err, params) => {
-            if (err) {
-              next([]);
-            } else {
-              next(params.result);
-            }
-          },
-        );
+        this._session.post("Runtime.getProperties", {
+          objectId,
+          ownProperties: true
+        }, (err, params) => {
+          if (err) {
+            next([]);
+          } else {
+            next(params.result);
+          }
+        });
       }
       _unrollArray(objectId, name, vars, next) {
         this._getProperties(objectId, (props) => {
-          vars[name] = props
-            .filter((v) => v.name !== "length" && !isNaN(parseInt(v.name, 10)))
-            .sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10))
-            .map((v) =>
-              _optionalChain([
-                v,
-                "optionalAccess",
-                (_14) => _14.value,
-                "optionalAccess",
-                (_15) => _15.value,
-              ]),
-            );
+          vars[name] = props.filter((v) => v.name !== "length" && !isNaN(parseInt(v.name, 10))).sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10)).map((v) => _optionalChain([v, "optionalAccess", (_14) => _14.value, "optionalAccess", (_15) => _15.value]));
           next(vars);
         });
       }
       _unrollObject(objectId, name, vars, next) {
         this._getProperties(objectId, (props) => {
-          vars[name] = props
-            .map((v) => [
-              v.name,
-              _optionalChain([
-                v,
-                "optionalAccess",
-                (_16) => _16.value,
-                "optionalAccess",
-                (_17) => _17.value,
-              ]),
-            ])
-            .reduce((obj, [key, val]) => {
-              obj[key] = val;
-              return obj;
-            }, {});
+          vars[name] = props.map((v) => [v.name, _optionalChain([v, "optionalAccess", (_16) => _16.value, "optionalAccess", (_17) => _17.value])]).reduce((obj, [key, val]) => {
+            obj[key] = val;
+            return obj;
+          }, {});
           next(vars);
         });
       }
       _unrollOther(prop, vars, next) {
-        if (
-          _optionalChain([
-            prop,
-            "optionalAccess",
-            (_18) => _18.value,
-            "optionalAccess",
-            (_19) => _19.value,
-          ])
-        ) {
+        if (_optionalChain([prop, "optionalAccess", (_18) => _18.value, "optionalAccess", (_19) => _19.value])) {
           vars[prop.name] = prop.value.value;
-        } else if (
-          _optionalChain([
-            prop,
-            "optionalAccess",
-            (_20) => _20.value,
-            "optionalAccess",
-            (_21) => _21.description,
-          ]) &&
-          _optionalChain([
-            prop,
-            "optionalAccess",
-            (_22) => _22.value,
-            "optionalAccess",
-            (_23) => _23.type,
-          ]) !== "function"
-        ) {
+        } else if (_optionalChain([prop, "optionalAccess", (_20) => _20.value, "optionalAccess", (_21) => _21.description]) && _optionalChain([prop, "optionalAccess", (_22) => _22.value, "optionalAccess", (_23) => _23.type]) !== "function") {
           vars[prop.name] = `<${prop.value.description}>`;
         }
         next(vars);
@@ -15036,19 +11997,13 @@ var require_localvariables = __commonJS({
       return name !== void 0 && ["", "?", "<anonymous>"].includes(name);
     }
     function functionNamesMatch(a, b) {
-      return a === b || (isAnonymous(a) && isAnonymous(b));
+      return a === b || isAnonymous(a) && isAnonymous(b);
     }
     function hashFrames(frames) {
       if (frames === void 0) {
         return;
       }
-      return frames
-        .slice(-10)
-        .reduce(
-          (acc, frame) =>
-            `${acc},${frame.function},${frame.lineno},${frame.colno}`,
-          "",
-        );
+      return frames.slice(-10).reduce((acc, frame) => `${acc},${frame.function},${frame.lineno},${frame.colno}`, "");
     }
     function hashFromStack(stackParser, stack) {
       if (stack === void 0) {
@@ -15073,63 +12028,25 @@ var require_localvariables = __commonJS({
         LocalVariables.prototype.__init2.call(this);
       }
       setupOnce(addGlobalEventProcessor, getCurrentHub) {
-        this._setup(
-          addGlobalEventProcessor,
-          _optionalChain([
-            getCurrentHub,
-            "call",
-            (_24) => _24(),
-            "access",
-            (_25) => _25.getClient,
-            "call",
-            (_26) => _26(),
-            "optionalAccess",
-            (_27) => _27.getOptions,
-            "call",
-            (_28) => _28(),
-          ]),
-        );
+        this._setup(addGlobalEventProcessor, _optionalChain([getCurrentHub, "call", (_24) => _24(), "access", (_25) => _25.getClient, "call", (_26) => _26(), "optionalAccess", (_27) => _27.getOptions, "call", (_28) => _28()]));
       }
       _setup(addGlobalEventProcessor, clientOptions) {
-        if (
-          this._session &&
-          _optionalChain([
-            clientOptions,
-            "optionalAccess",
-            (_29) => _29.includeLocalVariables,
-          ])
-        ) {
-          const unsupportedNodeVersion =
-            (nodeVersion.NODE_VERSION.major || 0) < 18;
+        if (this._session && _optionalChain([clientOptions, "optionalAccess", (_29) => _29.includeLocalVariables])) {
+          const unsupportedNodeVersion = (nodeVersion.NODE_VERSION.major || 0) < 18;
           if (unsupportedNodeVersion) {
-            utils.logger.log(
-              "The `LocalVariables` integration is only supported on Node >= v18.",
-            );
+            utils.logger.log("The `LocalVariables` integration is only supported on Node >= v18.");
             return;
           }
-          this._session.configureAndConnect(
-            (ev, complete) =>
-              this._handlePaused(clientOptions.stackParser, ev, complete),
-            !!this._options.captureAllExceptions,
-          );
-          addGlobalEventProcessor(async (event) =>
-            this._addLocalVariables(event),
-          );
+          this._session.configureAndConnect((ev, complete) => this._handlePaused(clientOptions.stackParser, ev, complete), !!this._options.captureAllExceptions);
+          addGlobalEventProcessor(async (event) => this._addLocalVariables(event));
         }
       }
-      _handlePaused(
-        stackParser,
-        { params: { reason, data, callFrames } },
-        complete,
-      ) {
+      _handlePaused(stackParser, { params: { reason, data, callFrames } }, complete) {
         if (reason !== "exception" && reason !== "promiseRejection") {
           complete();
           return;
         }
-        const exceptionHash = hashFromStack(
-          stackParser,
-          _optionalChain([data, "optionalAccess", (_30) => _30.description]),
-        );
+        const exceptionHash = hashFromStack(stackParser, _optionalChain([data, "optionalAccess", (_30) => _30.description]));
         if (exceptionHash == void 0) {
           complete();
           return;
@@ -15141,66 +12058,30 @@ var require_localvariables = __commonJS({
         for (let i = 0; i < Math.min(callFrames.length, 5); i++) {
           const { scopeChain, functionName, this: obj } = callFrames[i];
           const localScope = scopeChain.find((scope) => scope.type === "local");
-          const fn =
-            obj.className === "global" || !obj.className
-              ? functionName
-              : `${obj.className}.${functionName}`;
-          if (
-            _optionalChain([
-              localScope,
-              "optionalAccess",
-              (_31) => _31.object,
-              "access",
-              (_32) => _32.objectId,
-            ]) === void 0
-          ) {
+          const fn = obj.className === "global" || !obj.className ? functionName : `${obj.className}.${functionName}`;
+          if (_optionalChain([localScope, "optionalAccess", (_31) => _31.object, "access", (_32) => _32.objectId]) === void 0) {
             add((frames) => {
               frames[i] = { function: fn };
               next(frames);
             });
           } else {
             const id = localScope.object.objectId;
-            add((frames) =>
-              _optionalChain([
-                this,
-                "access",
-                (_33) => _33._session,
-                "optionalAccess",
-                (_34) => _34.getLocalVariables,
-                "call",
-                (_35) =>
-                  _35(id, (vars) => {
-                    frames[i] = { function: fn, vars };
-                    next(frames);
-                  }),
-              ]),
-            );
+            add((frames) => _optionalChain([this, "access", (_33) => _33._session, "optionalAccess", (_34) => _34.getLocalVariables, "call", (_35) => _35(id, (vars) => {
+              frames[i] = { function: fn, vars };
+              next(frames);
+            })]));
           }
         }
         next([]);
       }
       _addLocalVariables(event) {
-        for (const exception of _optionalChain([
-          event,
-          "optionalAccess",
-          (_36) => _36.exception,
-          "optionalAccess",
-          (_37) => _37.values,
-        ]) || []) {
+        for (const exception of _optionalChain([event, "optionalAccess", (_36) => _36.exception, "optionalAccess", (_37) => _37.values]) || []) {
           this._addLocalVariablesToException(exception);
         }
         return event;
       }
       _addLocalVariablesToException(exception) {
-        const hash = hashFrames(
-          _optionalChain([
-            exception,
-            "optionalAccess",
-            (_38) => _38.stacktrace,
-            "optionalAccess",
-            (_39) => _39.frames,
-          ]),
-        );
+        const hash = hashFrames(_optionalChain([exception, "optionalAccess", (_38) => _38.stacktrace, "optionalAccess", (_39) => _39.frames]));
         if (hash === void 0) {
           return;
         }
@@ -15208,40 +12089,13 @@ var require_localvariables = __commonJS({
         if (cachedFrames === void 0) {
           return;
         }
-        const frameCount =
-          _optionalChain([
-            exception,
-            "access",
-            (_40) => _40.stacktrace,
-            "optionalAccess",
-            (_41) => _41.frames,
-            "optionalAccess",
-            (_42) => _42.length,
-          ]) || 0;
+        const frameCount = _optionalChain([exception, "access", (_40) => _40.stacktrace, "optionalAccess", (_41) => _41.frames, "optionalAccess", (_42) => _42.length]) || 0;
         for (let i = 0; i < frameCount; i++) {
           const frameIndex = frameCount - i - 1;
-          if (
-            !_optionalChain([
-              exception,
-              "optionalAccess",
-              (_43) => _43.stacktrace,
-              "optionalAccess",
-              (_44) => _44.frames,
-              "optionalAccess",
-              (_45) => _45[frameIndex],
-            ]) ||
-            !cachedFrames[i]
-          ) {
+          if (!_optionalChain([exception, "optionalAccess", (_43) => _43.stacktrace, "optionalAccess", (_44) => _44.frames, "optionalAccess", (_45) => _45[frameIndex]]) || !cachedFrames[i]) {
             break;
           }
-          if (
-            cachedFrames[i].vars === void 0 ||
-            exception.stacktrace.frames[frameIndex].in_app === false ||
-            !functionNamesMatch(
-              exception.stacktrace.frames[frameIndex].function,
-              cachedFrames[i].function,
-            )
-          ) {
+          if (cachedFrames[i].vars === void 0 || exception.stacktrace.frames[frameIndex].in_app === false || !functionNamesMatch(exception.stacktrace.frames[frameIndex].function, cachedFrames[i].function)) {
             continue;
           }
           exception.stacktrace.frames[frameIndex].vars = cachedFrames[i].vars;
@@ -15251,16 +12105,15 @@ var require_localvariables = __commonJS({
     LocalVariables.__initStatic();
     exports.LocalVariables = LocalVariables;
     exports.createCallbackList = createCallbackList;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/undici/index.js
 var require_undici = __commonJS({
-  "node_modules/@sentry/node/cjs/integrations/undici/index.js"(
-    exports,
-    module2,
-  ) {
-    var { _optionalChain } = require_buildPolyfills();
+  "node_modules/@sentry/node/cjs/integrations/undici/index.js"(exports, module2) {
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -15268,7 +12121,7 @@ var require_undici = __commonJS({
     var nodeVersion = require_nodeVersion();
     var http2 = require_http2();
     exports.ChannelName = void 0;
-    (function (ChannelName) {
+    (function(ChannelName) {
       const RequestCreate = "undici:request:create";
       ChannelName["RequestCreate"] = RequestCreate;
       const RequestEnd = "undici:request:headers";
@@ -15297,22 +12150,19 @@ var require_undici = __commonJS({
         Undici.prototype.__init5.call(this);
         Undici.prototype.__init6.call(this);
         this._options = {
-          breadcrumbs:
-            _options.breadcrumbs === void 0 ? true : _options.breadcrumbs,
-          shouldCreateSpanForRequest: _options.shouldCreateSpanForRequest,
+          breadcrumbs: _options.breadcrumbs === void 0 ? true : _options.breadcrumbs,
+          shouldCreateSpanForRequest: _options.shouldCreateSpanForRequest
         };
       }
       setupOnce(_addGlobalEventProcessor) {
-        if (
-          nodeVersion.NODE_VERSION.major &&
-          nodeVersion.NODE_VERSION.major < 16
-        ) {
+        if (nodeVersion.NODE_VERSION.major && nodeVersion.NODE_VERSION.major < 16) {
           return;
         }
         let ds;
         try {
           ds = utils.dynamicRequire(module2, "diagnostics_channel");
-        } catch (e) {}
+        } catch (e) {
+        }
         if (!ds || !ds.subscribe) {
           return;
         }
@@ -15339,13 +12189,8 @@ var require_undici = __commonJS({
             return;
           }
           const { request } = message;
-          const stringUrl = request.origin
-            ? request.origin.toString() + request.path
-            : request.path;
-          if (
-            http2.isSentryRequest(stringUrl) ||
-            request.__sentry_span__ !== void 0
-          ) {
+          const stringUrl = request.origin ? request.origin.toString() + request.path : request.path;
+          if (http2.isSentryRequest(stringUrl) || request.__sentry_span__ !== void 0) {
             return;
           }
           const client = hub.getClient();
@@ -15355,9 +12200,7 @@ var require_undici = __commonJS({
           const clientOptions = client.getOptions();
           const scope = hub.getScope();
           const parentSpan = scope.getSpan();
-          const span = this._shouldCreateSpan(stringUrl)
-            ? createRequestSpan(parentSpan, request, stringUrl)
-            : void 0;
+          const span = this._shouldCreateSpan(stringUrl) ? createRequestSpan(parentSpan, request, stringUrl) : void 0;
           if (span) {
             request.__sentry_span__ = span;
           }
@@ -15369,51 +12212,20 @@ var require_undici = __commonJS({
             if (cachedDecision !== void 0) {
               return cachedDecision;
             }
-            const decision = utils.stringMatchesSomePattern(
-              url,
-              clientOptions.tracePropagationTargets,
-            );
+            const decision = utils.stringMatchesSomePattern(url, clientOptions.tracePropagationTargets);
             this._headersUrlMap.set(url, decision);
             return decision;
           };
           if (shouldAttachTraceData(stringUrl)) {
             if (span) {
-              const dynamicSamplingContext = _optionalChain([
-                span,
-                "optionalAccess",
-                (_4) => _4.transaction,
-                "optionalAccess",
-                (_5) => _5.getDynamicSamplingContext,
-                "call",
-                (_6) => _6(),
-              ]);
-              const sentryBaggageHeader =
-                utils.dynamicSamplingContextToSentryBaggageHeader(
-                  dynamicSamplingContext,
-                );
-              setHeadersOnRequest(
-                request,
-                span.toTraceparent(),
-                sentryBaggageHeader,
-              );
+              const dynamicSamplingContext = _optionalChain([span, "optionalAccess", (_4) => _4.transaction, "optionalAccess", (_5) => _5.getDynamicSamplingContext, "call", (_6) => _6()]);
+              const sentryBaggageHeader = utils.dynamicSamplingContextToSentryBaggageHeader(dynamicSamplingContext);
+              setHeadersOnRequest(request, span.toTraceparent(), sentryBaggageHeader);
             } else {
               const { traceId, sampled, dsc } = scope.getPropagationContext();
-              const sentryTrace = utils.generateSentryTraceHeader(
-                traceId,
-                void 0,
-                sampled,
-              );
-              const dynamicSamplingContext =
-                dsc ||
-                core.getDynamicSamplingContextFromClient(
-                  traceId,
-                  client,
-                  scope,
-                );
-              const sentryBaggageHeader =
-                utils.dynamicSamplingContextToSentryBaggageHeader(
-                  dynamicSamplingContext,
-                );
+              const sentryTrace = utils.generateSentryTraceHeader(traceId, void 0, sampled);
+              const dynamicSamplingContext = dsc || core.getDynamicSamplingContextFromClient(traceId, client, scope);
+              const sentryBaggageHeader = utils.dynamicSamplingContextToSentryBaggageHeader(dynamicSamplingContext);
               setHeadersOnRequest(request, sentryTrace, sentryBaggageHeader);
             }
           }
@@ -15426,9 +12238,7 @@ var require_undici = __commonJS({
             return;
           }
           const { request, response } = message;
-          const stringUrl = request.origin
-            ? request.origin.toString() + request.path
-            : request.path;
+          const stringUrl = request.origin ? request.origin.toString() + request.path : request.path;
           if (http2.isSentryRequest(stringUrl)) {
             return;
           }
@@ -15438,22 +12248,19 @@ var require_undici = __commonJS({
             span.finish();
           }
           if (this._options.breadcrumbs) {
-            hub.addBreadcrumb(
-              {
-                category: "http",
-                data: {
-                  method: request.method,
-                  status_code: response.statusCode,
-                  url: stringUrl,
-                },
-                type: "http",
+            hub.addBreadcrumb({
+              category: "http",
+              data: {
+                method: request.method,
+                status_code: response.statusCode,
+                url: stringUrl
               },
-              {
-                event: "response",
-                request,
-                response,
-              },
-            );
+              type: "http"
+            }, {
+              event: "response",
+              request,
+              response
+            });
           }
         };
       }
@@ -15464,9 +12271,7 @@ var require_undici = __commonJS({
             return;
           }
           const { request } = message;
-          const stringUrl = request.origin
-            ? request.origin.toString() + request.path
-            : request.path;
+          const stringUrl = request.origin ? request.origin.toString() + request.path : request.path;
           if (http2.isSentryRequest(stringUrl)) {
             return;
           }
@@ -15476,21 +12281,18 @@ var require_undici = __commonJS({
             span.finish();
           }
           if (this._options.breadcrumbs) {
-            hub.addBreadcrumb(
-              {
-                category: "http",
-                data: {
-                  method: request.method,
-                  url: stringUrl,
-                },
-                level: "error",
-                type: "http",
+            hub.addBreadcrumb({
+              category: "http",
+              data: {
+                method: request.method,
+                url: stringUrl
               },
-              {
-                event: "error",
-                request,
-              },
-            );
+              level: "error",
+              type: "http"
+            }, {
+              event: "error",
+              request
+            });
           }
         };
       }
@@ -15510,7 +12312,7 @@ var require_undici = __commonJS({
       const url = utils.parseUrl(stringUrl);
       const method = request.method || "GET";
       const data = {
-        "http.method": method,
+        "http.method": method
       };
       if (url.search) {
         data["http.query"] = url.search;
@@ -15518,21 +12320,14 @@ var require_undici = __commonJS({
       if (url.hash) {
         data["http.fragment"] = url.hash;
       }
-      return _optionalChain([
-        activeSpan,
-        "optionalAccess",
-        (_7) => _7.startChild,
-        "call",
-        (_8) =>
-          _8({
-            op: "http.client",
-            description: `${method} ${utils.getSanitizedUrlString(url)}`,
-            data,
-          }),
-      ]);
+      return _optionalChain([activeSpan, "optionalAccess", (_7) => _7.startChild, "call", (_8) => _8({
+        op: "http.client",
+        description: `${method} ${utils.getSanitizedUrlString(url)}`,
+        data
+      })]);
     }
     exports.Undici = Undici;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/module.js
@@ -15544,25 +12339,13 @@ var require_module = __commonJS({
     function normalizeWindowsPath(path2) {
       return path2.replace(/^[A-Z]:/, "").replace(/\\/g, "/");
     }
-    function getModuleFromFilename(
-      filename,
-      normalizeWindowsPathSeparator = isWindowsPlatform,
-    ) {
+    function getModuleFromFilename(filename, normalizeWindowsPathSeparator = isWindowsPlatform) {
       if (!filename) {
         return;
       }
-      const normalizedFilename = normalizeWindowsPathSeparator
-        ? normalizeWindowsPath(filename)
-        : filename;
-      let {
-        root,
-        dir,
-        base: basename,
-        ext,
-      } = path.posix.parse(normalizedFilename);
-      const base =
-        (require && require.main && require.main.filename && dir) ||
-        global.process.cwd();
+      const normalizedFilename = normalizeWindowsPathSeparator ? normalizeWindowsPath(filename) : filename;
+      let { root, dir, base: basename, ext } = path.posix.parse(normalizedFilename);
+      const base = require && require.main && require.main.filename && dir || global.process.cwd();
       const normalizedBase = `${base}/`;
       let file = basename;
       if (ext === ".js") {
@@ -15587,13 +12370,15 @@ var require_module = __commonJS({
       return file;
     }
     exports.getModuleFromFilename = getModuleFromFilename;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/sdk.js
 var require_sdk2 = __commonJS({
   "node_modules/@sentry/node/cjs/sdk.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -15625,28 +12410,16 @@ var require_sdk2 = __commonJS({
       new context.Context(),
       new modules.Modules(),
       new requestdata.RequestData(),
-      new linkederrors.LinkedErrors(),
+      new linkederrors.LinkedErrors()
     ];
     function init2(options = {}) {
       const carrier = core.getMainCarrier();
       index$1.setNodeAsyncContextStrategy();
-      const autoloadedIntegrations =
-        _optionalChain([
-          carrier,
-          "access",
-          (_) => _.__SENTRY__,
-          "optionalAccess",
-          (_2) => _2.integrations,
-        ]) || [];
-      options.defaultIntegrations =
-        options.defaultIntegrations === false
-          ? []
-          : [
-              ...(Array.isArray(options.defaultIntegrations)
-                ? options.defaultIntegrations
-                : defaultIntegrations),
-              ...autoloadedIntegrations,
-            ];
+      const autoloadedIntegrations = _optionalChain([carrier, "access", (_) => _.__SENTRY__, "optionalAccess", (_2) => _2.integrations]) || [];
+      options.defaultIntegrations = options.defaultIntegrations === false ? [] : [
+        ...Array.isArray(options.defaultIntegrations) ? options.defaultIntegrations : defaultIntegrations,
+        ...autoloadedIntegrations
+      ];
       if (options.dsn === void 0 && process.env.SENTRY_DSN) {
         options.dsn = process.env.SENTRY_DSN;
       }
@@ -15675,11 +12448,9 @@ var require_sdk2 = __commonJS({
         options.instrumenter = "sentry";
       }
       const clientOptions = __spreadProps(__spreadValues({}, options), {
-        stackParser: utils.stackParserFromStackParserOptions(
-          options.stackParser || defaultStackParser,
-        ),
+        stackParser: utils.stackParserFromStackParserOptions(options.stackParser || defaultStackParser),
         integrations: core.getIntegrationsToSetup(options),
-        transport: options.transport || http$1.makeNodeTransport,
+        transport: options.transport || http$1.makeNodeTransport
       });
       core.initAndBind(client.NodeClient, clientOptions);
       if (options.autoSessionTracking) {
@@ -15695,8 +12466,7 @@ var require_sdk2 = __commonJS({
       if (client2) {
         return client2.flush(timeout);
       }
-      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-        utils.logger.warn("Cannot flush events. No client defined.");
+      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Cannot flush events. No client defined.");
       return Promise.resolve(false);
     }
     async function close(timeout) {
@@ -15704,10 +12474,7 @@ var require_sdk2 = __commonJS({
       if (client2) {
         return client2.close(timeout);
       }
-      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-        utils.logger.warn(
-          "Cannot flush events and disable SDK. No client defined.",
-        );
+      (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.warn("Cannot flush events and disable SDK. No client defined.");
       return Promise.resolve(false);
     }
     function isAutoSessionTrackingEnabled(client2) {
@@ -15724,28 +12491,12 @@ var require_sdk2 = __commonJS({
       if (process.env.SENTRY_RELEASE) {
         return process.env.SENTRY_RELEASE;
       }
-      if (
-        utils.GLOBAL_OBJ.SENTRY_RELEASE &&
-        utils.GLOBAL_OBJ.SENTRY_RELEASE.id
-      ) {
+      if (utils.GLOBAL_OBJ.SENTRY_RELEASE && utils.GLOBAL_OBJ.SENTRY_RELEASE.id) {
         return utils.GLOBAL_OBJ.SENTRY_RELEASE.id;
       }
-      return (
-        process.env.GITHUB_SHA ||
-        process.env.COMMIT_REF ||
-        process.env.VERCEL_GIT_COMMIT_SHA ||
-        process.env.VERCEL_GITHUB_COMMIT_SHA ||
-        process.env.VERCEL_GITLAB_COMMIT_SHA ||
-        process.env.VERCEL_BITBUCKET_COMMIT_SHA ||
-        process.env.ZEIT_GITHUB_COMMIT_SHA ||
-        process.env.ZEIT_GITLAB_COMMIT_SHA ||
-        process.env.ZEIT_BITBUCKET_COMMIT_SHA ||
-        fallback
-      );
+      return process.env.GITHUB_SHA || process.env.COMMIT_REF || process.env.VERCEL_GIT_COMMIT_SHA || process.env.VERCEL_GITHUB_COMMIT_SHA || process.env.VERCEL_GITLAB_COMMIT_SHA || process.env.VERCEL_BITBUCKET_COMMIT_SHA || process.env.ZEIT_GITHUB_COMMIT_SHA || process.env.ZEIT_GITLAB_COMMIT_SHA || process.env.ZEIT_BITBUCKET_COMMIT_SHA || fallback;
     }
-    var defaultStackParser = utils.createStackParser(
-      utils.nodeStackLineParser(module$1.getModuleFromFilename),
-    );
+    var defaultStackParser = utils.createStackParser(utils.nodeStackLineParser(module$1.getModuleFromFilename));
     function startSessionTracking() {
       const hub = core.getCurrentHub();
       hub.startSession();
@@ -15757,20 +12508,12 @@ var require_sdk2 = __commonJS({
       });
     }
     function updateScopeFromEnvVariables() {
-      const sentryUseEnvironment = (
-        process.env.SENTRY_USE_ENVIRONMENT || ""
-      ).toLowerCase();
+      const sentryUseEnvironment = (process.env.SENTRY_USE_ENVIRONMENT || "").toLowerCase();
       if (!["false", "n", "no", "off", "0"].includes(sentryUseEnvironment)) {
         const sentryTraceEnv = process.env.SENTRY_TRACE;
         const baggageEnv = process.env.SENTRY_BAGGAGE;
-        const { propagationContext } = utils.tracingContextFromHeaders(
-          sentryTraceEnv,
-          baggageEnv,
-        );
-        core
-          .getCurrentHub()
-          .getScope()
-          .setPropagationContext(propagationContext);
+        const { propagationContext } = utils.tracingContextFromHeaders(sentryTraceEnv, baggageEnv);
+        core.getCurrentHub().getScope().setPropagationContext(propagationContext);
       }
     }
     exports.close = close;
@@ -15781,7 +12524,7 @@ var require_sdk2 = __commonJS({
     exports.init = init2;
     exports.isAutoSessionTrackingEnabled = isAutoSessionTrackingEnabled;
     exports.lastEventId = lastEventId;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/utils.js
@@ -15793,33 +12536,25 @@ var require_utils3 = __commonJS({
     function deepReadDirSync(targetDir) {
       const targetDirAbsPath = path.resolve(targetDir);
       if (!fs.existsSync(targetDirAbsPath)) {
-        throw new Error(
-          `Cannot read contents of ${targetDirAbsPath}. Directory does not exist.`,
-        );
+        throw new Error(`Cannot read contents of ${targetDirAbsPath}. Directory does not exist.`);
       }
       if (!fs.statSync(targetDirAbsPath).isDirectory()) {
-        throw new Error(
-          `Cannot read contents of ${targetDirAbsPath}, because it is not a directory.`,
-        );
+        throw new Error(`Cannot read contents of ${targetDirAbsPath}, because it is not a directory.`);
       }
       const deepReadCurrentDir = (currentDirAbsPath) => {
-        return fs
-          .readdirSync(currentDirAbsPath)
-          .reduce((absPaths, itemName) => {
-            const itemAbsPath = path.join(currentDirAbsPath, itemName);
-            if (fs.statSync(itemAbsPath).isDirectory()) {
-              return absPaths.concat(deepReadCurrentDir(itemAbsPath));
-            }
-            absPaths.push(itemAbsPath);
-            return absPaths;
-          }, []);
+        return fs.readdirSync(currentDirAbsPath).reduce((absPaths, itemName) => {
+          const itemAbsPath = path.join(currentDirAbsPath, itemName);
+          if (fs.statSync(itemAbsPath).isDirectory()) {
+            return absPaths.concat(deepReadCurrentDir(itemAbsPath));
+          }
+          absPaths.push(itemAbsPath);
+          return absPaths;
+        }, []);
       };
-      return deepReadCurrentDir(targetDirAbsPath).map((absPath) =>
-        path.relative(targetDirAbsPath, absPath),
-      );
+      return deepReadCurrentDir(targetDirAbsPath).map((absPath) => path.relative(targetDirAbsPath, absPath));
     }
     exports.deepReadDirSync = deepReadDirSync;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/requestDataDeprecated.js
@@ -15831,19 +12566,19 @@ var require_requestDataDeprecated = __commonJS({
       return requestdata.extractRequestData(req, { include: keys });
     }
     function parseRequest(event, req, options = {}) {
-      return requestdata.addRequestDataToEvent(event, req, {
-        include: options,
-      });
+      return requestdata.addRequestDataToEvent(event, req, { include: options });
     }
     exports.extractRequestData = extractRequestData;
     exports.parseRequest = parseRequest;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/handlers.js
 var require_handlers = __commonJS({
   "node_modules/@sentry/node/cjs/handlers.js"(exports) {
-    var { _optionalChain } = require_buildPolyfills();
+    var {
+      _optionalChain
+    } = require_buildPolyfills();
     Object.defineProperty(exports, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
@@ -15853,84 +12588,28 @@ var require_handlers = __commonJS({
     function tracingHandler() {
       return function sentryTracingMiddleware(req, res, next) {
         const hub = core.getCurrentHub();
-        const options = _optionalChain([
-          hub,
-          "access",
-          (_) => _.getClient,
-          "call",
-          (_2) => _2(),
-          "optionalAccess",
-          (_3) => _3.getOptions,
-          "call",
-          (_4) => _4(),
-        ]);
-        if (
-          !options ||
-          options.instrumenter !== "sentry" ||
-          _optionalChain([
-            req,
-            "access",
-            (_5) => _5.method,
-            "optionalAccess",
-            (_6) => _6.toUpperCase,
-            "call",
-            (_7) => _7(),
-          ]) === "OPTIONS" ||
-          _optionalChain([
-            req,
-            "access",
-            (_8) => _8.method,
-            "optionalAccess",
-            (_9) => _9.toUpperCase,
-            "call",
-            (_10) => _10(),
-          ]) === "HEAD"
-        ) {
+        const options = _optionalChain([hub, "access", (_) => _.getClient, "call", (_2) => _2(), "optionalAccess", (_3) => _3.getOptions, "call", (_4) => _4()]);
+        if (!options || options.instrumenter !== "sentry" || _optionalChain([req, "access", (_5) => _5.method, "optionalAccess", (_6) => _6.toUpperCase, "call", (_7) => _7()]) === "OPTIONS" || _optionalChain([req, "access", (_8) => _8.method, "optionalAccess", (_9) => _9.toUpperCase, "call", (_10) => _10()]) === "HEAD") {
           return next();
         }
-        const sentryTrace =
-          req.headers && utils.isString(req.headers["sentry-trace"])
-            ? req.headers["sentry-trace"]
-            : void 0;
-        const baggage = _optionalChain([
-          req,
-          "access",
-          (_11) => _11.headers,
-          "optionalAccess",
-          (_12) => _12.baggage,
-        ]);
-        const { traceparentData, dynamicSamplingContext, propagationContext } =
-          utils.tracingContextFromHeaders(sentryTrace, baggage);
+        const sentryTrace = req.headers && utils.isString(req.headers["sentry-trace"]) ? req.headers["sentry-trace"] : void 0;
+        const baggage = _optionalChain([req, "access", (_11) => _11.headers, "optionalAccess", (_12) => _12.baggage]);
+        const { traceparentData, dynamicSamplingContext, propagationContext } = utils.tracingContextFromHeaders(sentryTrace, baggage);
         hub.getScope().setPropagationContext(propagationContext);
         if (!core.hasTracingEnabled(options)) {
           return next();
         }
-        const [name, source] = utils.extractPathForTransaction(req, {
-          path: true,
-          method: true,
-        });
-        const transaction = core.startTransaction(
-          __spreadProps(
-            __spreadValues(
-              {
-                name,
-                op: "http.server",
-              },
-              traceparentData,
-            ),
-            {
-              metadata: {
-                dynamicSamplingContext:
-                  traceparentData && !dynamicSamplingContext
-                    ? {}
-                    : dynamicSamplingContext,
-                request: req,
-                source,
-              },
-            },
-          ),
-          { request: requestdata.extractRequestData(req) },
-        );
+        const [name, source] = utils.extractPathForTransaction(req, { path: true, method: true });
+        const transaction = core.startTransaction(__spreadProps(__spreadValues({
+          name,
+          op: "http.server"
+        }, traceparentData), {
+          metadata: {
+            dynamicSamplingContext: traceparentData && !dynamicSamplingContext ? {} : dynamicSamplingContext,
+            request: req,
+            source
+          }
+        }), { request: requestdata.extractRequestData(req) });
         hub.configureScope((scope) => {
           scope.setSpan(transaction);
         });
@@ -15952,14 +12631,7 @@ var require_handlers = __commonJS({
       } else {
         const { ip, request, transaction, user } = reqHandlerOptions;
         if (ip || request || transaction || user) {
-          addRequestDataOptions = {
-            include: utils.dropUndefinedKeys({
-              ip,
-              request,
-              transaction,
-              user,
-            }),
-          };
+          addRequestDataOptions = { include: utils.dropUndefinedKeys({ ip, request, transaction, user }) };
         }
       }
       return addRequestDataOptions;
@@ -15978,17 +12650,13 @@ var require_handlers = __commonJS({
       return function sentryRequestMiddleware(req, res, next) {
         if (options && options.flushTimeout && options.flushTimeout > 0) {
           const _end = res.end;
-          res.end = function (chunk, encoding, cb) {
-            void sdk
-              .flush(options.flushTimeout)
-              .then(() => {
-                _end.call(this, chunk, encoding, cb);
-              })
-              .then(null, (e) => {
-                (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) &&
-                  utils.logger.error(e);
-                _end.call(this, chunk, encoding, cb);
-              });
+          res.end = function(chunk, encoding, cb) {
+            void sdk.flush(options.flushTimeout).then(() => {
+              _end.call(this, chunk, encoding, cb);
+            }).then(null, (e) => {
+              (typeof __SENTRY_DEBUG__ === "undefined" || __SENTRY_DEBUG__) && utils.logger.error(e);
+              _end.call(this, chunk, encoding, cb);
+            });
           };
         }
         core.runWithAsyncContext(() => {
@@ -15996,7 +12664,7 @@ var require_handlers = __commonJS({
           currentHub2.configureScope((scope) => {
             scope.setSDKProcessingMetadata({
               request: req,
-              requestDataOptionsFromExpressHandler: requestDataOptions,
+              requestDataOptionsFromExpressHandler: requestDataOptions
             });
             const client2 = currentHub2.getClient();
             if (sdk.isAutoSessionTrackingEnabled(client2)) {
@@ -16021,11 +12689,7 @@ var require_handlers = __commonJS({
       };
     }
     function getStatusCodeFromResponse(error) {
-      const statusCode2 =
-        error.status ||
-        error.statusCode ||
-        error.status_code ||
-        (error.output && error.output.statusCode);
+      const statusCode2 = error.status || error.statusCode || error.status_code || error.output && error.output.statusCode;
       return statusCode2 ? parseInt(statusCode2, 10) : 500;
     }
     function defaultShouldHandleError(error) {
@@ -16034,8 +12698,7 @@ var require_handlers = __commonJS({
     }
     function errorHandler(options) {
       return function sentryErrorMiddleware(error, _req, res, next) {
-        const shouldHandleError =
-          (options && options.shouldHandleError) || defaultShouldHandleError;
+        const shouldHandleError = options && options.shouldHandleError || defaultShouldHandleError;
         if (shouldHandleError(error)) {
           core.withScope((_scope) => {
             _scope.setSDKProcessingMetadata({ request: _req });
@@ -16054,10 +12717,7 @@ var require_handlers = __commonJS({
               }
             }
             _scope.addEventProcessor((event) => {
-              utils.addExceptionMechanism(event, {
-                type: "middleware",
-                handled: false,
-              });
+              utils.addExceptionMechanism(event, { type: "middleware", handled: false });
               return event;
             });
             const eventId = core.captureException(error);
@@ -16070,35 +12730,17 @@ var require_handlers = __commonJS({
       };
     }
     function trpcMiddleware(options = {}) {
-      return function ({ path, type, next, rawInput }) {
+      return function({ path, type, next, rawInput }) {
         const hub = core.getCurrentHub();
-        const clientOptions = _optionalChain([
-          hub,
-          "access",
-          (_13) => _13.getClient,
-          "call",
-          (_14) => _14(),
-          "optionalAccess",
-          (_15) => _15.getOptions,
-          "call",
-          (_16) => _16(),
-        ]);
+        const clientOptions = _optionalChain([hub, "access", (_13) => _13.getClient, "call", (_14) => _14(), "optionalAccess", (_15) => _15.getOptions, "call", (_16) => _16()]);
         const sentryTransaction = hub.getScope().getTransaction();
         if (sentryTransaction) {
           sentryTransaction.setName(`trpc/${path}`, "route");
           sentryTransaction.op = "rpc.server";
           const trpcContext = {
-            procedure_type: type,
+            procedure_type: type
           };
-          if (
-            options.attachRpcInput !== void 0
-              ? options.attachRpcInput
-              : _optionalChain([
-                  clientOptions,
-                  "optionalAccess",
-                  (_17) => _17.sendDefaultPii,
-                ])
-          ) {
+          if (options.attachRpcInput !== void 0 ? options.attachRpcInput : _optionalChain([clientOptions, "optionalAccess", (_17) => _17.sendDefaultPii])) {
             trpcContext.input = utils.normalize(rawInput);
           }
           sentryTransaction.setContext("trpc", trpcContext);
@@ -16112,7 +12754,7 @@ var require_handlers = __commonJS({
     exports.requestHandler = requestHandler;
     exports.tracingHandler = tracingHandler;
     exports.trpcMiddleware = trpcMiddleware;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/integrations/index.js
@@ -16141,7 +12783,7 @@ var require_integrations2 = __commonJS({
     exports.RequestData = requestdata.RequestData;
     exports.LocalVariables = localvariables.LocalVariables;
     exports.Undici = index.Undici;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/tracing/integrations.js
@@ -16156,7 +12798,7 @@ var require_integrations3 = __commonJS({
     exports.Mysql = tracing.Mysql;
     exports.Postgres = tracing.Postgres;
     exports.Prisma = tracing.Prisma;
-  },
+  }
 });
 
 // node_modules/@sentry/node/cjs/index.js
@@ -16174,10 +12816,7 @@ var require_cjs4 = __commonJS({
     var handlers = require_handlers();
     var index$1 = require_integrations2();
     var integrations = require_integrations3();
-    var INTEGRATIONS = __spreadValues(
-      __spreadValues(__spreadValues({}, core.Integrations), index$1),
-      integrations,
-    );
+    var INTEGRATIONS = __spreadValues(__spreadValues(__spreadValues({}, core.Integrations), index$1), integrations);
     exports.Hub = core.Hub;
     exports.SDK_VERSION = core.SDK_VERSION;
     exports.Scope = core.Scope;
@@ -16205,8 +12844,7 @@ var require_cjs4 = __commonJS({
     exports.startTransaction = core.startTransaction;
     exports.trace = core.trace;
     exports.withScope = core.withScope;
-    exports.autoDiscoverNodePerformanceMonitoringIntegrations =
-      index.autoDiscoverNodePerformanceMonitoringIntegrations;
+    exports.autoDiscoverNodePerformanceMonitoringIntegrations = index.autoDiscoverNodePerformanceMonitoringIntegrations;
     exports.NodeClient = client.NodeClient;
     exports.makeNodeTransport = http2.makeNodeTransport;
     exports.close = sdk.close;
@@ -16223,7 +12861,7 @@ var require_cjs4 = __commonJS({
     exports.getModuleFromFilename = module$1.getModuleFromFilename;
     exports.Handlers = handlers;
     exports.Integrations = INTEGRATIONS;
-  },
+  }
 });
 
 // node_modules/has-symbols/shams.js
@@ -16231,10 +12869,7 @@ var require_shams = __commonJS({
   "node_modules/has-symbols/shams.js"(exports, module2) {
     "use strict";
     module2.exports = function hasSymbols() {
-      if (
-        typeof Symbol !== "function" ||
-        typeof Object.getOwnPropertySymbols !== "function"
-      ) {
+      if (typeof Symbol !== "function" || typeof Object.getOwnPropertySymbols !== "function") {
         return false;
       }
       if (typeof Symbol.iterator === "symbol") {
@@ -16260,10 +12895,7 @@ var require_shams = __commonJS({
       if (typeof Object.keys === "function" && Object.keys(obj).length !== 0) {
         return false;
       }
-      if (
-        typeof Object.getOwnPropertyNames === "function" &&
-        Object.getOwnPropertyNames(obj).length !== 0
-      ) {
+      if (typeof Object.getOwnPropertyNames === "function" && Object.getOwnPropertyNames(obj).length !== 0) {
         return false;
       }
       var syms = Object.getOwnPropertySymbols(obj);
@@ -16281,7 +12913,7 @@ var require_shams = __commonJS({
       }
       return true;
     };
-  },
+  }
 });
 
 // node_modules/has-symbols/index.js
@@ -16305,7 +12937,7 @@ var require_has_symbols = __commonJS({
       }
       return hasSymbolSham();
     };
-  },
+  }
 });
 
 // node_modules/has-proto/index.js
@@ -16313,16 +12945,13 @@ var require_has_proto = __commonJS({
   "node_modules/has-proto/index.js"(exports, module2) {
     "use strict";
     var test = {
-      foo: {},
+      foo: {}
     };
     var $Object = Object;
     module2.exports = function hasProto() {
-      return (
-        { __proto__: test }.foo === test.foo &&
-        !({ __proto__: null } instanceof $Object)
-      );
+      return { __proto__: test }.foo === test.foo && !({ __proto__: null } instanceof $Object);
     };
-  },
+  }
 });
 
 // node_modules/function-bind/implementation.js
@@ -16340,7 +12969,7 @@ var require_implementation = __commonJS({
       }
       var args = slice.call(arguments, 1);
       var bound;
-      var binder = function () {
+      var binder = function() {
         if (this instanceof bound) {
           var result = target.apply(this, args.concat(slice.call(arguments)));
           if (Object(result) === result) {
@@ -16356,21 +12985,17 @@ var require_implementation = __commonJS({
       for (var i = 0; i < boundLength; i++) {
         boundArgs.push("$" + i);
       }
-      bound = Function(
-        "binder",
-        "return function (" +
-          boundArgs.join(",") +
-          "){ return binder.apply(this,arguments); }",
-      )(binder);
+      bound = Function("binder", "return function (" + boundArgs.join(",") + "){ return binder.apply(this,arguments); }")(binder);
       if (target.prototype) {
-        var Empty = function Empty2() {};
+        var Empty = function Empty2() {
+        };
         Empty.prototype = target.prototype;
         bound.prototype = new Empty();
         Empty.prototype = null;
       }
       return bound;
     };
-  },
+  }
 });
 
 // node_modules/function-bind/index.js
@@ -16379,7 +13004,7 @@ var require_function_bind = __commonJS({
     "use strict";
     var implementation = require_implementation();
     module2.exports = Function.prototype.bind || implementation;
-  },
+  }
 });
 
 // node_modules/has/src/index.js
@@ -16388,7 +13013,7 @@ var require_src3 = __commonJS({
     "use strict";
     var bind = require_function_bind();
     module2.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
-  },
+  }
 });
 
 // node_modules/get-intrinsic/index.js
@@ -16399,12 +13024,11 @@ var require_get_intrinsic = __commonJS({
     var $SyntaxError = SyntaxError;
     var $Function = Function;
     var $TypeError = TypeError;
-    var getEvalledConstructor = function (expressionSyntax) {
+    var getEvalledConstructor = function(expressionSyntax) {
       try {
-        return $Function(
-          '"use strict"; return (' + expressionSyntax + ").constructor;",
-        )();
-      } catch (e) {}
+        return $Function('"use strict"; return (' + expressionSyntax + ").constructor;")();
+      } catch (e) {
+      }
     };
     var $gOPD = Object.getOwnPropertyDescriptor;
     if ($gOPD) {
@@ -16414,45 +13038,33 @@ var require_get_intrinsic = __commonJS({
         $gOPD = null;
       }
     }
-    var throwTypeError = function () {
+    var throwTypeError = function() {
       throw new $TypeError();
     };
-    var ThrowTypeError = $gOPD
-      ? (function () {
-          try {
-            arguments.callee;
-            return throwTypeError;
-          } catch (calleeThrows) {
-            try {
-              return $gOPD(arguments, "callee").get;
-            } catch (gOPDthrows) {
-              return throwTypeError;
-            }
-          }
-        })()
-      : throwTypeError;
+    var ThrowTypeError = $gOPD ? function() {
+      try {
+        arguments.callee;
+        return throwTypeError;
+      } catch (calleeThrows) {
+        try {
+          return $gOPD(arguments, "callee").get;
+        } catch (gOPDthrows) {
+          return throwTypeError;
+        }
+      }
+    }() : throwTypeError;
     var hasSymbols = require_has_symbols()();
     var hasProto = require_has_proto()();
-    var getProto =
-      Object.getPrototypeOf ||
-      (hasProto
-        ? function (x) {
-            return x.__proto__;
-          }
-        : null);
+    var getProto = Object.getPrototypeOf || (hasProto ? function(x) {
+      return x.__proto__;
+    } : null);
     var needsEval = {};
-    var TypedArray =
-      typeof Uint8Array === "undefined" || !getProto
-        ? undefined2
-        : getProto(Uint8Array);
+    var TypedArray = typeof Uint8Array === "undefined" || !getProto ? undefined2 : getProto(Uint8Array);
     var INTRINSICS = {
-      "%AggregateError%":
-        typeof AggregateError === "undefined" ? undefined2 : AggregateError,
+      "%AggregateError%": typeof AggregateError === "undefined" ? undefined2 : AggregateError,
       "%Array%": Array,
-      "%ArrayBuffer%":
-        typeof ArrayBuffer === "undefined" ? undefined2 : ArrayBuffer,
-      "%ArrayIteratorPrototype%":
-        hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined2,
+      "%ArrayBuffer%": typeof ArrayBuffer === "undefined" ? undefined2 : ArrayBuffer,
+      "%ArrayIteratorPrototype%": hasSymbols && getProto ? getProto([][Symbol.iterator]()) : undefined2,
       "%AsyncFromSyncIteratorPrototype%": undefined2,
       "%AsyncFunction%": needsEval,
       "%AsyncGenerator%": needsEval,
@@ -16460,10 +13072,8 @@ var require_get_intrinsic = __commonJS({
       "%AsyncIteratorPrototype%": needsEval,
       "%Atomics%": typeof Atomics === "undefined" ? undefined2 : Atomics,
       "%BigInt%": typeof BigInt === "undefined" ? undefined2 : BigInt,
-      "%BigInt64Array%":
-        typeof BigInt64Array === "undefined" ? undefined2 : BigInt64Array,
-      "%BigUint64Array%":
-        typeof BigUint64Array === "undefined" ? undefined2 : BigUint64Array,
+      "%BigInt64Array%": typeof BigInt64Array === "undefined" ? undefined2 : BigInt64Array,
+      "%BigUint64Array%": typeof BigUint64Array === "undefined" ? undefined2 : BigUint64Array,
       "%Boolean%": Boolean,
       "%DataView%": typeof DataView === "undefined" ? undefined2 : DataView,
       "%Date%": Date,
@@ -16474,33 +13084,20 @@ var require_get_intrinsic = __commonJS({
       "%Error%": Error,
       "%eval%": eval,
       "%EvalError%": EvalError,
-      "%Float32Array%":
-        typeof Float32Array === "undefined" ? undefined2 : Float32Array,
-      "%Float64Array%":
-        typeof Float64Array === "undefined" ? undefined2 : Float64Array,
-      "%FinalizationRegistry%":
-        typeof FinalizationRegistry === "undefined"
-          ? undefined2
-          : FinalizationRegistry,
+      "%Float32Array%": typeof Float32Array === "undefined" ? undefined2 : Float32Array,
+      "%Float64Array%": typeof Float64Array === "undefined" ? undefined2 : Float64Array,
+      "%FinalizationRegistry%": typeof FinalizationRegistry === "undefined" ? undefined2 : FinalizationRegistry,
       "%Function%": $Function,
       "%GeneratorFunction%": needsEval,
       "%Int8Array%": typeof Int8Array === "undefined" ? undefined2 : Int8Array,
-      "%Int16Array%":
-        typeof Int16Array === "undefined" ? undefined2 : Int16Array,
-      "%Int32Array%":
-        typeof Int32Array === "undefined" ? undefined2 : Int32Array,
+      "%Int16Array%": typeof Int16Array === "undefined" ? undefined2 : Int16Array,
+      "%Int32Array%": typeof Int32Array === "undefined" ? undefined2 : Int32Array,
       "%isFinite%": isFinite,
       "%isNaN%": isNaN,
-      "%IteratorPrototype%":
-        hasSymbols && getProto
-          ? getProto(getProto([][Symbol.iterator]()))
-          : undefined2,
+      "%IteratorPrototype%": hasSymbols && getProto ? getProto(getProto([][Symbol.iterator]())) : undefined2,
       "%JSON%": typeof JSON === "object" ? JSON : undefined2,
       "%Map%": typeof Map === "undefined" ? undefined2 : Map,
-      "%MapIteratorPrototype%":
-        typeof Map === "undefined" || !hasSymbols || !getProto
-          ? undefined2
-          : getProto(/* @__PURE__ */ new Map()[Symbol.iterator]()),
+      "%MapIteratorPrototype%": typeof Map === "undefined" || !hasSymbols || !getProto ? undefined2 : getProto((/* @__PURE__ */ new Map())[Symbol.iterator]()),
       "%Math%": Math,
       "%Number%": Number,
       "%Object%": Object,
@@ -16513,36 +13110,23 @@ var require_get_intrinsic = __commonJS({
       "%Reflect%": typeof Reflect === "undefined" ? undefined2 : Reflect,
       "%RegExp%": RegExp,
       "%Set%": typeof Set === "undefined" ? undefined2 : Set,
-      "%SetIteratorPrototype%":
-        typeof Set === "undefined" || !hasSymbols || !getProto
-          ? undefined2
-          : getProto(/* @__PURE__ */ new Set()[Symbol.iterator]()),
-      "%SharedArrayBuffer%":
-        typeof SharedArrayBuffer === "undefined"
-          ? undefined2
-          : SharedArrayBuffer,
+      "%SetIteratorPrototype%": typeof Set === "undefined" || !hasSymbols || !getProto ? undefined2 : getProto((/* @__PURE__ */ new Set())[Symbol.iterator]()),
+      "%SharedArrayBuffer%": typeof SharedArrayBuffer === "undefined" ? undefined2 : SharedArrayBuffer,
       "%String%": String,
-      "%StringIteratorPrototype%":
-        hasSymbols && getProto ? getProto(""[Symbol.iterator]()) : undefined2,
+      "%StringIteratorPrototype%": hasSymbols && getProto ? getProto(""[Symbol.iterator]()) : undefined2,
       "%Symbol%": hasSymbols ? Symbol : undefined2,
       "%SyntaxError%": $SyntaxError,
       "%ThrowTypeError%": ThrowTypeError,
       "%TypedArray%": TypedArray,
       "%TypeError%": $TypeError,
-      "%Uint8Array%":
-        typeof Uint8Array === "undefined" ? undefined2 : Uint8Array,
-      "%Uint8ClampedArray%":
-        typeof Uint8ClampedArray === "undefined"
-          ? undefined2
-          : Uint8ClampedArray,
-      "%Uint16Array%":
-        typeof Uint16Array === "undefined" ? undefined2 : Uint16Array,
-      "%Uint32Array%":
-        typeof Uint32Array === "undefined" ? undefined2 : Uint32Array,
+      "%Uint8Array%": typeof Uint8Array === "undefined" ? undefined2 : Uint8Array,
+      "%Uint8ClampedArray%": typeof Uint8ClampedArray === "undefined" ? undefined2 : Uint8ClampedArray,
+      "%Uint16Array%": typeof Uint16Array === "undefined" ? undefined2 : Uint16Array,
+      "%Uint32Array%": typeof Uint32Array === "undefined" ? undefined2 : Uint32Array,
       "%URIError%": URIError,
       "%WeakMap%": typeof WeakMap === "undefined" ? undefined2 : WeakMap,
       "%WeakRef%": typeof WeakRef === "undefined" ? undefined2 : WeakRef,
-      "%WeakSet%": typeof WeakSet === "undefined" ? undefined2 : WeakSet,
+      "%WeakSet%": typeof WeakSet === "undefined" ? undefined2 : WeakSet
     };
     if (getProto) {
       try {
@@ -16584,11 +13168,7 @@ var require_get_intrinsic = __commonJS({
       "%ArrayProto_values%": ["Array", "prototype", "values"],
       "%AsyncFunctionPrototype%": ["AsyncFunction", "prototype"],
       "%AsyncGenerator%": ["AsyncGeneratorFunction", "prototype"],
-      "%AsyncGeneratorPrototype%": [
-        "AsyncGeneratorFunction",
-        "prototype",
-        "prototype",
-      ],
+      "%AsyncGeneratorPrototype%": ["AsyncGeneratorFunction", "prototype", "prototype"],
       "%BooleanPrototype%": ["Boolean", "prototype"],
       "%DataViewPrototype%": ["DataView", "prototype"],
       "%DatePrototype%": ["Date", "prototype"],
@@ -16630,7 +13210,7 @@ var require_get_intrinsic = __commonJS({
       "%Uint32ArrayPrototype%": ["Uint32Array", "prototype"],
       "%URIErrorPrototype%": ["URIError", "prototype"],
       "%WeakMapPrototype%": ["WeakMap", "prototype"],
-      "%WeakSetPrototype%": ["WeakSet", "prototype"],
+      "%WeakSetPrototype%": ["WeakSet", "prototype"]
     };
     var bind = require_function_bind();
     var hasOwn = require_src3();
@@ -16639,26 +13219,19 @@ var require_get_intrinsic = __commonJS({
     var $replace = bind.call(Function.call, String.prototype.replace);
     var $strSlice = bind.call(Function.call, String.prototype.slice);
     var $exec = bind.call(Function.call, RegExp.prototype.exec);
-    var rePropName =
-      /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
+    var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
     var reEscapeChar = /\\(\\)?/g;
     var stringToPath = function stringToPath2(string) {
       var first = $strSlice(string, 0, 1);
       var last = $strSlice(string, -1);
       if (first === "%" && last !== "%") {
-        throw new $SyntaxError(
-          "invalid intrinsic syntax, expected closing `%`",
-        );
+        throw new $SyntaxError("invalid intrinsic syntax, expected closing `%`");
       } else if (last === "%" && first !== "%") {
-        throw new $SyntaxError(
-          "invalid intrinsic syntax, expected opening `%`",
-        );
+        throw new $SyntaxError("invalid intrinsic syntax, expected opening `%`");
       }
       var result = [];
-      $replace(string, rePropName, function (match, number, quote, subString) {
-        result[result.length] = quote
-          ? $replace(subString, reEscapeChar, "$1")
-          : number || match;
+      $replace(string, rePropName, function(match, number, quote, subString) {
+        result[result.length] = quote ? $replace(subString, reEscapeChar, "$1") : number || match;
       });
       return result;
     };
@@ -16675,16 +13248,12 @@ var require_get_intrinsic = __commonJS({
           value = doEval(intrinsicName);
         }
         if (typeof value === "undefined" && !allowMissing) {
-          throw new $TypeError(
-            "intrinsic " +
-              name +
-              " exists, but is not available. Please file an issue!",
-          );
+          throw new $TypeError("intrinsic " + name + " exists, but is not available. Please file an issue!");
         }
         return {
           alias,
           name: intrinsicName,
-          value,
+          value
         };
       }
       throw new $SyntaxError("intrinsic " + name + " does not exist!");
@@ -16697,16 +13266,11 @@ var require_get_intrinsic = __commonJS({
         throw new $TypeError('"allowMissing" argument must be a boolean');
       }
       if ($exec(/^%?[^%]*%?$/, name) === null) {
-        throw new $SyntaxError(
-          "`%` may not be present anywhere but at the beginning and end of the intrinsic name",
-        );
+        throw new $SyntaxError("`%` may not be present anywhere but at the beginning and end of the intrinsic name");
       }
       var parts = stringToPath(name);
       var intrinsicBaseName = parts.length > 0 ? parts[0] : "";
-      var intrinsic = getBaseIntrinsic(
-        "%" + intrinsicBaseName + "%",
-        allowMissing,
-      );
+      var intrinsic = getBaseIntrinsic("%" + intrinsicBaseName + "%", allowMissing);
       var intrinsicRealName = intrinsic.name;
       var value = intrinsic.value;
       var skipFurtherCaching = false;
@@ -16719,18 +13283,8 @@ var require_get_intrinsic = __commonJS({
         var part = parts[i];
         var first = $strSlice(part, 0, 1);
         var last = $strSlice(part, -1);
-        if (
-          (first === '"' ||
-            first === "'" ||
-            first === "`" ||
-            last === '"' ||
-            last === "'" ||
-            last === "`") &&
-          first !== last
-        ) {
-          throw new $SyntaxError(
-            "property names with quotes must have matching quotes",
-          );
+        if ((first === '"' || first === "'" || first === "`" || (last === '"' || last === "'" || last === "`")) && first !== last) {
+          throw new $SyntaxError("property names with quotes must have matching quotes");
         }
         if (part === "constructor" || !isOwn) {
           skipFurtherCaching = true;
@@ -16742,11 +13296,7 @@ var require_get_intrinsic = __commonJS({
         } else if (value != null) {
           if (!(part in value)) {
             if (!allowMissing) {
-              throw new $TypeError(
-                "base intrinsic for " +
-                  name +
-                  " exists, but the property is not available.",
-              );
+              throw new $TypeError("base intrinsic for " + name + " exists, but the property is not available.");
             }
             return void 0;
           }
@@ -16769,7 +13319,7 @@ var require_get_intrinsic = __commonJS({
       }
       return value;
     };
-  },
+  }
 });
 
 // node_modules/call-bind/index.js
@@ -16780,8 +13330,7 @@ var require_call_bind = __commonJS({
     var GetIntrinsic = require_get_intrinsic();
     var $apply = GetIntrinsic("%Function.prototype.apply%");
     var $call = GetIntrinsic("%Function.prototype.call%");
-    var $reflectApply =
-      GetIntrinsic("%Reflect.apply%", true) || bind.call($call, $apply);
+    var $reflectApply = GetIntrinsic("%Reflect.apply%", true) || bind.call($call, $apply);
     var $gOPD = GetIntrinsic("%Object.getOwnPropertyDescriptor%", true);
     var $defineProperty = GetIntrinsic("%Object.defineProperty%", true);
     var $max = GetIntrinsic("%Math.max%");
@@ -16797,10 +13346,7 @@ var require_call_bind = __commonJS({
       if ($gOPD && $defineProperty) {
         var desc = $gOPD(func, "length");
         if (desc.configurable) {
-          $defineProperty(func, "length", {
-            value:
-              1 + $max(0, originalFunction.length - (arguments.length - 1)),
-          });
+          $defineProperty(func, "length", { value: 1 + $max(0, originalFunction.length - (arguments.length - 1)) });
         }
       }
       return func;
@@ -16813,7 +13359,7 @@ var require_call_bind = __commonJS({
     } else {
       module2.exports.apply = applyBind;
     }
-  },
+  }
 });
 
 // node_modules/call-bind/callBound.js
@@ -16825,46 +13371,31 @@ var require_callBound = __commonJS({
     var $indexOf = callBind(GetIntrinsic("String.prototype.indexOf"));
     module2.exports = function callBoundIntrinsic(name, allowMissing) {
       var intrinsic = GetIntrinsic(name, !!allowMissing);
-      if (
-        typeof intrinsic === "function" &&
-        $indexOf(name, ".prototype.") > -1
-      ) {
+      if (typeof intrinsic === "function" && $indexOf(name, ".prototype.") > -1) {
         return callBind(intrinsic);
       }
       return intrinsic;
     };
-  },
+  }
 });
 
 // node_modules/object-inspect/util.inspect.js
 var require_util_inspect = __commonJS({
   "node_modules/object-inspect/util.inspect.js"(exports, module2) {
     module2.exports = require("util").inspect;
-  },
+  }
 });
 
 // node_modules/object-inspect/index.js
 var require_object_inspect = __commonJS({
   "node_modules/object-inspect/index.js"(exports, module2) {
     var hasMap = typeof Map === "function" && Map.prototype;
-    var mapSizeDescriptor =
-      Object.getOwnPropertyDescriptor && hasMap
-        ? Object.getOwnPropertyDescriptor(Map.prototype, "size")
-        : null;
-    var mapSize =
-      hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === "function"
-        ? mapSizeDescriptor.get
-        : null;
+    var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, "size") : null;
+    var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === "function" ? mapSizeDescriptor.get : null;
     var mapForEach = hasMap && Map.prototype.forEach;
     var hasSet = typeof Set === "function" && Set.prototype;
-    var setSizeDescriptor =
-      Object.getOwnPropertyDescriptor && hasSet
-        ? Object.getOwnPropertyDescriptor(Set.prototype, "size")
-        : null;
-    var setSize =
-      hasSet && setSizeDescriptor && typeof setSizeDescriptor.get === "function"
-        ? setSizeDescriptor.get
-        : null;
+    var setSizeDescriptor = Object.getOwnPropertyDescriptor && hasSet ? Object.getOwnPropertyDescriptor(Set.prototype, "size") : null;
+    var setSize = hasSet && setSizeDescriptor && typeof setSizeDescriptor.get === "function" ? setSizeDescriptor.get : null;
     var setForEach = hasSet && Set.prototype.forEach;
     var hasWeakMap = typeof WeakMap === "function" && WeakMap.prototype;
     var weakMapHas = hasWeakMap ? WeakMap.prototype.has : null;
@@ -16885,39 +13416,17 @@ var require_object_inspect = __commonJS({
     var $join = Array.prototype.join;
     var $arrSlice = Array.prototype.slice;
     var $floor = Math.floor;
-    var bigIntValueOf =
-      typeof BigInt === "function" ? BigInt.prototype.valueOf : null;
+    var bigIntValueOf = typeof BigInt === "function" ? BigInt.prototype.valueOf : null;
     var gOPS = Object.getOwnPropertySymbols;
-    var symToString =
-      typeof Symbol === "function" && typeof Symbol.iterator === "symbol"
-        ? Symbol.prototype.toString
-        : null;
-    var hasShammedSymbols =
-      typeof Symbol === "function" && typeof Symbol.iterator === "object";
-    var toStringTag =
-      typeof Symbol === "function" &&
-      Symbol.toStringTag &&
-      (typeof Symbol.toStringTag === hasShammedSymbols ? "object" : "symbol")
-        ? Symbol.toStringTag
-        : null;
+    var symToString = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? Symbol.prototype.toString : null;
+    var hasShammedSymbols = typeof Symbol === "function" && typeof Symbol.iterator === "object";
+    var toStringTag = typeof Symbol === "function" && Symbol.toStringTag && (typeof Symbol.toStringTag === hasShammedSymbols ? "object" : "symbol") ? Symbol.toStringTag : null;
     var isEnumerable = Object.prototype.propertyIsEnumerable;
-    var gPO =
-      (typeof Reflect === "function"
-        ? Reflect.getPrototypeOf
-        : Object.getPrototypeOf) ||
-      ([].__proto__ === Array.prototype
-        ? function (O) {
-            return O.__proto__;
-          }
-        : null);
+    var gPO = (typeof Reflect === "function" ? Reflect.getPrototypeOf : Object.getPrototypeOf) || ([].__proto__ === Array.prototype ? function(O) {
+      return O.__proto__;
+    } : null);
     function addNumericSeparator(num, str) {
-      if (
-        num === Infinity ||
-        num === -Infinity ||
-        num !== num ||
-        (num && num > -1e3 && num < 1e3) ||
-        $test.call(/e/, str)
-      ) {
+      if (num === Infinity || num === -Infinity || num !== num || num && num > -1e3 && num < 1e3 || $test.call(/e/, str)) {
         return str;
       }
       var sepRegex = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g;
@@ -16926,11 +13435,7 @@ var require_object_inspect = __commonJS({
         if (int !== num) {
           var intStr = String(int);
           var dec = $slice.call(str, intStr.length + 1);
-          return (
-            $replace.call(intStr, sepRegex, "$&_") +
-            "." +
-            $replace.call($replace.call(dec, /([0-9]{3})/g, "$&_"), /_$/, "")
-          );
+          return $replace.call(intStr, sepRegex, "$&_") + "." + $replace.call($replace.call(dec, /([0-9]{3})/g, "$&_"), /_$/, "");
         }
       }
       return $replace.call(str, sepRegex, "$&_");
@@ -16940,48 +13445,21 @@ var require_object_inspect = __commonJS({
     var inspectSymbol = isSymbol(inspectCustom) ? inspectCustom : null;
     module2.exports = function inspect_(obj, options, depth, seen) {
       var opts = options || {};
-      if (
-        has(opts, "quoteStyle") &&
-        opts.quoteStyle !== "single" &&
-        opts.quoteStyle !== "double"
-      ) {
+      if (has(opts, "quoteStyle") && (opts.quoteStyle !== "single" && opts.quoteStyle !== "double")) {
         throw new TypeError('option "quoteStyle" must be "single" or "double"');
       }
-      if (
-        has(opts, "maxStringLength") &&
-        (typeof opts.maxStringLength === "number"
-          ? opts.maxStringLength < 0 && opts.maxStringLength !== Infinity
-          : opts.maxStringLength !== null)
-      ) {
-        throw new TypeError(
-          'option "maxStringLength", if provided, must be a positive integer, Infinity, or `null`',
-        );
+      if (has(opts, "maxStringLength") && (typeof opts.maxStringLength === "number" ? opts.maxStringLength < 0 && opts.maxStringLength !== Infinity : opts.maxStringLength !== null)) {
+        throw new TypeError('option "maxStringLength", if provided, must be a positive integer, Infinity, or `null`');
       }
-      var customInspect = has(opts, "customInspect")
-        ? opts.customInspect
-        : true;
+      var customInspect = has(opts, "customInspect") ? opts.customInspect : true;
       if (typeof customInspect !== "boolean" && customInspect !== "symbol") {
-        throw new TypeError(
-          "option \"customInspect\", if provided, must be `true`, `false`, or `'symbol'`",
-        );
+        throw new TypeError("option \"customInspect\", if provided, must be `true`, `false`, or `'symbol'`");
       }
-      if (
-        has(opts, "indent") &&
-        opts.indent !== null &&
-        opts.indent !== "	" &&
-        !(parseInt(opts.indent, 10) === opts.indent && opts.indent > 0)
-      ) {
-        throw new TypeError(
-          'option "indent" must be "\\t", an integer > 0, or `null`',
-        );
+      if (has(opts, "indent") && opts.indent !== null && opts.indent !== "	" && !(parseInt(opts.indent, 10) === opts.indent && opts.indent > 0)) {
+        throw new TypeError('option "indent" must be "\\t", an integer > 0, or `null`');
       }
-      if (
-        has(opts, "numericSeparator") &&
-        typeof opts.numericSeparator !== "boolean"
-      ) {
-        throw new TypeError(
-          'option "numericSeparator", if provided, must be `true` or `false`',
-        );
+      if (has(opts, "numericSeparator") && typeof opts.numericSeparator !== "boolean") {
+        throw new TypeError('option "numericSeparator", if provided, must be `true` or `false`');
       }
       var numericSeparator = opts.numericSeparator;
       if (typeof obj === "undefined") {
@@ -17005,9 +13483,7 @@ var require_object_inspect = __commonJS({
       }
       if (typeof obj === "bigint") {
         var bigIntStr = String(obj) + "n";
-        return numericSeparator
-          ? addNumericSeparator(obj, bigIntStr)
-          : bigIntStr;
+        return numericSeparator ? addNumericSeparator(obj, bigIntStr) : bigIntStr;
       }
       var maxDepth = typeof opts.depth === "undefined" ? 5 : opts.depth;
       if (typeof depth === "undefined") {
@@ -17029,7 +13505,7 @@ var require_object_inspect = __commonJS({
         }
         if (noIndent) {
           var newOpts = {
-            depth: opts.depth,
+            depth: opts.depth
           };
           if (has(opts, "quoteStyle")) {
             newOpts.quoteStyle = opts.quoteStyle;
@@ -17041,30 +13517,17 @@ var require_object_inspect = __commonJS({
       if (typeof obj === "function" && !isRegExp(obj)) {
         var name = nameOf(obj);
         var keys = arrObjKeys(obj, inspect);
-        return (
-          "[Function" +
-          (name ? ": " + name : " (anonymous)") +
-          "]" +
-          (keys.length > 0 ? " { " + $join.call(keys, ", ") + " }" : "")
-        );
+        return "[Function" + (name ? ": " + name : " (anonymous)") + "]" + (keys.length > 0 ? " { " + $join.call(keys, ", ") + " }" : "");
       }
       if (isSymbol(obj)) {
-        var symString = hasShammedSymbols
-          ? $replace.call(String(obj), /^(Symbol\(.*\))_[^)]*$/, "$1")
-          : symToString.call(obj);
-        return typeof obj === "object" && !hasShammedSymbols
-          ? markBoxed(symString)
-          : symString;
+        var symString = hasShammedSymbols ? $replace.call(String(obj), /^(Symbol\(.*\))_[^)]*$/, "$1") : symToString.call(obj);
+        return typeof obj === "object" && !hasShammedSymbols ? markBoxed(symString) : symString;
       }
       if (isElement(obj)) {
         var s = "<" + $toLowerCase.call(String(obj.nodeName));
         var attrs = obj.attributes || [];
         for (var i = 0; i < attrs.length; i++) {
-          s +=
-            " " +
-            attrs[i].name +
-            "=" +
-            wrapQuotes(quote(attrs[i].value), "double", opts);
+          s += " " + attrs[i].name + "=" + wrapQuotes(quote(attrs[i].value), "double", opts);
         }
         s += ">";
         if (obj.childNodes && obj.childNodes.length) {
@@ -17085,21 +13548,8 @@ var require_object_inspect = __commonJS({
       }
       if (isError(obj)) {
         var parts = arrObjKeys(obj, inspect);
-        if (
-          !("cause" in Error.prototype) &&
-          "cause" in obj &&
-          !isEnumerable.call(obj, "cause")
-        ) {
-          return (
-            "{ [" +
-            String(obj) +
-            "] " +
-            $join.call(
-              $concat.call("[cause]: " + inspect(obj.cause), parts),
-              ", ",
-            ) +
-            " }"
-          );
+        if (!("cause" in Error.prototype) && "cause" in obj && !isEnumerable.call(obj, "cause")) {
+          return "{ [" + String(obj) + "] " + $join.call($concat.call("[cause]: " + inspect(obj.cause), parts), ", ") + " }";
         }
         if (parts.length === 0) {
           return "[" + String(obj) + "]";
@@ -17107,26 +13557,17 @@ var require_object_inspect = __commonJS({
         return "{ [" + String(obj) + "] " + $join.call(parts, ", ") + " }";
       }
       if (typeof obj === "object" && customInspect) {
-        if (
-          inspectSymbol &&
-          typeof obj[inspectSymbol] === "function" &&
-          utilInspect
-        ) {
+        if (inspectSymbol && typeof obj[inspectSymbol] === "function" && utilInspect) {
           return utilInspect(obj, { depth: maxDepth - depth });
-        } else if (
-          customInspect !== "symbol" &&
-          typeof obj.inspect === "function"
-        ) {
+        } else if (customInspect !== "symbol" && typeof obj.inspect === "function") {
           return obj.inspect();
         }
       }
       if (isMap(obj)) {
         var mapParts = [];
         if (mapForEach) {
-          mapForEach.call(obj, function (value, key) {
-            mapParts.push(
-              inspect(key, obj, true) + " => " + inspect(value, obj),
-            );
+          mapForEach.call(obj, function(value, key) {
+            mapParts.push(inspect(key, obj, true) + " => " + inspect(value, obj));
           });
         }
         return collectionOf("Map", mapSize.call(obj), mapParts, indent);
@@ -17134,7 +13575,7 @@ var require_object_inspect = __commonJS({
       if (isSet(obj)) {
         var setParts = [];
         if (setForEach) {
-          setForEach.call(obj, function (value) {
+          setForEach.call(obj, function(value) {
             setParts.push(inspect(value, obj));
           });
         }
@@ -17163,35 +13604,11 @@ var require_object_inspect = __commonJS({
       }
       if (!isDate(obj) && !isRegExp(obj)) {
         var ys = arrObjKeys(obj, inspect);
-        var isPlainObject = gPO
-          ? gPO(obj) === Object.prototype
-          : obj instanceof Object || obj.constructor === Object;
+        var isPlainObject = gPO ? gPO(obj) === Object.prototype : obj instanceof Object || obj.constructor === Object;
         var protoTag = obj instanceof Object ? "" : "null prototype";
-        var stringTag =
-          !isPlainObject &&
-          toStringTag &&
-          Object(obj) === obj &&
-          toStringTag in obj
-            ? $slice.call(toStr(obj), 8, -1)
-            : protoTag
-            ? "Object"
-            : "";
-        var constructorTag =
-          isPlainObject || typeof obj.constructor !== "function"
-            ? ""
-            : obj.constructor.name
-            ? obj.constructor.name + " "
-            : "";
-        var tag =
-          constructorTag +
-          (stringTag || protoTag
-            ? "[" +
-              $join.call(
-                $concat.call([], stringTag || [], protoTag || []),
-                ": ",
-              ) +
-              "] "
-            : "");
+        var stringTag = !isPlainObject && toStringTag && Object(obj) === obj && toStringTag in obj ? $slice.call(toStr(obj), 8, -1) : protoTag ? "Object" : "";
+        var constructorTag = isPlainObject || typeof obj.constructor !== "function" ? "" : obj.constructor.name ? obj.constructor.name + " " : "";
+        var tag = constructorTag + (stringTag || protoTag ? "[" + $join.call($concat.call([], stringTag || [], protoTag || []), ": ") + "] " : "");
         if (ys.length === 0) {
           return tag + "{}";
         }
@@ -17203,54 +13620,32 @@ var require_object_inspect = __commonJS({
       return String(obj);
     };
     function wrapQuotes(s, defaultStyle, opts) {
-      var quoteChar =
-        (opts.quoteStyle || defaultStyle) === "double" ? '"' : "'";
+      var quoteChar = (opts.quoteStyle || defaultStyle) === "double" ? '"' : "'";
       return quoteChar + s + quoteChar;
     }
     function quote(s) {
       return $replace.call(String(s), /"/g, "&quot;");
     }
     function isArray(obj) {
-      return (
-        toStr(obj) === "[object Array]" &&
-        (!toStringTag || !(typeof obj === "object" && toStringTag in obj))
-      );
+      return toStr(obj) === "[object Array]" && (!toStringTag || !(typeof obj === "object" && toStringTag in obj));
     }
     function isDate(obj) {
-      return (
-        toStr(obj) === "[object Date]" &&
-        (!toStringTag || !(typeof obj === "object" && toStringTag in obj))
-      );
+      return toStr(obj) === "[object Date]" && (!toStringTag || !(typeof obj === "object" && toStringTag in obj));
     }
     function isRegExp(obj) {
-      return (
-        toStr(obj) === "[object RegExp]" &&
-        (!toStringTag || !(typeof obj === "object" && toStringTag in obj))
-      );
+      return toStr(obj) === "[object RegExp]" && (!toStringTag || !(typeof obj === "object" && toStringTag in obj));
     }
     function isError(obj) {
-      return (
-        toStr(obj) === "[object Error]" &&
-        (!toStringTag || !(typeof obj === "object" && toStringTag in obj))
-      );
+      return toStr(obj) === "[object Error]" && (!toStringTag || !(typeof obj === "object" && toStringTag in obj));
     }
     function isString(obj) {
-      return (
-        toStr(obj) === "[object String]" &&
-        (!toStringTag || !(typeof obj === "object" && toStringTag in obj))
-      );
+      return toStr(obj) === "[object String]" && (!toStringTag || !(typeof obj === "object" && toStringTag in obj));
     }
     function isNumber(obj) {
-      return (
-        toStr(obj) === "[object Number]" &&
-        (!toStringTag || !(typeof obj === "object" && toStringTag in obj))
-      );
+      return toStr(obj) === "[object Number]" && (!toStringTag || !(typeof obj === "object" && toStringTag in obj));
     }
     function isBoolean(obj) {
-      return (
-        toStr(obj) === "[object Boolean]" &&
-        (!toStringTag || !(typeof obj === "object" && toStringTag in obj))
-      );
+      return toStr(obj) === "[object Boolean]" && (!toStringTag || !(typeof obj === "object" && toStringTag in obj));
     }
     function isSymbol(obj) {
       if (hasShammedSymbols) {
@@ -17265,7 +13660,8 @@ var require_object_inspect = __commonJS({
       try {
         symToString.call(obj);
         return true;
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function isBigInt(obj) {
@@ -17275,14 +13671,13 @@ var require_object_inspect = __commonJS({
       try {
         bigIntValueOf.call(obj);
         return true;
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
-    var hasOwn =
-      Object.prototype.hasOwnProperty ||
-      function (key) {
-        return key in this;
-      };
+    var hasOwn = Object.prototype.hasOwnProperty || function(key) {
+      return key in this;
+    };
     function has(obj, key) {
       return hasOwn.call(obj, key);
     }
@@ -17322,7 +13717,8 @@ var require_object_inspect = __commonJS({
           return true;
         }
         return x instanceof Map;
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function isWeakMap(x) {
@@ -17337,7 +13733,8 @@ var require_object_inspect = __commonJS({
           return true;
         }
         return x instanceof WeakMap;
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function isWeakRef(x) {
@@ -17347,7 +13744,8 @@ var require_object_inspect = __commonJS({
       try {
         weakRefDeref.call(x);
         return true;
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function isSet(x) {
@@ -17362,7 +13760,8 @@ var require_object_inspect = __commonJS({
           return true;
         }
         return x instanceof Set;
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function isWeakSet(x) {
@@ -17377,7 +13776,8 @@ var require_object_inspect = __commonJS({
           return true;
         }
         return x instanceof WeakSet;
-      } catch (e) {}
+      } catch (e) {
+      }
       return false;
     }
     function isElement(x) {
@@ -17387,25 +13787,15 @@ var require_object_inspect = __commonJS({
       if (typeof HTMLElement !== "undefined" && x instanceof HTMLElement) {
         return true;
       }
-      return (
-        typeof x.nodeName === "string" && typeof x.getAttribute === "function"
-      );
+      return typeof x.nodeName === "string" && typeof x.getAttribute === "function";
     }
     function inspectString(str, opts) {
       if (str.length > opts.maxStringLength) {
         var remaining = str.length - opts.maxStringLength;
-        var trailer =
-          "... " + remaining + " more character" + (remaining > 1 ? "s" : "");
-        return (
-          inspectString($slice.call(str, 0, opts.maxStringLength), opts) +
-          trailer
-        );
+        var trailer = "... " + remaining + " more character" + (remaining > 1 ? "s" : "");
+        return inspectString($slice.call(str, 0, opts.maxStringLength), opts) + trailer;
       }
-      var s = $replace.call(
-        $replace.call(str, /(['\\])/g, "\\$1"),
-        /[\x00-\x1f]/g,
-        lowbyte,
-      );
+      var s = $replace.call($replace.call(str, /(['\\])/g, "\\$1"), /[\x00-\x1f]/g, lowbyte);
       return wrapQuotes(s, "single", opts);
     }
     function lowbyte(c) {
@@ -17415,7 +13805,7 @@ var require_object_inspect = __commonJS({
         9: "t",
         10: "n",
         12: "f",
-        13: "r",
+        13: "r"
       }[n];
       if (x) {
         return "\\" + x;
@@ -17429,9 +13819,7 @@ var require_object_inspect = __commonJS({
       return type + " { ? }";
     }
     function collectionOf(type, size, entries, indent) {
-      var joinedEntries = indent
-        ? indentedJoin(entries, indent)
-        : $join.call(entries, ", ");
+      var joinedEntries = indent ? indentedJoin(entries, indent) : $join.call(entries, ", ");
       return type + " (" + size + ") {" + joinedEntries + "}";
     }
     function singleLineValues(xs) {
@@ -17453,7 +13841,7 @@ var require_object_inspect = __commonJS({
       }
       return {
         base: baseIndent,
-        prev: $join.call(Array(depth + 1), baseIndent),
+        prev: $join.call(Array(depth + 1), baseIndent)
       };
     }
     function indentedJoin(xs, indent) {
@@ -17498,15 +13886,13 @@ var require_object_inspect = __commonJS({
       if (typeof gOPS === "function") {
         for (var j = 0; j < syms.length; j++) {
           if (isEnumerable.call(obj, syms[j])) {
-            xs.push(
-              "[" + inspect(syms[j]) + "]: " + inspect(obj[syms[j]], obj),
-            );
+            xs.push("[" + inspect(syms[j]) + "]: " + inspect(obj[syms[j]], obj));
           }
         }
       }
       return xs;
     }
-  },
+  }
 });
 
 // node_modules/side-channel/index.js
@@ -17525,7 +13911,7 @@ var require_side_channel = __commonJS({
     var $mapGet = callBound("Map.prototype.get", true);
     var $mapSet = callBound("Map.prototype.set", true);
     var $mapHas = callBound("Map.prototype.has", true);
-    var listGetNode = function (list, key) {
+    var listGetNode = function(list, key) {
       for (var prev = list, curr; (curr = prev.next) !== null; prev = curr) {
         if (curr.key === key) {
           prev.next = curr.next;
@@ -17535,11 +13921,11 @@ var require_side_channel = __commonJS({
         }
       }
     };
-    var listGet = function (objects, key) {
+    var listGet = function(objects, key) {
       var node = listGetNode(objects, key);
       return node && node.value;
     };
-    var listSet = function (objects, key, value) {
+    var listSet = function(objects, key, value) {
       var node = listGetNode(objects, key);
       if (node) {
         node.value = value;
@@ -17547,11 +13933,11 @@ var require_side_channel = __commonJS({
         objects.next = {
           key,
           next: objects.next,
-          value,
+          value
         };
       }
     };
-    var listHas = function (objects, key) {
+    var listHas = function(objects, key) {
       return !!listGetNode(objects, key);
     };
     module2.exports = function getSideChannel() {
@@ -17559,19 +13945,13 @@ var require_side_channel = __commonJS({
       var $m;
       var $o;
       var channel = {
-        assert: function (key) {
+        assert: function(key) {
           if (!channel.has(key)) {
-            throw new $TypeError(
-              "Side channel does not contain " + inspect(key),
-            );
+            throw new $TypeError("Side channel does not contain " + inspect(key));
           }
         },
-        get: function (key) {
-          if (
-            $WeakMap &&
-            key &&
-            (typeof key === "object" || typeof key === "function")
-          ) {
+        get: function(key) {
+          if ($WeakMap && key && (typeof key === "object" || typeof key === "function")) {
             if ($wm) {
               return $weakMapGet($wm, key);
             }
@@ -17585,12 +13965,8 @@ var require_side_channel = __commonJS({
             }
           }
         },
-        has: function (key) {
-          if (
-            $WeakMap &&
-            key &&
-            (typeof key === "object" || typeof key === "function")
-          ) {
+        has: function(key) {
+          if ($WeakMap && key && (typeof key === "object" || typeof key === "function")) {
             if ($wm) {
               return $weakMapHas($wm, key);
             }
@@ -17605,12 +13981,8 @@ var require_side_channel = __commonJS({
           }
           return false;
         },
-        set: function (key, value) {
-          if (
-            $WeakMap &&
-            key &&
-            (typeof key === "object" || typeof key === "function")
-          ) {
+        set: function(key, value) {
+          if ($WeakMap && key && (typeof key === "object" || typeof key === "function")) {
             if (!$wm) {
               $wm = new $WeakMap();
             }
@@ -17626,11 +13998,11 @@ var require_side_channel = __commonJS({
             }
             listSet($o, key, value);
           }
-        },
+        }
       };
       return channel;
     };
-  },
+  }
 });
 
 // node_modules/qs/lib/formats.js
@@ -17641,22 +14013,22 @@ var require_formats = __commonJS({
     var percentTwenties = /%20/g;
     var Format = {
       RFC1738: "RFC1738",
-      RFC3986: "RFC3986",
+      RFC3986: "RFC3986"
     };
     module2.exports = {
-      default: Format.RFC3986,
+      "default": Format.RFC3986,
       formatters: {
-        RFC1738: function (value) {
+        RFC1738: function(value) {
           return replace.call(value, percentTwenties, "+");
         },
-        RFC3986: function (value) {
+        RFC3986: function(value) {
           return String(value);
-        },
+        }
       },
       RFC1738: Format.RFC1738,
-      RFC3986: Format.RFC3986,
+      RFC3986: Format.RFC3986
     };
-  },
+  }
 });
 
 // node_modules/qs/lib/utils.js
@@ -17666,13 +14038,13 @@ var require_utils4 = __commonJS({
     var formats = require_formats();
     var has = Object.prototype.hasOwnProperty;
     var isArray = Array.isArray;
-    var hexTable = (function () {
+    var hexTable = function() {
       var array = [];
       for (var i = 0; i < 256; ++i) {
         array.push("%" + ((i < 16 ? "0" : "") + i.toString(16)).toUpperCase());
       }
       return array;
-    })();
+    }();
     var compactQueue = function compactQueue2(queue) {
       while (queue.length > 1) {
         var item = queue.pop();
@@ -17689,10 +14061,7 @@ var require_utils4 = __commonJS({
       }
     };
     var arrayToObject = function arrayToObject2(source, options) {
-      var obj =
-        options && options.plainObjects
-          ? /* @__PURE__ */ Object.create(null)
-          : {};
+      var obj = options && options.plainObjects ? /* @__PURE__ */ Object.create(null) : {};
       for (var i = 0; i < source.length; ++i) {
         if (typeof source[i] !== "undefined") {
           obj[i] = source[i];
@@ -17708,10 +14077,7 @@ var require_utils4 = __commonJS({
         if (isArray(target)) {
           target.push(source);
         } else if (target && typeof target === "object") {
-          if (
-            (options && (options.plainObjects || options.allowPrototypes)) ||
-            !has.call(Object.prototype, source)
-          ) {
+          if (options && (options.plainObjects || options.allowPrototypes) || !has.call(Object.prototype, source)) {
             target[source] = true;
           }
         } else {
@@ -17727,15 +14093,10 @@ var require_utils4 = __commonJS({
         mergeTarget = arrayToObject(target, options);
       }
       if (isArray(target) && isArray(source)) {
-        source.forEach(function (item, i) {
+        source.forEach(function(item, i) {
           if (has.call(target, i)) {
             var targetItem = target[i];
-            if (
-              targetItem &&
-              typeof targetItem === "object" &&
-              item &&
-              typeof item === "object"
-            ) {
+            if (targetItem && typeof targetItem === "object" && item && typeof item === "object") {
               target[i] = merge2(targetItem, item, options);
             } else {
               target.push(item);
@@ -17746,7 +14107,7 @@ var require_utils4 = __commonJS({
         });
         return target;
       }
-      return Object.keys(source).reduce(function (acc, key) {
+      return Object.keys(source).reduce(function(acc, key) {
         var value = source[key];
         if (has.call(acc, key)) {
           acc[key] = merge2(acc[key], value, options);
@@ -17757,12 +14118,12 @@ var require_utils4 = __commonJS({
       }, mergeTarget);
     };
     var assign = function assignSingleSource(target, source) {
-      return Object.keys(source).reduce(function (acc, key) {
+      return Object.keys(source).reduce(function(acc, key) {
         acc[key] = source[key];
         return acc;
       }, target);
     };
-    var decode = function (str, decoder, charset) {
+    var decode = function(str, decoder, charset) {
       var strWithoutPlus = str.replace(/\+/g, " ");
       if (charset === "iso-8859-1") {
         return strWithoutPlus.replace(/%[0-9a-f]{2}/gi, unescape);
@@ -17784,23 +14145,14 @@ var require_utils4 = __commonJS({
         string = String(str);
       }
       if (charset === "iso-8859-1") {
-        return escape(string).replace(/%u[0-9a-f]{4}/gi, function ($0) {
+        return escape(string).replace(/%u[0-9a-f]{4}/gi, function($0) {
           return "%26%23" + parseInt($0.slice(2), 16) + "%3B";
         });
       }
       var out = "";
       for (var i = 0; i < string.length; ++i) {
         var c = string.charCodeAt(i);
-        if (
-          c === 45 ||
-          c === 46 ||
-          c === 95 ||
-          c === 126 ||
-          (c >= 48 && c <= 57) ||
-          (c >= 65 && c <= 90) ||
-          (c >= 97 && c <= 122) ||
-          (format === formats.RFC1738 && (c === 40 || c === 41))
-        ) {
+        if (c === 45 || c === 46 || c === 95 || c === 126 || c >= 48 && c <= 57 || c >= 65 && c <= 90 || c >= 97 && c <= 122 || format === formats.RFC1738 && (c === 40 || c === 41)) {
           out += string.charAt(i);
           continue;
         }
@@ -17809,24 +14161,16 @@ var require_utils4 = __commonJS({
           continue;
         }
         if (c < 2048) {
-          out = out + (hexTable[192 | (c >> 6)] + hexTable[128 | (c & 63)]);
+          out = out + (hexTable[192 | c >> 6] + hexTable[128 | c & 63]);
           continue;
         }
         if (c < 55296 || c >= 57344) {
-          out =
-            out +
-            (hexTable[224 | (c >> 12)] +
-              hexTable[128 | ((c >> 6) & 63)] +
-              hexTable[128 | (c & 63)]);
+          out = out + (hexTable[224 | c >> 12] + hexTable[128 | c >> 6 & 63] + hexTable[128 | c & 63]);
           continue;
         }
         i += 1;
-        c = 65536 + (((c & 1023) << 10) | (string.charCodeAt(i) & 1023));
-        out +=
-          hexTable[240 | (c >> 18)] +
-          hexTable[128 | ((c >> 12) & 63)] +
-          hexTable[128 | ((c >> 6) & 63)] +
-          hexTable[128 | (c & 63)];
+        c = 65536 + ((c & 1023) << 10 | string.charCodeAt(i) & 1023);
+        out += hexTable[240 | c >> 18] + hexTable[128 | c >> 12 & 63] + hexTable[128 | c >> 6 & 63] + hexTable[128 | c & 63];
       }
       return out;
     };
@@ -17840,11 +14184,7 @@ var require_utils4 = __commonJS({
         for (var j = 0; j < keys.length; ++j) {
           var key = keys[j];
           var val = obj[key];
-          if (
-            typeof val === "object" &&
-            val !== null &&
-            refs.indexOf(val) === -1
-          ) {
+          if (typeof val === "object" && val !== null && refs.indexOf(val) === -1) {
             queue.push({ obj, prop: key });
             refs.push(val);
           }
@@ -17860,11 +14200,7 @@ var require_utils4 = __commonJS({
       if (!obj || typeof obj !== "object") {
         return false;
       }
-      return !!(
-        obj.constructor &&
-        obj.constructor.isBuffer &&
-        obj.constructor.isBuffer(obj)
-      );
+      return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));
     };
     var combine = function combine2(a, b) {
       return [].concat(a, b);
@@ -17889,9 +14225,9 @@ var require_utils4 = __commonJS({
       isBuffer,
       isRegExp,
       maybeMap,
-      merge,
+      merge
     };
-  },
+  }
 });
 
 // node_modules/qs/lib/stringify.js
@@ -17912,11 +14248,11 @@ var require_stringify = __commonJS({
       },
       repeat: function repeat(prefix) {
         return prefix;
-      },
+      }
     };
     var isArray = Array.isArray;
     var push = Array.prototype.push;
-    var pushToArray = function (arr, valueOrArray) {
+    var pushToArray = function(arr, valueOrArray) {
       push.apply(arr, isArray(valueOrArray) ? valueOrArray : [valueOrArray]);
     };
     var toISO = Date.prototype.toISOString;
@@ -17937,36 +14273,13 @@ var require_stringify = __commonJS({
         return toISO.call(date);
       },
       skipNulls: false,
-      strictNullHandling: false,
+      strictNullHandling: false
     };
     var isNonNullishPrimitive = function isNonNullishPrimitive2(v) {
-      return (
-        typeof v === "string" ||
-        typeof v === "number" ||
-        typeof v === "boolean" ||
-        typeof v === "symbol" ||
-        typeof v === "bigint"
-      );
+      return typeof v === "string" || typeof v === "number" || typeof v === "boolean" || typeof v === "symbol" || typeof v === "bigint";
     };
     var sentinel = {};
-    var stringify2 = function stringify3(
-      object,
-      prefix,
-      generateArrayPrefix,
-      commaRoundTrip,
-      strictNullHandling,
-      skipNulls,
-      encoder,
-      filter,
-      sort,
-      allowDots,
-      serializeDate,
-      format,
-      formatter,
-      encodeValuesOnly,
-      charset,
-      sideChannel,
-    ) {
+    var stringify2 = function stringify3(object, prefix, generateArrayPrefix, commaRoundTrip, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, format, formatter, encodeValuesOnly, charset, sideChannel) {
       var obj = object;
       var tmpSc = sideChannel;
       var step = 0;
@@ -17990,7 +14303,7 @@ var require_stringify = __commonJS({
       } else if (obj instanceof Date) {
         obj = serializeDate(obj);
       } else if (generateArrayPrefix === "comma" && isArray(obj)) {
-        obj = utils.maybeMap(obj, function (value2) {
+        obj = utils.maybeMap(obj, function(value2) {
           if (value2 instanceof Date) {
             return serializeDate(value2);
           }
@@ -17999,24 +14312,14 @@ var require_stringify = __commonJS({
       }
       if (obj === null) {
         if (strictNullHandling) {
-          return encoder && !encodeValuesOnly
-            ? encoder(prefix, defaults.encoder, charset, "key", format)
-            : prefix;
+          return encoder && !encodeValuesOnly ? encoder(prefix, defaults.encoder, charset, "key", format) : prefix;
         }
         obj = "";
       }
       if (isNonNullishPrimitive(obj) || utils.isBuffer(obj)) {
         if (encoder) {
-          var keyValue = encodeValuesOnly
-            ? prefix
-            : encoder(prefix, defaults.encoder, charset, "key", format);
-          return [
-            formatter(keyValue) +
-              "=" +
-              formatter(
-                encoder(obj, defaults.encoder, charset, "value", format),
-              ),
-          ];
+          var keyValue = encodeValuesOnly ? prefix : encoder(prefix, defaults.encoder, charset, "key", format);
+          return [formatter(keyValue) + "=" + formatter(encoder(obj, defaults.encoder, charset, "value", format))];
         }
         return [formatter(prefix) + "=" + formatter(String(obj))];
       }
@@ -18036,50 +14339,18 @@ var require_stringify = __commonJS({
         var keys = Object.keys(obj);
         objKeys = sort ? keys.sort(sort) : keys;
       }
-      var adjustedPrefix =
-        commaRoundTrip && isArray(obj) && obj.length === 1
-          ? prefix + "[]"
-          : prefix;
+      var adjustedPrefix = commaRoundTrip && isArray(obj) && obj.length === 1 ? prefix + "[]" : prefix;
       for (var j = 0; j < objKeys.length; ++j) {
         var key = objKeys[j];
-        var value =
-          typeof key === "object" && typeof key.value !== "undefined"
-            ? key.value
-            : obj[key];
+        var value = typeof key === "object" && typeof key.value !== "undefined" ? key.value : obj[key];
         if (skipNulls && value === null) {
           continue;
         }
-        var keyPrefix = isArray(obj)
-          ? typeof generateArrayPrefix === "function"
-            ? generateArrayPrefix(adjustedPrefix, key)
-            : adjustedPrefix
-          : adjustedPrefix + (allowDots ? "." + key : "[" + key + "]");
+        var keyPrefix = isArray(obj) ? typeof generateArrayPrefix === "function" ? generateArrayPrefix(adjustedPrefix, key) : adjustedPrefix : adjustedPrefix + (allowDots ? "." + key : "[" + key + "]");
         sideChannel.set(object, step);
         var valueSideChannel = getSideChannel();
         valueSideChannel.set(sentinel, sideChannel);
-        pushToArray(
-          values,
-          stringify3(
-            value,
-            keyPrefix,
-            generateArrayPrefix,
-            commaRoundTrip,
-            strictNullHandling,
-            skipNulls,
-            generateArrayPrefix === "comma" && encodeValuesOnly && isArray(obj)
-              ? null
-              : encoder,
-            filter,
-            sort,
-            allowDots,
-            serializeDate,
-            format,
-            formatter,
-            encodeValuesOnly,
-            charset,
-            valueSideChannel,
-          ),
-        );
+        pushToArray(values, stringify3(value, keyPrefix, generateArrayPrefix, commaRoundTrip, strictNullHandling, skipNulls, generateArrayPrefix === "comma" && encodeValuesOnly && isArray(obj) ? null : encoder, filter, sort, allowDots, serializeDate, format, formatter, encodeValuesOnly, charset, valueSideChannel));
       }
       return values;
     };
@@ -18087,22 +14358,12 @@ var require_stringify = __commonJS({
       if (!opts) {
         return defaults;
       }
-      if (
-        opts.encoder !== null &&
-        typeof opts.encoder !== "undefined" &&
-        typeof opts.encoder !== "function"
-      ) {
+      if (opts.encoder !== null && typeof opts.encoder !== "undefined" && typeof opts.encoder !== "function") {
         throw new TypeError("Encoder has to be a function.");
       }
       var charset = opts.charset || defaults.charset;
-      if (
-        typeof opts.charset !== "undefined" &&
-        opts.charset !== "utf-8" &&
-        opts.charset !== "iso-8859-1"
-      ) {
-        throw new TypeError(
-          "The charset option must be either utf-8, iso-8859-1, or undefined",
-        );
+      if (typeof opts.charset !== "undefined" && opts.charset !== "utf-8" && opts.charset !== "iso-8859-1") {
+        throw new TypeError("The charset option must be either utf-8, iso-8859-1, or undefined");
       }
       var format = formats["default"];
       if (typeof opts.format !== "undefined") {
@@ -18117,50 +14378,24 @@ var require_stringify = __commonJS({
         filter = opts.filter;
       }
       return {
-        addQueryPrefix:
-          typeof opts.addQueryPrefix === "boolean"
-            ? opts.addQueryPrefix
-            : defaults.addQueryPrefix,
-        allowDots:
-          typeof opts.allowDots === "undefined"
-            ? defaults.allowDots
-            : !!opts.allowDots,
+        addQueryPrefix: typeof opts.addQueryPrefix === "boolean" ? opts.addQueryPrefix : defaults.addQueryPrefix,
+        allowDots: typeof opts.allowDots === "undefined" ? defaults.allowDots : !!opts.allowDots,
         charset,
-        charsetSentinel:
-          typeof opts.charsetSentinel === "boolean"
-            ? opts.charsetSentinel
-            : defaults.charsetSentinel,
-        delimiter:
-          typeof opts.delimiter === "undefined"
-            ? defaults.delimiter
-            : opts.delimiter,
-        encode:
-          typeof opts.encode === "boolean" ? opts.encode : defaults.encode,
-        encoder:
-          typeof opts.encoder === "function" ? opts.encoder : defaults.encoder,
-        encodeValuesOnly:
-          typeof opts.encodeValuesOnly === "boolean"
-            ? opts.encodeValuesOnly
-            : defaults.encodeValuesOnly,
+        charsetSentinel: typeof opts.charsetSentinel === "boolean" ? opts.charsetSentinel : defaults.charsetSentinel,
+        delimiter: typeof opts.delimiter === "undefined" ? defaults.delimiter : opts.delimiter,
+        encode: typeof opts.encode === "boolean" ? opts.encode : defaults.encode,
+        encoder: typeof opts.encoder === "function" ? opts.encoder : defaults.encoder,
+        encodeValuesOnly: typeof opts.encodeValuesOnly === "boolean" ? opts.encodeValuesOnly : defaults.encodeValuesOnly,
         filter,
         format,
         formatter,
-        serializeDate:
-          typeof opts.serializeDate === "function"
-            ? opts.serializeDate
-            : defaults.serializeDate,
-        skipNulls:
-          typeof opts.skipNulls === "boolean"
-            ? opts.skipNulls
-            : defaults.skipNulls,
+        serializeDate: typeof opts.serializeDate === "function" ? opts.serializeDate : defaults.serializeDate,
+        skipNulls: typeof opts.skipNulls === "boolean" ? opts.skipNulls : defaults.skipNulls,
         sort: typeof opts.sort === "function" ? opts.sort : null,
-        strictNullHandling:
-          typeof opts.strictNullHandling === "boolean"
-            ? opts.strictNullHandling
-            : defaults.strictNullHandling,
+        strictNullHandling: typeof opts.strictNullHandling === "boolean" ? opts.strictNullHandling : defaults.strictNullHandling
       };
     };
-    module2.exports = function (object, opts) {
+    module2.exports = function(object, opts) {
       var obj = object;
       var options = normalizeStringifyOptions(opts);
       var objKeys;
@@ -18185,15 +14420,10 @@ var require_stringify = __commonJS({
         arrayFormat = "indices";
       }
       var generateArrayPrefix = arrayPrefixGenerators[arrayFormat];
-      if (
-        opts &&
-        "commaRoundTrip" in opts &&
-        typeof opts.commaRoundTrip !== "boolean"
-      ) {
+      if (opts && "commaRoundTrip" in opts && typeof opts.commaRoundTrip !== "boolean") {
         throw new TypeError("`commaRoundTrip` must be a boolean, or absent");
       }
-      var commaRoundTrip =
-        generateArrayPrefix === "comma" && opts && opts.commaRoundTrip;
+      var commaRoundTrip = generateArrayPrefix === "comma" && opts && opts.commaRoundTrip;
       if (!objKeys) {
         objKeys = Object.keys(obj);
       }
@@ -18206,27 +14436,7 @@ var require_stringify = __commonJS({
         if (options.skipNulls && obj[key] === null) {
           continue;
         }
-        pushToArray(
-          keys,
-          stringify2(
-            obj[key],
-            key,
-            generateArrayPrefix,
-            commaRoundTrip,
-            options.strictNullHandling,
-            options.skipNulls,
-            options.encode ? options.encoder : null,
-            options.filter,
-            options.sort,
-            options.allowDots,
-            options.serializeDate,
-            options.format,
-            options.formatter,
-            options.encodeValuesOnly,
-            options.charset,
-            sideChannel,
-          ),
-        );
+        pushToArray(keys, stringify2(obj[key], key, generateArrayPrefix, commaRoundTrip, options.strictNullHandling, options.skipNulls, options.encode ? options.encoder : null, options.filter, options.sort, options.allowDots, options.serializeDate, options.format, options.formatter, options.encodeValuesOnly, options.charset, sideChannel));
       }
       var joined = keys.join(options.delimiter);
       var prefix = options.addQueryPrefix === true ? "?" : "";
@@ -18239,7 +14449,7 @@ var require_stringify = __commonJS({
       }
       return joined.length > 0 ? prefix + joined : "";
     };
-  },
+  }
 });
 
 // node_modules/qs/lib/parse.js
@@ -18265,20 +14475,15 @@ var require_parse = __commonJS({
       parameterLimit: 1e3,
       parseArrays: true,
       plainObjects: false,
-      strictNullHandling: false,
+      strictNullHandling: false
     };
-    var interpretNumericEntities = function (str) {
-      return str.replace(/&#(\d+);/g, function ($0, numberStr) {
+    var interpretNumericEntities = function(str) {
+      return str.replace(/&#(\d+);/g, function($0, numberStr) {
         return String.fromCharCode(parseInt(numberStr, 10));
       });
     };
-    var parseArrayValue = function (val, options) {
-      if (
-        val &&
-        typeof val === "string" &&
-        options.comma &&
-        val.indexOf(",") > -1
-      ) {
+    var parseArrayValue = function(val, options) {
+      if (val && typeof val === "string" && options.comma && val.indexOf(",") > -1) {
         return val.split(",");
       }
       return val;
@@ -18288,8 +14493,7 @@ var require_parse = __commonJS({
     var parseValues = function parseQueryStringValues(str, options) {
       var obj = { __proto__: null };
       var cleanStr = options.ignoreQueryPrefix ? str.replace(/^\?/, "") : str;
-      var limit =
-        options.parameterLimit === Infinity ? void 0 : options.parameterLimit;
+      var limit = options.parameterLimit === Infinity ? void 0 : options.parameterLimit;
       var parts = cleanStr.split(options.delimiter, limit);
       var skipIndex = -1;
       var i;
@@ -18313,36 +14517,18 @@ var require_parse = __commonJS({
         }
         var part = parts[i];
         var bracketEqualsPos = part.indexOf("]=");
-        var pos =
-          bracketEqualsPos === -1 ? part.indexOf("=") : bracketEqualsPos + 1;
+        var pos = bracketEqualsPos === -1 ? part.indexOf("=") : bracketEqualsPos + 1;
         var key, val;
         if (pos === -1) {
           key = options.decoder(part, defaults.decoder, charset, "key");
           val = options.strictNullHandling ? null : "";
         } else {
-          key = options.decoder(
-            part.slice(0, pos),
-            defaults.decoder,
-            charset,
-            "key",
-          );
-          val = utils.maybeMap(
-            parseArrayValue(part.slice(pos + 1), options),
-            function (encodedVal) {
-              return options.decoder(
-                encodedVal,
-                defaults.decoder,
-                charset,
-                "value",
-              );
-            },
-          );
+          key = options.decoder(part.slice(0, pos), defaults.decoder, charset, "key");
+          val = utils.maybeMap(parseArrayValue(part.slice(pos + 1), options), function(encodedVal) {
+            return options.decoder(encodedVal, defaults.decoder, charset, "value");
+          });
         }
-        if (
-          val &&
-          options.interpretNumericEntities &&
-          charset === "iso-8859-1"
-        ) {
+        if (val && options.interpretNumericEntities && charset === "iso-8859-1") {
           val = interpretNumericEntities(val);
         }
         if (part.indexOf("[]=") > -1) {
@@ -18356,7 +14542,7 @@ var require_parse = __commonJS({
       }
       return obj;
     };
-    var parseObject = function (chain, val, options, valuesParsed) {
+    var parseObject = function(chain, val, options, valuesParsed) {
       var leaf = valuesParsed ? val : parseArrayValue(val, options);
       for (var i = chain.length - 1; i >= 0; --i) {
         var obj;
@@ -18365,21 +14551,11 @@ var require_parse = __commonJS({
           obj = [].concat(leaf);
         } else {
           obj = options.plainObjects ? /* @__PURE__ */ Object.create(null) : {};
-          var cleanRoot =
-            root.charAt(0) === "[" && root.charAt(root.length - 1) === "]"
-              ? root.slice(1, -1)
-              : root;
+          var cleanRoot = root.charAt(0) === "[" && root.charAt(root.length - 1) === "]" ? root.slice(1, -1) : root;
           var index = parseInt(cleanRoot, 10);
           if (!options.parseArrays && cleanRoot === "") {
             obj = { 0: leaf };
-          } else if (
-            !isNaN(index) &&
-            root !== cleanRoot &&
-            String(index) === cleanRoot &&
-            index >= 0 &&
-            options.parseArrays &&
-            index <= options.arrayLimit
-          ) {
+          } else if (!isNaN(index) && root !== cleanRoot && String(index) === cleanRoot && index >= 0 && (options.parseArrays && index <= options.arrayLimit)) {
             obj = [];
             obj[index] = leaf;
           } else if (cleanRoot !== "__proto__") {
@@ -18390,18 +14566,11 @@ var require_parse = __commonJS({
       }
       return leaf;
     };
-    var parseKeys = function parseQueryStringKeys(
-      givenKey,
-      val,
-      options,
-      valuesParsed,
-    ) {
+    var parseKeys = function parseQueryStringKeys(givenKey, val, options, valuesParsed) {
       if (!givenKey) {
         return;
       }
-      var key = options.allowDots
-        ? givenKey.replace(/\.([^.[]+)/g, "[$1]")
-        : givenKey;
+      var key = options.allowDots ? givenKey.replace(/\.([^.[]+)/g, "[$1]") : givenKey;
       var brackets = /(\[[^[\]]*])/;
       var child = /(\[[^[\]]*])/g;
       var segment = options.depth > 0 && brackets.exec(key);
@@ -18416,16 +14585,9 @@ var require_parse = __commonJS({
         keys.push(parent);
       }
       var i = 0;
-      while (
-        options.depth > 0 &&
-        (segment = child.exec(key)) !== null &&
-        i < options.depth
-      ) {
+      while (options.depth > 0 && (segment = child.exec(key)) !== null && i < options.depth) {
         i += 1;
-        if (
-          !options.plainObjects &&
-          has.call(Object.prototype, segment[1].slice(1, -1))
-        ) {
+        if (!options.plainObjects && has.call(Object.prototype, segment[1].slice(1, -1))) {
           if (!options.allowPrototypes) {
             return;
           }
@@ -18441,78 +14603,33 @@ var require_parse = __commonJS({
       if (!opts) {
         return defaults;
       }
-      if (
-        opts.decoder !== null &&
-        opts.decoder !== void 0 &&
-        typeof opts.decoder !== "function"
-      ) {
+      if (opts.decoder !== null && opts.decoder !== void 0 && typeof opts.decoder !== "function") {
         throw new TypeError("Decoder has to be a function.");
       }
-      if (
-        typeof opts.charset !== "undefined" &&
-        opts.charset !== "utf-8" &&
-        opts.charset !== "iso-8859-1"
-      ) {
-        throw new TypeError(
-          "The charset option must be either utf-8, iso-8859-1, or undefined",
-        );
+      if (typeof opts.charset !== "undefined" && opts.charset !== "utf-8" && opts.charset !== "iso-8859-1") {
+        throw new TypeError("The charset option must be either utf-8, iso-8859-1, or undefined");
       }
-      var charset =
-        typeof opts.charset === "undefined" ? defaults.charset : opts.charset;
+      var charset = typeof opts.charset === "undefined" ? defaults.charset : opts.charset;
       return {
-        allowDots:
-          typeof opts.allowDots === "undefined"
-            ? defaults.allowDots
-            : !!opts.allowDots,
-        allowPrototypes:
-          typeof opts.allowPrototypes === "boolean"
-            ? opts.allowPrototypes
-            : defaults.allowPrototypes,
-        allowSparse:
-          typeof opts.allowSparse === "boolean"
-            ? opts.allowSparse
-            : defaults.allowSparse,
-        arrayLimit:
-          typeof opts.arrayLimit === "number"
-            ? opts.arrayLimit
-            : defaults.arrayLimit,
+        allowDots: typeof opts.allowDots === "undefined" ? defaults.allowDots : !!opts.allowDots,
+        allowPrototypes: typeof opts.allowPrototypes === "boolean" ? opts.allowPrototypes : defaults.allowPrototypes,
+        allowSparse: typeof opts.allowSparse === "boolean" ? opts.allowSparse : defaults.allowSparse,
+        arrayLimit: typeof opts.arrayLimit === "number" ? opts.arrayLimit : defaults.arrayLimit,
         charset,
-        charsetSentinel:
-          typeof opts.charsetSentinel === "boolean"
-            ? opts.charsetSentinel
-            : defaults.charsetSentinel,
+        charsetSentinel: typeof opts.charsetSentinel === "boolean" ? opts.charsetSentinel : defaults.charsetSentinel,
         comma: typeof opts.comma === "boolean" ? opts.comma : defaults.comma,
-        decoder:
-          typeof opts.decoder === "function" ? opts.decoder : defaults.decoder,
-        delimiter:
-          typeof opts.delimiter === "string" || utils.isRegExp(opts.delimiter)
-            ? opts.delimiter
-            : defaults.delimiter,
-        depth:
-          typeof opts.depth === "number" || opts.depth === false
-            ? +opts.depth
-            : defaults.depth,
+        decoder: typeof opts.decoder === "function" ? opts.decoder : defaults.decoder,
+        delimiter: typeof opts.delimiter === "string" || utils.isRegExp(opts.delimiter) ? opts.delimiter : defaults.delimiter,
+        depth: typeof opts.depth === "number" || opts.depth === false ? +opts.depth : defaults.depth,
         ignoreQueryPrefix: opts.ignoreQueryPrefix === true,
-        interpretNumericEntities:
-          typeof opts.interpretNumericEntities === "boolean"
-            ? opts.interpretNumericEntities
-            : defaults.interpretNumericEntities,
-        parameterLimit:
-          typeof opts.parameterLimit === "number"
-            ? opts.parameterLimit
-            : defaults.parameterLimit,
+        interpretNumericEntities: typeof opts.interpretNumericEntities === "boolean" ? opts.interpretNumericEntities : defaults.interpretNumericEntities,
+        parameterLimit: typeof opts.parameterLimit === "number" ? opts.parameterLimit : defaults.parameterLimit,
         parseArrays: opts.parseArrays !== false,
-        plainObjects:
-          typeof opts.plainObjects === "boolean"
-            ? opts.plainObjects
-            : defaults.plainObjects,
-        strictNullHandling:
-          typeof opts.strictNullHandling === "boolean"
-            ? opts.strictNullHandling
-            : defaults.strictNullHandling,
+        plainObjects: typeof opts.plainObjects === "boolean" ? opts.plainObjects : defaults.plainObjects,
+        strictNullHandling: typeof opts.strictNullHandling === "boolean" ? opts.strictNullHandling : defaults.strictNullHandling
       };
     };
-    module2.exports = function (str, opts) {
+    module2.exports = function(str, opts) {
       var options = normalizeParseOptions(opts);
       if (str === "" || str === null || typeof str === "undefined") {
         return options.plainObjects ? /* @__PURE__ */ Object.create(null) : {};
@@ -18522,12 +14639,7 @@ var require_parse = __commonJS({
       var keys = Object.keys(tempObj);
       for (var i = 0; i < keys.length; ++i) {
         var key = keys[i];
-        var newObj = parseKeys(
-          key,
-          tempObj[key],
-          options,
-          typeof str === "string",
-        );
+        var newObj = parseKeys(key, tempObj[key], options, typeof str === "string");
         obj = utils.merge(obj, newObj, options);
       }
       if (options.allowSparse === true) {
@@ -18535,7 +14647,7 @@ var require_parse = __commonJS({
       }
       return utils.compact(obj);
     };
-  },
+  }
 });
 
 // node_modules/qs/lib/index.js
@@ -18548,15 +14660,15 @@ var require_lib = __commonJS({
     module2.exports = {
       formats,
       parse,
-      stringify: stringify2,
+      stringify: stringify2
     };
-  },
+  }
 });
 
 // functions/create-checkout-session.ts
 var create_checkout_session_exports = {};
 __export(create_checkout_session_exports, {
-  handler: () => handler,
+  handler: () => handler
 });
 module.exports = __toCommonJS(create_checkout_session_exports);
 var import_functions = __toESM(require_main(), 1);
@@ -18578,15 +14690,13 @@ var CryptoProvider = class {
     throw new Error("computeHMACSignatureAsync not implemented.");
   }
 };
-var CryptoProviderOnlySupportsAsyncError = class extends Error {};
+var CryptoProviderOnlySupportsAsyncError = class extends Error {
+};
 
 // node_modules/stripe/esm/crypto/NodeCryptoProvider.js
 var NodeCryptoProvider = class extends CryptoProvider {
   computeHMACSignature(payload, secret) {
-    return crypto2
-      .createHmac("sha256", secret)
-      .update(payload, "utf8")
-      .digest("hex");
+    return crypto2.createHmac("sha256", secret).update(payload, "utf8").digest("hex");
   }
   async computeHMACSignatureAsync(payload, secret) {
     const signature = await this.computeHMACSignature(payload, secret);
@@ -18603,16 +14713,7 @@ var HttpClient = class {
   getClientName() {
     throw new Error("getClientName not implemented.");
   }
-  makeRequest(
-    host,
-    port,
-    path,
-    method,
-    headers2,
-    requestData,
-    protocol,
-    timeout,
-  ) {
+  makeRequest(host, port, path, method, headers2, requestData, protocol, timeout) {
     throw new Error("makeRequest not implemented.");
   }
   static makeTimeoutError() {
@@ -18656,16 +14757,7 @@ var NodeHttpClient = class extends HttpClient {
   getClientName() {
     return "node";
   }
-  makeRequest(
-    host,
-    port,
-    path,
-    method,
-    headers2,
-    requestData,
-    protocol,
-    timeout,
-  ) {
+  makeRequest(host, port, path, method, headers2, requestData, protocol, timeout) {
     const isInsecureConnection = protocol === "http";
     let agent = this._agent;
     if (!agent) {
@@ -18679,7 +14771,7 @@ var NodeHttpClient = class extends HttpClient {
         method,
         agent,
         headers: headers2,
-        ciphers: "DEFAULT:!aNULL:!eNULL:!LOW:!EXPORT:!SSLv2:!MD5",
+        ciphers: "DEFAULT:!aNULL:!eNULL:!LOW:!EXPORT:!SSLv2:!MD5"
       });
       req.setTimeout(timeout, () => {
         req.destroy(HttpClient.makeTimeoutError());
@@ -18692,13 +14784,10 @@ var NodeHttpClient = class extends HttpClient {
       });
       req.once("socket", (socket) => {
         if (socket.connecting) {
-          socket.once(
-            isInsecureConnection ? "connect" : "secureConnect",
-            () => {
-              req.write(requestData);
-              req.end();
-            },
-          );
+          socket.once(isInsecureConnection ? "connect" : "secureConnect", () => {
+            req.write(requestData);
+            req.end();
+          });
         } else {
           req.write(requestData);
           req.end();
@@ -18747,30 +14836,17 @@ var FetchHttpClient = class extends HttpClient {
   getClientName() {
     return "fetch";
   }
-  makeRequest(
-    host,
-    port,
-    path,
-    method,
-    headers2,
-    requestData,
-    protocol,
-    timeout,
-  ) {
+  makeRequest(host, port, path, method, headers2, requestData, protocol, timeout) {
     const isInsecureConnection = protocol === "http";
-    const url = new URL(
-      path,
-      `${isInsecureConnection ? "http" : "https"}://${host}`,
-    );
+    const url = new URL(path, `${isInsecureConnection ? "http" : "https"}://${host}`);
     url.port = port;
-    const methodHasPayload =
-      method == "POST" || method == "PUT" || method == "PATCH";
+    const methodHasPayload = method == "POST" || method == "PUT" || method == "PATCH";
     const body = requestData || (methodHasPayload ? "" : void 0);
     const fetchFn = this._fetchFn || fetch;
     const fetchPromise = fetchFn(url.toString(), {
       method,
       headers: headers2,
-      body,
+      body
     });
     let pendingTimeoutId;
     const timeoutPromise = new Promise((_, reject) => {
@@ -18779,23 +14855,18 @@ var FetchHttpClient = class extends HttpClient {
         reject(HttpClient.makeTimeoutError());
       }, timeout);
     });
-    return Promise.race([fetchPromise, timeoutPromise])
-      .then((res) => {
-        return new FetchHttpClientResponse(res);
-      })
-      .finally(() => {
-        if (pendingTimeoutId) {
-          clearTimeout(pendingTimeoutId);
-        }
-      });
+    return Promise.race([fetchPromise, timeoutPromise]).then((res) => {
+      return new FetchHttpClientResponse(res);
+    }).finally(() => {
+      if (pendingTimeoutId) {
+        clearTimeout(pendingTimeoutId);
+      }
+    });
   }
 };
 var FetchHttpClientResponse = class extends HttpClientResponse {
   constructor(res) {
-    super(
-      res.status,
-      FetchHttpClientResponse._transformHeadersToObject(res.headers),
-    );
+    super(res.status, FetchHttpClientResponse._transformHeadersToObject(res.headers));
     this._res = res;
   }
   getRawResponse() {
@@ -18812,9 +14883,7 @@ var FetchHttpClientResponse = class extends HttpClientResponse {
     const headersObj = {};
     for (const entry of headers2) {
       if (!Array.isArray(entry) || entry.length != 2) {
-        throw new Error(
-          "Response objects produced by the fetch function given to FetchHttpClient do not have an iterable headers map. Response#headers should be an iterable object.",
-        );
+        throw new Error("Response objects produced by the fetch function given to FetchHttpClient do not have an iterable headers map. Response#headers should be an iterable object.");
       }
       headersObj[entry[0]] = entry[1];
     }
@@ -18829,27 +14898,15 @@ var SubtleCryptoProvider = class extends CryptoProvider {
     this.subtleCrypto = subtleCrypto || crypto.subtle;
   }
   computeHMACSignature(payload, secret) {
-    throw new CryptoProviderOnlySupportsAsyncError(
-      "SubtleCryptoProvider cannot be used in a synchronous context.",
-    );
+    throw new CryptoProviderOnlySupportsAsyncError("SubtleCryptoProvider cannot be used in a synchronous context.");
   }
   async computeHMACSignatureAsync(payload, secret) {
     const encoder = new TextEncoder();
-    const key = await this.subtleCrypto.importKey(
-      "raw",
-      encoder.encode(secret),
-      {
-        name: "HMAC",
-        hash: { name: "SHA-256" },
-      },
-      false,
-      ["sign"],
-    );
-    const signatureBuffer = await this.subtleCrypto.sign(
-      "hmac",
-      key,
-      encoder.encode(payload),
-    );
+    const key = await this.subtleCrypto.importKey("raw", encoder.encode(secret), {
+      name: "HMAC",
+      hash: { name: "SHA-256" }
+    }, false, ["sign"]);
+    const signatureBuffer = await this.subtleCrypto.sign("hmac", key, encoder.encode(payload));
     const signatureBytes = new Uint8Array(signatureBuffer);
     const signatureHexCodes = new Array(signatureBytes.length);
     for (let i = 0; i < signatureBytes.length; i++) {
@@ -18874,8 +14931,8 @@ var PlatformFunctions = class {
   }
   uuid4() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-      const r = (Math.random() * 16) | 0;
-      const v = c === "x" ? r : (r & 3) | 8;
+      const r = Math.random() * 16 | 0;
+      const v = c === "x" ? r : r & 3 | 8;
       return v.toString(16);
     });
   }
@@ -18931,7 +14988,7 @@ __export(Error_exports, {
   StripeRateLimitError: () => StripeRateLimitError,
   StripeSignatureVerificationError: () => StripeSignatureVerificationError,
   StripeUnknownError: () => StripeUnknownError,
-  generate: () => generate,
+  generate: () => generate
 });
 var generate = (rawStripeError) => {
   switch (rawStripeError.type) {
@@ -18977,13 +15034,20 @@ var StripeError = class extends Error {
   }
 };
 StripeError.generate = generate;
-var StripeCardError = class extends StripeError {};
-var StripeInvalidRequestError = class extends StripeError {};
-var StripeAPIError = class extends StripeError {};
-var StripeAuthenticationError = class extends StripeError {};
-var StripePermissionError = class extends StripeError {};
-var StripeRateLimitError = class extends StripeError {};
-var StripeConnectionError = class extends StripeError {};
+var StripeCardError = class extends StripeError {
+};
+var StripeInvalidRequestError = class extends StripeError {
+};
+var StripeAPIError = class extends StripeError {
+};
+var StripeAuthenticationError = class extends StripeError {
+};
+var StripePermissionError = class extends StripeError {
+};
+var StripeRateLimitError = class extends StripeError {
+};
+var StripeConnectionError = class extends StripeError {
+};
 var StripeSignatureVerificationError = class extends StripeError {
   constructor(header, payload, raw = {}) {
     super(raw);
@@ -18991,9 +15055,12 @@ var StripeSignatureVerificationError = class extends StripeError {
     this.payload = payload;
   }
 };
-var StripeIdempotencyError = class extends StripeError {};
-var StripeInvalidGrantError = class extends StripeError {};
-var StripeUnknownError = class extends StripeError {};
+var StripeIdempotencyError = class extends StripeError {
+};
+var StripeInvalidGrantError = class extends StripeError {
+};
+var StripeUnknownError = class extends StripeError {
+};
 
 // node_modules/stripe/esm/utils.js
 var qs = __toESM(require_lib(), 1);
@@ -19004,36 +15071,27 @@ var OPTIONS_KEYS = [
   "apiVersion",
   "maxNetworkRetries",
   "timeout",
-  "host",
+  "host"
 ];
 function isOptionsHash(o) {
-  return (
-    o &&
-    typeof o === "object" &&
-    OPTIONS_KEYS.some((prop) => Object.prototype.hasOwnProperty.call(o, prop))
-  );
+  return o && typeof o === "object" && OPTIONS_KEYS.some((prop) => Object.prototype.hasOwnProperty.call(o, prop));
 }
 function stringifyRequestData(data) {
-  return qs
-    .stringify(data, {
-      serializeDate: (d) => Math.floor(d.getTime() / 1e3).toString(),
-    })
-    .replace(/%5B/g, "[")
-    .replace(/%5D/g, "]");
+  return qs.stringify(data, {
+    serializeDate: (d) => Math.floor(d.getTime() / 1e3).toString()
+  }).replace(/%5B/g, "[").replace(/%5D/g, "]");
 }
 var makeURLInterpolator = (() => {
   const rc = {
     "\n": "\\n",
     '"': '\\"',
     "\u2028": "\\u2028",
-    "\u2029": "\\u2029",
+    "\u2029": "\\u2029"
   };
   return (str) => {
     const cleanString = str.replace(/["\n\r\u2028\u2029]/g, ($0) => rc[$0]);
     return (outputs) => {
-      return cleanString.replace(/\{([\s\S]+?)\}/g, ($0, $1) =>
-        encodeURIComponent(outputs[$1] || ""),
-      );
+      return cleanString.replace(/\{([\s\S]+?)\}/g, ($0, $1) => encodeURIComponent(outputs[$1] || ""));
     };
   };
 })();
@@ -19053,15 +15111,8 @@ function getDataFromArgs(args) {
   }
   const argKeys = Object.keys(args[0]);
   const optionKeysInArgs = argKeys.filter((key) => OPTIONS_KEYS.includes(key));
-  if (
-    optionKeysInArgs.length > 0 &&
-    optionKeysInArgs.length !== argKeys.length
-  ) {
-    emitWarning(
-      `Options found in arguments (${optionKeysInArgs.join(
-        ", ",
-      )}). Did you mean to pass an options object? See https://github.com/stripe/stripe-node/wiki/Passing-Options.`,
-    );
+  if (optionKeysInArgs.length > 0 && optionKeysInArgs.length !== argKeys.length) {
+    emitWarning(`Options found in arguments (${optionKeysInArgs.join(", ")}). Did you mean to pass an options object? See https://github.com/stripe/stripe-node/wiki/Passing-Options.`);
   }
   return {};
 }
@@ -19070,7 +15121,7 @@ function getOptionsFromArgs(args) {
     auth: null,
     host: null,
     headers: {},
-    settings: {},
+    settings: {}
   };
   if (args.length > 0) {
     const arg = args[args.length - 1];
@@ -19078,13 +15129,9 @@ function getOptionsFromArgs(args) {
       opts.auth = args.pop();
     } else if (isOptionsHash(arg)) {
       const params = Object.assign({}, args.pop());
-      const extraKeys = Object.keys(params).filter(
-        (key) => !OPTIONS_KEYS.includes(key),
-      );
+      const extraKeys = Object.keys(params).filter((key) => !OPTIONS_KEYS.includes(key));
       if (extraKeys.length) {
-        emitWarning(
-          `Invalid options found (${extraKeys.join(", ")}); ignoring.`,
-        );
+        emitWarning(`Invalid options found (${extraKeys.join(", ")}); ignoring.`);
       }
       if (params.apiKey) {
         opts.auth = params.apiKey;
@@ -19113,11 +15160,9 @@ function getOptionsFromArgs(args) {
 }
 function protoExtend(sub) {
   const Super = this;
-  const Constructor = Object.prototype.hasOwnProperty.call(sub, "constructor")
-    ? sub.constructor
-    : function (...args) {
-        Super.apply(this, args);
-      };
+  const Constructor = Object.prototype.hasOwnProperty.call(sub, "constructor") ? sub.constructor : function(...args) {
+    Super.apply(this, args);
+  };
   Object.assign(Constructor, Super);
   Constructor.prototype = Object.create(Super.prototype);
   Object.assign(Constructor.prototype, sub);
@@ -19144,25 +15189,19 @@ function normalizeHeaders(obj) {
   }, {});
 }
 function normalizeHeader(header) {
-  return header
-    .split("-")
-    .map((text) => text.charAt(0).toUpperCase() + text.substr(1).toLowerCase())
-    .join("-");
+  return header.split("-").map((text) => text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()).join("-");
 }
 function callbackifyPromiseWithTimeout(promise, callback) {
   if (callback) {
-    return promise.then(
-      (res) => {
-        setTimeout(() => {
-          callback(null, res);
-        }, 0);
-      },
-      (err) => {
-        setTimeout(() => {
-          callback(err, null);
-        }, 0);
-      },
-    );
+    return promise.then((res) => {
+      setTimeout(() => {
+        callback(null, res);
+      }, 0);
+    }, (err) => {
+      setTimeout(() => {
+        callback(err, null);
+      }, 0);
+    });
   }
   return promise;
 }
@@ -19190,10 +15229,7 @@ function flattenAndStringify(data) {
       const value = obj[key];
       const newKey = prevKey ? `${prevKey}[${key}]` : key;
       if (isObject(value)) {
-        if (
-          !(value instanceof Uint8Array) &&
-          !Object.prototype.hasOwnProperty.call(value, "data")
-        ) {
+        if (!(value instanceof Uint8Array) && !Object.prototype.hasOwnProperty.call(value, "data")) {
           return step(value, newKey);
         } else {
           result[newKey] = value;
@@ -19217,12 +15253,10 @@ function validateInteger(name, n, defaultVal) {
   return n;
 }
 function determineProcessUserAgentProperties() {
-  return typeof process === "undefined"
-    ? {}
-    : {
-        lang_version: process.version,
-        platform: process.platform,
-      };
+  return typeof process === "undefined" ? {} : {
+    lang_version: process.version,
+    platform: process.platform
+  };
 }
 function concat(arrays) {
   const totalLength = arrays.reduce((len, array) => len + array.length, 0);
@@ -19237,7 +15271,8 @@ function concat(arrays) {
 
 // node_modules/stripe/esm/platform/NodePlatformFunctions.js
 var import_child_process = require("child_process");
-var StreamProcessingError = class extends StripeError {};
+var StreamProcessingError = class extends StripeError {
+};
 var NodePlatformFunctions = class extends PlatformFunctions {
   constructor() {
     super();
@@ -19291,24 +15326,18 @@ var NodePlatformFunctions = class extends PlatformFunctions {
     }
     const bufferArray = [];
     return new Promise((resolve, reject) => {
-      data.file.data
-        .on("data", (line) => {
-          bufferArray.push(line);
-        })
-        .once("end", () => {
-          const bufferData = Object.assign({}, data);
-          bufferData.file.data = concat(bufferArray);
-          resolve(bufferData);
-        })
-        .on("error", (err) => {
-          reject(
-            new StreamProcessingError({
-              message:
-                "An error occurred while attempting to process the file for upload.",
-              detail: err,
-            }),
-          );
-        });
+      data.file.data.on("data", (line) => {
+        bufferArray.push(line);
+      }).once("end", () => {
+        const bufferData = Object.assign({}, data);
+        bufferData.file.data = concat(bufferArray);
+        resolve(bufferData);
+      }).on("error", (err) => {
+        reject(new StreamProcessingError({
+          message: "An error occurred while attempting to process the file for upload.",
+          detail: err
+        }));
+      });
     });
   }
   createNodeHttpClient(agent) {
@@ -19389,7 +15418,7 @@ __export(resources_exports, {
   Topups: () => Topups,
   Transfers: () => Transfers,
   Treasury: () => Treasury,
-  WebhookEndpoints: () => WebhookEndpoints,
+  WebhookEndpoints: () => WebhookEndpoints
 });
 
 // node_modules/stripe/esm/ResourceNamespace.js
@@ -19401,7 +15430,7 @@ function ResourceNamespace(stripe2, resources) {
   }
 }
 function resourceNamespace(namespace, resources) {
-  return function (stripe2) {
+  return function(stripe2) {
     return new ResourceNamespace(stripe2, resources);
   };
 }
@@ -19417,22 +15446,12 @@ var StripeIterator = class {
     this.stripeResource = stripeResource;
   }
   async iterate(pageResult) {
-    if (
-      !(
-        pageResult &&
-        pageResult.data &&
-        typeof pageResult.data.length === "number"
-      )
-    ) {
-      throw Error(
-        "Unexpected: Stripe API response does not have a well-formed `data` array.",
-      );
+    if (!(pageResult && pageResult.data && typeof pageResult.data.length === "number")) {
+      throw Error("Unexpected: Stripe API response does not have a well-formed `data` array.");
     }
     const reverseIteration = isReverseIteration(this.requestArgs);
     if (this.index < pageResult.data.length) {
-      const idx = reverseIteration
-        ? pageResult.data.length - 1 - this.index
-        : this.index;
+      const idx = reverseIteration ? pageResult.data.length - 1 - this.index : this.index;
       const value = pageResult.data[idx];
       this.index += 1;
       return { value, done: false };
@@ -19468,44 +15487,31 @@ var ListIterator = class extends StripeIterator {
     const reverseIteration = isReverseIteration(this.requestArgs);
     const lastId = getLastId(pageResult, reverseIteration);
     return this.stripeResource._makeRequest(this.requestArgs, this.spec, {
-      [reverseIteration ? "ending_before" : "starting_after"]: lastId,
+      [reverseIteration ? "ending_before" : "starting_after"]: lastId
     });
   }
 };
 var SearchIterator = class extends StripeIterator {
   getNextPage(pageResult) {
     if (!pageResult.next_page) {
-      throw Error(
-        "Unexpected: Stripe API response does not have a well-formed `next_page` field, but `has_more` was true.",
-      );
+      throw Error("Unexpected: Stripe API response does not have a well-formed `next_page` field, but `has_more` was true.");
     }
     return this.stripeResource._makeRequest(this.requestArgs, this.spec, {
-      page: pageResult.next_page,
+      page: pageResult.next_page
     });
   }
 };
-var makeAutoPaginationMethods = (
-  stripeResource,
-  requestArgs,
-  spec,
-  firstPagePromise,
-) => {
+var makeAutoPaginationMethods = (stripeResource, requestArgs, spec, firstPagePromise) => {
   if (spec.methodType === "search") {
-    return makeAutoPaginationMethodsFromIterator(
-      new SearchIterator(firstPagePromise, requestArgs, spec, stripeResource),
-    );
+    return makeAutoPaginationMethodsFromIterator(new SearchIterator(firstPagePromise, requestArgs, spec, stripeResource));
   }
   if (spec.methodType === "list") {
-    return makeAutoPaginationMethodsFromIterator(
-      new ListIterator(firstPagePromise, requestArgs, spec, stripeResource),
-    );
+    return makeAutoPaginationMethodsFromIterator(new ListIterator(firstPagePromise, requestArgs, spec, stripeResource));
   }
   return null;
 };
 var makeAutoPaginationMethodsFromIterator = (iterator) => {
-  const autoPagingEach = makeAutoPagingEach((...args) =>
-    iterator.next(...args),
-  );
+  const autoPagingEach = makeAutoPagingEach((...args) => iterator.next(...args));
   const autoPagingToArray = makeAutoPagingToArray(autoPagingEach);
   const autoPaginationMethods = {
     autoPagingEach,
@@ -19516,7 +15522,7 @@ var makeAutoPaginationMethodsFromIterator = (iterator) => {
     },
     [getAsyncIteratorSymbol()]: () => {
       return autoPaginationMethods;
-    },
+    }
   };
   return autoPaginationMethods;
 };
@@ -19532,9 +15538,7 @@ function getDoneCallback(args) {
   }
   const onDone = args[1];
   if (typeof onDone !== "function") {
-    throw Error(
-      `The second argument to autoPagingEach, if present, must be a callback function; received ${typeof onDone}`,
-    );
+    throw Error(`The second argument to autoPagingEach, if present, must be a callback function; received ${typeof onDone}`);
   }
   return onDone;
 }
@@ -19544,17 +15548,13 @@ function getItemCallback(args) {
   }
   const onItem = args[0];
   if (typeof onItem !== "function") {
-    throw Error(
-      `The first argument to autoPagingEach, if present, must be a callback function; received ${typeof onItem}`,
-    );
+    throw Error(`The first argument to autoPagingEach, if present, must be a callback function; received ${typeof onItem}`);
   }
   if (onItem.length === 2) {
     return onItem;
   }
   if (onItem.length > 2) {
-    throw Error(
-      `The \`onItem\` callback function passed to autoPagingEach must accept at most two arguments; got ${onItem}`,
-    );
+    throw Error(`The \`onItem\` callback function passed to autoPagingEach must accept at most two arguments; got ${onItem}`);
   }
   return function _onItem(item, next) {
     const shouldContinue = onItem(item);
@@ -19566,9 +15566,7 @@ function getLastId(listResult, reverseIteration) {
   const lastItem = listResult.data[lastIdx];
   const lastId = lastItem && lastItem.id;
   if (!lastId) {
-    throw Error(
-      "Unexpected: No `id` found on the last item while auto-paging a list.",
-    );
+    throw Error("Unexpected: No `id` found on the last item while auto-paging a list.");
   }
   return lastId;
 }
@@ -19580,10 +15578,7 @@ function makeAutoPagingEach(asyncIteratorNext) {
     if (args.length > 2) {
       throw Error(`autoPagingEach takes up to two arguments; received ${args}`);
     }
-    const autoPagePromise = wrapAsyncIteratorWithCallback(
-      asyncIteratorNext,
-      onItem,
-    );
+    const autoPagePromise = wrapAsyncIteratorWithCallback(asyncIteratorNext, onItem);
     return callbackifyPromiseWithTimeout(autoPagePromise, onDone);
   };
 }
@@ -19591,14 +15586,10 @@ function makeAutoPagingToArray(autoPagingEach) {
   return function autoPagingToArray(opts, onDone) {
     const limit = opts && opts.limit;
     if (!limit) {
-      throw Error(
-        "You must pass a `limit` option to autoPagingToArray, e.g., `autoPagingToArray({limit: 1000});`.",
-      );
+      throw Error("You must pass a `limit` option to autoPagingToArray, e.g., `autoPagingToArray({limit: 1000});`.");
     }
     if (limit > 1e4) {
-      throw Error(
-        "You cannot specify a limit of more than 10,000 items to fetch in `autoPagingToArray`; use `autoPagingEach` to iterate through longer lists.",
-      );
+      throw Error("You cannot specify a limit of more than 10,000 items to fetch in `autoPagingToArray`; use `autoPagingEach` to iterate through longer lists.");
     }
     const promise = new Promise((resolve, reject) => {
       const items = [];
@@ -19607,11 +15598,9 @@ function makeAutoPagingToArray(autoPagingEach) {
         if (items.length >= limit) {
           return false;
         }
-      })
-        .then(() => {
-          resolve(items);
-        })
-        .catch(reject);
+      }).then(() => {
+        resolve(items);
+      }).catch(reject);
     });
     return callbackifyPromiseWithTimeout(promise, onDone);
   };
@@ -19646,23 +15635,13 @@ function isReverseIteration(requestArgs) {
 // node_modules/stripe/esm/StripeMethod.js
 function stripeMethod(spec) {
   if (spec.path !== void 0 && spec.fullPath !== void 0) {
-    throw new Error(
-      `Method spec specified both a 'path' (${spec.path}) and a 'fullPath' (${spec.fullPath}).`,
-    );
+    throw new Error(`Method spec specified both a 'path' (${spec.path}) and a 'fullPath' (${spec.fullPath}).`);
   }
-  return function (...args) {
+  return function(...args) {
     const callback = typeof args[args.length - 1] == "function" && args.pop();
-    spec.urlParams = extractUrlParams(
-      spec.fullPath || this.createResourcePathWithSymbols(spec.path || ""),
-    );
-    const requestPromise = callbackifyPromiseWithTimeout(
-      this._makeRequest(args, spec, {}),
-      callback,
-    );
-    Object.assign(
-      requestPromise,
-      makeAutoPaginationMethods(this, args, spec, requestPromise),
-    );
+    spec.urlParams = extractUrlParams(spec.fullPath || this.createResourcePathWithSymbols(spec.path || ""));
+    const requestPromise = callbackifyPromiseWithTimeout(this._makeRequest(args, spec, {}), callback);
+    Object.assign(requestPromise, makeAutoPaginationMethods(this, args, spec, requestPromise));
     return requestPromise;
   };
 }
@@ -19674,13 +15653,9 @@ StripeResource.MAX_BUFFERED_REQUEST_METRICS = 100;
 function StripeResource(stripe2, deprecatedUrlData) {
   this._stripe = stripe2;
   if (deprecatedUrlData) {
-    throw new Error(
-      "Support for curried url params was dropped in stripe-node v7.0.0. Instead, pass two ids.",
-    );
+    throw new Error("Support for curried url params was dropped in stripe-node v7.0.0. Instead, pass two ids.");
   }
-  this.basePath = makeURLInterpolator(
-    this.basePath || stripe2.getApiField("basePath"),
-  );
+  this.basePath = makeURLInterpolator(this.basePath || stripe2.getApiField("basePath"));
   this.resourcePath = this.path;
   this.path = makeURLInterpolator(this.path);
   this.initialize(...arguments);
@@ -19690,7 +15665,8 @@ StripeResource.prototype = {
   path: "",
   resourcePath: "",
   basePath: null,
-  initialize() {},
+  initialize() {
+  },
   requestDataProcessor: null,
   validateRequest: null,
   createFullPath(commandPath, urlData) {
@@ -19720,19 +15696,13 @@ StripeResource.prototype = {
     const urlParams = spec.urlParams || [];
     const encode = spec.encode || ((data2) => data2);
     const isUsingFullPath = !!spec.fullPath;
-    const commandPath = makeURLInterpolator(
-      isUsingFullPath ? spec.fullPath : spec.path || "",
-    );
-    const path = isUsingFullPath
-      ? spec.fullPath
-      : this.createResourcePathWithSymbols(spec.path);
+    const commandPath = makeURLInterpolator(isUsingFullPath ? spec.fullPath : spec.path || "");
+    const path = isUsingFullPath ? spec.fullPath : this.createResourcePathWithSymbols(spec.path);
     const args = [].slice.call(requestArgs);
     const urlData = urlParams.reduce((urlData2, param) => {
       const arg = args.shift();
       if (typeof arg !== "string") {
-        throw new Error(
-          `Stripe: Argument "${param}" must be a string, but got: ${arg} (on API request to \`${requestMethod} ${path}\`)`,
-        );
+        throw new Error(`Stripe: Argument "${param}" must be a string, but got: ${arg} (on API request to \`${requestMethod} ${path}\`)`);
       }
       urlData2[param] = arg;
       return urlData2;
@@ -19743,13 +15713,9 @@ StripeResource.prototype = {
     const host = options.host || spec.host;
     const streaming = !!spec.streaming;
     if (args.filter((x) => x != null).length) {
-      throw new Error(
-        `Stripe: Unknown arguments (${args}). Did you mean to pass an options object? See https://github.com/stripe/stripe-node/wiki/Passing-Options. (on API request to ${requestMethod} \`${path}\`)`,
-      );
+      throw new Error(`Stripe: Unknown arguments (${args}). Did you mean to pass an options object? See https://github.com/stripe/stripe-node/wiki/Passing-Options. (on API request to ${requestMethod} \`${path}\`)`);
     }
-    const requestPath = isUsingFullPath
-      ? commandPath(urlData)
-      : this.createFullPath(commandPath, urlData);
+    const requestPath = isUsingFullPath ? commandPath(urlData) : this.createFullPath(commandPath, urlData);
     const headers2 = Object.assign(options.headers, spec.headers);
     if (spec.validator) {
       spec.validator(data, { headers: headers2 });
@@ -19766,7 +15732,7 @@ StripeResource.prototype = {
       headers: headers2,
       host: host !== null && host !== void 0 ? host : null,
       streaming,
-      settings: options.settings,
+      settings: options.settings
     };
   },
   _makeRequest(requestArgs, spec, overrideData) {
@@ -19783,34 +15749,19 @@ StripeResource.prototype = {
         if (err) {
           reject(err);
         } else {
-          resolve(
-            spec.transformResponseData
-              ? spec.transformResponseData(response)
-              : response,
-          );
+          resolve(spec.transformResponseData ? spec.transformResponseData(response) : response);
         }
       }
       const emptyQuery = Object.keys(opts.queryData).length === 0;
       const path = [
         opts.requestPath,
         emptyQuery ? "" : "?",
-        stringifyRequestData(opts.queryData),
+        stringifyRequestData(opts.queryData)
       ].join("");
       const { headers: headers2, settings } = opts;
-      this._stripe._requestSender._request(
-        opts.requestMethod,
-        opts.host,
-        path,
-        opts.bodyData,
-        opts.auth,
-        { headers: headers2, settings, streaming: opts.streaming },
-        requestCallback,
-        (_a = this.requestDataProcessor) === null || _a === void 0
-          ? void 0
-          : _a.bind(this),
-      );
+      this._stripe._requestSender._request(opts.requestMethod, opts.host, path, opts.bodyData, opts.auth, { headers: headers2, settings, streaming: opts.streaming }, requestCallback, (_a = this.requestDataProcessor) === null || _a === void 0 ? void 0 : _a.bind(this));
     });
-  },
+  }
 };
 
 // node_modules/stripe/esm/resources/FinancialConnections/Accounts.js
@@ -19818,26 +15769,26 @@ var stripeMethod2 = StripeResource.method;
 var Accounts = StripeResource.extend({
   retrieve: stripeMethod2({
     method: "GET",
-    fullPath: "/v1/financial_connections/accounts/{account}",
+    fullPath: "/v1/financial_connections/accounts/{account}"
   }),
   list: stripeMethod2({
     method: "GET",
     fullPath: "/v1/financial_connections/accounts",
-    methodType: "list",
+    methodType: "list"
   }),
   disconnect: stripeMethod2({
     method: "POST",
-    fullPath: "/v1/financial_connections/accounts/{account}/disconnect",
+    fullPath: "/v1/financial_connections/accounts/{account}/disconnect"
   }),
   listOwners: stripeMethod2({
     method: "GET",
     fullPath: "/v1/financial_connections/accounts/{account}/owners",
-    methodType: "list",
+    methodType: "list"
   }),
   refresh: stripeMethod2({
     method: "POST",
-    fullPath: "/v1/financial_connections/accounts/{account}/refresh",
-  }),
+    fullPath: "/v1/financial_connections/accounts/{account}/refresh"
+  })
 });
 
 // node_modules/stripe/esm/resources/Issuing/Authorizations.js
@@ -19845,25 +15796,25 @@ var stripeMethod3 = StripeResource.method;
 var Authorizations = StripeResource.extend({
   retrieve: stripeMethod3({
     method: "GET",
-    fullPath: "/v1/issuing/authorizations/{authorization}",
+    fullPath: "/v1/issuing/authorizations/{authorization}"
   }),
   update: stripeMethod3({
     method: "POST",
-    fullPath: "/v1/issuing/authorizations/{authorization}",
+    fullPath: "/v1/issuing/authorizations/{authorization}"
   }),
   list: stripeMethod3({
     method: "GET",
     fullPath: "/v1/issuing/authorizations",
-    methodType: "list",
+    methodType: "list"
   }),
   approve: stripeMethod3({
     method: "POST",
-    fullPath: "/v1/issuing/authorizations/{authorization}/approve",
+    fullPath: "/v1/issuing/authorizations/{authorization}/approve"
   }),
   decline: stripeMethod3({
     method: "POST",
-    fullPath: "/v1/issuing/authorizations/{authorization}/decline",
-  }),
+    fullPath: "/v1/issuing/authorizations/{authorization}/decline"
+  })
 });
 
 // node_modules/stripe/esm/resources/Tax/Calculations.js
@@ -19873,30 +15824,27 @@ var Calculations = StripeResource.extend({
   listLineItems: stripeMethod4({
     method: "GET",
     fullPath: "/v1/tax/calculations/{calculation}/line_items",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Issuing/Cardholders.js
 var stripeMethod5 = StripeResource.method;
 var Cardholders = StripeResource.extend({
-  create: stripeMethod5({
-    method: "POST",
-    fullPath: "/v1/issuing/cardholders",
-  }),
+  create: stripeMethod5({ method: "POST", fullPath: "/v1/issuing/cardholders" }),
   retrieve: stripeMethod5({
     method: "GET",
-    fullPath: "/v1/issuing/cardholders/{cardholder}",
+    fullPath: "/v1/issuing/cardholders/{cardholder}"
   }),
   update: stripeMethod5({
     method: "POST",
-    fullPath: "/v1/issuing/cardholders/{cardholder}",
+    fullPath: "/v1/issuing/cardholders/{cardholder}"
   }),
   list: stripeMethod5({
     method: "GET",
     fullPath: "/v1/issuing/cardholders",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Issuing/Cards.js
@@ -19904,39 +15852,33 @@ var stripeMethod6 = StripeResource.method;
 var Cards = StripeResource.extend({
   deliverCard: stripeMethod6({
     method: "POST",
-    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/deliver",
+    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/deliver"
   }),
   failCard: stripeMethod6({
     method: "POST",
-    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/fail",
+    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/fail"
   }),
   returnCard: stripeMethod6({
     method: "POST",
-    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/return",
+    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/return"
   }),
   shipCard: stripeMethod6({
     method: "POST",
-    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/ship",
-  }),
+    fullPath: "/v1/test_helpers/issuing/cards/{card}/shipping/ship"
+  })
 });
 
 // node_modules/stripe/esm/resources/Issuing/Cards.js
 var stripeMethod7 = StripeResource.method;
 var Cards2 = StripeResource.extend({
   create: stripeMethod7({ method: "POST", fullPath: "/v1/issuing/cards" }),
-  retrieve: stripeMethod7({
-    method: "GET",
-    fullPath: "/v1/issuing/cards/{card}",
-  }),
-  update: stripeMethod7({
-    method: "POST",
-    fullPath: "/v1/issuing/cards/{card}",
-  }),
+  retrieve: stripeMethod7({ method: "GET", fullPath: "/v1/issuing/cards/{card}" }),
+  update: stripeMethod7({ method: "POST", fullPath: "/v1/issuing/cards/{card}" }),
   list: stripeMethod7({
     method: "GET",
     fullPath: "/v1/issuing/cards",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/BillingPortal/Configurations.js
@@ -19944,21 +15886,21 @@ var stripeMethod8 = StripeResource.method;
 var Configurations = StripeResource.extend({
   create: stripeMethod8({
     method: "POST",
-    fullPath: "/v1/billing_portal/configurations",
+    fullPath: "/v1/billing_portal/configurations"
   }),
   retrieve: stripeMethod8({
     method: "GET",
-    fullPath: "/v1/billing_portal/configurations/{configuration}",
+    fullPath: "/v1/billing_portal/configurations/{configuration}"
   }),
   update: stripeMethod8({
     method: "POST",
-    fullPath: "/v1/billing_portal/configurations/{configuration}",
+    fullPath: "/v1/billing_portal/configurations/{configuration}"
   }),
   list: stripeMethod8({
     method: "GET",
     fullPath: "/v1/billing_portal/configurations",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Terminal/Configurations.js
@@ -19966,25 +15908,25 @@ var stripeMethod9 = StripeResource.method;
 var Configurations2 = StripeResource.extend({
   create: stripeMethod9({
     method: "POST",
-    fullPath: "/v1/terminal/configurations",
+    fullPath: "/v1/terminal/configurations"
   }),
   retrieve: stripeMethod9({
     method: "GET",
-    fullPath: "/v1/terminal/configurations/{configuration}",
+    fullPath: "/v1/terminal/configurations/{configuration}"
   }),
   update: stripeMethod9({
     method: "POST",
-    fullPath: "/v1/terminal/configurations/{configuration}",
+    fullPath: "/v1/terminal/configurations/{configuration}"
   }),
   list: stripeMethod9({
     method: "GET",
     fullPath: "/v1/terminal/configurations",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod9({
     method: "DELETE",
-    fullPath: "/v1/terminal/configurations/{configuration}",
-  }),
+    fullPath: "/v1/terminal/configurations/{configuration}"
+  })
 });
 
 // node_modules/stripe/esm/resources/Terminal/ConnectionTokens.js
@@ -19992,8 +15934,8 @@ var stripeMethod10 = StripeResource.method;
 var ConnectionTokens = StripeResource.extend({
   create: stripeMethod10({
     method: "POST",
-    fullPath: "/v1/terminal/connection_tokens",
-  }),
+    fullPath: "/v1/terminal/connection_tokens"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/CreditReversals.js
@@ -20001,17 +15943,17 @@ var stripeMethod11 = StripeResource.method;
 var CreditReversals = StripeResource.extend({
   create: stripeMethod11({
     method: "POST",
-    fullPath: "/v1/treasury/credit_reversals",
+    fullPath: "/v1/treasury/credit_reversals"
   }),
   retrieve: stripeMethod11({
     method: "GET",
-    fullPath: "/v1/treasury/credit_reversals/{credit_reversal}",
+    fullPath: "/v1/treasury/credit_reversals/{credit_reversal}"
   }),
   list: stripeMethod11({
     method: "GET",
     fullPath: "/v1/treasury/credit_reversals",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Customers.js
@@ -20019,8 +15961,8 @@ var stripeMethod12 = StripeResource.method;
 var Customers = StripeResource.extend({
   fundCashBalance: stripeMethod12({
     method: "POST",
-    fullPath: "/v1/test_helpers/customers/{customer}/fund_cash_balance",
-  }),
+    fullPath: "/v1/test_helpers/customers/{customer}/fund_cash_balance"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/DebitReversals.js
@@ -20028,17 +15970,17 @@ var stripeMethod13 = StripeResource.method;
 var DebitReversals = StripeResource.extend({
   create: stripeMethod13({
     method: "POST",
-    fullPath: "/v1/treasury/debit_reversals",
+    fullPath: "/v1/treasury/debit_reversals"
   }),
   retrieve: stripeMethod13({
     method: "GET",
-    fullPath: "/v1/treasury/debit_reversals/{debit_reversal}",
+    fullPath: "/v1/treasury/debit_reversals/{debit_reversal}"
   }),
   list: stripeMethod13({
     method: "GET",
     fullPath: "/v1/treasury/debit_reversals",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Issuing/Disputes.js
@@ -20047,21 +15989,21 @@ var Disputes = StripeResource.extend({
   create: stripeMethod14({ method: "POST", fullPath: "/v1/issuing/disputes" }),
   retrieve: stripeMethod14({
     method: "GET",
-    fullPath: "/v1/issuing/disputes/{dispute}",
+    fullPath: "/v1/issuing/disputes/{dispute}"
   }),
   update: stripeMethod14({
     method: "POST",
-    fullPath: "/v1/issuing/disputes/{dispute}",
+    fullPath: "/v1/issuing/disputes/{dispute}"
   }),
   list: stripeMethod14({
     method: "GET",
     fullPath: "/v1/issuing/disputes",
-    methodType: "list",
+    methodType: "list"
   }),
   submit: stripeMethod14({
     method: "POST",
-    fullPath: "/v1/issuing/disputes/{dispute}/submit",
-  }),
+    fullPath: "/v1/issuing/disputes/{dispute}/submit"
+  })
 });
 
 // node_modules/stripe/esm/resources/Radar/EarlyFraudWarnings.js
@@ -20069,13 +16011,13 @@ var stripeMethod15 = StripeResource.method;
 var EarlyFraudWarnings = StripeResource.extend({
   retrieve: stripeMethod15({
     method: "GET",
-    fullPath: "/v1/radar/early_fraud_warnings/{early_fraud_warning}",
+    fullPath: "/v1/radar/early_fraud_warnings/{early_fraud_warning}"
   }),
   list: stripeMethod15({
     method: "GET",
     fullPath: "/v1/radar/early_fraud_warnings",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/FinancialAccounts.js
@@ -20083,29 +16025,29 @@ var stripeMethod16 = StripeResource.method;
 var FinancialAccounts = StripeResource.extend({
   create: stripeMethod16({
     method: "POST",
-    fullPath: "/v1/treasury/financial_accounts",
+    fullPath: "/v1/treasury/financial_accounts"
   }),
   retrieve: stripeMethod16({
     method: "GET",
-    fullPath: "/v1/treasury/financial_accounts/{financial_account}",
+    fullPath: "/v1/treasury/financial_accounts/{financial_account}"
   }),
   update: stripeMethod16({
     method: "POST",
-    fullPath: "/v1/treasury/financial_accounts/{financial_account}",
+    fullPath: "/v1/treasury/financial_accounts/{financial_account}"
   }),
   list: stripeMethod16({
     method: "GET",
     fullPath: "/v1/treasury/financial_accounts",
-    methodType: "list",
+    methodType: "list"
   }),
   retrieveFeatures: stripeMethod16({
     method: "GET",
-    fullPath: "/v1/treasury/financial_accounts/{financial_account}/features",
+    fullPath: "/v1/treasury/financial_accounts/{financial_account}/features"
   }),
   updateFeatures: stripeMethod16({
     method: "POST",
-    fullPath: "/v1/treasury/financial_accounts/{financial_account}/features",
-  }),
+    fullPath: "/v1/treasury/financial_accounts/{financial_account}/features"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Treasury/InboundTransfers.js
@@ -20113,16 +16055,16 @@ var stripeMethod17 = StripeResource.method;
 var InboundTransfers = StripeResource.extend({
   fail: stripeMethod17({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/inbound_transfers/{id}/fail",
+    fullPath: "/v1/test_helpers/treasury/inbound_transfers/{id}/fail"
   }),
   returnInboundTransfer: stripeMethod17({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/inbound_transfers/{id}/return",
+    fullPath: "/v1/test_helpers/treasury/inbound_transfers/{id}/return"
   }),
   succeed: stripeMethod17({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/inbound_transfers/{id}/succeed",
-  }),
+    fullPath: "/v1/test_helpers/treasury/inbound_transfers/{id}/succeed"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/InboundTransfers.js
@@ -20130,47 +16072,44 @@ var stripeMethod18 = StripeResource.method;
 var InboundTransfers2 = StripeResource.extend({
   create: stripeMethod18({
     method: "POST",
-    fullPath: "/v1/treasury/inbound_transfers",
+    fullPath: "/v1/treasury/inbound_transfers"
   }),
   retrieve: stripeMethod18({
     method: "GET",
-    fullPath: "/v1/treasury/inbound_transfers/{id}",
+    fullPath: "/v1/treasury/inbound_transfers/{id}"
   }),
   list: stripeMethod18({
     method: "GET",
     fullPath: "/v1/treasury/inbound_transfers",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod18({
     method: "POST",
-    fullPath: "/v1/treasury/inbound_transfers/{inbound_transfer}/cancel",
-  }),
+    fullPath: "/v1/treasury/inbound_transfers/{inbound_transfer}/cancel"
+  })
 });
 
 // node_modules/stripe/esm/resources/Terminal/Locations.js
 var stripeMethod19 = StripeResource.method;
 var Locations = StripeResource.extend({
-  create: stripeMethod19({
-    method: "POST",
-    fullPath: "/v1/terminal/locations",
-  }),
+  create: stripeMethod19({ method: "POST", fullPath: "/v1/terminal/locations" }),
   retrieve: stripeMethod19({
     method: "GET",
-    fullPath: "/v1/terminal/locations/{location}",
+    fullPath: "/v1/terminal/locations/{location}"
   }),
   update: stripeMethod19({
     method: "POST",
-    fullPath: "/v1/terminal/locations/{location}",
+    fullPath: "/v1/terminal/locations/{location}"
   }),
   list: stripeMethod19({
     method: "GET",
     fullPath: "/v1/terminal/locations",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod19({
     method: "DELETE",
-    fullPath: "/v1/terminal/locations/{location}",
-  }),
+    fullPath: "/v1/terminal/locations/{location}"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Treasury/OutboundPayments.js
@@ -20178,16 +16117,16 @@ var stripeMethod20 = StripeResource.method;
 var OutboundPayments = StripeResource.extend({
   fail: stripeMethod20({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/outbound_payments/{id}/fail",
+    fullPath: "/v1/test_helpers/treasury/outbound_payments/{id}/fail"
   }),
   post: stripeMethod20({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/outbound_payments/{id}/post",
+    fullPath: "/v1/test_helpers/treasury/outbound_payments/{id}/post"
   }),
   returnOutboundPayment: stripeMethod20({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/outbound_payments/{id}/return",
-  }),
+    fullPath: "/v1/test_helpers/treasury/outbound_payments/{id}/return"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/OutboundPayments.js
@@ -20195,21 +16134,21 @@ var stripeMethod21 = StripeResource.method;
 var OutboundPayments2 = StripeResource.extend({
   create: stripeMethod21({
     method: "POST",
-    fullPath: "/v1/treasury/outbound_payments",
+    fullPath: "/v1/treasury/outbound_payments"
   }),
   retrieve: stripeMethod21({
     method: "GET",
-    fullPath: "/v1/treasury/outbound_payments/{id}",
+    fullPath: "/v1/treasury/outbound_payments/{id}"
   }),
   list: stripeMethod21({
     method: "GET",
     fullPath: "/v1/treasury/outbound_payments",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod21({
     method: "POST",
-    fullPath: "/v1/treasury/outbound_payments/{id}/cancel",
-  }),
+    fullPath: "/v1/treasury/outbound_payments/{id}/cancel"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Treasury/OutboundTransfers.js
@@ -20217,19 +16156,16 @@ var stripeMethod22 = StripeResource.method;
 var OutboundTransfers = StripeResource.extend({
   fail: stripeMethod22({
     method: "POST",
-    fullPath:
-      "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail",
+    fullPath: "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail"
   }),
   post: stripeMethod22({
     method: "POST",
-    fullPath:
-      "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post",
+    fullPath: "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post"
   }),
   returnOutboundTransfer: stripeMethod22({
     method: "POST",
-    fullPath:
-      "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return",
-  }),
+    fullPath: "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/OutboundTransfers.js
@@ -20237,21 +16173,21 @@ var stripeMethod23 = StripeResource.method;
 var OutboundTransfers2 = StripeResource.extend({
   create: stripeMethod23({
     method: "POST",
-    fullPath: "/v1/treasury/outbound_transfers",
+    fullPath: "/v1/treasury/outbound_transfers"
   }),
   retrieve: stripeMethod23({
     method: "GET",
-    fullPath: "/v1/treasury/outbound_transfers/{outbound_transfer}",
+    fullPath: "/v1/treasury/outbound_transfers/{outbound_transfer}"
   }),
   list: stripeMethod23({
     method: "GET",
     fullPath: "/v1/treasury/outbound_transfers",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod23({
     method: "POST",
-    fullPath: "/v1/treasury/outbound_transfers/{outbound_transfer}/cancel",
-  }),
+    fullPath: "/v1/treasury/outbound_transfers/{outbound_transfer}/cancel"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Terminal/Readers.js
@@ -20259,9 +16195,8 @@ var stripeMethod24 = StripeResource.method;
 var Readers = StripeResource.extend({
   presentPaymentMethod: stripeMethod24({
     method: "POST",
-    fullPath:
-      "/v1/test_helpers/terminal/readers/{reader}/present_payment_method",
-  }),
+    fullPath: "/v1/test_helpers/terminal/readers/{reader}/present_payment_method"
+  })
 });
 
 // node_modules/stripe/esm/resources/Terminal/Readers.js
@@ -20270,41 +16205,41 @@ var Readers2 = StripeResource.extend({
   create: stripeMethod25({ method: "POST", fullPath: "/v1/terminal/readers" }),
   retrieve: stripeMethod25({
     method: "GET",
-    fullPath: "/v1/terminal/readers/{reader}",
+    fullPath: "/v1/terminal/readers/{reader}"
   }),
   update: stripeMethod25({
     method: "POST",
-    fullPath: "/v1/terminal/readers/{reader}",
+    fullPath: "/v1/terminal/readers/{reader}"
   }),
   list: stripeMethod25({
     method: "GET",
     fullPath: "/v1/terminal/readers",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod25({
     method: "DELETE",
-    fullPath: "/v1/terminal/readers/{reader}",
+    fullPath: "/v1/terminal/readers/{reader}"
   }),
   cancelAction: stripeMethod25({
     method: "POST",
-    fullPath: "/v1/terminal/readers/{reader}/cancel_action",
+    fullPath: "/v1/terminal/readers/{reader}/cancel_action"
   }),
   processPaymentIntent: stripeMethod25({
     method: "POST",
-    fullPath: "/v1/terminal/readers/{reader}/process_payment_intent",
+    fullPath: "/v1/terminal/readers/{reader}/process_payment_intent"
   }),
   processSetupIntent: stripeMethod25({
     method: "POST",
-    fullPath: "/v1/terminal/readers/{reader}/process_setup_intent",
+    fullPath: "/v1/terminal/readers/{reader}/process_setup_intent"
   }),
   refundPayment: stripeMethod25({
     method: "POST",
-    fullPath: "/v1/terminal/readers/{reader}/refund_payment",
+    fullPath: "/v1/terminal/readers/{reader}/refund_payment"
   }),
   setReaderDisplay: stripeMethod25({
     method: "POST",
-    fullPath: "/v1/terminal/readers/{reader}/set_reader_display",
-  }),
+    fullPath: "/v1/terminal/readers/{reader}/set_reader_display"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Treasury/ReceivedCredits.js
@@ -20312,8 +16247,8 @@ var stripeMethod26 = StripeResource.method;
 var ReceivedCredits = StripeResource.extend({
   create: stripeMethod26({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/received_credits",
-  }),
+    fullPath: "/v1/test_helpers/treasury/received_credits"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/ReceivedCredits.js
@@ -20321,13 +16256,13 @@ var stripeMethod27 = StripeResource.method;
 var ReceivedCredits2 = StripeResource.extend({
   retrieve: stripeMethod27({
     method: "GET",
-    fullPath: "/v1/treasury/received_credits/{id}",
+    fullPath: "/v1/treasury/received_credits/{id}"
   }),
   list: stripeMethod27({
     method: "GET",
     fullPath: "/v1/treasury/received_credits",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Treasury/ReceivedDebits.js
@@ -20335,8 +16270,8 @@ var stripeMethod28 = StripeResource.method;
 var ReceivedDebits = StripeResource.extend({
   create: stripeMethod28({
     method: "POST",
-    fullPath: "/v1/test_helpers/treasury/received_debits",
-  }),
+    fullPath: "/v1/test_helpers/treasury/received_debits"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/ReceivedDebits.js
@@ -20344,13 +16279,13 @@ var stripeMethod29 = StripeResource.method;
 var ReceivedDebits2 = StripeResource.extend({
   retrieve: stripeMethod29({
     method: "GET",
-    fullPath: "/v1/treasury/received_debits/{id}",
+    fullPath: "/v1/treasury/received_debits/{id}"
   }),
   list: stripeMethod29({
     method: "GET",
     fullPath: "/v1/treasury/received_debits",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/Refunds.js
@@ -20358,26 +16293,23 @@ var stripeMethod30 = StripeResource.method;
 var Refunds = StripeResource.extend({
   expire: stripeMethod30({
     method: "POST",
-    fullPath: "/v1/test_helpers/refunds/{refund}/expire",
-  }),
+    fullPath: "/v1/test_helpers/refunds/{refund}/expire"
+  })
 });
 
 // node_modules/stripe/esm/resources/Reporting/ReportRuns.js
 var stripeMethod31 = StripeResource.method;
 var ReportRuns = StripeResource.extend({
-  create: stripeMethod31({
-    method: "POST",
-    fullPath: "/v1/reporting/report_runs",
-  }),
+  create: stripeMethod31({ method: "POST", fullPath: "/v1/reporting/report_runs" }),
   retrieve: stripeMethod31({
     method: "GET",
-    fullPath: "/v1/reporting/report_runs/{report_run}",
+    fullPath: "/v1/reporting/report_runs/{report_run}"
   }),
   list: stripeMethod31({
     method: "GET",
     fullPath: "/v1/reporting/report_runs",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Reporting/ReportTypes.js
@@ -20385,13 +16317,13 @@ var stripeMethod32 = StripeResource.method;
 var ReportTypes = StripeResource.extend({
   retrieve: stripeMethod32({
     method: "GET",
-    fullPath: "/v1/reporting/report_types/{report_type}",
+    fullPath: "/v1/reporting/report_types/{report_type}"
   }),
   list: stripeMethod32({
     method: "GET",
     fullPath: "/v1/reporting/report_types",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Sigma/ScheduledQueryRuns.js
@@ -20399,13 +16331,13 @@ var stripeMethod33 = StripeResource.method;
 var ScheduledQueryRuns = StripeResource.extend({
   retrieve: stripeMethod33({
     method: "GET",
-    fullPath: "/v1/sigma/scheduled_query_runs/{scheduled_query_run}",
+    fullPath: "/v1/sigma/scheduled_query_runs/{scheduled_query_run}"
   }),
   list: stripeMethod33({
     method: "GET",
     fullPath: "/v1/sigma/scheduled_query_runs",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Apps/Secrets.js
@@ -20415,13 +16347,13 @@ var Secrets = StripeResource.extend({
   list: stripeMethod34({
     method: "GET",
     fullPath: "/v1/apps/secrets",
-    methodType: "list",
+    methodType: "list"
   }),
   deleteWhere: stripeMethod34({
     method: "POST",
-    fullPath: "/v1/apps/secrets/delete",
+    fullPath: "/v1/apps/secrets/delete"
   }),
-  find: stripeMethod34({ method: "GET", fullPath: "/v1/apps/secrets/find" }),
+  find: stripeMethod34({ method: "GET", fullPath: "/v1/apps/secrets/find" })
 });
 
 // node_modules/stripe/esm/resources/BillingPortal/Sessions.js
@@ -20429,8 +16361,8 @@ var stripeMethod35 = StripeResource.method;
 var Sessions = StripeResource.extend({
   create: stripeMethod35({
     method: "POST",
-    fullPath: "/v1/billing_portal/sessions",
-  }),
+    fullPath: "/v1/billing_portal/sessions"
+  })
 });
 
 // node_modules/stripe/esm/resources/Checkout/Sessions.js
@@ -20439,22 +16371,22 @@ var Sessions2 = StripeResource.extend({
   create: stripeMethod36({ method: "POST", fullPath: "/v1/checkout/sessions" }),
   retrieve: stripeMethod36({
     method: "GET",
-    fullPath: "/v1/checkout/sessions/{session}",
+    fullPath: "/v1/checkout/sessions/{session}"
   }),
   list: stripeMethod36({
     method: "GET",
     fullPath: "/v1/checkout/sessions",
-    methodType: "list",
+    methodType: "list"
   }),
   expire: stripeMethod36({
     method: "POST",
-    fullPath: "/v1/checkout/sessions/{session}/expire",
+    fullPath: "/v1/checkout/sessions/{session}/expire"
   }),
   listLineItems: stripeMethod36({
     method: "GET",
     fullPath: "/v1/checkout/sessions/{session}/line_items",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/FinancialConnections/Sessions.js
@@ -20462,19 +16394,19 @@ var stripeMethod37 = StripeResource.method;
 var Sessions3 = StripeResource.extend({
   create: stripeMethod37({
     method: "POST",
-    fullPath: "/v1/financial_connections/sessions",
+    fullPath: "/v1/financial_connections/sessions"
   }),
   retrieve: stripeMethod37({
     method: "GET",
-    fullPath: "/v1/financial_connections/sessions/{session}",
-  }),
+    fullPath: "/v1/financial_connections/sessions/{session}"
+  })
 });
 
 // node_modules/stripe/esm/resources/Tax/Settings.js
 var stripeMethod38 = StripeResource.method;
 var Settings = StripeResource.extend({
   retrieve: stripeMethod38({ method: "GET", fullPath: "/v1/tax/settings" }),
-  update: stripeMethod38({ method: "POST", fullPath: "/v1/tax/settings" }),
+  update: stripeMethod38({ method: "POST", fullPath: "/v1/tax/settings" })
 });
 
 // node_modules/stripe/esm/resources/TestHelpers/TestClocks.js
@@ -20482,25 +16414,25 @@ var stripeMethod39 = StripeResource.method;
 var TestClocks = StripeResource.extend({
   create: stripeMethod39({
     method: "POST",
-    fullPath: "/v1/test_helpers/test_clocks",
+    fullPath: "/v1/test_helpers/test_clocks"
   }),
   retrieve: stripeMethod39({
     method: "GET",
-    fullPath: "/v1/test_helpers/test_clocks/{test_clock}",
+    fullPath: "/v1/test_helpers/test_clocks/{test_clock}"
   }),
   list: stripeMethod39({
     method: "GET",
     fullPath: "/v1/test_helpers/test_clocks",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod39({
     method: "DELETE",
-    fullPath: "/v1/test_helpers/test_clocks/{test_clock}",
+    fullPath: "/v1/test_helpers/test_clocks/{test_clock}"
   }),
   advance: stripeMethod39({
     method: "POST",
-    fullPath: "/v1/test_helpers/test_clocks/{test_clock}/advance",
-  }),
+    fullPath: "/v1/test_helpers/test_clocks/{test_clock}/advance"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/TransactionEntries.js
@@ -20508,13 +16440,13 @@ var stripeMethod40 = StripeResource.method;
 var TransactionEntries = StripeResource.extend({
   retrieve: stripeMethod40({
     method: "GET",
-    fullPath: "/v1/treasury/transaction_entries/{id}",
+    fullPath: "/v1/treasury/transaction_entries/{id}"
   }),
   list: stripeMethod40({
     method: "GET",
     fullPath: "/v1/treasury/transaction_entries",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Issuing/Transactions.js
@@ -20522,17 +16454,17 @@ var stripeMethod41 = StripeResource.method;
 var Transactions = StripeResource.extend({
   retrieve: stripeMethod41({
     method: "GET",
-    fullPath: "/v1/issuing/transactions/{transaction}",
+    fullPath: "/v1/issuing/transactions/{transaction}"
   }),
   update: stripeMethod41({
     method: "POST",
-    fullPath: "/v1/issuing/transactions/{transaction}",
+    fullPath: "/v1/issuing/transactions/{transaction}"
   }),
   list: stripeMethod41({
     method: "GET",
     fullPath: "/v1/issuing/transactions",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Tax/Transactions.js
@@ -20540,21 +16472,21 @@ var stripeMethod42 = StripeResource.method;
 var Transactions2 = StripeResource.extend({
   retrieve: stripeMethod42({
     method: "GET",
-    fullPath: "/v1/tax/transactions/{transaction}",
+    fullPath: "/v1/tax/transactions/{transaction}"
   }),
   createFromCalculation: stripeMethod42({
     method: "POST",
-    fullPath: "/v1/tax/transactions/create_from_calculation",
+    fullPath: "/v1/tax/transactions/create_from_calculation"
   }),
   createReversal: stripeMethod42({
     method: "POST",
-    fullPath: "/v1/tax/transactions/create_reversal",
+    fullPath: "/v1/tax/transactions/create_reversal"
   }),
   listLineItems: stripeMethod42({
     method: "GET",
     fullPath: "/v1/tax/transactions/{transaction}/line_items",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Treasury/Transactions.js
@@ -20562,13 +16494,13 @@ var stripeMethod43 = StripeResource.method;
 var Transactions3 = StripeResource.extend({
   retrieve: stripeMethod43({
     method: "GET",
-    fullPath: "/v1/treasury/transactions/{id}",
+    fullPath: "/v1/treasury/transactions/{id}"
   }),
   list: stripeMethod43({
     method: "GET",
     fullPath: "/v1/treasury/transactions",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Radar/ValueListItems.js
@@ -20576,21 +16508,21 @@ var stripeMethod44 = StripeResource.method;
 var ValueListItems = StripeResource.extend({
   create: stripeMethod44({
     method: "POST",
-    fullPath: "/v1/radar/value_list_items",
+    fullPath: "/v1/radar/value_list_items"
   }),
   retrieve: stripeMethod44({
     method: "GET",
-    fullPath: "/v1/radar/value_list_items/{item}",
+    fullPath: "/v1/radar/value_list_items/{item}"
   }),
   list: stripeMethod44({
     method: "GET",
     fullPath: "/v1/radar/value_list_items",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod44({
     method: "DELETE",
-    fullPath: "/v1/radar/value_list_items/{item}",
-  }),
+    fullPath: "/v1/radar/value_list_items/{item}"
+  })
 });
 
 // node_modules/stripe/esm/resources/Radar/ValueLists.js
@@ -20599,21 +16531,21 @@ var ValueLists = StripeResource.extend({
   create: stripeMethod45({ method: "POST", fullPath: "/v1/radar/value_lists" }),
   retrieve: stripeMethod45({
     method: "GET",
-    fullPath: "/v1/radar/value_lists/{value_list}",
+    fullPath: "/v1/radar/value_lists/{value_list}"
   }),
   update: stripeMethod45({
     method: "POST",
-    fullPath: "/v1/radar/value_lists/{value_list}",
+    fullPath: "/v1/radar/value_lists/{value_list}"
   }),
   list: stripeMethod45({
     method: "GET",
     fullPath: "/v1/radar/value_lists",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod45({
     method: "DELETE",
-    fullPath: "/v1/radar/value_lists/{value_list}",
-  }),
+    fullPath: "/v1/radar/value_lists/{value_list}"
+  })
 });
 
 // node_modules/stripe/esm/resources/Identity/VerificationReports.js
@@ -20621,13 +16553,13 @@ var stripeMethod46 = StripeResource.method;
 var VerificationReports = StripeResource.extend({
   retrieve: stripeMethod46({
     method: "GET",
-    fullPath: "/v1/identity/verification_reports/{report}",
+    fullPath: "/v1/identity/verification_reports/{report}"
   }),
   list: stripeMethod46({
     method: "GET",
     fullPath: "/v1/identity/verification_reports",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Identity/VerificationSessions.js
@@ -20635,29 +16567,29 @@ var stripeMethod47 = StripeResource.method;
 var VerificationSessions = StripeResource.extend({
   create: stripeMethod47({
     method: "POST",
-    fullPath: "/v1/identity/verification_sessions",
+    fullPath: "/v1/identity/verification_sessions"
   }),
   retrieve: stripeMethod47({
     method: "GET",
-    fullPath: "/v1/identity/verification_sessions/{session}",
+    fullPath: "/v1/identity/verification_sessions/{session}"
   }),
   update: stripeMethod47({
     method: "POST",
-    fullPath: "/v1/identity/verification_sessions/{session}",
+    fullPath: "/v1/identity/verification_sessions/{session}"
   }),
   list: stripeMethod47({
     method: "GET",
     fullPath: "/v1/identity/verification_sessions",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod47({
     method: "POST",
-    fullPath: "/v1/identity/verification_sessions/{session}/cancel",
+    fullPath: "/v1/identity/verification_sessions/{session}/cancel"
   }),
   redact: stripeMethod47({
     method: "POST",
-    fullPath: "/v1/identity/verification_sessions/{session}/redact",
-  }),
+    fullPath: "/v1/identity/verification_sessions/{session}/redact"
+  })
 });
 
 // node_modules/stripe/esm/resources/Accounts.js
@@ -20668,7 +16600,7 @@ var Accounts2 = StripeResource.extend({
     if (typeof id === "string") {
       return stripeMethod48({
         method: "GET",
-        fullPath: "/v1/accounts/{id}",
+        fullPath: "/v1/accounts/{id}"
       }).apply(this, [id, ...args]);
     } else {
       if (id === null || id === void 0) {
@@ -20676,89 +16608,86 @@ var Accounts2 = StripeResource.extend({
       }
       return stripeMethod48({
         method: "GET",
-        fullPath: "/v1/account",
+        fullPath: "/v1/account"
       }).apply(this, [id, ...args]);
     }
   },
-  update: stripeMethod48({
-    method: "POST",
-    fullPath: "/v1/accounts/{account}",
-  }),
+  update: stripeMethod48({ method: "POST", fullPath: "/v1/accounts/{account}" }),
   list: stripeMethod48({
     method: "GET",
     fullPath: "/v1/accounts",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod48({ method: "DELETE", fullPath: "/v1/accounts/{account}" }),
   createExternalAccount: stripeMethod48({
     method: "POST",
-    fullPath: "/v1/accounts/{account}/external_accounts",
+    fullPath: "/v1/accounts/{account}/external_accounts"
   }),
   createLoginLink: stripeMethod48({
     method: "POST",
-    fullPath: "/v1/accounts/{account}/login_links",
+    fullPath: "/v1/accounts/{account}/login_links"
   }),
   createPerson: stripeMethod48({
     method: "POST",
-    fullPath: "/v1/accounts/{account}/persons",
+    fullPath: "/v1/accounts/{account}/persons"
   }),
   deleteExternalAccount: stripeMethod48({
     method: "DELETE",
-    fullPath: "/v1/accounts/{account}/external_accounts/{id}",
+    fullPath: "/v1/accounts/{account}/external_accounts/{id}"
   }),
   deletePerson: stripeMethod48({
     method: "DELETE",
-    fullPath: "/v1/accounts/{account}/persons/{person}",
+    fullPath: "/v1/accounts/{account}/persons/{person}"
   }),
   listCapabilities: stripeMethod48({
     method: "GET",
     fullPath: "/v1/accounts/{account}/capabilities",
-    methodType: "list",
+    methodType: "list"
   }),
   listExternalAccounts: stripeMethod48({
     method: "GET",
     fullPath: "/v1/accounts/{account}/external_accounts",
-    methodType: "list",
+    methodType: "list"
   }),
   listPersons: stripeMethod48({
     method: "GET",
     fullPath: "/v1/accounts/{account}/persons",
-    methodType: "list",
+    methodType: "list"
   }),
   reject: stripeMethod48({
     method: "POST",
-    fullPath: "/v1/accounts/{account}/reject",
+    fullPath: "/v1/accounts/{account}/reject"
   }),
   retrieveCapability: stripeMethod48({
     method: "GET",
-    fullPath: "/v1/accounts/{account}/capabilities/{capability}",
+    fullPath: "/v1/accounts/{account}/capabilities/{capability}"
   }),
   retrieveExternalAccount: stripeMethod48({
     method: "GET",
-    fullPath: "/v1/accounts/{account}/external_accounts/{id}",
+    fullPath: "/v1/accounts/{account}/external_accounts/{id}"
   }),
   retrievePerson: stripeMethod48({
     method: "GET",
-    fullPath: "/v1/accounts/{account}/persons/{person}",
+    fullPath: "/v1/accounts/{account}/persons/{person}"
   }),
   updateCapability: stripeMethod48({
     method: "POST",
-    fullPath: "/v1/accounts/{account}/capabilities/{capability}",
+    fullPath: "/v1/accounts/{account}/capabilities/{capability}"
   }),
   updateExternalAccount: stripeMethod48({
     method: "POST",
-    fullPath: "/v1/accounts/{account}/external_accounts/{id}",
+    fullPath: "/v1/accounts/{account}/external_accounts/{id}"
   }),
   updatePerson: stripeMethod48({
     method: "POST",
-    fullPath: "/v1/accounts/{account}/persons/{person}",
-  }),
+    fullPath: "/v1/accounts/{account}/persons/{person}"
+  })
 });
 
 // node_modules/stripe/esm/resources/AccountLinks.js
 var stripeMethod49 = StripeResource.method;
 var AccountLinks = StripeResource.extend({
-  create: stripeMethod49({ method: "POST", fullPath: "/v1/account_links" }),
+  create: stripeMethod49({ method: "POST", fullPath: "/v1/account_links" })
 });
 
 // node_modules/stripe/esm/resources/ApplePayDomains.js
@@ -20767,17 +16696,17 @@ var ApplePayDomains = StripeResource.extend({
   create: stripeMethod50({ method: "POST", fullPath: "/v1/apple_pay/domains" }),
   retrieve: stripeMethod50({
     method: "GET",
-    fullPath: "/v1/apple_pay/domains/{domain}",
+    fullPath: "/v1/apple_pay/domains/{domain}"
   }),
   list: stripeMethod50({
     method: "GET",
     fullPath: "/v1/apple_pay/domains",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod50({
     method: "DELETE",
-    fullPath: "/v1/apple_pay/domains/{domain}",
-  }),
+    fullPath: "/v1/apple_pay/domains/{domain}"
+  })
 });
 
 // node_modules/stripe/esm/resources/ApplicationFees.js
@@ -20785,36 +16714,36 @@ var stripeMethod51 = StripeResource.method;
 var ApplicationFees = StripeResource.extend({
   retrieve: stripeMethod51({
     method: "GET",
-    fullPath: "/v1/application_fees/{id}",
+    fullPath: "/v1/application_fees/{id}"
   }),
   list: stripeMethod51({
     method: "GET",
     fullPath: "/v1/application_fees",
-    methodType: "list",
+    methodType: "list"
   }),
   createRefund: stripeMethod51({
     method: "POST",
-    fullPath: "/v1/application_fees/{id}/refunds",
+    fullPath: "/v1/application_fees/{id}/refunds"
   }),
   listRefunds: stripeMethod51({
     method: "GET",
     fullPath: "/v1/application_fees/{id}/refunds",
-    methodType: "list",
+    methodType: "list"
   }),
   retrieveRefund: stripeMethod51({
     method: "GET",
-    fullPath: "/v1/application_fees/{fee}/refunds/{id}",
+    fullPath: "/v1/application_fees/{fee}/refunds/{id}"
   }),
   updateRefund: stripeMethod51({
     method: "POST",
-    fullPath: "/v1/application_fees/{fee}/refunds/{id}",
-  }),
+    fullPath: "/v1/application_fees/{fee}/refunds/{id}"
+  })
 });
 
 // node_modules/stripe/esm/resources/Balance.js
 var stripeMethod52 = StripeResource.method;
 var Balance = StripeResource.extend({
-  retrieve: stripeMethod52({ method: "GET", fullPath: "/v1/balance" }),
+  retrieve: stripeMethod52({ method: "GET", fullPath: "/v1/balance" })
 });
 
 // node_modules/stripe/esm/resources/BalanceTransactions.js
@@ -20822,13 +16751,13 @@ var stripeMethod53 = StripeResource.method;
 var BalanceTransactions = StripeResource.extend({
   retrieve: stripeMethod53({
     method: "GET",
-    fullPath: "/v1/balance_transactions/{id}",
+    fullPath: "/v1/balance_transactions/{id}"
   }),
   list: stripeMethod53({
     method: "GET",
     fullPath: "/v1/balance_transactions",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Charges.js
@@ -20840,17 +16769,17 @@ var Charges = StripeResource.extend({
   list: stripeMethod54({
     method: "GET",
     fullPath: "/v1/charges",
-    methodType: "list",
+    methodType: "list"
   }),
   capture: stripeMethod54({
     method: "POST",
-    fullPath: "/v1/charges/{charge}/capture",
+    fullPath: "/v1/charges/{charge}/capture"
   }),
   search: stripeMethod54({
     method: "GET",
     fullPath: "/v1/charges/search",
-    methodType: "search",
-  }),
+    methodType: "search"
+  })
 });
 
 // node_modules/stripe/esm/resources/CountrySpecs.js
@@ -20858,13 +16787,13 @@ var stripeMethod55 = StripeResource.method;
 var CountrySpecs = StripeResource.extend({
   retrieve: stripeMethod55({
     method: "GET",
-    fullPath: "/v1/country_specs/{country}",
+    fullPath: "/v1/country_specs/{country}"
   }),
   list: stripeMethod55({
     method: "GET",
     fullPath: "/v1/country_specs",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Coupons.js
@@ -20876,187 +16805,165 @@ var Coupons = StripeResource.extend({
   list: stripeMethod56({
     method: "GET",
     fullPath: "/v1/coupons",
-    methodType: "list",
+    methodType: "list"
   }),
-  del: stripeMethod56({ method: "DELETE", fullPath: "/v1/coupons/{coupon}" }),
+  del: stripeMethod56({ method: "DELETE", fullPath: "/v1/coupons/{coupon}" })
 });
 
 // node_modules/stripe/esm/resources/CreditNotes.js
 var stripeMethod57 = StripeResource.method;
 var CreditNotes = StripeResource.extend({
   create: stripeMethod57({ method: "POST", fullPath: "/v1/credit_notes" }),
-  retrieve: stripeMethod57({
-    method: "GET",
-    fullPath: "/v1/credit_notes/{id}",
-  }),
+  retrieve: stripeMethod57({ method: "GET", fullPath: "/v1/credit_notes/{id}" }),
   update: stripeMethod57({ method: "POST", fullPath: "/v1/credit_notes/{id}" }),
   list: stripeMethod57({
     method: "GET",
     fullPath: "/v1/credit_notes",
-    methodType: "list",
+    methodType: "list"
   }),
   listLineItems: stripeMethod57({
     method: "GET",
     fullPath: "/v1/credit_notes/{credit_note}/lines",
-    methodType: "list",
+    methodType: "list"
   }),
   listPreviewLineItems: stripeMethod57({
     method: "GET",
     fullPath: "/v1/credit_notes/preview/lines",
-    methodType: "list",
+    methodType: "list"
   }),
-  preview: stripeMethod57({
-    method: "GET",
-    fullPath: "/v1/credit_notes/preview",
-  }),
+  preview: stripeMethod57({ method: "GET", fullPath: "/v1/credit_notes/preview" }),
   voidCreditNote: stripeMethod57({
     method: "POST",
-    fullPath: "/v1/credit_notes/{id}/void",
-  }),
+    fullPath: "/v1/credit_notes/{id}/void"
+  })
 });
 
 // node_modules/stripe/esm/resources/Customers.js
 var stripeMethod58 = StripeResource.method;
 var Customers2 = StripeResource.extend({
   create: stripeMethod58({ method: "POST", fullPath: "/v1/customers" }),
-  retrieve: stripeMethod58({
-    method: "GET",
-    fullPath: "/v1/customers/{customer}",
-  }),
-  update: stripeMethod58({
-    method: "POST",
-    fullPath: "/v1/customers/{customer}",
-  }),
+  retrieve: stripeMethod58({ method: "GET", fullPath: "/v1/customers/{customer}" }),
+  update: stripeMethod58({ method: "POST", fullPath: "/v1/customers/{customer}" }),
   list: stripeMethod58({
     method: "GET",
     fullPath: "/v1/customers",
-    methodType: "list",
+    methodType: "list"
   }),
-  del: stripeMethod58({
-    method: "DELETE",
-    fullPath: "/v1/customers/{customer}",
-  }),
+  del: stripeMethod58({ method: "DELETE", fullPath: "/v1/customers/{customer}" }),
   createFundingInstructions: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/funding_instructions",
+    fullPath: "/v1/customers/{customer}/funding_instructions"
   }),
   createBalanceTransaction: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/balance_transactions",
+    fullPath: "/v1/customers/{customer}/balance_transactions"
   }),
   createSource: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/sources",
+    fullPath: "/v1/customers/{customer}/sources"
   }),
   createTaxId: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/tax_ids",
+    fullPath: "/v1/customers/{customer}/tax_ids"
   }),
   deleteDiscount: stripeMethod58({
     method: "DELETE",
-    fullPath: "/v1/customers/{customer}/discount",
+    fullPath: "/v1/customers/{customer}/discount"
   }),
   deleteSource: stripeMethod58({
     method: "DELETE",
-    fullPath: "/v1/customers/{customer}/sources/{id}",
+    fullPath: "/v1/customers/{customer}/sources/{id}"
   }),
   deleteTaxId: stripeMethod58({
     method: "DELETE",
-    fullPath: "/v1/customers/{customer}/tax_ids/{id}",
+    fullPath: "/v1/customers/{customer}/tax_ids/{id}"
   }),
   listPaymentMethods: stripeMethod58({
     method: "GET",
     fullPath: "/v1/customers/{customer}/payment_methods",
-    methodType: "list",
+    methodType: "list"
   }),
   listBalanceTransactions: stripeMethod58({
     method: "GET",
     fullPath: "/v1/customers/{customer}/balance_transactions",
-    methodType: "list",
+    methodType: "list"
   }),
   listCashBalanceTransactions: stripeMethod58({
     method: "GET",
     fullPath: "/v1/customers/{customer}/cash_balance_transactions",
-    methodType: "list",
+    methodType: "list"
   }),
   listSources: stripeMethod58({
     method: "GET",
     fullPath: "/v1/customers/{customer}/sources",
-    methodType: "list",
+    methodType: "list"
   }),
   listTaxIds: stripeMethod58({
     method: "GET",
     fullPath: "/v1/customers/{customer}/tax_ids",
-    methodType: "list",
+    methodType: "list"
   }),
   retrievePaymentMethod: stripeMethod58({
     method: "GET",
-    fullPath: "/v1/customers/{customer}/payment_methods/{payment_method}",
+    fullPath: "/v1/customers/{customer}/payment_methods/{payment_method}"
   }),
   retrieveBalanceTransaction: stripeMethod58({
     method: "GET",
-    fullPath: "/v1/customers/{customer}/balance_transactions/{transaction}",
+    fullPath: "/v1/customers/{customer}/balance_transactions/{transaction}"
   }),
   retrieveCashBalance: stripeMethod58({
     method: "GET",
-    fullPath: "/v1/customers/{customer}/cash_balance",
+    fullPath: "/v1/customers/{customer}/cash_balance"
   }),
   retrieveCashBalanceTransaction: stripeMethod58({
     method: "GET",
-    fullPath:
-      "/v1/customers/{customer}/cash_balance_transactions/{transaction}",
+    fullPath: "/v1/customers/{customer}/cash_balance_transactions/{transaction}"
   }),
   retrieveSource: stripeMethod58({
     method: "GET",
-    fullPath: "/v1/customers/{customer}/sources/{id}",
+    fullPath: "/v1/customers/{customer}/sources/{id}"
   }),
   retrieveTaxId: stripeMethod58({
     method: "GET",
-    fullPath: "/v1/customers/{customer}/tax_ids/{id}",
+    fullPath: "/v1/customers/{customer}/tax_ids/{id}"
   }),
   search: stripeMethod58({
     method: "GET",
     fullPath: "/v1/customers/search",
-    methodType: "search",
+    methodType: "search"
   }),
   updateBalanceTransaction: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/balance_transactions/{transaction}",
+    fullPath: "/v1/customers/{customer}/balance_transactions/{transaction}"
   }),
   updateCashBalance: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/cash_balance",
+    fullPath: "/v1/customers/{customer}/cash_balance"
   }),
   updateSource: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/sources/{id}",
+    fullPath: "/v1/customers/{customer}/sources/{id}"
   }),
   verifySource: stripeMethod58({
     method: "POST",
-    fullPath: "/v1/customers/{customer}/sources/{id}/verify",
-  }),
+    fullPath: "/v1/customers/{customer}/sources/{id}/verify"
+  })
 });
 
 // node_modules/stripe/esm/resources/Disputes.js
 var stripeMethod59 = StripeResource.method;
 var Disputes2 = StripeResource.extend({
-  retrieve: stripeMethod59({
-    method: "GET",
-    fullPath: "/v1/disputes/{dispute}",
-  }),
-  update: stripeMethod59({
-    method: "POST",
-    fullPath: "/v1/disputes/{dispute}",
-  }),
+  retrieve: stripeMethod59({ method: "GET", fullPath: "/v1/disputes/{dispute}" }),
+  update: stripeMethod59({ method: "POST", fullPath: "/v1/disputes/{dispute}" }),
   list: stripeMethod59({
     method: "GET",
     fullPath: "/v1/disputes",
-    methodType: "list",
+    methodType: "list"
   }),
   close: stripeMethod59({
     method: "POST",
-    fullPath: "/v1/disputes/{dispute}/close",
-  }),
+    fullPath: "/v1/disputes/{dispute}/close"
+  })
 });
 
 // node_modules/stripe/esm/resources/EphemeralKeys.js
@@ -21067,16 +16974,11 @@ var EphemeralKeys = StripeResource.extend({
     fullPath: "/v1/ephemeral_keys",
     validator: (data, options) => {
       if (!options.headers || !options.headers["Stripe-Version"]) {
-        throw new Error(
-          "Passing apiVersion in a separate options hash is required to create an ephemeral key. See https://stripe.com/docs/api/versioning?lang=node",
-        );
+        throw new Error("Passing apiVersion in a separate options hash is required to create an ephemeral key. See https://stripe.com/docs/api/versioning?lang=node");
       }
-    },
+    }
   }),
-  del: stripeMethod60({
-    method: "DELETE",
-    fullPath: "/v1/ephemeral_keys/{key}",
-  }),
+  del: stripeMethod60({ method: "DELETE", fullPath: "/v1/ephemeral_keys/{key}" })
 });
 
 // node_modules/stripe/esm/resources/Events.js
@@ -21086,8 +16988,8 @@ var Events = StripeResource.extend({
   list: stripeMethod61({
     method: "GET",
     fullPath: "/v1/events",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/ExchangeRates.js
@@ -21095,44 +16997,38 @@ var stripeMethod62 = StripeResource.method;
 var ExchangeRates = StripeResource.extend({
   retrieve: stripeMethod62({
     method: "GET",
-    fullPath: "/v1/exchange_rates/{rate_id}",
+    fullPath: "/v1/exchange_rates/{rate_id}"
   }),
   list: stripeMethod62({
     method: "GET",
     fullPath: "/v1/exchange_rates",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/FileLinks.js
 var stripeMethod63 = StripeResource.method;
 var FileLinks = StripeResource.extend({
   create: stripeMethod63({ method: "POST", fullPath: "/v1/file_links" }),
-  retrieve: stripeMethod63({
-    method: "GET",
-    fullPath: "/v1/file_links/{link}",
-  }),
+  retrieve: stripeMethod63({ method: "GET", fullPath: "/v1/file_links/{link}" }),
   update: stripeMethod63({ method: "POST", fullPath: "/v1/file_links/{link}" }),
   list: stripeMethod63({
     method: "GET",
     fullPath: "/v1/file_links",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/multipart.js
 var multipartDataGenerator = (method, data, headers2) => {
-  const segno = (
-    Math.round(Math.random() * 1e16) + Math.round(Math.random() * 1e16)
-  ).toString();
+  const segno = (Math.round(Math.random() * 1e16) + Math.round(Math.random() * 1e16)).toString();
   headers2["Content-Type"] = `multipart/form-data; boundary=${segno}`;
   const textEncoder = new TextEncoder();
   let buffer = new Uint8Array(0);
   const endBuffer = textEncoder.encode("\r\n");
   function push(l) {
     const prevBuffer = buffer;
-    const newBuffer =
-      l instanceof Uint8Array ? l : new Uint8Array(textEncoder.encode(l));
+    const newBuffer = l instanceof Uint8Array ? l : new Uint8Array(textEncoder.encode(l));
     buffer = new Uint8Array(prevBuffer.length + newBuffer.length + 2);
     buffer.set(prevBuffer);
     buffer.set(newBuffer, prevBuffer.length);
@@ -21147,11 +17043,7 @@ var multipartDataGenerator = (method, data, headers2) => {
     push(`--${segno}`);
     if (Object.prototype.hasOwnProperty.call(v, "data")) {
       const typedEntry = v;
-      push(
-        `Content-Disposition: form-data; name=${q(k)}; filename=${q(
-          typedEntry.name || "blob",
-        )}`,
-      );
+      push(`Content-Disposition: form-data; name=${q(k)}; filename=${q(typedEntry.name || "blob")}`);
       push(`Content-Type: ${typedEntry.type || "application/octet-stream"}`);
       push("");
       push(typedEntry.data);
@@ -21169,13 +17061,10 @@ function multipartRequestDataProcessor(method, data, headers2, callback) {
   if (method !== "POST") {
     return callback(null, stringifyRequestData(data));
   }
-  this._stripe._platformFunctions
-    .tryBufferData(data)
-    .then((bufferedData) => {
-      const buffer = multipartDataGenerator(method, bufferedData, headers2);
-      return callback(null, buffer);
-    })
-    .catch((err) => callback(err, null));
+  this._stripe._platformFunctions.tryBufferData(data).then((bufferedData) => {
+    const buffer = multipartDataGenerator(method, bufferedData, headers2);
+    return callback(null, buffer);
+  }).catch((err) => callback(err, null));
 }
 
 // node_modules/stripe/esm/resources/Files.js
@@ -21185,17 +17074,17 @@ var Files = StripeResource.extend({
     method: "POST",
     fullPath: "/v1/files",
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "multipart/form-data"
     },
-    host: "files.stripe.com",
+    host: "files.stripe.com"
   }),
   retrieve: stripeMethod64({ method: "GET", fullPath: "/v1/files/{file}" }),
   list: stripeMethod64({
     method: "GET",
     fullPath: "/v1/files",
-    methodType: "list",
+    methodType: "list"
   }),
-  requestDataProcessor: multipartRequestDataProcessor,
+  requestDataProcessor: multipartRequestDataProcessor
 });
 
 // node_modules/stripe/esm/resources/InvoiceItems.js
@@ -21204,89 +17093,77 @@ var InvoiceItems = StripeResource.extend({
   create: stripeMethod65({ method: "POST", fullPath: "/v1/invoiceitems" }),
   retrieve: stripeMethod65({
     method: "GET",
-    fullPath: "/v1/invoiceitems/{invoiceitem}",
+    fullPath: "/v1/invoiceitems/{invoiceitem}"
   }),
   update: stripeMethod65({
     method: "POST",
-    fullPath: "/v1/invoiceitems/{invoiceitem}",
+    fullPath: "/v1/invoiceitems/{invoiceitem}"
   }),
   list: stripeMethod65({
     method: "GET",
     fullPath: "/v1/invoiceitems",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod65({
     method: "DELETE",
-    fullPath: "/v1/invoiceitems/{invoiceitem}",
-  }),
+    fullPath: "/v1/invoiceitems/{invoiceitem}"
+  })
 });
 
 // node_modules/stripe/esm/resources/Invoices.js
 var stripeMethod66 = StripeResource.method;
 var Invoices = StripeResource.extend({
   create: stripeMethod66({ method: "POST", fullPath: "/v1/invoices" }),
-  retrieve: stripeMethod66({
-    method: "GET",
-    fullPath: "/v1/invoices/{invoice}",
-  }),
-  update: stripeMethod66({
-    method: "POST",
-    fullPath: "/v1/invoices/{invoice}",
-  }),
+  retrieve: stripeMethod66({ method: "GET", fullPath: "/v1/invoices/{invoice}" }),
+  update: stripeMethod66({ method: "POST", fullPath: "/v1/invoices/{invoice}" }),
   list: stripeMethod66({
     method: "GET",
     fullPath: "/v1/invoices",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod66({ method: "DELETE", fullPath: "/v1/invoices/{invoice}" }),
   finalizeInvoice: stripeMethod66({
     method: "POST",
-    fullPath: "/v1/invoices/{invoice}/finalize",
+    fullPath: "/v1/invoices/{invoice}/finalize"
   }),
   listLineItems: stripeMethod66({
     method: "GET",
     fullPath: "/v1/invoices/{invoice}/lines",
-    methodType: "list",
+    methodType: "list"
   }),
   listUpcomingLines: stripeMethod66({
     method: "GET",
     fullPath: "/v1/invoices/upcoming/lines",
-    methodType: "list",
+    methodType: "list"
   }),
   markUncollectible: stripeMethod66({
     method: "POST",
-    fullPath: "/v1/invoices/{invoice}/mark_uncollectible",
+    fullPath: "/v1/invoices/{invoice}/mark_uncollectible"
   }),
-  pay: stripeMethod66({
-    method: "POST",
-    fullPath: "/v1/invoices/{invoice}/pay",
-  }),
+  pay: stripeMethod66({ method: "POST", fullPath: "/v1/invoices/{invoice}/pay" }),
   retrieveUpcoming: stripeMethod66({
     method: "GET",
-    fullPath: "/v1/invoices/upcoming",
+    fullPath: "/v1/invoices/upcoming"
   }),
   search: stripeMethod66({
     method: "GET",
     fullPath: "/v1/invoices/search",
-    methodType: "search",
+    methodType: "search"
   }),
   sendInvoice: stripeMethod66({
     method: "POST",
-    fullPath: "/v1/invoices/{invoice}/send",
+    fullPath: "/v1/invoices/{invoice}/send"
   }),
   voidInvoice: stripeMethod66({
     method: "POST",
-    fullPath: "/v1/invoices/{invoice}/void",
-  }),
+    fullPath: "/v1/invoices/{invoice}/void"
+  })
 });
 
 // node_modules/stripe/esm/resources/Mandates.js
 var stripeMethod67 = StripeResource.method;
 var Mandates = StripeResource.extend({
-  retrieve: stripeMethod67({
-    method: "GET",
-    fullPath: "/v1/mandates/{mandate}",
-  }),
+  retrieve: stripeMethod67({ method: "GET", fullPath: "/v1/mandates/{mandate}" })
 });
 
 // node_modules/stripe/esm/resources/OAuth.js
@@ -21315,7 +17192,7 @@ var OAuth = StripeResource.extend({
   token: stripeMethod68({
     method: "POST",
     path: "oauth/token",
-    host: oAuthHost,
+    host: oAuthHost
   }),
   deauthorize(spec, ...args) {
     if (!spec.client_id) {
@@ -21324,9 +17201,9 @@ var OAuth = StripeResource.extend({
     return stripeMethod68({
       method: "POST",
       path: "oauth/deauthorize",
-      host: oAuthHost,
+      host: oAuthHost
     }).apply(this, [spec, ...args]);
-  },
+  }
 });
 
 // node_modules/stripe/esm/resources/PaymentIntents.js
@@ -21335,46 +17212,46 @@ var PaymentIntents = StripeResource.extend({
   create: stripeMethod69({ method: "POST", fullPath: "/v1/payment_intents" }),
   retrieve: stripeMethod69({
     method: "GET",
-    fullPath: "/v1/payment_intents/{intent}",
+    fullPath: "/v1/payment_intents/{intent}"
   }),
   update: stripeMethod69({
     method: "POST",
-    fullPath: "/v1/payment_intents/{intent}",
+    fullPath: "/v1/payment_intents/{intent}"
   }),
   list: stripeMethod69({
     method: "GET",
     fullPath: "/v1/payment_intents",
-    methodType: "list",
+    methodType: "list"
   }),
   applyCustomerBalance: stripeMethod69({
     method: "POST",
-    fullPath: "/v1/payment_intents/{intent}/apply_customer_balance",
+    fullPath: "/v1/payment_intents/{intent}/apply_customer_balance"
   }),
   cancel: stripeMethod69({
     method: "POST",
-    fullPath: "/v1/payment_intents/{intent}/cancel",
+    fullPath: "/v1/payment_intents/{intent}/cancel"
   }),
   capture: stripeMethod69({
     method: "POST",
-    fullPath: "/v1/payment_intents/{intent}/capture",
+    fullPath: "/v1/payment_intents/{intent}/capture"
   }),
   confirm: stripeMethod69({
     method: "POST",
-    fullPath: "/v1/payment_intents/{intent}/confirm",
+    fullPath: "/v1/payment_intents/{intent}/confirm"
   }),
   incrementAuthorization: stripeMethod69({
     method: "POST",
-    fullPath: "/v1/payment_intents/{intent}/increment_authorization",
+    fullPath: "/v1/payment_intents/{intent}/increment_authorization"
   }),
   search: stripeMethod69({
     method: "GET",
     fullPath: "/v1/payment_intents/search",
-    methodType: "search",
+    methodType: "search"
   }),
   verifyMicrodeposits: stripeMethod69({
     method: "POST",
-    fullPath: "/v1/payment_intents/{intent}/verify_microdeposits",
-  }),
+    fullPath: "/v1/payment_intents/{intent}/verify_microdeposits"
+  })
 });
 
 // node_modules/stripe/esm/resources/PaymentLinks.js
@@ -21383,22 +17260,22 @@ var PaymentLinks = StripeResource.extend({
   create: stripeMethod70({ method: "POST", fullPath: "/v1/payment_links" }),
   retrieve: stripeMethod70({
     method: "GET",
-    fullPath: "/v1/payment_links/{payment_link}",
+    fullPath: "/v1/payment_links/{payment_link}"
   }),
   update: stripeMethod70({
     method: "POST",
-    fullPath: "/v1/payment_links/{payment_link}",
+    fullPath: "/v1/payment_links/{payment_link}"
   }),
   list: stripeMethod70({
     method: "GET",
     fullPath: "/v1/payment_links",
-    methodType: "list",
+    methodType: "list"
   }),
   listLineItems: stripeMethod70({
     method: "GET",
     fullPath: "/v1/payment_links/{payment_link}/line_items",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/PaymentMethods.js
@@ -21407,25 +17284,25 @@ var PaymentMethods = StripeResource.extend({
   create: stripeMethod71({ method: "POST", fullPath: "/v1/payment_methods" }),
   retrieve: stripeMethod71({
     method: "GET",
-    fullPath: "/v1/payment_methods/{payment_method}",
+    fullPath: "/v1/payment_methods/{payment_method}"
   }),
   update: stripeMethod71({
     method: "POST",
-    fullPath: "/v1/payment_methods/{payment_method}",
+    fullPath: "/v1/payment_methods/{payment_method}"
   }),
   list: stripeMethod71({
     method: "GET",
     fullPath: "/v1/payment_methods",
-    methodType: "list",
+    methodType: "list"
   }),
   attach: stripeMethod71({
     method: "POST",
-    fullPath: "/v1/payment_methods/{payment_method}/attach",
+    fullPath: "/v1/payment_methods/{payment_method}/attach"
   }),
   detach: stripeMethod71({
     method: "POST",
-    fullPath: "/v1/payment_methods/{payment_method}/detach",
-  }),
+    fullPath: "/v1/payment_methods/{payment_method}/detach"
+  })
 });
 
 // node_modules/stripe/esm/resources/Payouts.js
@@ -21437,16 +17314,16 @@ var Payouts = StripeResource.extend({
   list: stripeMethod72({
     method: "GET",
     fullPath: "/v1/payouts",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod72({
     method: "POST",
-    fullPath: "/v1/payouts/{payout}/cancel",
+    fullPath: "/v1/payouts/{payout}/cancel"
   }),
   reverse: stripeMethod72({
     method: "POST",
-    fullPath: "/v1/payouts/{payout}/reverse",
-  }),
+    fullPath: "/v1/payouts/{payout}/reverse"
+  })
 });
 
 // node_modules/stripe/esm/resources/Plans.js
@@ -21458,9 +17335,9 @@ var Plans = StripeResource.extend({
   list: stripeMethod73({
     method: "GET",
     fullPath: "/v1/plans",
-    methodType: "list",
+    methodType: "list"
   }),
-  del: stripeMethod73({ method: "DELETE", fullPath: "/v1/plans/{plan}" }),
+  del: stripeMethod73({ method: "DELETE", fullPath: "/v1/plans/{plan}" })
 });
 
 // node_modules/stripe/esm/resources/Prices.js
@@ -21472,13 +17349,13 @@ var Prices = StripeResource.extend({
   list: stripeMethod74({
     method: "GET",
     fullPath: "/v1/prices",
-    methodType: "list",
+    methodType: "list"
   }),
   search: stripeMethod74({
     method: "GET",
     fullPath: "/v1/prices/search",
-    methodType: "search",
-  }),
+    methodType: "search"
+  })
 });
 
 // node_modules/stripe/esm/resources/Products.js
@@ -21490,14 +17367,14 @@ var Products = StripeResource.extend({
   list: stripeMethod75({
     method: "GET",
     fullPath: "/v1/products",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod75({ method: "DELETE", fullPath: "/v1/products/{id}" }),
   search: stripeMethod75({
     method: "GET",
     fullPath: "/v1/products/search",
-    methodType: "search",
-  }),
+    methodType: "search"
+  })
 });
 
 // node_modules/stripe/esm/resources/PromotionCodes.js
@@ -21506,17 +17383,17 @@ var PromotionCodes = StripeResource.extend({
   create: stripeMethod76({ method: "POST", fullPath: "/v1/promotion_codes" }),
   retrieve: stripeMethod76({
     method: "GET",
-    fullPath: "/v1/promotion_codes/{promotion_code}",
+    fullPath: "/v1/promotion_codes/{promotion_code}"
   }),
   update: stripeMethod76({
     method: "POST",
-    fullPath: "/v1/promotion_codes/{promotion_code}",
+    fullPath: "/v1/promotion_codes/{promotion_code}"
   }),
   list: stripeMethod76({
     method: "GET",
     fullPath: "/v1/promotion_codes",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Quotes.js
@@ -21528,36 +17405,30 @@ var Quotes = StripeResource.extend({
   list: stripeMethod77({
     method: "GET",
     fullPath: "/v1/quotes",
-    methodType: "list",
+    methodType: "list"
   }),
-  accept: stripeMethod77({
-    method: "POST",
-    fullPath: "/v1/quotes/{quote}/accept",
-  }),
-  cancel: stripeMethod77({
-    method: "POST",
-    fullPath: "/v1/quotes/{quote}/cancel",
-  }),
+  accept: stripeMethod77({ method: "POST", fullPath: "/v1/quotes/{quote}/accept" }),
+  cancel: stripeMethod77({ method: "POST", fullPath: "/v1/quotes/{quote}/cancel" }),
   finalizeQuote: stripeMethod77({
     method: "POST",
-    fullPath: "/v1/quotes/{quote}/finalize",
+    fullPath: "/v1/quotes/{quote}/finalize"
   }),
   listComputedUpfrontLineItems: stripeMethod77({
     method: "GET",
     fullPath: "/v1/quotes/{quote}/computed_upfront_line_items",
-    methodType: "list",
+    methodType: "list"
   }),
   listLineItems: stripeMethod77({
     method: "GET",
     fullPath: "/v1/quotes/{quote}/line_items",
-    methodType: "list",
+    methodType: "list"
   }),
   pdf: stripeMethod77({
     host: "files.stripe.com",
     method: "GET",
     fullPath: "/v1/quotes/{quote}/pdf",
-    streaming: true,
-  }),
+    streaming: true
+  })
 });
 
 // node_modules/stripe/esm/resources/Refunds.js
@@ -21569,12 +17440,12 @@ var Refunds2 = StripeResource.extend({
   list: stripeMethod78({
     method: "GET",
     fullPath: "/v1/refunds",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod78({
     method: "POST",
-    fullPath: "/v1/refunds/{refund}/cancel",
-  }),
+    fullPath: "/v1/refunds/{refund}/cancel"
+  })
 });
 
 // node_modules/stripe/esm/resources/Reviews.js
@@ -21584,12 +17455,12 @@ var Reviews = StripeResource.extend({
   list: stripeMethod79({
     method: "GET",
     fullPath: "/v1/reviews",
-    methodType: "list",
+    methodType: "list"
   }),
   approve: stripeMethod79({
     method: "POST",
-    fullPath: "/v1/reviews/{review}/approve",
-  }),
+    fullPath: "/v1/reviews/{review}/approve"
+  })
 });
 
 // node_modules/stripe/esm/resources/SetupAttempts.js
@@ -21598,8 +17469,8 @@ var SetupAttempts = StripeResource.extend({
   list: stripeMethod80({
     method: "GET",
     fullPath: "/v1/setup_attempts",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/SetupIntents.js
@@ -21608,29 +17479,29 @@ var SetupIntents = StripeResource.extend({
   create: stripeMethod81({ method: "POST", fullPath: "/v1/setup_intents" }),
   retrieve: stripeMethod81({
     method: "GET",
-    fullPath: "/v1/setup_intents/{intent}",
+    fullPath: "/v1/setup_intents/{intent}"
   }),
   update: stripeMethod81({
     method: "POST",
-    fullPath: "/v1/setup_intents/{intent}",
+    fullPath: "/v1/setup_intents/{intent}"
   }),
   list: stripeMethod81({
     method: "GET",
     fullPath: "/v1/setup_intents",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod81({
     method: "POST",
-    fullPath: "/v1/setup_intents/{intent}/cancel",
+    fullPath: "/v1/setup_intents/{intent}/cancel"
   }),
   confirm: stripeMethod81({
     method: "POST",
-    fullPath: "/v1/setup_intents/{intent}/confirm",
+    fullPath: "/v1/setup_intents/{intent}/confirm"
   }),
   verifyMicrodeposits: stripeMethod81({
     method: "POST",
-    fullPath: "/v1/setup_intents/{intent}/verify_microdeposits",
-  }),
+    fullPath: "/v1/setup_intents/{intent}/verify_microdeposits"
+  })
 });
 
 // node_modules/stripe/esm/resources/ShippingRates.js
@@ -21639,17 +17510,17 @@ var ShippingRates = StripeResource.extend({
   create: stripeMethod82({ method: "POST", fullPath: "/v1/shipping_rates" }),
   retrieve: stripeMethod82({
     method: "GET",
-    fullPath: "/v1/shipping_rates/{shipping_rate_token}",
+    fullPath: "/v1/shipping_rates/{shipping_rate_token}"
   }),
   update: stripeMethod82({
     method: "POST",
-    fullPath: "/v1/shipping_rates/{shipping_rate_token}",
+    fullPath: "/v1/shipping_rates/{shipping_rate_token}"
   }),
   list: stripeMethod82({
     method: "GET",
     fullPath: "/v1/shipping_rates",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Sources.js
@@ -21661,48 +17532,44 @@ var Sources = StripeResource.extend({
   listSourceTransactions: stripeMethod83({
     method: "GET",
     fullPath: "/v1/sources/{source}/source_transactions",
-    methodType: "list",
+    methodType: "list"
   }),
   verify: stripeMethod83({
     method: "POST",
-    fullPath: "/v1/sources/{source}/verify",
-  }),
+    fullPath: "/v1/sources/{source}/verify"
+  })
 });
 
 // node_modules/stripe/esm/resources/SubscriptionItems.js
 var stripeMethod84 = StripeResource.method;
 var SubscriptionItems = StripeResource.extend({
-  create: stripeMethod84({
-    method: "POST",
-    fullPath: "/v1/subscription_items",
-  }),
+  create: stripeMethod84({ method: "POST", fullPath: "/v1/subscription_items" }),
   retrieve: stripeMethod84({
     method: "GET",
-    fullPath: "/v1/subscription_items/{item}",
+    fullPath: "/v1/subscription_items/{item}"
   }),
   update: stripeMethod84({
     method: "POST",
-    fullPath: "/v1/subscription_items/{item}",
+    fullPath: "/v1/subscription_items/{item}"
   }),
   list: stripeMethod84({
     method: "GET",
     fullPath: "/v1/subscription_items",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod84({
     method: "DELETE",
-    fullPath: "/v1/subscription_items/{item}",
+    fullPath: "/v1/subscription_items/{item}"
   }),
   createUsageRecord: stripeMethod84({
     method: "POST",
-    fullPath: "/v1/subscription_items/{subscription_item}/usage_records",
+    fullPath: "/v1/subscription_items/{subscription_item}/usage_records"
   }),
   listUsageRecordSummaries: stripeMethod84({
     method: "GET",
-    fullPath:
-      "/v1/subscription_items/{subscription_item}/usage_record_summaries",
-    methodType: "list",
-  }),
+    fullPath: "/v1/subscription_items/{subscription_item}/usage_record_summaries",
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/SubscriptionSchedules.js
@@ -21710,29 +17577,29 @@ var stripeMethod85 = StripeResource.method;
 var SubscriptionSchedules = StripeResource.extend({
   create: stripeMethod85({
     method: "POST",
-    fullPath: "/v1/subscription_schedules",
+    fullPath: "/v1/subscription_schedules"
   }),
   retrieve: stripeMethod85({
     method: "GET",
-    fullPath: "/v1/subscription_schedules/{schedule}",
+    fullPath: "/v1/subscription_schedules/{schedule}"
   }),
   update: stripeMethod85({
     method: "POST",
-    fullPath: "/v1/subscription_schedules/{schedule}",
+    fullPath: "/v1/subscription_schedules/{schedule}"
   }),
   list: stripeMethod85({
     method: "GET",
     fullPath: "/v1/subscription_schedules",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod85({
     method: "POST",
-    fullPath: "/v1/subscription_schedules/{schedule}/cancel",
+    fullPath: "/v1/subscription_schedules/{schedule}/cancel"
   }),
   release: stripeMethod85({
     method: "POST",
-    fullPath: "/v1/subscription_schedules/{schedule}/release",
-  }),
+    fullPath: "/v1/subscription_schedules/{schedule}/release"
+  })
 });
 
 // node_modules/stripe/esm/resources/Subscriptions.js
@@ -21741,38 +17608,38 @@ var Subscriptions = StripeResource.extend({
   create: stripeMethod86({ method: "POST", fullPath: "/v1/subscriptions" }),
   retrieve: stripeMethod86({
     method: "GET",
-    fullPath: "/v1/subscriptions/{subscription_exposed_id}",
+    fullPath: "/v1/subscriptions/{subscription_exposed_id}"
   }),
   update: stripeMethod86({
     method: "POST",
-    fullPath: "/v1/subscriptions/{subscription_exposed_id}",
+    fullPath: "/v1/subscriptions/{subscription_exposed_id}"
   }),
   list: stripeMethod86({
     method: "GET",
     fullPath: "/v1/subscriptions",
-    methodType: "list",
+    methodType: "list"
   }),
   cancel: stripeMethod86({
     method: "DELETE",
-    fullPath: "/v1/subscriptions/{subscription_exposed_id}",
+    fullPath: "/v1/subscriptions/{subscription_exposed_id}"
   }),
   del: stripeMethod86({
     method: "DELETE",
-    fullPath: "/v1/subscriptions/{subscription_exposed_id}",
+    fullPath: "/v1/subscriptions/{subscription_exposed_id}"
   }),
   deleteDiscount: stripeMethod86({
     method: "DELETE",
-    fullPath: "/v1/subscriptions/{subscription_exposed_id}/discount",
+    fullPath: "/v1/subscriptions/{subscription_exposed_id}/discount"
   }),
   resume: stripeMethod86({
     method: "POST",
-    fullPath: "/v1/subscriptions/{subscription}/resume",
+    fullPath: "/v1/subscriptions/{subscription}/resume"
   }),
   search: stripeMethod86({
     method: "GET",
     fullPath: "/v1/subscriptions/search",
-    methodType: "search",
-  }),
+    methodType: "search"
+  })
 });
 
 // node_modules/stripe/esm/resources/TaxCodes.js
@@ -21782,34 +17649,28 @@ var TaxCodes = StripeResource.extend({
   list: stripeMethod87({
     method: "GET",
     fullPath: "/v1/tax_codes",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/TaxRates.js
 var stripeMethod88 = StripeResource.method;
 var TaxRates = StripeResource.extend({
   create: stripeMethod88({ method: "POST", fullPath: "/v1/tax_rates" }),
-  retrieve: stripeMethod88({
-    method: "GET",
-    fullPath: "/v1/tax_rates/{tax_rate}",
-  }),
-  update: stripeMethod88({
-    method: "POST",
-    fullPath: "/v1/tax_rates/{tax_rate}",
-  }),
+  retrieve: stripeMethod88({ method: "GET", fullPath: "/v1/tax_rates/{tax_rate}" }),
+  update: stripeMethod88({ method: "POST", fullPath: "/v1/tax_rates/{tax_rate}" }),
   list: stripeMethod88({
     method: "GET",
     fullPath: "/v1/tax_rates",
-    methodType: "list",
-  }),
+    methodType: "list"
+  })
 });
 
 // node_modules/stripe/esm/resources/Tokens.js
 var stripeMethod89 = StripeResource.method;
 var Tokens = StripeResource.extend({
   create: stripeMethod89({ method: "POST", fullPath: "/v1/tokens" }),
-  retrieve: stripeMethod89({ method: "GET", fullPath: "/v1/tokens/{token}" }),
+  retrieve: stripeMethod89({ method: "GET", fullPath: "/v1/tokens/{token}" })
 });
 
 // node_modules/stripe/esm/resources/Topups.js
@@ -21821,48 +17682,39 @@ var Topups = StripeResource.extend({
   list: stripeMethod90({
     method: "GET",
     fullPath: "/v1/topups",
-    methodType: "list",
+    methodType: "list"
   }),
-  cancel: stripeMethod90({
-    method: "POST",
-    fullPath: "/v1/topups/{topup}/cancel",
-  }),
+  cancel: stripeMethod90({ method: "POST", fullPath: "/v1/topups/{topup}/cancel" })
 });
 
 // node_modules/stripe/esm/resources/Transfers.js
 var stripeMethod91 = StripeResource.method;
 var Transfers = StripeResource.extend({
   create: stripeMethod91({ method: "POST", fullPath: "/v1/transfers" }),
-  retrieve: stripeMethod91({
-    method: "GET",
-    fullPath: "/v1/transfers/{transfer}",
-  }),
-  update: stripeMethod91({
-    method: "POST",
-    fullPath: "/v1/transfers/{transfer}",
-  }),
+  retrieve: stripeMethod91({ method: "GET", fullPath: "/v1/transfers/{transfer}" }),
+  update: stripeMethod91({ method: "POST", fullPath: "/v1/transfers/{transfer}" }),
   list: stripeMethod91({
     method: "GET",
     fullPath: "/v1/transfers",
-    methodType: "list",
+    methodType: "list"
   }),
   createReversal: stripeMethod91({
     method: "POST",
-    fullPath: "/v1/transfers/{id}/reversals",
+    fullPath: "/v1/transfers/{id}/reversals"
   }),
   listReversals: stripeMethod91({
     method: "GET",
     fullPath: "/v1/transfers/{id}/reversals",
-    methodType: "list",
+    methodType: "list"
   }),
   retrieveReversal: stripeMethod91({
     method: "GET",
-    fullPath: "/v1/transfers/{transfer}/reversals/{id}",
+    fullPath: "/v1/transfers/{transfer}/reversals/{id}"
   }),
   updateReversal: stripeMethod91({
     method: "POST",
-    fullPath: "/v1/transfers/{transfer}/reversals/{id}",
-  }),
+    fullPath: "/v1/transfers/{transfer}/reversals/{id}"
+  })
 });
 
 // node_modules/stripe/esm/resources/WebhookEndpoints.js
@@ -21871,69 +17723,69 @@ var WebhookEndpoints = StripeResource.extend({
   create: stripeMethod92({ method: "POST", fullPath: "/v1/webhook_endpoints" }),
   retrieve: stripeMethod92({
     method: "GET",
-    fullPath: "/v1/webhook_endpoints/{webhook_endpoint}",
+    fullPath: "/v1/webhook_endpoints/{webhook_endpoint}"
   }),
   update: stripeMethod92({
     method: "POST",
-    fullPath: "/v1/webhook_endpoints/{webhook_endpoint}",
+    fullPath: "/v1/webhook_endpoints/{webhook_endpoint}"
   }),
   list: stripeMethod92({
     method: "GET",
     fullPath: "/v1/webhook_endpoints",
-    methodType: "list",
+    methodType: "list"
   }),
   del: stripeMethod92({
     method: "DELETE",
-    fullPath: "/v1/webhook_endpoints/{webhook_endpoint}",
-  }),
+    fullPath: "/v1/webhook_endpoints/{webhook_endpoint}"
+  })
 });
 
 // node_modules/stripe/esm/resources.js
 var Apps = resourceNamespace("apps", { Secrets });
 var BillingPortal = resourceNamespace("billingPortal", {
   Configurations,
-  Sessions,
+  Sessions
 });
 var Checkout = resourceNamespace("checkout", {
-  Sessions: Sessions2,
+  Sessions: Sessions2
 });
 var FinancialConnections = resourceNamespace("financialConnections", {
   Accounts,
-  Sessions: Sessions3,
+  Sessions: Sessions3
 });
 var Identity = resourceNamespace("identity", {
   VerificationReports,
-  VerificationSessions,
+  VerificationSessions
 });
 var Issuing = resourceNamespace("issuing", {
   Authorizations,
   Cardholders,
   Cards: Cards2,
   Disputes,
-  Transactions,
+  Transactions
 });
 var Radar = resourceNamespace("radar", {
   EarlyFraudWarnings,
   ValueListItems,
-  ValueLists,
+  ValueLists
 });
 var Reporting = resourceNamespace("reporting", {
   ReportRuns,
-  ReportTypes,
+  ReportTypes
 });
 var Sigma = resourceNamespace("sigma", {
-  ScheduledQueryRuns,
+  ScheduledQueryRuns
 });
 var Tax = resourceNamespace("tax", {
   Calculations,
   Settings,
-  Transactions: Transactions2,
+  Transactions: Transactions2
 });
 var Terminal = resourceNamespace("terminal", {
   Configurations: Configurations2,
   ConnectionTokens,
   Locations,
-  Readers: Readers2,
+  Readers: Readers2
 });
 var TestHelpers = resourceNamespace("testHelpers", {
   Customers,
@@ -21941,15 +17793,15 @@ var TestHelpers = resourceNamespace("testHelpers", {
   TestClocks,
   Issuing: resourceNamespace("issuing", { Cards }),
   Terminal: resourceNamespace("terminal", {
-    Readers,
+    Readers
   }),
   Treasury: resourceNamespace("treasury", {
     InboundTransfers,
     OutboundPayments,
     OutboundTransfers,
     ReceivedCredits,
-    ReceivedDebits,
-  }),
+    ReceivedDebits
+  })
 });
 var Treasury = resourceNamespace("treasury", {
   CreditReversals,
@@ -21961,7 +17813,7 @@ var Treasury = resourceNamespace("treasury", {
   ReceivedCredits: ReceivedCredits2,
   ReceivedDebits: ReceivedDebits2,
   TransactionEntries,
-  Transactions: Transactions3,
+  Transactions: Transactions3
 });
 
 // node_modules/stripe/esm/RequestSender.js
@@ -21990,7 +17842,7 @@ var RequestSender = class {
       request_id: this._getRequestId(headers2),
       elapsed: requestDurationMs,
       request_start_time: requestEvent.request_start_time,
-      request_end_time: requestEndTime,
+      request_end_time: requestEndTime
     });
   }
   _getRequestId(headers2) {
@@ -22000,16 +17852,9 @@ var RequestSender = class {
     return (res) => {
       const headers2 = res.getHeaders();
       const streamCompleteCallback = () => {
-        const responseEvent = this._makeResponseEvent(
-          requestEvent,
-          res.getStatusCode(),
-          headers2,
-        );
+        const responseEvent = this._makeResponseEvent(requestEvent, res.getStatusCode(), headers2);
         this._stripe._emitter.emit("response", responseEvent);
-        this._recordRequestMetrics(
-          this._getRequestId(headers2),
-          responseEvent.elapsed,
-        );
+        this._recordRequestMetrics(this._getRequestId(headers2), responseEvent.elapsed);
       };
       const stream = res.toStream(streamCompleteCallback);
       this._addHeadersDirectlyToObject(stream, headers2);
@@ -22021,75 +17866,56 @@ var RequestSender = class {
       const headers2 = res.getHeaders();
       const requestId = this._getRequestId(headers2);
       const statusCode2 = res.getStatusCode();
-      const responseEvent = this._makeResponseEvent(
-        requestEvent,
-        statusCode2,
-        headers2,
-      );
+      const responseEvent = this._makeResponseEvent(requestEvent, statusCode2, headers2);
       this._stripe._emitter.emit("response", responseEvent);
-      res
-        .toJSON()
-        .then(
-          (jsonResponse) => {
-            if (jsonResponse.error) {
-              let err;
-              if (typeof jsonResponse.error === "string") {
-                jsonResponse.error = {
-                  type: jsonResponse.error,
-                  message: jsonResponse.error_description,
-                };
-              }
-              jsonResponse.error.headers = headers2;
-              jsonResponse.error.statusCode = statusCode2;
-              jsonResponse.error.requestId = requestId;
-              if (statusCode2 === 401) {
-                err = new StripeAuthenticationError(jsonResponse.error);
-              } else if (statusCode2 === 403) {
-                err = new StripePermissionError(jsonResponse.error);
-              } else if (statusCode2 === 429) {
-                err = new StripeRateLimitError(jsonResponse.error);
-              } else {
-                err = StripeError.generate(jsonResponse.error);
-              }
-              throw err;
-            }
-            return jsonResponse;
-          },
-          (e) => {
-            throw new StripeAPIError({
-              message: "Invalid JSON received from the Stripe API",
-              exception: e,
-              requestId: headers2["request-id"],
-            });
-          },
-        )
-        .then(
-          (jsonResponse) => {
-            this._recordRequestMetrics(requestId, responseEvent.elapsed);
-            const rawResponse = res.getRawResponse();
-            this._addHeadersDirectlyToObject(rawResponse, headers2);
-            Object.defineProperty(jsonResponse, "lastResponse", {
-              enumerable: false,
-              writable: false,
-              value: rawResponse,
-            });
-            callback(null, jsonResponse);
-          },
-          (e) => callback(e, null),
-        );
+      res.toJSON().then((jsonResponse) => {
+        if (jsonResponse.error) {
+          let err;
+          if (typeof jsonResponse.error === "string") {
+            jsonResponse.error = {
+              type: jsonResponse.error,
+              message: jsonResponse.error_description
+            };
+          }
+          jsonResponse.error.headers = headers2;
+          jsonResponse.error.statusCode = statusCode2;
+          jsonResponse.error.requestId = requestId;
+          if (statusCode2 === 401) {
+            err = new StripeAuthenticationError(jsonResponse.error);
+          } else if (statusCode2 === 403) {
+            err = new StripePermissionError(jsonResponse.error);
+          } else if (statusCode2 === 429) {
+            err = new StripeRateLimitError(jsonResponse.error);
+          } else {
+            err = StripeError.generate(jsonResponse.error);
+          }
+          throw err;
+        }
+        return jsonResponse;
+      }, (e) => {
+        throw new StripeAPIError({
+          message: "Invalid JSON received from the Stripe API",
+          exception: e,
+          requestId: headers2["request-id"]
+        });
+      }).then((jsonResponse) => {
+        this._recordRequestMetrics(requestId, responseEvent.elapsed);
+        const rawResponse = res.getRawResponse();
+        this._addHeadersDirectlyToObject(rawResponse, headers2);
+        Object.defineProperty(jsonResponse, "lastResponse", {
+          enumerable: false,
+          writable: false,
+          value: rawResponse
+        });
+        callback(null, jsonResponse);
+      }, (e) => callback(e, null));
     };
   }
   static _generateConnectionErrorMessage(requestRetries) {
-    return `An error occurred with our connection to Stripe.${
-      requestRetries > 0 ? ` Request was retried ${requestRetries} times.` : ""
-    }`;
+    return `An error occurred with our connection to Stripe.${requestRetries > 0 ? ` Request was retried ${requestRetries} times.` : ""}`;
   }
   static _shouldRetry(res, numRetries, maxRetries, error) {
-    if (
-      error &&
-      numRetries === 0 &&
-      HttpClient.CONNECTION_CLOSED_ERROR_CODES.includes(error.code)
-    ) {
+    if (error && numRetries === 0 && HttpClient.CONNECTION_CLOSED_ERROR_CODES.includes(error.code)) {
       return true;
     }
     if (numRetries >= maxRetries) {
@@ -22115,10 +17941,7 @@ var RequestSender = class {
   _getSleepTimeInMS(numRetries, retryAfter = null) {
     const initialNetworkRetryDelay = this._stripe.getInitialNetworkRetryDelay();
     const maxNetworkRetryDelay = this._stripe.getMaxNetworkRetryDelay();
-    let sleepSeconds = Math.min(
-      initialNetworkRetryDelay * Math.pow(numRetries - 1, 2),
-      maxNetworkRetryDelay,
-    );
+    let sleepSeconds = Math.min(initialNetworkRetryDelay * Math.pow(numRetries - 1, 2), maxNetworkRetryDelay);
     sleepSeconds *= 0.5 * (1 + Math.random());
     sleepSeconds = Math.max(initialNetworkRetryDelay, sleepSeconds);
     if (Number.isInteger(retryAfter) && retryAfter <= MAX_RETRY_AFTER_WAIT) {
@@ -22127,10 +17950,7 @@ var RequestSender = class {
     return sleepSeconds * 1e3;
   }
   _getMaxNetworkRetries(settings = {}) {
-    return settings.maxNetworkRetries &&
-      Number.isInteger(settings.maxNetworkRetries)
-      ? settings.maxNetworkRetries
-      : this._stripe.getMaxNetworkRetries();
+    return settings.maxNetworkRetries && Number.isInteger(settings.maxNetworkRetries) ? settings.maxNetworkRetries : this._stripe.getMaxNetworkRetries();
   }
   _defaultIdempotencyKey(method, settings) {
     const maxRetries = this._getMaxNetworkRetries(settings);
@@ -22139,15 +17959,7 @@ var RequestSender = class {
     }
     return null;
   }
-  _makeHeaders(
-    auth,
-    contentLength,
-    apiVersion,
-    clientUserAgent,
-    method,
-    userSuppliedHeaders,
-    userSuppliedSettings,
-  ) {
+  _makeHeaders(auth, contentLength, apiVersion, clientUserAgent, method, userSuppliedHeaders, userSuppliedSettings) {
     const defaultHeaders = {
       Authorization: auth ? `Bearer ${auth}` : this._stripe.getApiField("auth"),
       Accept: "application/json",
@@ -22157,106 +17969,50 @@ var RequestSender = class {
       "X-Stripe-Client-Telemetry": this._getTelemetryHeader(),
       "Stripe-Version": apiVersion,
       "Stripe-Account": this._stripe.getApiField("stripeAccount"),
-      "Idempotency-Key": this._defaultIdempotencyKey(
-        method,
-        userSuppliedSettings,
-      ),
+      "Idempotency-Key": this._defaultIdempotencyKey(method, userSuppliedSettings)
     };
-    const methodHasPayload =
-      method == "POST" || method == "PUT" || method == "PATCH";
+    const methodHasPayload = method == "POST" || method == "PUT" || method == "PATCH";
     if (methodHasPayload || contentLength) {
       if (!methodHasPayload) {
-        emitWarning(
-          `${method} method had non-zero contentLength but no payload is expected for this verb`,
-        );
+        emitWarning(`${method} method had non-zero contentLength but no payload is expected for this verb`);
       }
       defaultHeaders["Content-Length"] = contentLength;
     }
-    return Object.assign(
-      removeNullish(defaultHeaders),
-      normalizeHeaders(userSuppliedHeaders),
-    );
+    return Object.assign(removeNullish(defaultHeaders), normalizeHeaders(userSuppliedHeaders));
   }
   _getUserAgentString() {
     const packageVersion = this._stripe.getConstant("PACKAGE_VERSION");
-    const appInfo = this._stripe._appInfo
-      ? this._stripe.getAppInfoAsString()
-      : "";
+    const appInfo = this._stripe._appInfo ? this._stripe.getAppInfoAsString() : "";
     return `Stripe/v1 NodeBindings/${packageVersion} ${appInfo}`.trim();
   }
   _getTelemetryHeader() {
-    if (
-      this._stripe.getTelemetryEnabled() &&
-      this._stripe._prevRequestMetrics.length > 0
-    ) {
+    if (this._stripe.getTelemetryEnabled() && this._stripe._prevRequestMetrics.length > 0) {
       const metrics = this._stripe._prevRequestMetrics.shift();
       return JSON.stringify({
-        last_request_metrics: metrics,
+        last_request_metrics: metrics
       });
     }
   }
   _recordRequestMetrics(requestId, requestDurationMs) {
     if (this._stripe.getTelemetryEnabled() && requestId) {
-      if (
-        this._stripe._prevRequestMetrics.length > this._maxBufferedRequestMetric
-      ) {
-        emitWarning(
-          "Request metrics buffer is full, dropping telemetry message.",
-        );
+      if (this._stripe._prevRequestMetrics.length > this._maxBufferedRequestMetric) {
+        emitWarning("Request metrics buffer is full, dropping telemetry message.");
       } else {
         this._stripe._prevRequestMetrics.push({
           request_id: requestId,
-          request_duration_ms: requestDurationMs,
+          request_duration_ms: requestDurationMs
         });
       }
     }
   }
-  _request(
-    method,
-    host,
-    path,
-    data,
-    auth,
-    options = {},
-    callback,
-    requestDataProcessor = null,
-  ) {
+  _request(method, host, path, data, auth, options = {}, callback, requestDataProcessor = null) {
     let requestData;
-    const retryRequest = (
-      requestFn,
-      apiVersion,
-      headers2,
-      requestRetries,
-      retryAfter,
-    ) => {
-      return setTimeout(
-        requestFn,
-        this._getSleepTimeInMS(requestRetries, retryAfter),
-        apiVersion,
-        headers2,
-        requestRetries + 1,
-      );
+    const retryRequest = (requestFn, apiVersion, headers2, requestRetries, retryAfter) => {
+      return setTimeout(requestFn, this._getSleepTimeInMS(requestRetries, retryAfter), apiVersion, headers2, requestRetries + 1);
     };
     const makeRequest = (apiVersion, headers2, numRetries) => {
-      const timeout =
-        options.settings &&
-        options.settings.timeout &&
-        Number.isInteger(options.settings.timeout) &&
-        options.settings.timeout >= 0
-          ? options.settings.timeout
-          : this._stripe.getApiField("timeout");
-      const req = this._stripe
-        .getApiField("httpClient")
-        .makeRequest(
-          host || this._stripe.getApiField("host"),
-          this._stripe.getApiField("port"),
-          path,
-          method,
-          headers2,
-          requestData,
-          this._stripe.getApiField("protocol"),
-          timeout,
-        );
+      const timeout = options.settings && options.settings.timeout && Number.isInteger(options.settings.timeout) && options.settings.timeout >= 0 ? options.settings.timeout : this._stripe.getApiField("timeout");
+      const req = this._stripe.getApiField("httpClient").makeRequest(host || this._stripe.getApiField("host"), this._stripe.getApiField("port"), path, method, headers2, requestData, this._stripe.getApiField("protocol"), timeout);
       const requestStartTime = Date.now();
       const requestEvent = removeNullish({
         api_version: apiVersion,
@@ -22264,53 +18020,30 @@ var RequestSender = class {
         idempotency_key: headers2["Idempotency-Key"],
         method,
         path,
-        request_start_time: requestStartTime,
+        request_start_time: requestStartTime
       });
       const requestRetries = numRetries || 0;
       const maxRetries = this._getMaxNetworkRetries(options.settings || {});
       this._stripe._emitter.emit("request", requestEvent);
-      req
-        .then((res) => {
-          if (RequestSender._shouldRetry(res, requestRetries, maxRetries)) {
-            return retryRequest(
-              makeRequest,
-              apiVersion,
-              headers2,
-              requestRetries,
-              res.getHeaders()["retry-after"],
-            );
-          } else if (options.streaming && res.getStatusCode() < 400) {
-            return this._streamingResponseHandler(requestEvent, callback)(res);
-          } else {
-            return this._jsonResponseHandler(requestEvent, callback)(res);
-          }
-        })
-        .catch((error) => {
-          if (
-            RequestSender._shouldRetry(null, requestRetries, maxRetries, error)
-          ) {
-            return retryRequest(
-              makeRequest,
-              apiVersion,
-              headers2,
-              requestRetries,
-              null,
-            );
-          } else {
-            const isTimeoutError =
-              error.code && error.code === HttpClient.TIMEOUT_ERROR_CODE;
-            return callback(
-              new StripeConnectionError({
-                message: isTimeoutError
-                  ? `Request aborted due to timeout being reached (${timeout}ms)`
-                  : RequestSender._generateConnectionErrorMessage(
-                      requestRetries,
-                    ),
-                detail: error,
-              }),
-            );
-          }
-        });
+      req.then((res) => {
+        if (RequestSender._shouldRetry(res, requestRetries, maxRetries)) {
+          return retryRequest(makeRequest, apiVersion, headers2, requestRetries, res.getHeaders()["retry-after"]);
+        } else if (options.streaming && res.getStatusCode() < 400) {
+          return this._streamingResponseHandler(requestEvent, callback)(res);
+        } else {
+          return this._jsonResponseHandler(requestEvent, callback)(res);
+        }
+      }).catch((error) => {
+        if (RequestSender._shouldRetry(null, requestRetries, maxRetries, error)) {
+          return retryRequest(makeRequest, apiVersion, headers2, requestRetries, null);
+        } else {
+          const isTimeoutError = error.code && error.code === HttpClient.TIMEOUT_ERROR_CODE;
+          return callback(new StripeConnectionError({
+            message: isTimeoutError ? `Request aborted due to timeout being reached (${timeout}ms)` : RequestSender._generateConnectionErrorMessage(requestRetries),
+            detail: error
+          }));
+        }
+      });
     };
     const prepareAndMakeRequest = (error, data2) => {
       if (error) {
@@ -22320,25 +18053,12 @@ var RequestSender = class {
       this._stripe.getClientUserAgent((clientUserAgent) => {
         var _a, _b;
         const apiVersion = this._stripe.getApiField("version");
-        const headers2 = this._makeHeaders(
-          auth,
-          requestData.length,
-          apiVersion,
-          clientUserAgent,
-          method,
-          (_a = options.headers) !== null && _a !== void 0 ? _a : null,
-          (_b = options.settings) !== null && _b !== void 0 ? _b : {},
-        );
+        const headers2 = this._makeHeaders(auth, requestData.length, apiVersion, clientUserAgent, method, (_a = options.headers) !== null && _a !== void 0 ? _a : null, (_b = options.settings) !== null && _b !== void 0 ? _b : {});
         makeRequest(apiVersion, headers2, 0);
       });
     };
     if (requestDataProcessor) {
-      requestDataProcessor(
-        method,
-        data,
-        options.headers,
-        prepareAndMakeRequest,
-      );
+      requestDataProcessor(method, data, options.headers, prepareAndMakeRequest);
     } else {
       prepareAndMakeRequest(null, stringifyRequestData(data || {}));
     }
@@ -22350,266 +18070,115 @@ function createWebhooks(platformFunctions) {
   const Webhook = {
     DEFAULT_TOLERANCE: 300,
     signature: null,
-    constructEvent(
-      payload,
-      header,
-      secret,
-      tolerance,
-      cryptoProvider,
-      receivedAt,
-    ) {
+    constructEvent(payload, header, secret, tolerance, cryptoProvider, receivedAt) {
       try {
-        this.signature.verifyHeader(
-          payload,
-          header,
-          secret,
-          tolerance || Webhook.DEFAULT_TOLERANCE,
-          cryptoProvider,
-          receivedAt,
-        );
+        this.signature.verifyHeader(payload, header, secret, tolerance || Webhook.DEFAULT_TOLERANCE, cryptoProvider, receivedAt);
       } catch (e) {
         if (e instanceof CryptoProviderOnlySupportsAsyncError) {
-          e.message +=
-            "\nUse `await constructEventAsync(...)` instead of `constructEvent(...)`";
+          e.message += "\nUse `await constructEventAsync(...)` instead of `constructEvent(...)`";
         }
         throw e;
       }
-      const jsonPayload =
-        payload instanceof Uint8Array
-          ? JSON.parse(new TextDecoder("utf8").decode(payload))
-          : JSON.parse(payload);
+      const jsonPayload = payload instanceof Uint8Array ? JSON.parse(new TextDecoder("utf8").decode(payload)) : JSON.parse(payload);
       return jsonPayload;
     },
-    async constructEventAsync(
-      payload,
-      header,
-      secret,
-      tolerance,
-      cryptoProvider,
-      receivedAt,
-    ) {
-      await this.signature.verifyHeaderAsync(
-        payload,
-        header,
-        secret,
-        tolerance || Webhook.DEFAULT_TOLERANCE,
-        cryptoProvider,
-        receivedAt,
-      );
-      const jsonPayload =
-        payload instanceof Uint8Array
-          ? JSON.parse(new TextDecoder("utf8").decode(payload))
-          : JSON.parse(payload);
+    async constructEventAsync(payload, header, secret, tolerance, cryptoProvider, receivedAt) {
+      await this.signature.verifyHeaderAsync(payload, header, secret, tolerance || Webhook.DEFAULT_TOLERANCE, cryptoProvider, receivedAt);
+      const jsonPayload = payload instanceof Uint8Array ? JSON.parse(new TextDecoder("utf8").decode(payload)) : JSON.parse(payload);
       return jsonPayload;
     },
-    generateTestHeaderString: function (opts) {
+    generateTestHeaderString: function(opts) {
       if (!opts) {
         throw new StripeError({
-          message: "Options are required",
+          message: "Options are required"
         });
       }
-      opts.timestamp =
-        Math.floor(opts.timestamp) || Math.floor(Date.now() / 1e3);
+      opts.timestamp = Math.floor(opts.timestamp) || Math.floor(Date.now() / 1e3);
       opts.scheme = opts.scheme || signature.EXPECTED_SCHEME;
       opts.cryptoProvider = opts.cryptoProvider || getCryptoProvider();
-      opts.signature =
-        opts.signature ||
-        opts.cryptoProvider.computeHMACSignature(
-          opts.timestamp + "." + opts.payload,
-          opts.secret,
-        );
+      opts.signature = opts.signature || opts.cryptoProvider.computeHMACSignature(opts.timestamp + "." + opts.payload, opts.secret);
       const generatedHeader = [
         "t=" + opts.timestamp,
-        opts.scheme + "=" + opts.signature,
+        opts.scheme + "=" + opts.signature
       ].join(",");
       return generatedHeader;
-    },
+    }
   };
   const signature = {
     EXPECTED_SCHEME: "v1",
-    verifyHeader(
-      encodedPayload,
-      encodedHeader,
-      secret,
-      tolerance,
-      cryptoProvider,
-      receivedAt,
-    ) {
-      const {
-        decodedHeader: header,
-        decodedPayload: payload,
-        details,
-        suspectPayloadType,
-      } = parseEventDetails(
-        encodedPayload,
-        encodedHeader,
-        this.EXPECTED_SCHEME,
-      );
+    verifyHeader(encodedPayload, encodedHeader, secret, tolerance, cryptoProvider, receivedAt) {
+      const { decodedHeader: header, decodedPayload: payload, details, suspectPayloadType } = parseEventDetails(encodedPayload, encodedHeader, this.EXPECTED_SCHEME);
       const secretContainsWhitespace = /\s/.test(secret);
       cryptoProvider = cryptoProvider || getCryptoProvider();
-      const expectedSignature = cryptoProvider.computeHMACSignature(
-        makeHMACContent(payload, details),
-        secret,
-      );
-      validateComputedSignature(
-        payload,
-        header,
-        details,
-        expectedSignature,
-        tolerance,
-        suspectPayloadType,
-        secretContainsWhitespace,
-        receivedAt,
-      );
+      const expectedSignature = cryptoProvider.computeHMACSignature(makeHMACContent(payload, details), secret);
+      validateComputedSignature(payload, header, details, expectedSignature, tolerance, suspectPayloadType, secretContainsWhitespace, receivedAt);
       return true;
     },
-    async verifyHeaderAsync(
-      encodedPayload,
-      encodedHeader,
-      secret,
-      tolerance,
-      cryptoProvider,
-      receivedAt,
-    ) {
-      const {
-        decodedHeader: header,
-        decodedPayload: payload,
-        details,
-        suspectPayloadType,
-      } = parseEventDetails(
-        encodedPayload,
-        encodedHeader,
-        this.EXPECTED_SCHEME,
-      );
+    async verifyHeaderAsync(encodedPayload, encodedHeader, secret, tolerance, cryptoProvider, receivedAt) {
+      const { decodedHeader: header, decodedPayload: payload, details, suspectPayloadType } = parseEventDetails(encodedPayload, encodedHeader, this.EXPECTED_SCHEME);
       const secretContainsWhitespace = /\s/.test(secret);
       cryptoProvider = cryptoProvider || getCryptoProvider();
-      const expectedSignature = await cryptoProvider.computeHMACSignatureAsync(
-        makeHMACContent(payload, details),
-        secret,
-      );
-      return validateComputedSignature(
-        payload,
-        header,
-        details,
-        expectedSignature,
-        tolerance,
-        suspectPayloadType,
-        secretContainsWhitespace,
-        receivedAt,
-      );
-    },
+      const expectedSignature = await cryptoProvider.computeHMACSignatureAsync(makeHMACContent(payload, details), secret);
+      return validateComputedSignature(payload, header, details, expectedSignature, tolerance, suspectPayloadType, secretContainsWhitespace, receivedAt);
+    }
   };
   function makeHMACContent(payload, details) {
     return `${details.timestamp}.${payload}`;
   }
   function parseEventDetails(encodedPayload, encodedHeader, expectedScheme) {
     if (!encodedPayload) {
-      throw new StripeSignatureVerificationError(
-        encodedHeader,
-        encodedPayload,
-        {
-          message: "No webhook payload was provided.",
-        },
-      );
+      throw new StripeSignatureVerificationError(encodedHeader, encodedPayload, {
+        message: "No webhook payload was provided."
+      });
     }
-    const suspectPayloadType =
-      typeof encodedPayload != "string" &&
-      !(encodedPayload instanceof Uint8Array);
+    const suspectPayloadType = typeof encodedPayload != "string" && !(encodedPayload instanceof Uint8Array);
     const textDecoder = new TextDecoder("utf8");
-    const decodedPayload =
-      encodedPayload instanceof Uint8Array
-        ? textDecoder.decode(encodedPayload)
-        : encodedPayload;
+    const decodedPayload = encodedPayload instanceof Uint8Array ? textDecoder.decode(encodedPayload) : encodedPayload;
     if (Array.isArray(encodedHeader)) {
-      throw new Error(
-        "Unexpected: An array was passed as a header, which should not be possible for the stripe-signature header.",
-      );
+      throw new Error("Unexpected: An array was passed as a header, which should not be possible for the stripe-signature header.");
     }
     if (encodedHeader == null || encodedHeader == "") {
-      throw new StripeSignatureVerificationError(
-        encodedHeader,
-        encodedPayload,
-        {
-          message: "No stripe-signature header value was provided.",
-        },
-      );
+      throw new StripeSignatureVerificationError(encodedHeader, encodedPayload, {
+        message: "No stripe-signature header value was provided."
+      });
     }
-    const decodedHeader =
-      encodedHeader instanceof Uint8Array
-        ? textDecoder.decode(encodedHeader)
-        : encodedHeader;
+    const decodedHeader = encodedHeader instanceof Uint8Array ? textDecoder.decode(encodedHeader) : encodedHeader;
     const details = parseHeader(decodedHeader, expectedScheme);
     if (!details || details.timestamp === -1) {
-      throw new StripeSignatureVerificationError(
-        decodedHeader,
-        decodedPayload,
-        {
-          message: "Unable to extract timestamp and signatures from header",
-        },
-      );
+      throw new StripeSignatureVerificationError(decodedHeader, decodedPayload, {
+        message: "Unable to extract timestamp and signatures from header"
+      });
     }
     if (!details.signatures.length) {
-      throw new StripeSignatureVerificationError(
-        decodedHeader,
-        decodedPayload,
-        {
-          message: "No signatures found with expected scheme",
-        },
-      );
+      throw new StripeSignatureVerificationError(decodedHeader, decodedPayload, {
+        message: "No signatures found with expected scheme"
+      });
     }
     return {
       decodedPayload,
       decodedHeader,
       details,
-      suspectPayloadType,
+      suspectPayloadType
     };
   }
-  function validateComputedSignature(
-    payload,
-    header,
-    details,
-    expectedSignature,
-    tolerance,
-    suspectPayloadType,
-    secretContainsWhitespace,
-    receivedAt,
-  ) {
-    const signatureFound = !!details.signatures.filter(
-      platformFunctions.secureCompare.bind(
-        platformFunctions,
-        expectedSignature,
-      ),
-    ).length;
-    const docsLocation =
-      "\nLearn more about webhook signing and explore webhook integration examples for various frameworks at https://github.com/stripe/stripe-node#webhook-signing";
-    const whitespaceMessage = secretContainsWhitespace
-      ? "\n\nNote: The provided signing secret contains whitespace. This often indicates an extra newline or space is in the value"
-      : "";
+  function validateComputedSignature(payload, header, details, expectedSignature, tolerance, suspectPayloadType, secretContainsWhitespace, receivedAt) {
+    const signatureFound = !!details.signatures.filter(platformFunctions.secureCompare.bind(platformFunctions, expectedSignature)).length;
+    const docsLocation = "\nLearn more about webhook signing and explore webhook integration examples for various frameworks at https://github.com/stripe/stripe-node#webhook-signing";
+    const whitespaceMessage = secretContainsWhitespace ? "\n\nNote: The provided signing secret contains whitespace. This often indicates an extra newline or space is in the value" : "";
     if (!signatureFound) {
       if (suspectPayloadType) {
         throw new StripeSignatureVerificationError(header, payload, {
-          message:
-            "Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. \nSignature verification is impossible without access to the original signed material. \n" +
-            docsLocation +
-            "\n" +
-            whitespaceMessage,
+          message: "Webhook payload must be provided as a string or a Buffer (https://nodejs.org/api/buffer.html) instance representing the _raw_ request body.Payload was provided as a parsed JavaScript object instead. \nSignature verification is impossible without access to the original signed material. \n" + docsLocation + "\n" + whitespaceMessage
         });
       }
       throw new StripeSignatureVerificationError(header, payload, {
-        message:
-          "No signatures found matching the expected signature for payload. Are you passing the raw request body you received from Stripe? \n" +
-          docsLocation +
-          "\n" +
-          whitespaceMessage,
+        message: "No signatures found matching the expected signature for payload. Are you passing the raw request body you received from Stripe? \n" + docsLocation + "\n" + whitespaceMessage
       });
     }
-    const timestampAge =
-      Math.floor(
-        (typeof receivedAt === "number" ? receivedAt : Date.now()) / 1e3,
-      ) - details.timestamp;
+    const timestampAge = Math.floor((typeof receivedAt === "number" ? receivedAt : Date.now()) / 1e3) - details.timestamp;
     if (tolerance > 0 && timestampAge > tolerance) {
       throw new StripeSignatureVerificationError(header, payload, {
-        message: "Timestamp outside the tolerance zone",
+        message: "Timestamp outside the tolerance zone"
       });
     }
     return true;
@@ -22618,28 +18187,24 @@ function createWebhooks(platformFunctions) {
     if (typeof header !== "string") {
       return null;
     }
-    return header.split(",").reduce(
-      (accum, item) => {
-        const kv = item.split("=");
-        if (kv[0] === "t") {
-          accum.timestamp = parseInt(kv[1], 10);
-        }
-        if (kv[0] === scheme) {
-          accum.signatures.push(kv[1]);
-        }
-        return accum;
-      },
-      {
-        timestamp: -1,
-        signatures: [],
-      },
-    );
+    return header.split(",").reduce((accum, item) => {
+      const kv = item.split("=");
+      if (kv[0] === "t") {
+        accum.timestamp = parseInt(kv[1], 10);
+      }
+      if (kv[0] === scheme) {
+        accum.signatures.push(kv[1]);
+      }
+      return accum;
+    }, {
+      timestamp: -1,
+      signatures: []
+    });
   }
   let webhooksCryptoProviderInstance = null;
   function getCryptoProvider() {
     if (!webhooksCryptoProviderInstance) {
-      webhooksCryptoProviderInstance =
-        platformFunctions.createDefaultCryptoProvider();
+      webhooksCryptoProviderInstance = platformFunctions.createDefaultCryptoProvider();
     }
     return webhooksCryptoProviderInstance;
   }
@@ -22668,25 +18233,12 @@ var ALLOWED_CONFIG_PROPERTIES = [
   "protocol",
   "telemetry",
   "appInfo",
-  "stripeAccount",
+  "stripeAccount"
 ];
-var defaultRequestSenderFactory = (stripe2) =>
-  new RequestSender(stripe2, StripeResource.MAX_BUFFERED_REQUEST_METRICS);
-function createStripe(
-  platformFunctions,
-  requestSender = defaultRequestSenderFactory,
-) {
+var defaultRequestSenderFactory = (stripe2) => new RequestSender(stripe2, StripeResource.MAX_BUFFERED_REQUEST_METRICS);
+function createStripe(platformFunctions, requestSender = defaultRequestSenderFactory) {
   Stripe2.PACKAGE_VERSION = "12.13.0";
-  Stripe2.USER_AGENT = Object.assign(
-    {
-      bindings_version: Stripe2.PACKAGE_VERSION,
-      lang: "node",
-      publisher: "stripe",
-      uname: null,
-      typescript: false,
-    },
-    determineProcessUserAgentProperties(),
-  );
+  Stripe2.USER_AGENT = Object.assign({ bindings_version: Stripe2.PACKAGE_VERSION, lang: "node", publisher: "stripe", uname: null, typescript: false }, determineProcessUserAgentProperties());
   Stripe2.StripeResource = StripeResource;
   Stripe2.resources = resources_exports;
   Stripe2.HttpClient = HttpClient;
@@ -22702,20 +18254,14 @@ function createStripe(
       value: this._platformFunctions.createEmitter(),
       enumerable: false,
       configurable: false,
-      writable: false,
+      writable: false
     });
     this.VERSION = Stripe2.PACKAGE_VERSION;
     this.on = this._emitter.on.bind(this._emitter);
     this.once = this._emitter.once.bind(this._emitter);
     this.off = this._emitter.removeListener.bind(this._emitter);
-    if (
-      props.protocol &&
-      props.protocol !== "https" &&
-      (!props.host || /\.stripe\.com$/.test(props.host))
-    ) {
-      throw new Error(
-        "The `https` protocol must be used when sending requests to `*.stripe.com`",
-      );
+    if (props.protocol && props.protocol !== "https" && (!props.host || /\.stripe\.com$/.test(props.host))) {
+      throw new Error("The `https` protocol must be used when sending requests to `*.stripe.com`");
     }
     const agent = props.httpAgent || null;
     this._api = {
@@ -22726,19 +18272,11 @@ function createStripe(
       basePath: DEFAULT_BASE_PATH,
       version: props.apiVersion || DEFAULT_API_VERSION,
       timeout: validateInteger("timeout", props.timeout, DEFAULT_TIMEOUT),
-      maxNetworkRetries: validateInteger(
-        "maxNetworkRetries",
-        props.maxNetworkRetries,
-        0,
-      ),
+      maxNetworkRetries: validateInteger("maxNetworkRetries", props.maxNetworkRetries, 0),
       agent,
-      httpClient:
-        props.httpClient ||
-        (agent
-          ? this._platformFunctions.createNodeHttpClient(agent)
-          : this._platformFunctions.createDefaultHttpClient()),
+      httpClient: props.httpClient || (agent ? this._platformFunctions.createNodeHttpClient(agent) : this._platformFunctions.createDefaultHttpClient()),
       dev: false,
-      stripeAccount: props.stripeAccount || null,
+      stripeAccount: props.stripeAccount || null
     };
     const typescript = props.typescript || false;
     if (typescript !== Stripe2.USER_AGENT.typescript) {
@@ -22761,8 +18299,7 @@ function createStripe(
   Stripe2.createNodeHttpClient = platformFunctions.createNodeHttpClient;
   Stripe2.createFetchHttpClient = platformFunctions.createFetchHttpClient;
   Stripe2.createNodeCryptoProvider = platformFunctions.createNodeCryptoProvider;
-  Stripe2.createSubtleCryptoProvider =
-    platformFunctions.createSubtleCryptoProvider;
+  Stripe2.createSubtleCryptoProvider = platformFunctions.createSubtleCryptoProvider;
   Stripe2.prototype = {
     _appInfo: void 0,
     on: null,
@@ -22791,16 +18328,13 @@ function createStripe(
         throw new Error("AppInfo.name is required");
       }
       info = info || {};
-      this._appInfo = APP_INFO_PROPERTIES.reduce(
-        (accum, prop) => {
-          if (typeof info[prop] == "string") {
-            accum = accum || {};
-            accum[prop] = info[prop];
-          }
-          return accum;
-        },
-        void 0,
-      );
+      this._appInfo = APP_INFO_PROPERTIES.reduce((accum, prop) => {
+        if (typeof info[prop] == "string") {
+          accum = accum || {};
+          accum[prop] = info[prop];
+        }
+        return accum;
+      }, void 0);
     },
     _setApiField(key, value) {
       this._api[key] = value;
@@ -22854,9 +18388,7 @@ function createStripe(
         var _a;
         const userAgent = {};
         for (const field in seed) {
-          userAgent[field] = encodeURIComponent(
-            (_a = seed[field]) !== null && _a !== void 0 ? _a : "null",
-          );
+          userAgent[field] = encodeURIComponent((_a = seed[field]) !== null && _a !== void 0 ? _a : "null");
         }
         userAgent.uname = encodeURIComponent(uname || "UNKNOWN");
         const client = this.getApiField("httpClient");
@@ -22901,21 +18433,15 @@ function createStripe(
       }
       if (isString) {
         return {
-          apiVersion: config,
+          apiVersion: config
         };
       }
-      const values = Object.keys(config).filter(
-        (value) => !ALLOWED_CONFIG_PROPERTIES.includes(value),
-      );
+      const values = Object.keys(config).filter((value) => !ALLOWED_CONFIG_PROPERTIES.includes(value));
       if (values.length > 0) {
-        throw new Error(
-          `Config object may only contain the following: ${ALLOWED_CONFIG_PROPERTIES.join(
-            ", ",
-          )}`,
-        );
+        throw new Error(`Config object may only contain the following: ${ALLOWED_CONFIG_PROPERTIES.join(", ")}`);
       }
       return config;
-    },
+    }
   };
   return Stripe2;
 }
@@ -22930,10 +18456,8 @@ var isProduction_default = isProduction;
 
 // functions/src/constants/defaultHeaders.ts
 var headers = {
-  "Access-Control-Allow-Origin": isProduction_default()
-    ? "https://typeitjs.com"
-    : "*",
-  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Origin": isProduction_default() ? "https://typeitjs.com" : "*",
+  "Access-Control-Allow-Headers": "Content-Type"
 };
 var defaultHeaders_default = headers;
 
@@ -22946,86 +18470,87 @@ var licenseOptions_default = [
     htmlTitle: "<strong class='font-bold'>Limited</strong> Commercial License",
     simpleTitle: "Limited License",
     price: 900,
-    description:
-      "Use TypeIt on a single commercial project. Includes lifetime updates.",
-    permissionDescription:
-      "You are now eligible to use TypeIt for a single commercial project.",
+    description: "Use TypeIt on a single commercial project. Includes lifetime updates.",
+    permissionDescription: "You are now eligible to use TypeIt for a single commercial project.",
     licenseLink: "https://typeitjs.com/licenses/download/limited-commercial",
     usageScope: "a single commercial project",
-    priceId: process.env.STRIPE_LIMITED_LICENSE_PRICE_ID,
+    priceId: process.env.STRIPE_LIMITED_LICENSE_PRICE_ID
   },
   {
     slug: "typeit_unlimited",
     friendlySlug: "unlimited",
     name: "TypeIt - Unlimited License",
-    htmlTitle:
-      "<strong class='font-bold'>Unlimited</strong> Commercial License",
+    htmlTitle: "<strong class='font-bold'>Unlimited</strong> Commercial License",
     simpleTitle: "Unlimited License",
     price: 2900,
-    description:
-      "Unlimited use on any commercial project. Includes lifetime updates.",
-    permissionDescription:
-      "You are now eligible to use TypeIt commercially for an unlimited number of projects.",
+    description: "Unlimited use on any commercial project. Includes lifetime updates.",
+    permissionDescription: "You are now eligible to use TypeIt commercially for an unlimited number of projects.",
     usageScope: "any number of commercial projects",
     licenseLink: "https://typeitjs.com/licenses/download/unlimited-commercial",
-    priceId: process.env.STRIPE_UNLIMITED_LICENSE_PRICE_ID,
-  },
+    priceId: process.env.STRIPE_UNLIMITED_LICENSE_PRICE_ID
+  }
 ];
 
 // functions/src/util/getLicenseData.ts
 var getLicenseData_default = (slug) => {
   return licenseOptions_default.find((option) => {
-    return option.slug === slug;
+    return [option.slug, option.friendlySlug].includes(slug);
   });
 };
 
 // functions/create-checkout-session.ts
 var stripe = new stripe_esm_node_default(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2020-08-27",
+  apiVersion: "2020-08-27"
 });
 var statusCode = 200;
 Sentry.init({
-  dsn: process.env.SENTRY_DSN,
+  dsn: process.env.SENTRY_DSN
 });
-var domain = isProduction_default()
-  ? "https://typeitjs.com"
-  : "http://localhost:8000";
+var domain = isProduction_default() ? "https://typeitjs.com" : "http://localhost:3000";
 var handler = async (event, _context) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode,
       headers: defaultHeaders_default,
       body: JSON.stringify({
-        message: "Not a valid request!",
-      }),
+        message: "Not a valid request!"
+      })
     };
   }
   const slug = new URLSearchParams(event.body).get("slug");
   const licenseData = getLicenseData_default(slug);
+  if (!licenseData) {
+    return {
+      statusCode: 400,
+      headers: defaultHeaders_default,
+      body: JSON.stringify({
+        message: "Not a valid license!"
+      })
+    };
+  }
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
       {
         price: licenseData.priceId,
-        quantity: 1,
-      },
+        quantity: 1
+      }
     ],
     mode: "payment",
     success_url: `${domain}/confirmation/${licenseData.friendlySlug}?id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${domain}/licenses/purchase`,
+    cancel_url: `${domain}/licenses/purchase`
   });
   return {
     statusCode: 303,
     headers: __spreadProps(__spreadValues({}, defaultHeaders_default), {
-      Location: session.url,
-    }),
+      Location: session.url
+    })
   };
 };
 // Annotate the CommonJS export names for ESM import in node:
-0 &&
-  (module.exports = {
-    handler,
-  });
+0 && (module.exports = {
+  handler
+});
 /*!
  * cookie
  * Copyright(c) 2012-2014 Roman Shtylman

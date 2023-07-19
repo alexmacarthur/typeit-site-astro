@@ -14,6 +14,7 @@ import HeroSnippet from '../snippets/hero.md';
 import Hero from "../examples/Hero.astro";
 import BuildYourOwnTool from "../build-your-own/index"
 import { Prism } from '@astrojs/prism';
+import TypeItDivider from "../components/TypeItDivider.astro";
 ---
 
 <Layout>
@@ -21,7 +22,9 @@ import { Prism } from '@astrojs/prism';
     <div class="text-center max-w-2xl mx-auto">
       <Hero />
 
-      <!-- <HeroSnippet /> -->
+      <div id="heroSnippet" class="fade-in">
+        <HeroSnippet />
+      </div>
 
       <p class="max-w-2xl mx-auto md:text-2xl mt-12 mb-12 leading-normal">
         TypeIt is a JavaScript library that makes it easy to create flexible, dynamic typewriter effects for the web.
@@ -31,7 +34,7 @@ import { Prism } from '@astrojs/prism';
     </div>
   </div>
 
-  <div id="examples" class="max-w-6xl mx-auto mt-12 mb-32">
+  <div id="examples" class="max-w-6xl mx-auto mt-12 mb-24 flex flex-col gap-16">
     <Simple />
     <MultipleStrings />
     <FormElements />
@@ -41,7 +44,9 @@ import { Prism } from '@astrojs/prism';
     <PauseResume />
   </div>
 
-  <div id="#buildYourOwn" class="max-w-6xl mx-auto mt-12">
+  <TypeItDivider />
+
+  <div id="#buildYourOwn" class="max-w-5xl mx-auto mt-12">
     <div class="subheading-container">
       <h2 class="subheading">Build a Typewriter Animation Now</h2>
       <p class="subheading-description">Record an animation and tweak it to your liking. (Be gracious -- this playground is a work-in-progress!)</p>
@@ -50,7 +55,9 @@ import { Prism } from '@astrojs/prism';
     <BuildYourOwnTool pagePath={Astro.url.pathname} client:visible />
   </div>
 
-  <div id="#installation" class="max-w-6xl mx-auto mt-12">
+  <TypeItDivider rotation="left" />
+
+  <div id="#installation" class="max-w-5xl mx-auto">
     <div class="subheading-container">
       <h2 class="subheading">Easy to Set Up and Integrate</h2>
 
@@ -88,7 +95,9 @@ import { Prism } from '@astrojs/prism';
     </div>
   </div>
 
-  <div id="#flavors" class="max-w-6xl mx-auto mt-12">
+  <TypeItDivider rotation="right" />
+
+  <div id="#flavors" class="max-w-5xl mx-auto">
     <div class="subheading-container">
       <h2 class="subheading">Available in Multiple Flavors</h2>
       <p class="subheading-description">For easy usage in a wide variety of projects, TypeIt's ready to go in multiple different packages. Purchase a license, and you get to choose which implementation is best for your needs.</p>
@@ -96,14 +105,18 @@ import { Prism } from '@astrojs/prism';
 
     <Flavors />
   </div>
+
+  <TypeItDivider rotation="left" />
   
-  <div id="#pricing" class="max-w-6xl mx-auto mt-12">
+  <div id="#pricing" class="max-w-5xl mx-auto">
     <div class="subheading-container">
       <h2 class="subheading">Pricing</h2>
       <p class="subheading-description">It's free for use in any personal or open source project (check out the code <a href="https://github.com/alexmacarthur/typeit" target="_blank">on GitHub!</a>). For a less restrictive commercial license, choose one of the following:</p>
     </div>
 
-    <PricingOptions />
+    <div class="max-w-4xl mx-auto">
+      <PricingOptions />
+    </div>
   </div>
 
 </Layout>
@@ -117,7 +130,19 @@ import { Prism } from '@astrojs/prism';
   }
 
   .subheading-description {
-    @apply md:text-2xl;
+    @apply md:text-2xl max-w-3xl mx-auto;
   }
 
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(1rem); }
+    100% { opacity:1; transform: translateY(0);}
+  }
+
+  .fade-in {
+    animation: fadeIn ease .6s;
+    -webkit-animation: fadeIn ease .6s;
+    -moz-animation: fadeIn ease .6s;
+    -o-animation: fadeIn ease .6s;
+    -ms-animation: fadeIn ease .6s;
+  }
 </style>

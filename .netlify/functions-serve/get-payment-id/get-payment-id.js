@@ -1,1 +1,1 @@
-module.exports = require("./src/functions/get-payment-id.js");
+module.exports = require('./src/functions/get-payment-id.js')
