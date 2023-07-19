@@ -1,5 +1,5 @@
 ---
-const { heading, description, exampleId, element = "span", resumable = false } = Astro.props;
+const { heading, description, exampleId, element = "span", resumable = false, label = "" } = Astro.props;
 
 const TargetElement = element;
 ---
@@ -10,6 +10,7 @@ const TargetElement = element;
         <p class="mt-0">{ description }</p>
 
         <div class="text-xl bg-slate-100 border-2 border-slate-200 border-solid p-6 rounded-md mb-6">
+            { label && <label class="block mb-2 text-base" for={exampleId}>{ label }</label> }
             <TargetElement id={exampleId} />
         </div>
 

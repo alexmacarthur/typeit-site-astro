@@ -27,6 +27,7 @@ export default defineConfig({
       ],
       customCss: [
         "@fontsource-variable/space-grotesk",
+        "/src/prism-theme.css",
         "/src/global.css",
         "/src/docs.css",
       ],

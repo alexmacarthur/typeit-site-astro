@@ -1,5 +1,3 @@
-@import "prismjs/themes/prism-okaidia.css";
-
 :root {
   --ti-cursor-transform: translateX(0em);
   --sl-font: "Space Grotesk Variable", sans-serif;
@@ -54,4 +52,8 @@ label {
 
 p > code {
   @apply bg-slate-100 text-slate-800 rounded-md p-1;
+}
+
+body .token.class-name {
+  text-decoration: none;
 }
