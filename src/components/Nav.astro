@@ -50,8 +50,8 @@ const links = [
       })
     }
 
-    <li>
-      <a href="/licenses/purchase" class="button inherit-size text-base lg:text-lg">Purchase a License</a>
+    <li class="text-base md:text-lg">
+      <a href="/licenses/purchase" class="button inherit-size">Purchase a License</a>
     </li>
   </ul>
 
@@ -80,7 +80,7 @@ const links = [
     <ul class="
       flex
       flex-col
-      p-6
+      px-6
       gap-4
       relative
       z-50
@@ -116,7 +116,6 @@ const links = [
   const menuCloseButton = document.querySelector("#menuClose") as HTMLButtonElement;
   const menuOpenButton = document.querySelector("#menuOpen") as HTMLButtonElement;
   const mobileMenu = document.querySelector("#mobileMenu") as HTMLUListElement;
-  const mobileMenuLogo = document.querySelector("#mobileMenuLogo") as HTMLDivElement;
 
   menuOpenButton.addEventListener("click", () => {
     mobileMenu.classList.remove("translate-x-full");
@@ -129,7 +128,7 @@ const links = [
 
 <style>
   .menu-button {
-    @apply border-none w-16 cursor-pointer hover:shadow-none;
+    @apply border-none w-16 cursor-pointer hover:shadow-none text-slate-700 hover:text-purple-600;
     background: none;
   }
 </style>
