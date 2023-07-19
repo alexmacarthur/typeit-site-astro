@@ -25,7 +25,11 @@ export default defineConfig({
           },
         },
       ],
-      customCss: ["/src/global.css", "/src/docs.css"],
+      customCss: [
+        "@fontsource-variable/space-grotesk",
+        "/src/global.css",
+        "/src/docs.css",
+      ],
       title: "TypeIt",
       sidebar: [
         {

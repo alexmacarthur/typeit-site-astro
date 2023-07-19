@@ -2,10 +2,11 @@
 
 :root {
   --ti-cursor-transform: translateX(0em);
+  --sl-font: "Space Grotesk Variable", sans-serif;
 }
 
 body {
-  font-family: "Space Grotesk Variable", sans-serif;
+  font-family: var(--sl-font);
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.02em;
 }
