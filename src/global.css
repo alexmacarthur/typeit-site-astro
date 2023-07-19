@@ -1,5 +1,4 @@
 @import "prismjs/themes/prism-okaidia.css";
-@import "@fontsource-variable/space-grotesk";
 
 :root {
   --ti-cursor-transform: translateX(0em);
