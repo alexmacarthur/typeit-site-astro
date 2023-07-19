@@ -12,7 +12,7 @@ export default defineConfig({
     syntaxHighlight: "prism",
     gfm: true,
   },
-  trailingSlash: "ignore",
+  trailingSlash: "never",
   integrations: [
     starlight({
       head: [
