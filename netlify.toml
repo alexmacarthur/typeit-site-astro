@@ -32,10 +32,14 @@
   to = "/licenses/download/licenses/limited.pdf"
 
 [[redirects]]
+  from = "/sitemap/*"
+  to = "/sitemap-index.xml"
+
+[[redirects]]
   from = "/licenses/download/unlimited-commercial"
   to = "/licenses/download/licenses/unlimited.pdf"
 
-[[redirects]]
+[[redirects]] 
   from = "/js/numbers.js"
   to = "https://analytics.macarthur.me/js/plausible.js"
   status = 200
