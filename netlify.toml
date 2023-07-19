@@ -28,12 +28,13 @@
   status = 301
 
 [[redirects]]
-  from = "/licenses/download/limited-commercial"
-  to = "/licenses/download/licenses/limited.pdf"
-
-[[redirects]]
   from = "/sitemap/*"
   to = "/sitemap-index.xml"
+  status = 301
+
+[[redirects]]
+  from = "/licenses/download/limited-commercial"
+  to = "/licenses/download/licenses/limited.pdf"
 
 [[redirects]]
   from = "/licenses/download/unlimited-commercial"
