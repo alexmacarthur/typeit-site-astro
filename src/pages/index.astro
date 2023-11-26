@@ -10,10 +10,10 @@ import Perks from "../components/Perks.astro";
 import Flavors from "../components/Flavors.astro";
 import PricingOptions from "../components/PricingOptions.astro";
 import Layout from "../Layout.astro";
-import HeroSnippet from '../snippets/hero.md';
+import HeroSnippet from "../snippets/hero.md";
 import Hero from "../examples/Hero.astro";
-import BuildYourOwnTool from "../build-your-own/index"
-import { Prism } from '@astrojs/prism';
+import BuildYourOwnTool from "../build-your-own/index";
+import { Prism } from "@astrojs/prism";
 import TypeItDivider from "../components/TypeItDivider.astro";
 ---
 
@@ -27,7 +27,8 @@ import TypeItDivider from "../components/TypeItDivider.astro";
       </div>
 
       <p class="max-w-2xl mx-auto md:text-2xl mt-12 mb-12 leading-normal">
-        TypeIt is a JavaScript library that makes it easy to create flexible, dynamic typewriter effects for the web.
+        TypeIt is a JavaScript library that makes it easy to create flexible,
+        dynamic typewriter effects for the web.
       </p>
 
       <Perks />
@@ -49,7 +50,10 @@ import TypeItDivider from "../components/TypeItDivider.astro";
   <div id="#buildYourOwn" class="max-w-5xl mx-auto mt-12">
     <div class="subheading-container">
       <h2 class="subheading">Build a Typewriter Animation Now</h2>
-      <p class="subheading-description">Record an animation and tweak it to your liking. (Be gracious -- this playground is a work-in-progress!)</p>
+      <p class="subheading-description">
+        Record an animation and tweak it to your liking. (Be gracious -- this
+        playground is a work-in-progress!)
+      </p>
     </div>
 
     <BuildYourOwnTool pagePath={Astro.url.pathname} client:visible />
@@ -64,13 +68,14 @@ import TypeItDivider from "../components/TypeItDivider.astro";
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 mt-16">
         <li>
           <span class="text-5xl font-bold">1.</span>
-          <h3 class="m-0 text-2xl">
-            Load the script on the page.
-          </h3>
+          <h3 class="m-0 text-2xl">Load the script on the page.</h3>
 
           <div class="text-left">
             <p>Load the script with a script tag (a CDN link is available).</p>
-            <Prism lang="html" code={`<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>`} />
+            <Prism
+              lang="html"
+              code={`<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>`}
+            />
             <p>Or, run 'npm install typeit' and import the module.</p>
             <Prism lang="js" code={`import TypeIt from "typeit";`} />
           </div>
@@ -78,17 +83,21 @@ import TypeItDivider from "../components/TypeItDivider.astro";
 
         <li>
           <span class="text-5xl font-bold">2.</span>
-          <h3 class="m-0 text-2xl">
-            Configure your animation.
-          </h3>
+          <h3 class="m-0 text-2xl">Configure your animation.</h3>
           <div class="text-left">
-            <p>Choose an element to target, define what to type, pick your other options, and kick it off.</p>
+            <p>
+              Choose an element to target, define what to type, pick your other
+              options, and kick it off.
+            </p>
 
-            <Prism lang="js" code={`new TypeIt("#element", {
+            <Prism
+              lang="js"
+              code={`new TypeIt("#element", {
   strings: "This is my string!",
   speed: 75,
   loop: true,
-}).go();`} />
+}).go();`}
+            />
           </div>
         </li>
       </ul>
@@ -100,25 +109,34 @@ import TypeItDivider from "../components/TypeItDivider.astro";
   <div id="#flavors" class="max-w-5xl mx-auto">
     <div class="subheading-container">
       <h2 class="subheading">Available in Multiple Flavors</h2>
-      <p class="subheading-description">For easy usage in a wide variety of projects, TypeIt's ready to go in multiple different packages. Purchase a license, and you get to choose which implementation is best for your needs.</p>
+      <p class="subheading-description">
+        For easy usage in a wide variety of projects, TypeIt's ready to go in
+        multiple different packages. Purchase a license, and you get to choose
+        which implementation is best for your needs.
+      </p>
     </div>
 
     <Flavors />
   </div>
 
   <TypeItDivider rotation="left" />
-  
+
   <div id="#pricing" class="max-w-5xl mx-auto">
     <div class="subheading-container">
       <h2 class="subheading">Pricing</h2>
-      <p class="subheading-description">It's free for use in any personal or open source project (check out the code <a href="https://github.com/alexmacarthur/typeit" target="_blank">on GitHub!</a>). For a less restrictive commercial license, choose one of the following:</p>
+      <p class="subheading-description">
+        It's free for use in any personal or open source project (check out the
+        code <a href="https://github.com/alexmacarthur/typeit" target="_blank"
+          >on GitHub!</a
+        >). For a less restrictive commercial license, choose one of the
+        following:
+      </p>
     </div>
 
     <div class="max-w-4xl mx-auto">
       <PricingOptions />
     </div>
   </div>
-
 </Layout>
 
 <style>
@@ -126,7 +144,7 @@ import TypeItDivider from "../components/TypeItDivider.astro";
     @apply text-center mb-20;
   }
   .subheading {
-    @apply text-4xl mb-0
+    @apply text-4xl mb-0;
   }
 
   .subheading-description {
@@ -134,15 +152,21 @@ import TypeItDivider from "../components/TypeItDivider.astro";
   }
 
   @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(1rem); }
-    100% { opacity:1; transform: translateY(0);}
+    0% {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .fade-in {
-    animation: fadeIn ease .6s;
-    -webkit-animation: fadeIn ease .6s;
-    -moz-animation: fadeIn ease .6s;
-    -o-animation: fadeIn ease .6s;
-    -ms-animation: fadeIn ease .6s;
+    animation: fadeIn ease 0.6s;
+    -webkit-animation: fadeIn ease 0.6s;
+    -moz-animation: fadeIn ease 0.6s;
+    -o-animation: fadeIn ease 0.6s;
+    -ms-animation: fadeIn ease 0.6s;
   }
 </style>

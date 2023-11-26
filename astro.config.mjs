@@ -18,7 +18,12 @@ export default defineConfig({
   trailingSlash: process.env.NODE_ENV === "development" ? "ignore" : "never",
   integrations: [
     starlight({
+      expressiveCode: false,
       head: [
+        {
+          tag: "script",
+          content: "window.localStorage.setItem('starlight-theme', 'light')",
+        },
         {
           tag: "script",
           attrs: {

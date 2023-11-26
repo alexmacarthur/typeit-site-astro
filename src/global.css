@@ -18,6 +18,14 @@ body {
   @apply text-gray-800 !important;
 }
 
+starlight-theme-select {
+  content-visibility: hidden;
+}
+
+.social-icons {
+  display: none;
+}
+
 .site-title {
   @apply font-bold;
 }

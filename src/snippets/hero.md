@@ -1,4 +1,4 @@
-```js
+```javascript
 new TypeIt("#hero", {
   speed: 50,
   startDelay: 900,
