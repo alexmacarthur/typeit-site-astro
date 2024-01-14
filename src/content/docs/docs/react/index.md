@@ -75,7 +75,7 @@ export default () => {
 
 ### Choosing Your Own Element
 
-Out of the box, a `span` element is used to contain the typing animation. To choose your own element, use the `element` prop.
+Out of the box, a `span` element is used to contain the typing animation. To choose your own element, use the `as` prop.
 
 ```javascript
 import TypeIt from "typeit-react";
@@ -83,7 +83,7 @@ import TypeIt from "typeit-react";
 export default () => {
   return (
     <div className="App">
-      <TypeIt element={"h3"}>This will be typed in an H3 tag.</TypeIt>
+      <TypeIt as={"h3"}>This will be typed in an H3 tag.</TypeIt>
     </div>
   );
 };
@@ -135,8 +135,7 @@ export default () => {
         getAfterInit={(instance) => {
           setInstance(instance);
           return instance;
-        }}
-      >
+        }}>
         This will just keep on going.
       </TypeIt>
     </div>
