@@ -1,7 +1,7 @@
 import ejs from "ejs";
-import emailTemplate from "../constants/email";
-import showdown from "showdown";
 import nodemailer from "nodemailer";
+import showdown from "showdown";
+import emailTemplate from "../constants/email";
 const markdownConverter = new showdown.Converter();
 
 const transporter = nodemailer.createTransport({
@@ -34,28 +34,15 @@ export default async ({ emailAddress, licenseData, paymentId }) => {
       permissionDescription,
       licenseLink,
     },
-    {},
+    {}
   );
 
   emailContent = markdownConverter.makeHtml(emailContent);
 
-  const clientEmailPromise = transport({
+  return transport({
     to: emailAddress,
     from: process.env.EMAIL_ADDRESS,
     subject: "TypeIt - License & Instructions",
     html: emailContent,
   });
-
-  const personalEmailPromise = transport({
-    to: process.env.EMAIL_ADDRESS,
-    from: process.env.EMAIL_ADDRESS,
-    subject: `${simpleTitle} Purchased!`,
-    html: `
-      Email Address: ${emailAddress}
-      <br>
-      Stripe Link: https://dashboard.stripe.com/payments/${paymentId}
-    `,
-  });
-
-  await Promise.all([clientEmailPromise, personalEmailPromise]);
 };
