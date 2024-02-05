@@ -34,11 +34,11 @@
 
 [[redirects]]
   from = "/licenses/download/limited-commercial"
-  to = "/licenses/download/licenses/limited.pdf"
+  to = "/download/licenses/limited.pdf"
 
 [[redirects]]
   from = "/licenses/download/unlimited-commercial"
-  to = "/licenses/download/licenses/unlimited.pdf"
+  to = "/download/licenses/unlimited.pdf"
 
 [[redirects]] 
   from = "/js/numbers.js"
