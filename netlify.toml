@@ -33,6 +33,11 @@
   status = 301
 
 [[redirects]]
+  from = "/docs/vanilla"
+  to = "/docs/vanilla/usage"
+  status = 301
+
+[[redirects]]
   from = "/licenses/download/limited-commercial"
   to = "/download/licenses/limited.pdf"
 

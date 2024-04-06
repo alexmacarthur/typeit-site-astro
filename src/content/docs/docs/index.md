@@ -14,7 +14,7 @@ For more advanced typing effects, instance methods are available that can be cha
 
 See the documentation menu for digging into a specific flavor of TypeIt:
 
-- [Vanilla JavaScript](/docs/vanilla)
+- [Vanilla JavaScript](/docs/vanilla/usage)
 - [WordPress](/docs/wordpress)
 - [React](/docs/react)
 
