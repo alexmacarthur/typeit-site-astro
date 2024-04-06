@@ -43,7 +43,36 @@ export default defineConfig({
       sidebar: [
         {
           label: "Vanilla JS Documentation",
-          autogenerate: { directory: "docs/vanilla" },
+          items: [
+            {
+              label: "Usage",
+              link: "/docs/vanilla/usage",
+            },
+            {
+              label: "Quick-Start Template",
+              link: "/docs/vanilla/quick-start",
+            },
+            {
+              label: "Installation",
+              link: "/docs/vanilla/installation",
+            },
+            {
+              label: "Instance Methods",
+              link: "/docs/vanilla/instance-methods",
+            },
+            {
+              label: "Usage in Website Builders",
+              link: "/docs/vanilla/third-party-platforms",
+            },
+            {
+              label: "Cursor Customization",
+              link: "/docs/vanilla/cursor-customization",
+            },
+            {
+              label: "Changelog",
+              link: "/docs/vanilla/changelog",
+            },
+          ],
         },
         {
           label: "Integrations",

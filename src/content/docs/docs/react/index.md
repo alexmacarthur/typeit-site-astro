@@ -135,7 +135,8 @@ export default () => {
         getAfterInit={(instance) => {
           setInstance(instance);
           return instance;
-        }}>
+        }}
+      >
         This will just keep on going.
       </TypeIt>
     </div>
