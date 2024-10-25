@@ -3,6 +3,12 @@ import ContentLayout from "../../ContentLayout.astro";
 import { parseExcerpt } from "../../utils";
 
 const demos = await Astro.glob('./*.md');
+const sortedDemos = demos.toSorted((a, b) => {
+    const aPriority = a.frontmatter.priority || 999999;
+    const bPriority = b.frontmatter.priority || 999999;
+
+    return aPriority - bPriority;
+});
 ---
 
 <ContentLayout
@@ -12,11 +18,14 @@ const demos = await Astro.glob('./*.md');
 
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-0">
 
-    { demos.map(demo => {
+    { sortedDemos.map(demo => {
+        const demoUrl = demo.frontmatter.external_url || demo.url;
+        const isExternal = !!demo.frontmatter.external_url;
+
         return (
             <li class="border-2 border-solid border-slate-200 rounded-md p-6 flex flex-col">
                 <h2 class="text-2xl mt-0 mb-3">
-                    <a href={demo.url}>
+                    <a href={demoUrl}>
                         { demo.frontmatter.title }    
                     </a>
                 </h2>
@@ -28,7 +37,7 @@ const demos = await Astro.glob('./*.md');
                 </div>
 
                 <div class="mt-auto">
-                    <a href={demo.url}>See Demo →</a>
+                    <a href={demoUrl} target={isExternal ? '_blank' : '_self'}>See Demo →</a>
                 </div>
             </li>
         )

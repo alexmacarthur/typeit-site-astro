@@ -3,6 +3,10 @@ title: Changelog
 description: A description of what each new version of TypeIt carries with it.
 ---
 
+## v8.8.6
+
+- FIX: The `.flush()` would not trigger smooth animations after it had been executed rapidly in succession.
+
 ## v8.0.1
 
 - FIX: Callback methods were not passing correct arguments as seen in documentation.

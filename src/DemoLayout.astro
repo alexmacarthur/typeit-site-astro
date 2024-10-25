@@ -6,6 +6,7 @@ const { frontmatter } = Astro.props;
 const title = frontmatter.title;
 const description = parseExcerpt(Astro.props.compiledContent())
 const slug = frontmatter?.codepen_slug;
+const externalUrl = frontmatter?.external_url;
 
 const height = 450;
 ---
@@ -14,13 +15,16 @@ const height = 450;
     title={title}
     description={description}
     showPreview={false}
+    canonicalUrl={frontmatter.external_url}
     breadcrumb={{
         label: "Back to All Demos", 
         url: "/demos"
     }}
 >
-    <div class="max-w-3xl mx-auto">
-        <div class="mb-10">
+
+<div class="max-w-3xl mx-auto">
+    { slug ? (
+    <div class="mb-10">
             <p
                 class="codepen"
                 data-height={height}
@@ -47,8 +51,15 @@ const height = 450;
                 </span>
             </p>
         </div>
+    ) : null }
+    
+    <slot />
 
-        <slot />
+    { externalUrl ? (
+        <a href={externalUrl} class="btn" target="_blank">
+            See It Here →
+        </a>   
+    ) : null }
     </div>
 </ContentLayout>
 

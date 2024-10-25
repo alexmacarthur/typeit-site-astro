@@ -15,9 +15,10 @@ interface Props {
     };
     showPreview?: boolean;
     breadcrumb?: Breadcrumb;
+    canonicalUrl?: string;
 }
 
-const { frontmatter, showPreview = true, breadcrumb = undefined } = Astro.props;
+const { frontmatter, showPreview = true, breadcrumb = undefined, canonicalUrl } = Astro.props;
 const title = frontmatter?.title || Astro.props.title;
 const description = frontmatter?.description || Astro.props.description;
 ---
@@ -26,6 +27,7 @@ const description = frontmatter?.description || Astro.props.description;
     title={title}
     description={description}
     breadcrumb={breadcrumb}
+    canonicalUrl={canonicalUrl}
 >
     <div class="max-w-3xl mx-auto px-2">
 

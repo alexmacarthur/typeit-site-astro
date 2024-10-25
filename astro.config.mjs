@@ -45,16 +45,16 @@ export default defineConfig({
           label: "Vanilla JS Documentation",
           items: [
             {
+              label: "Installation",
+              link: "/docs/vanilla/installation",
+            },
+            {
               label: "Usage",
               link: "/docs/vanilla/usage",
             },
             {
               label: "Quick-Start Template",
               link: "/docs/vanilla/quick-start",
-            },
-            {
-              label: "Installation",
-              link: "/docs/vanilla/installation",
             },
             {
               label: "Instance Methods",
@@ -67,6 +67,10 @@ export default defineConfig({
             {
               label: "Cursor Customization",
               link: "/docs/vanilla/cursor-customization",
+            },
+            {
+              label: "Demos",
+              link: "/demos",
             },
             {
               label: "Changelog",

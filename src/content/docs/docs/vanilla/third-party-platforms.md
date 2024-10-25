@@ -22,7 +22,7 @@ In that textarea, paste the following code that will load the TypeIt source scri
 Note: If you don't want to load the script on every page, you could also paste this snippet below the element you created in the first step.
 
 ```html
-<script src="https://unpkg.com/typeit@@{TYPEIT_VERSION}/dist/index.umd.js"></script>
+<script src="https://unpkg.com/typeit/dist/index.umd.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     new TypeIt("#element", {
