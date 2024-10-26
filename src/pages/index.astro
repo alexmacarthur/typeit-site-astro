@@ -15,6 +15,9 @@ import Hero from "../examples/Hero.astro";
 import BuildYourOwnTool from "../build-your-own/index";
 import { Prism } from "@astrojs/prism";
 import TypeItDivider from "../components/TypeItDivider.astro";
+
+const { dependencies } = await import("../../package.json");
+const typeItVersion = dependencies.typeit.replace(/[^0-9.]/, "");
 ---
 
 <Layout>
@@ -49,7 +52,7 @@ import TypeItDivider from "../components/TypeItDivider.astro";
 
   <div id="#buildYourOwn" class="max-w-5xl mx-auto mt-12">
     <div class="subheading-container">
-      <h2 class="subheading">Build a Typewriter Animation Now</h2>
+      <h2 class="subheading">Build a Typing Animation Now</h2>
       <p class="subheading-description">
         Record an animation and tweak it to your liking. (Be gracious -- this
         playground is a work-in-progress!)
@@ -74,7 +77,7 @@ import TypeItDivider from "../components/TypeItDivider.astro";
             <p>Load the script with a script tag (a CDN link is available).</p>
             <Prism
               lang="html"
-              code={`<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>`}
+              code={`<script src="https://unpkg.com/typeit@${typeItVersion}/dist/index.umd.js"></script>`}
             />
             <p>Or, run 'npm install typeit' and import the module.</p>
             <Prism lang="js" code={`import TypeIt from "typeit";`} />

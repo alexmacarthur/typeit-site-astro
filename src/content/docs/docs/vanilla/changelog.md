@@ -3,6 +3,10 @@ title: Changelog
 description: A description of what each new version of TypeIt carries with it.
 ---
 
+## v8.8.7
+
+- FIX: Inserting characteres into certain HTML resulted in a DOM exception.
+
 ## v8.8.6
 
 - FIX: The `.flush()` would not trigger smooth animations after it had been executed rapidly in succession.
