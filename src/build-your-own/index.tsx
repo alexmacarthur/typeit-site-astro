@@ -13,12 +13,12 @@ import { sendEvent } from "../utils";
 const typeItOptions = { lifeLike: true, speed: 0, waitUntilVisible: true };
 
 const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
-  const contentRef = useRef(null);
-  const editorRef = useRef(null);
-  const contentContainerRef = useRef(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const editorRef = useRef<HTMLTextAreaElement>(null);
+  const contentContainerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string>("");
-  const [capturedStrokes, setCapturedStrokes] = useState([]);
-  const [builtInstance, setBuiltInstance] = useState(null);
+  const [capturedStrokes, setCapturedStrokes] = useState<any[]>([]);
+  const [builtInstance, setBuiltInstance] = useState<any>(null);
   const [playerState, setPlayerState] = useState<State>("WAITING");
   const is = (s: State) => s === playerState;
   const getEditorValue = (): string => editorRef?.current?.value || "";
@@ -37,7 +37,7 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
     // destroy the instnace.
   }, [playerState]);
 
-  const finishRecording = (strokes) => {
+  const finishRecording = (strokes: any[]) => {
     setCapturedStrokes(strokes);
 
     if (!is("RECORDING")) {
@@ -47,10 +47,12 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
     // -- Trigger the instance to render...
     setPlayerState("PLAYING");
     sendDemoEvent("Demo", {
-      content: contentRef.current.value,
+      content: contentRef.current?.value || "",
     });
 
-    contentRef.current.value = "";
+    if (contentRef.current) {
+      contentRef.current.value = "";
+    }
   };
 
   const handlePlayAgainClick = () => {
@@ -58,24 +60,27 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
     sendDemoEvent("Demo :: Play Again");
 
     try {
-      const { instanceMethods, options } = processTemplate(
-        editorRef.current.value,
-      );
+      const editorValue = editorRef.current?.value;
+      if (!editorValue) return;
+
+      const { instanceMethods, options } = processTemplate(editorValue);
       const methodDetails = instanceMethodsToArray(instanceMethods);
 
       // Rebuild the instance queue.
-      return builtInstance
-        .reset((i) => {
-          i.options(options);
+      if (builtInstance) {
+        return builtInstance
+          .reset((i: any) => {
+            i.options(options);
 
-          methodDetails.forEach(({ methodName, args }) =>
-            i[methodName](...args),
-          );
-        })
-        .go();
+            methodDetails.forEach(({ methodName, args }) =>
+              i[methodName](...args),
+            );
+          })
+          .go();
+      }
     } catch (e) {
       sendDemoEvent("Demo :: Error", {
-        custom_instance: editorRef.current.value,
+        custom_instance: editorRef.current?.value || "",
       });
 
       setError(
@@ -84,19 +89,21 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
     }
   };
 
-  const handleTabbing = (e) => {
+  const handleTabbing = (e: KeyboardEvent) => {
     if (!/tab/i.test(e.code)) {
       return;
     }
 
     e.preventDefault();
 
-    editorRef.current.setRangeText(
-      "\t",
-      editorRef.current.selectionStart,
-      editorRef.current.selectionStart,
-      "end",
-    );
+    if (editorRef.current) {
+      editorRef.current.setRangeText(
+        "\t",
+        editorRef.current.selectionStart,
+        editorRef.current.selectionStart,
+        "end",
+      );
+    }
   };
 
   return (
@@ -109,7 +116,7 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
             <button
               className="button"
               disabled={!is("RECORDING")}
-              onClick={finishRecording}
+              onClick={() => finishRecording(capturedStrokes)}
             >
               Stop Recording
             </button>
@@ -137,18 +144,20 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
               <TypeIt
                 className="block"
                 options={typeItOptions}
-                getBeforeInit={(instance) => {
+                getBeforeInit={(instance: any) => {
                   const { instance: newInstance, template } = buildInstance({
                     strokes: capturedStrokes,
                     instance,
                   });
 
-                  editorRef.current.value = template;
-                  setCapturedStrokes([]);
-                  setBuiltInstance(newInstance);
+                  if (editorRef.current) {
+                    editorRef.current.value = template;
+                    setCapturedStrokes([]);
+                    setBuiltInstance(newInstance);
 
-                  // Animate height of textarea.
-                  editorRef.current.style.height = `${editorRef.current.scrollHeight}px`;
+                    // Animate height of textarea.
+                    editorRef.current.style.height = `${editorRef.current.scrollHeight}px`;
+                  }
 
                   return newInstance;
                 }}

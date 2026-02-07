@@ -5,8 +5,8 @@ import type { Stroke } from "./types";
 export const useKeyRecordingHandler = (setState: Function) => {
   const [previousContent, setPreviousContent] = useState("");
   const [previousCursorDiff, setPreviousCursorDiff] = useState(0);
-  const [strokes, setStrokes] = useState([]);
-  const pushStrokes = (newStrokes) => {
+  const [strokes, setStrokes] = useState<Stroke[]>([]);
+  const pushStrokes = (newStrokes: Stroke[]) => {
     setStrokes(() => strokes.concat(newStrokes));
   };
 

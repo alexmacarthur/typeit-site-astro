@@ -9,6 +9,14 @@ const sortedDemos = demos.toSorted((a, b) => {
 
     return aPriority - bPriority;
 });
+
+// Pre-compile all content
+const demosWithContent = await Promise.all(
+  sortedDemos.map(async (demo) => ({
+    ...demo,
+    excerpt: parseExcerpt(await demo.compiledContent())
+  }))
+);
 ---
 
 <ContentLayout
@@ -18,7 +26,7 @@ const sortedDemos = demos.toSorted((a, b) => {
 
     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-0">
 
-    { sortedDemos.map(demo => {
+    { demosWithContent.map(demo => {
         const demoUrl = demo.frontmatter.external_url || demo.url;
         const isExternal = !!demo.frontmatter.external_url;
 
@@ -32,7 +40,7 @@ const sortedDemos = demos.toSorted((a, b) => {
 
                 <div class="mb-8">
                     <p class="text-base m-0">
-                        { parseExcerpt(demo.compiledContent()) }
+                        { demo.excerpt }
                     </p>
                 </div>
 

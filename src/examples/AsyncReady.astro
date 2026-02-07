@@ -16,7 +16,7 @@ import Example from './Example.astro';
   .type("Hold up!")
   .exec(async () => {
     //-- Return a promise that resolves after something happens.
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve) => {
       setTimeout(() => {
         return resolve();
       }, 2000);
@@ -37,7 +37,7 @@ import Example from './Example.astro';
   .type("Hold up!")
   .exec(async () => {
     //-- Return a promise that resolves after something happens.
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve) => {
       setTimeout(() => {
         return resolve();
       }, 2000);

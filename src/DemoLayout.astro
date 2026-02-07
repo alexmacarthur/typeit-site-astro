@@ -4,7 +4,8 @@ import { parseExcerpt } from "./utils";
 
 const { frontmatter } = Astro.props;
 const title = frontmatter.title;
-const description = parseExcerpt(Astro.props.compiledContent())
+const compiledContent = await Astro.props.compiledContent();
+const description = parseExcerpt(compiledContent);
 const slug = frontmatter?.codepen_slug;
 const externalUrl = frontmatter?.external_url;
 
@@ -64,7 +65,7 @@ const height = 450;
 </ContentLayout>
 
 <script
-    script:inline
+    is:inline
     async
     src="https://cpwebassets.codepen.io/assets/embed/ei.js"
 ></script>

@@ -11,3 +11,8 @@ export type License = {
   usageScope: string;
   priceId: string;
 };
+
+export type InstanceMethod = {
+  methodName: string;
+  args: any[];
+};

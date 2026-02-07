@@ -16,6 +16,17 @@ export default defineConfig({
     gfm: true,
   },
   trailingSlash: process.env.NODE_ENV === "development" ? "ignore" : "never",
+  vite: {
+    resolve: {
+      alias: {
+        react: "preact/compat",
+        "react-dom": "preact/compat",
+      },
+    },
+    ssr: {
+      noExternal: ["typeit-react"],
+    },
+  },
   integrations: [
     starlight({
       expressiveCode: false,

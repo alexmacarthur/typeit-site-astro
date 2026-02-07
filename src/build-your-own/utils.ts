@@ -1,4 +1,6 @@
-const isObject = (thing) => typeof thing === "object" && thing !== null;
+import type { InstanceMethod } from "../../functions/types";
+
+const isObject = (thing: any) => typeof thing === "object" && thing !== null;
 
 const stringifyEach = (arr: any[]) => {
   return arr.map((item) => {
@@ -14,16 +16,16 @@ const stringifyEach = (arr: any[]) => {
 };
 
 const getAverage = (delays: number[]): number => {
-  const total = delays.reduce((a, b) => a + b);
+  const total = delays.reduce((a, b) => a + b, 0);
 
   return Math.floor(total / delays.length);
 };
 
 export const processTemplate = (
-  template,
+  template: string,
 ): {
   instanceMethods: string;
-  options: string;
+  options: any;
 } => {
   // remove line breaks
   template = template.replace(/(\r\n|\n|\r)/gm, "");
@@ -34,9 +36,10 @@ export const processTemplate = (
     /new TypeIt\((\'|\").+?(\'|\"),[ ]?{.+?}.*?\)/,
     "",
   );
-  const options = template.match(
+  const optionsMatch = template.match(
     /new TypeIt\((?:\'|\").+?(?:\'|\"),[ ]?({.+?}).*?\)/,
-  )[1];
+  );
+  const options = optionsMatch ? optionsMatch[1] : "{}";
 
   return {
     instanceMethods,
@@ -44,14 +47,20 @@ export const processTemplate = (
   };
 };
 
-export const buildInstance = ({ strokes, instance }) => {
+export const buildInstance = ({
+  strokes,
+  instance,
+}: {
+  strokes: any[];
+  instance: any;
+}) => {
   let template = `new TypeIt("#element", { 
     lifeLike: false, 
     speed: 0 
 })
 `;
 
-  const delays = [];
+  const delays: number[] = [];
 
   strokes.forEach(
     (
@@ -64,7 +73,7 @@ export const buildInstance = ({ strokes, instance }) => {
         timeStamp: number;
         prependDelay?: boolean;
       },
-      index,
+      index: number,
     ) => {
       const delay = Math.round(
         !index ? 0 : timeStamp - strokes[index - 1].timeStamp,
@@ -116,7 +125,7 @@ export const buildInstance = ({ strokes, instance }) => {
   return { instance, template: `${template}\t.go();` };
 };
 
-export const prepAsJsonString = (str): string => {
+export const prepAsJsonString = (str: string): string => {
   const keyVals = str
     // remove curly braces
     .replace(/{|}/g, "")
@@ -129,7 +138,7 @@ export const prepAsJsonString = (str): string => {
     .map((v) => v.split(":").map((v) => v.trim()))
 
     // put back into colon-separated pairs wrapped in quotes
-    .reduce((accum, [key, value]) => {
+    .reduce((accum: string, [key, value]: string[]) => {
       return accum + `"${key}": ${value},`;
     }, "")
 
@@ -152,15 +161,19 @@ export const instanceMethodsToArray = (
   const instanceMethodData = splitMethods.map((method) => {
     const matches = method.match(/(^.+)\((.*?)\)/);
 
+    if (!matches) {
+      return { methodName: "", args: [] };
+    }
+
     const methodArguments = matches[2]
       .split(",")
       .map((arg) => arg.trim())
       .map((arg) => {
         try {
-          arg = /^{.*?}$/.test(arg || null)
+          const processedArg = /^{.*?}$/.test(arg || "")
             ? prepAsJsonString(arg)
             : arg.replace(/^('|")|('|")$/g, "");
-          return JSON.parse(arg);
+          return JSON.parse(processedArg);
         } catch (_e) {}
 
         return arg;

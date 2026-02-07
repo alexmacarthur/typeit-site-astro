@@ -2,6 +2,8 @@ import ejs from "ejs";
 import nodemailer from "nodemailer";
 import showdown from "showdown";
 import emailTemplate from "../constants/email";
+import type { License } from "../../types";
+
 const markdownConverter = new showdown.Converter();
 
 const transporter = nodemailer.createTransport({
@@ -12,9 +14,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const transport = (options) => {
+const transport = (options: any) => {
   return new Promise((resolve, reject) => {
-    transporter.sendMail(options, function (error, info) {
+    transporter.sendMail(options, function (error: any, info: any) {
       if (error) {
         return reject(error);
       }
@@ -24,10 +26,18 @@ const transport = (options) => {
   });
 };
 
-export default async ({ emailAddress, licenseData, paymentId }) => {
+export default async ({
+  emailAddress,
+  licenseData,
+  paymentId,
+}: {
+  emailAddress: string;
+  licenseData: License;
+  paymentId: any;
+}) => {
   let { simpleTitle, permissionDescription, licenseLink } = licenseData;
 
-  let emailContent = await ejs.render(
+  let emailContent = ejs.render(
     emailTemplate,
     {
       simpleTitle,
