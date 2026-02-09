@@ -20,8 +20,13 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
   const [capturedStrokes, setCapturedStrokes] = useState<any[]>([]);
   const [builtInstance, setBuiltInstance] = useState<any>(null);
   const [playerState, setPlayerState] = useState<State>("WAITING");
+  const [isMounted, setIsMounted] = useState(false);
   const is = (s: State) => s === playerState;
   const getEditorValue = (): string => editorRef?.current?.value || "";
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const sendDemoEvent = (name: string, props: EventProps = {}) => {
     props.page_path = pagePath;
@@ -140,7 +145,7 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
             ref={contentContainerRef}
             className="bg-zinc-100 border-2 border-solid border-zinc-200 p-6 rounded text-lg"
           >
-            {is("PLAYING") && (
+            {isMounted && is("PLAYING") && (
               <TypeIt
                 className="block"
                 options={typeItOptions}
