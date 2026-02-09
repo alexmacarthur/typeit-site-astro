@@ -12,6 +12,21 @@ import { sendEvent } from "../utils";
 
 const typeItOptions = { lifeLike: true, speed: 0, waitUntilVisible: true };
 
+// Wrapper to ensure TypeIt renders outside Preact's render cycle
+const TypeItWrapper = (props: any) => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    // Defer rendering to next tick to avoid JSX runtime conflicts
+    const timer = setTimeout(() => setShow(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!show) return null;
+
+  return <TypeIt {...props} />;
+};
+
 const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const editorRef = useRef<HTMLTextAreaElement>(null);
@@ -20,13 +35,9 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
   const [capturedStrokes, setCapturedStrokes] = useState<any[]>([]);
   const [builtInstance, setBuiltInstance] = useState<any>(null);
   const [playerState, setPlayerState] = useState<State>("WAITING");
-  const [isMounted, setIsMounted] = useState(false);
+  const [shouldShowTypeIt, setShouldShowTypeIt] = useState(false);
   const is = (s: State) => s === playerState;
   const getEditorValue = (): string => editorRef?.current?.value || "";
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const sendDemoEvent = (name: string, props: EventProps = {}) => {
     props.page_path = pagePath;
@@ -50,7 +61,10 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
     }
 
     // -- Trigger the instance to render...
+    setShouldShowTypeIt(false);
     setPlayerState("PLAYING");
+    // Defer showing TypeIt to next tick to avoid JSX runtime conflicts
+    setTimeout(() => setShouldShowTypeIt(true), 0);
     sendDemoEvent("Demo", {
       content: contentRef.current?.value || "",
     });
@@ -145,8 +159,8 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
             ref={contentContainerRef}
             className="bg-zinc-100 border-2 border-solid border-zinc-200 p-6 rounded text-lg"
           >
-            {isMounted && is("PLAYING") && (
-              <TypeIt
+            {shouldShowTypeIt && is("PLAYING") && (
+              <TypeItWrapper
                 className="block"
                 options={typeItOptions}
                 getBeforeInit={(instance: any) => {

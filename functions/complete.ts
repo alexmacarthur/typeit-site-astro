@@ -4,29 +4,35 @@ import type { License } from "./types";
 import getLicenseData from "./src/util/getLicenseData";
 import * as Sentry from "@sentry/node";
 import sendEmails from "./src/util/sendEmails";
-import headers from "./src/constants/defaultHeaders";
+import { default as headers } from "./src/constants/defaultHeaders";
 import { getStripe } from "./src/util/getStripe";
 
 let sentryInitialized = false;
 const initSentry = () => {
   if (!sentryInitialized) {
-    Sentry.init({ dsn: process.env.SENTRY_DSN || "" });
+    Sentry.init({
+      dsn: process.env.SENTRY_DSN || "",
+    });
     sentryInitialized = true;
   }
 };
 
-export const handler: Handler = async (event) => {
+export const handler: Handler = async (event, _context) => {
   initSentry();
 
   if (event.httpMethod !== "POST") {
-    return { statusCode: 200, headers };
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        message: "Not a valid request!",
+      }),
+    };
   }
 
   const stripe = getStripe();
-  const sig =
-    event.headers["stripe-signature"] || event.headers["Stripe-Signature"];
-
-  let stripeEvent;
+  const sig = event.headers["stripe-signature"];
+  let stripeEvent: any;
 
   try {
     stripeEvent = stripe.webhooks.constructEvent(
@@ -36,32 +42,43 @@ export const handler: Handler = async (event) => {
     );
   } catch (err: any) {
     Sentry.captureException(err);
-    console.error("Stripe signature verification failed:", err.message);
+    console.error(err.message);
 
     return {
       statusCode: 400,
       headers,
-      body: `Webhook Error: ${err.message}`,
+      body: JSON.stringify({
+        message: `Webhook Error: ${err.message}`,
+      }),
     };
   }
 
-  // ✅ ACK all other event types
   if (stripeEvent.type !== "checkout.session.completed") {
-    return { statusCode: 200, headers };
+    return {
+      statusCode: 400,
+      headers,
+      body: JSON.stringify({
+        message: "Not a checkout.session.completed event.",
+      }),
+    };
   }
 
   const sessionData = stripeEvent.data.object;
-
   const session = await stripe.checkout.sessions.retrieve(sessionData.id, {
     expand: ["line_items"],
   });
-
   const customer = (await stripe.customers.retrieve(
-    sessionData.customer as string,
+    sessionData.customer,
   )) as any;
 
-  if (!session.line_items?.data?.length) {
-    return { statusCode: 200, headers };
+  if (!session.line_items?.data) {
+    return {
+      statusCode: 400,
+      headers,
+      body: JSON.stringify({
+        message: "No line items found.",
+      }),
+    };
   }
 
   for (const item of session.line_items.data) {
@@ -73,8 +90,13 @@ export const handler: Handler = async (event) => {
     const licenseData: License | undefined = getLicenseData(slug);
 
     if (!licenseData) {
-      Sentry.captureMessage(`Unknown license slug: ${slug}`);
-      continue;
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          message: "Not a valid license!",
+        }),
+      };
     }
 
     try {
@@ -86,13 +108,21 @@ export const handler: Handler = async (event) => {
       Sentry.captureException(err);
       console.error(err.message);
 
-      return { statusCode: 500, headers };
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          message: err.message,
+        }),
+      };
     }
   }
 
   return {
     statusCode: 200,
     headers,
-    body: JSON.stringify({ message: "We good." }),
+    body: JSON.stringify({
+      message: "We good.",
+    }),
   };
 };
