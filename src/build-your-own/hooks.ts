@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import striff from "striff";
 import type { Stroke } from "./types";
 

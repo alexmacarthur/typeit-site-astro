@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "react";
 import TypeIt from "typeit-react";
 import CopyButton from "./CopyButton";
 import {
@@ -108,7 +108,7 @@ const BuildYourOwn = ({ pagePath }: { pagePath: string }) => {
     }
   };
 
-  const handleTabbing = (e: KeyboardEvent) => {
+  const handleTabbing = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (!/tab/i.test(e.code)) {
       return;
     }

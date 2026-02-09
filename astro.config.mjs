@@ -3,7 +3,7 @@ import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
-import preact from "@astrojs/preact";
+import react from "@astrojs/react";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -17,12 +17,6 @@ export default defineConfig({
   },
   trailingSlash: process.env.NODE_ENV === "development" ? "ignore" : "never",
   vite: {
-    resolve: {
-      alias: {
-        react: "preact/compat",
-        "react-dom": "preact/compat",
-      },
-    },
     ssr: {
       noExternal: ["typeit-react"],
     },
@@ -125,6 +119,6 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    preact({ compat: true }),
+    react(),
   ],
 });
