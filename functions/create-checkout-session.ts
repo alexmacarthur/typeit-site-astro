@@ -51,6 +51,7 @@ const handler: Handler = async (event, _context) => {
     mode: "payment",
     success_url: `${domain}/confirmation/${licenseData.friendlySlug}?id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${domain}/licenses/purchase`,
+    customer_creation: "always",
   });
 
   const location = session.url;
