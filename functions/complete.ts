@@ -3,19 +3,23 @@ import type { License } from "./types";
 
 import getLicenseData from "./src/util/getLicenseData";
 import * as Sentry from "@sentry/node";
-import Stripe from "stripe";
 import sendEmails from "./src/util/sendEmails";
 import { default as headers } from "./src/constants/defaultHeaders";
+import { getStripe } from "./src/util/getStripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2026-01-28.clover" as const,
-});
+let sentryInitialized = false;
+const initSentry = () => {
+  if (!sentryInitialized) {
+    Sentry.init({
+      dsn: process.env.SENTRY_DSN || "",
+    });
+    sentryInitialized = true;
+  }
+};
 
-Sentry.init({
-  dsn: process.env.SENTRY_DSN || "",
-});
+export const handler: Handler = async (event, _context) => {
+  initSentry();
 
-const handler: Handler = async (event, _context) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 200,
@@ -26,6 +30,7 @@ const handler: Handler = async (event, _context) => {
     };
   }
 
+  const stripe = getStripe();
   const sig = event.headers["stripe-signature"];
   let stripeEvent: any;
 
@@ -33,7 +38,7 @@ const handler: Handler = async (event, _context) => {
     stripeEvent = stripe.webhooks.constructEvent(
       event.body || "",
       sig || "",
-      process.env.STRIPE_WEBHOOK_SECRET || "",
+      process.env.STRIPE_WEBHOOK_SECRET as string,
     );
   } catch (err: any) {
     Sentry.captureException(err);
@@ -47,6 +52,8 @@ const handler: Handler = async (event, _context) => {
       }),
     };
   }
+
+  stripeEvent = JSON.parse(event.body || "{}");
 
   if (stripeEvent.type !== "checkout.session.completed") {
     return {
@@ -98,7 +105,6 @@ const handler: Handler = async (event, _context) => {
       await sendEmails({
         emailAddress: customer.email,
         licenseData,
-        paymentId: sessionData.payment_intent,
       });
     } catch (err: any) {
       Sentry.captureException(err);
@@ -122,5 +128,3 @@ const handler: Handler = async (event, _context) => {
     }),
   };
 };
-
-export { handler };

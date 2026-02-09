@@ -1,8 +1,11 @@
 [build]
   publish = "dist"
   command = "npm run build"
-  functions = "functions"
+
+[functions]
+  directory = "functions"
   node_bundler = "esbuild"
+  external_node_modules = ["ejs"]
 
 [[headers]]
   for = "/confirmation/*"

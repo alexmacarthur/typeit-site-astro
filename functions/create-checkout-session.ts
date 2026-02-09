@@ -1,13 +1,10 @@
 import type { Handler } from "@netlify/functions";
 import * as Sentry from "@sentry/node";
-import Stripe from "stripe";
 import { default as headers } from "./src/constants/defaultHeaders";
 import isProduction from "./src/util/isProduction";
 import getLicenseData from "./src/util/getLicenseData";
+import { getStripe } from "./src/util/getStripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2026-01-28.clover" as const,
-});
 const statusCode = 200;
 
 Sentry.init({
@@ -29,6 +26,7 @@ const handler: Handler = async (event, _context) => {
     };
   }
 
+  const stripe = getStripe();
   const slug = new URLSearchParams(event.body as string).get("slug");
   const licenseData = getLicenseData(slug);
 
